@@ -2,7 +2,9 @@
 Elgato Stream Deck toggle-button plugin for Elite Dangerous
 
 This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons.
+
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
+
 When a button has no effect (e.g. when docked) then the image won't change.
 (normal buttons don't need any plugin, they simply simulate a keypress)
 
@@ -26,8 +28,7 @@ The plugin looks for a StartPreset.start file in this Elite Dangerous key bindin
 
 That .start file should contain the exact name of the key binding file. (Without the extension .binds)
 
-To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin`
-which should install the plugin.
+To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin` which should install the plugin.
 (Only if it's not already installed.)
 
 This .streamDeckPlugin file is a zip file and the contents are simply copied to :
