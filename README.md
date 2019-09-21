@@ -20,14 +20,15 @@ The supported toggle-buttons are:
 - SRV Drive Assist
 - SRV Handbrake
 
-The plugin looks for a file StartPreset.start in this Elite Dangerous key bindings directory :
+The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 
 `C:\Users\{UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\`
 
-That .start file should contain the exact name of the key binding file. (without the extension .binds)
+That .start file should contain the exact name of the key binding file. (Without the extension .binds)
 
 To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin`
-which should install the plugin (only if it's not already installed)
+which should install the plugin.
+(Only if it's not already installed.)
 
 This .streamDeckPlugin file is a zip file and the contents are simply copied to :
 
@@ -41,10 +42,16 @@ and delete the com.mhwlng.elite.sdPlugin directory
 
 Some example button images can be found in the source code images directory
 
+The com.mhwlng.elite.sdPlugin directory contains a pluginlog.log file, which may be useful for troubleshooting.
+
 
 Thanks to :
 
 https://github.com/BarRaider/streamdeck-tools
+
 https://github.com/EliteAPI/EliteAPI
+
 https://github.com/ishaaniMittal/inputsimulator
+
 https://nerdordie.com/product/stream-deck-key-icons/
+
