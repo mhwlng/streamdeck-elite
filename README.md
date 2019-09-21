@@ -24,9 +24,9 @@ The plugin looks for a file StartPreset.start in this Elite Dangerous key bindin
 
 `C:\Users\{UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\`
 
-That .start file should contain the exact name of the key binding file, with the extension .binds
+That .start file should contain the exact name of the key binding file. (without the extension .binds)
 
-To install the plugin, double click the file com.mhwlng.elite.streamDeckPlugin
+To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin`
 which should install the plugin (only if it's not already installed)
 
 This .streamDeckPlugin file is a zip file and the contents are simply copied to :
