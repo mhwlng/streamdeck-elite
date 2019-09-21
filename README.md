@@ -28,6 +28,8 @@ The plugin looks for a StartPreset.start file in this Elite Dangerous key bindin
 
 That .start file should contain the exact name of the key binding file. (Without the extension .binds)
 
+The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
+
 To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin` which should install the plugin.
 (Only if it's not already installed.)
 
