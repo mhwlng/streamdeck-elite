@@ -1,6 +1,8 @@
 # streamdeck-elite
 Elgato Stream Deck toggle-button plugin for Elite Dangerous
 
+![Elgato Stream Deck](https://i.imgur.com/SWWUYR5.jpg)
+
 This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
