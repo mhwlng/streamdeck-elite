@@ -35,13 +35,13 @@ This .streamDeckPlugin file is a zip file and the contents are simply copied to 
 
 `C:\Users\{UserName}\AppData\Roaming\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
 
-To uninstall, stop the Stream Deck application 
+To uninstall, stop the Stream Deck application:
 
 `c:\Program Files\Elgato\StreamDeck\StreamDeck.exe`
 
-and delete the com.mhwlng.elite.sdPlugin directory
+and delete the com.mhwlng.elite.sdPlugin directory.
 
-Some example button images can be found in the source code images directory
+Some example button images can be found in the source code images directory.
 
 The com.mhwlng.elite.sdPlugin directory contains a pluginlog.log file, which may be useful for troubleshooting.
 
