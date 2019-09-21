@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>InputSimulatorPlus</id>
+    <version>1.0.7.0</version>
+    <title>Windows Input Simulator Plus</title>
+    <authors>Michael Noonan, Theodoros Chatzigiannakis</authors>
+    <owners>TChatzigiannakis</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/TChatzigiannakis/InputSimulatorPlus</projectUrl>
+    <description>This package is a fork of the Windows Input Simulator package. If you have encountered applications that do not receive input from the original Windows Input Simulator, try replacing it with this package instead.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2009-2018</copyright>
+    <tags>c# windows input</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\WindowsInput.*" target="lib\net20" />
+  </files>
+</package>

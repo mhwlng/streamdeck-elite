@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>Mhwlng's Elite</title>
+    <link rel="stylesheet" href="../sdpi.css">
+    <link rel="stylesheet" href="../jquery.highlight-within-textarea.css">
+    <script src="../sdtools.common.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../jquery.highlight-within-textarea.js"></script>
+    <script src="../index.js"></script>
+</head>
+<body>
+<div class="sdpi-wrapper">
+
+    <div class="sdpi-item" id="select_single">
+        <div class="sdpi-item-label">Function</div>
+        <select class="sdpi-item-value select sdProperty" id="function" oninput="setSettings()">
+            <option value="ToggleCargoScoop">Cargo Scoop</option>
+            <option value="LandingGearToggle">Landing Gear</option>
+            <option value="ToggleFlightAssist">Flight Assist</option>
+            <option value="ShipSpotLightToggle">Lights</option>
+            <option value="NightVisionToggle">Night Vision</option>
+            <option value="PlayerHUDModeToggle">Analysis Mode</option>
+            <option value="DeployHardpointToggle">Hardpoints</option>
+            <option value="Supercruise">Supercruise</option>
+            <option value="ToggleButtonUpInput">SilentRunning</option>
+            <option value="ToggleBuggyTurretButton">Srv Turret</option>
+            <option value="ToggleDriveAssist">Srv DriveAssist</option>
+            <option value="AutoBreakBuggyButton">Srv Handbrake</option>
+        </select>
+    </div>
+    <div class="sdpi-item" id="dvKeyImage">
+        <div class="sdpi-item-label">On Image</div>
+        <div class="sdpi-item-group file" id="filepickergroup">
+            <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+            <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
+            <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
+        </div>
+    </div>
+    <div class="sdpi-item" id="dvSecondaryImage">
+        <div class="sdpi-item-label">Off Image</div>
+        <div class="sdpi-item-group file" id="filepickergroup">
+            <input class="sdpi-item-value sdProperty sdFile" type="file" id="secondaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+            <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
+            <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "Actions": [
+    {
+      "Icon": "Images/icon",
+      "Name": "Toggle Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Toggle Button",
+      "UUID": "com.mhwlng.elite",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Elite.html"
+    }
+  ],
+  "Author": "mhwlng",
+  "Description": "Elite Dangerous Toggle Button",
+  "Name": "Elite Dangerous",
+  "Icon": "Images/pluginIcon",
+  "URL": "",
+  "Version": "1.0.0",
+  "CodePath": "com.mhwlng.elite",
+  "Category": "Elite Dangerous",
+  "CategoryIcon": "Images/categoryIcon",
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "4.1"
+  }
+}
