@@ -8,6 +8,7 @@ This plugin connects to Elite Dangerous, to get the on/off status for 12 differe
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
 
 When a button has no effect (e.g. when docked) then the image won't change.
+
 (normal buttons don't need any plugin, they simply simulate a keypress)
 
 The supported toggle-buttons are:
