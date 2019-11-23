@@ -31,11 +31,18 @@ namespace Elite
                 var path =
                     $@"C:\Users\{Environment.UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\";
 
-                var fileName = File.ReadAllText(path + "StartPreset.start") + ".binds";
+                var fileName = Path.Combine(path, File.ReadAllText(path + "StartPreset.start") + ".3.0.binds");
+
+                if (!File.Exists(fileName))
+                {
+                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+
+                    fileName = fileName.Replace(".3.0.binds",".binds");
+                }
 
                 var serializer = new XmlSerializer(typeof(UserBindings));
 
-                var reader = new StreamReader(Path.Combine(path, fileName));
+                var reader = new StreamReader(fileName);
                 Bindings = (UserBindings) serializer.Deserialize(reader);
                 reader.Close();
 

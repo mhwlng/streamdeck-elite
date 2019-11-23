@@ -28,7 +28,7 @@ The plugin looks for a StartPreset.start file in this Elite Dangerous key bindin
 
 `C:\Users\{UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\`
 
-That .start file should contain the exact name of the key binding file. (Without the extension .binds)
+That .start file should contain the exact name of the key binding file. (Without the extension .3.0.binds or .binds)
 
 The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
 
