@@ -36,7 +36,7 @@ namespace Elite
     }
 
     [PluginActionId("com.mhwlng.elite")]
-    public class Elite : EliteBase
+    public class Toggle : EliteBase
     {
         protected class PluginSettings
         {
@@ -146,11 +146,11 @@ namespace Elite
 
         }
 
-        public Elite(SDConnection connection, InitialPayload payload) : base(connection, payload)
+        public Toggle(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, "Constructor #1");
+                Logger.Instance.LogMessage(TracingLevel.DEBUG, "Toggle Constructor #1");
 
                 settings = PluginSettings.CreateDefaultSettings();
                 Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
@@ -158,7 +158,7 @@ namespace Elite
             }
             else
             {
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, "Constructor #2");
+                Logger.Instance.LogMessage(TracingLevel.DEBUG, "Toggle Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
                 HandleFilenames();
@@ -173,54 +173,6 @@ namespace Elite
 
         }
 
-        private void SendKeypress(StandardBindingInfo keyInfo)
-        {
-            var inputText = "";
-
-            if (keyInfo.Primary.Device == "Keyboard")
-            {
-                inputText =
-                    "{" + keyInfo.Primary.Key.Replace("Key_", "DIK") + "}";
-            }
-            else if (keyInfo.Secondary.Device == "Keyboard")
-            {
-                inputText =
-                    "{" + keyInfo.Secondary.Key.Replace("Key_", "DIK") + "}";
-                foreach (var m in keyInfo.Secondary.Modifier)
-                {
-                    if (m.Device == "Keyboard")
-                    {
-                        inputText =
-                            "{" + m.Key.Replace("Key_", "DIK") +
-                            "}" + inputText;
-                    }
-                }
-            }
-
-            if (!string.IsNullOrEmpty(inputText))
-            {
-
-                inputText = inputText.Replace("_","")
-                    .Replace("Backspace", "BACK")
-                    .Replace("UpArrow", "UP")
-                    .Replace("DownArrow", "DOWN")
-                    .Replace("LeftArrow", "LEFT")
-                    .Replace("RightArrow", "RIGHT")
-                    .Replace("LeftAlt", "LMENU")
-                    .Replace("RightAlt", "RMENU")
-                    .Replace("RightControl", "RCONTROL")
-                    .Replace("LeftControl", "LCONTROL")
-                    .Replace("RightShift", "RSHIFT")
-                    .Replace("LeftShift", "LSHIFT");
-
-                //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
-
-                SendInput("{" + inputText + "}");
-
-                // keyboard test page : https://w3c.github.io/uievents/tools/key-event-viewer.html
-            }
-
-        }
 
         public override void KeyPressed(KeyPayload payload)
         {
@@ -301,7 +253,7 @@ namespace Elite
             Logger.Instance.LogMessage(TracingLevel.DEBUG, "ReceivedSettings");
 
             // New in StreamDeck-Tools v2.0:
-            Tools.AutoPopulateSettings(settings, payload.Settings);
+            BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
             HandleFilenames();
 
             AsyncHelper.RunSync(HandleDisplay);

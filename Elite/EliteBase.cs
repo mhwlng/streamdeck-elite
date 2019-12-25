@@ -1,7 +1,9 @@
 ﻿using BarRaider.SdTools;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using WindowsInput;
+using Elite.EliteApi;
 
 namespace Elite
 {
@@ -59,6 +61,63 @@ namespace Elite
                     iis.Keyboard.KeyPress(keyCode);
                 }
             }
+        }
+
+        protected void SendKeypress(StandardBindingInfo keyInfo, int repeatCount = 1)
+        {
+            var inputText = "";
+
+            if (keyInfo.Primary.Device == "Keyboard")
+            {
+                inputText =
+                    "{" + keyInfo.Primary.Key.Replace("Key_", "DIK") + "}";
+            }
+            else if (keyInfo.Secondary.Device == "Keyboard")
+            {
+                inputText =
+                    "{" + keyInfo.Secondary.Key.Replace("Key_", "DIK") + "}";
+                foreach (var m in keyInfo.Secondary.Modifier)
+                {
+                    if (m.Device == "Keyboard")
+                    {
+                        inputText =
+                            "{" + m.Key.Replace("Key_", "DIK") +
+                            "}" + inputText;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(inputText))
+            {
+
+                inputText = inputText.Replace("_", "")
+                    .Replace("Backspace", "BACK")
+                    .Replace("UpArrow", "UP")
+                    .Replace("DownArrow", "DOWN")
+                    .Replace("LeftArrow", "LEFT")
+                    .Replace("RightArrow", "RIGHT")
+                    .Replace("LeftAlt", "LMENU")
+                    .Replace("RightAlt", "RMENU")
+                    .Replace("RightControl", "RCONTROL")
+                    .Replace("LeftControl", "LCONTROL")
+                    .Replace("RightShift", "RSHIFT")
+                    .Replace("LeftShift", "LSHIFT");
+
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
+
+                for (var i = 0; i < repeatCount; i++)
+                {
+                    if (repeatCount > 1 && i > 0)
+                    {
+                        Thread.Sleep(20);
+                    } 
+                    SendInput("{" + inputText + "}");
+
+                }
+
+                // keyboard test page : https://w3c.github.io/uievents/tools/key-event-viewer.html
+            }
+
         }
 
     }
