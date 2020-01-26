@@ -26,7 +26,7 @@ namespace Elite
 
 
                 EliteApi = new EliteDangerousAPI();
-                EliteApi.Start();
+                EliteApi.Start(false);
 
                 var path =
                     $@"C:\Users\{Environment.UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\";

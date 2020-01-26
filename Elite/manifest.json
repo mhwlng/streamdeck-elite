@@ -29,6 +29,21 @@
       "Tooltip": "Elite Dangerous Power Distributor Button",
       "UUID": "com.mhwlng.elite.power",
       "PropertyInspectorPath": "PropertyInspector/Elite/Power.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Alarm Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Alarm Button",
+      "UUID": "com.mhwlng.elite.alarm",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Alarm.html"
     }
   ],
   "Author": "mhwlng",

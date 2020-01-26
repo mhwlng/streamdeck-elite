@@ -5,7 +5,10 @@ Elgato Stream Deck toggle-button plugin for Elite Dangerous
 
 ![Power distributor pips](https://imgur.com/raJ3w2p.jpg)
 
-This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons and 4 buttons to control the power distributor pips.
+![Alarm Buttons](https://i.imgur.com/qlRJ5sR.png)
+
+This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons, 
+4 buttons to control the power distributor pips and 4 alarm buttons.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
 
@@ -36,20 +39,30 @@ The supported power distributor pips buttons are:
 A long press on a button will set the power distributor to 4 pips.
 There is a separate button image for 4 pips.
 
+The supported alarm buttons are:
+- Highest Threat (alarm = under attack status)
+- Deploy Chaff (alarm = under attack status)
+- Deploy Heatsink (alarm = overheating status)
+- Deploy Shield Cell Bank (alarm = shields down status)
+
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 
-`C:\Users\{UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\`
+`%userprofile%\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\`
 
 That .start file should contain the exact name of the key binding file. (Without the extension .3.0.binds or .binds)
+
+This plugin ony works with keyboard bindings. 
+So, when there is only a binding to a joystick / controller for a function, then you need to add a keyboard binding.
 
 The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
 
 To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin` which should install the plugin.
-(Only if it's not already installed.)
+
+(This only works, if the plugin not already installed. Otherwise you will need to uninstall or remove the plugin first.)
 
 This .streamDeckPlugin file is a zip file and the contents are simply copied to :
 
-`C:\Users\{UserName}\AppData\Roaming\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
+`%userprofile%\AppData\Roaming\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
 
 To uninstall, stop the Stream Deck application:
 
@@ -61,6 +74,10 @@ Some example button images can be found in the source code images directory.
 
 The com.mhwlng.elite.sdPlugin directory contains a pluginlog.log file, which may be useful for troubleshooting.
 
+
+Also see companion application for Logitech Flight Instrument Panel :
+
+https://github.com/mhwlng/fip-elite
 
 Thanks to :
 
