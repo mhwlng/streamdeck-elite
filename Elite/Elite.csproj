@@ -126,6 +126,7 @@
     <Compile Include="CommandTools.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Alarm.cs" />
+    <Compile Include="SteamPath.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="EliteApi\UserBindings.cs" />
     <Compile Include="KeystrokeBase.cs" />

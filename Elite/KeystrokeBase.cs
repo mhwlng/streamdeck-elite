@@ -109,7 +109,7 @@ namespace Elite
         public override void Dispose()
         {
             _keyPressed = false;
-            Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called");
+            //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called");
         }
 
 

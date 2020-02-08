@@ -19,28 +19,47 @@ namespace Elite
             // Uncomment this line of code to allow for debugging
             //while (!System.Diagnostics.Debugger.IsAttached) { System.Threading.Thread.Sleep(100); }
 
-            Logger.Instance.LogMessage(TracingLevel.DEBUG, "Init Elite Api");
+            Logger.Instance.LogMessage(TracingLevel.INFO, "Init Elite Api");
 
             try
             {
-
-
                 EliteApi = new EliteDangerousAPI();
                 EliteApi.Start(false);
 
                 var path =
                     $@"C:\Users\{Environment.UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\";
 
-                var fileName = Path.Combine(path, File.ReadAllText(path + "StartPreset.start") + ".3.0.binds");
+                var bindsName = File.ReadAllText(path + "StartPreset.start");
+
+                var fileName = Path.Combine(path, bindsName + ".3.0.binds");
 
                 if (!File.Exists(fileName))
                 {
-                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                    //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
 
                     fileName = fileName.Replace(".3.0.binds",".binds");
+
+                    if (!File.Exists(fileName))
+                    {
+                        path = SteamPath.FindSteamEliteDirectory();
+
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            fileName = Path.Combine(path, bindsName + ".3.0.binds");
+
+                            if (!File.Exists(fileName))
+                            {
+                                //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+
+                                fileName = fileName.Replace(".3.0.binds", ".binds");
+                            }
+                        }
+                    }
                 }
 
                 var serializer = new XmlSerializer(typeof(UserBindings));
+
+                Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
 
                 var reader = new StreamReader(fileName);
                 Bindings = (UserBindings) serializer.Deserialize(reader);

@@ -150,7 +150,7 @@ namespace Elite
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, "Toggle Constructor #1");
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Toggle Constructor #1");
 
                 settings = PluginSettings.CreateDefaultSettings();
                 Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
@@ -158,7 +158,7 @@ namespace Elite
             }
             else
             {
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, "Toggle Constructor #2");
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Toggle Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
                 HandleFilenames();
@@ -240,7 +240,7 @@ namespace Elite
 
         public override void Dispose()
         {
-            Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
+            //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
         }
 
         public override async void OnTick()
@@ -250,7 +250,7 @@ namespace Elite
 
         public override void ReceivedSettings(ReceivedSettingsPayload payload)
         {
-            Logger.Instance.LogMessage(TracingLevel.DEBUG, "ReceivedSettings");
+            //Logger.Instance.LogMessage(TracingLevel.DEBUG, "ReceivedSettings");
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
