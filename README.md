@@ -52,7 +52,7 @@ The plugin looks for a StartPreset.start file in this Elite Dangerous key bindin
 That .start file should contain the exact name of the key binding file. (Without the extension .3.0.binds or .binds)
 
 Also, the steam library directories are searched, for any of the default key binding files :
-, 
+ 
 `....\steamapps\common\Elite Dangerous\Products\elite-dangerous-64\ControlSchemes`
 
 This plugin ony works with keyboard bindings. 
