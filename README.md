@@ -58,7 +58,7 @@ Also, the steam library directories are searched, for any of the default key bin
 This plugin ony works with keyboard bindings. 
 So, when there is only a binding to a joystick / controller for a function, then you need to add a keyboard binding.
 
-Ig you change the bindings in Elite dangerous, then you need to restart the streamdeck application.
+If you change the bindings in Elite dangerous, then you need to restart the streamdeck application.
 
 The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
 
