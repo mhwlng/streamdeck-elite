@@ -106,24 +106,26 @@ namespace Elite
                     {
                         using (var graphics = Graphics.FromImage(bitmap))
                         {
+                            var width = bitmap.Width; // assumes rectangular bitmap
+
                             var outline = new Pen(whiteBrush, 1);
 
                             for (var i = 2; i <= 8; i += 2)
                             {
-                                var x = 12 + (i / 2) * 40;
-                                var y = 58;
-                                var w = 30;
-                                var h = 30;
+                                var x = (12.0 + (i / 2) * 40) * (width/256.0);
+                                var y = 58.0 * (width / 256.0);
+                                var w = 30.0 * (width / 256.0);
+                                var h = 30.0 * (width / 256.0);
 
                                 if (pips > 0 && i <= pips + 1)
                                 {
                                     var brush = (pips == i - 1) ? greyBrush : whiteBrush;
 
-                                    graphics.FillRectangle(brush, x, y, w, h);
+                                    graphics.FillRectangle(brush, (float)x, (float)y, (float)w, (float)h);
                                 }
                                 else
                                 {
-                                    graphics.FillRectangle(blackBrush, x, y, w, h);
+                                    graphics.FillRectangle(blackBrush, (float)x, (float)y, (float)w, (float)h);
                                 }
                             }
                         }
