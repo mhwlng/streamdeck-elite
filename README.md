@@ -85,7 +85,7 @@ Thanks to :
 
 https://github.com/BarRaider/streamdeck-tools
 
-https://github.com/EliteAPI/EliteAPI
+https://github.com/MagicMau/EliteJournalReader
 
 https://github.com/ishaaniMittal/inputsimulator
 

@@ -1,18 +1,47 @@
 ﻿using BarRaider.SdTools;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Xml.Serialization;
-using EliteAPI;
-using Elite.EliteApi;
+using EliteJournalReader;
 
 
 namespace Elite
 {
     class Program
     {
-        public static EliteDangerousAPI EliteApi;
+        public static StatusWatcher statusWatcher;
+        public static JournalWatcher watcher;
+
 
         public static UserBindings Bindings;
+
+        private class UnsafeNativeMethods
+        {
+            [DllImport("Shell32.dll")]
+            public static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags, IntPtr hToken, out IntPtr ppszPath);
+        }
+
+        /// <summary>
+        /// The standard Directory of the Player Journal files (C:\Users\%username%\Saved Games\Frontier Developments\Elite Dangerous).
+        /// </summary>
+        public static DirectoryInfo StandardDirectory
+        {
+            get
+            {
+                int result = UnsafeNativeMethods.SHGetKnownFolderPath(new Guid("4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4"), 0, new IntPtr(0), out IntPtr path);
+                if (result >= 0)
+                {
+                    try { return new DirectoryInfo(Marshal.PtrToStringUni(path) + @"\Frontier Developments\Elite Dangerous"); }
+                    catch { return new DirectoryInfo(Directory.GetCurrentDirectory()); }
+                }
+                else
+                {
+                    return new DirectoryInfo(Directory.GetCurrentDirectory());
+                }
+            }
+        }
+       
 
         static void Main(string[] args)
         {
@@ -23,8 +52,21 @@ namespace Elite
 
             try
             {
-                EliteApi = new EliteDangerousAPI();
-                EliteApi.Start(false);
+                var journalPath = StandardDirectory.FullName;
+
+                Logger.Instance.LogMessage(TracingLevel.INFO, "journal path " + journalPath);
+
+                statusWatcher = new StatusWatcher(journalPath);
+
+                statusWatcher.StatusUpdated += EliteData.HandleStatusEvents;
+
+                statusWatcher.StartWatching();
+
+                watcher = new JournalWatcher(journalPath);
+
+                watcher.AllEventHandler += EliteData.HandleEliteEvents;
+
+                watcher.StartWatching().Wait();
 
                 var path =
                     $@"C:\Users\{Environment.UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\";

@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using StandardBindingInfo = Elite.EliteApi.StandardBindingInfo;
+using StandardBindingInfo = Elite.StandardBindingInfo;
 
 // ReSharper disable StringLiteralTypo
 
@@ -78,50 +78,50 @@ namespace Elite
             switch (settings.Function)
             {
                 case "ToggleCargoScoop":
-                    isPrimary = Program.EliteApi.Status.CargoScoop;
+                    isPrimary = EliteData.StatusData.CargoScoopDeployed;
                     break;
                 case "LandingGearToggle":
-                    isPrimary = Program.EliteApi.Status.Gear;
+                    isPrimary = EliteData.StatusData.LandingGearDown;
                     break;
 
                 case "ToggleFlightAssist":
-                    isPrimary = Program.EliteApi.Status.FlightAssist;
+                    isPrimary = !EliteData.StatusData.FlightAssistOff;
                     break;
 
                 case "ShipSpotLightToggle":
-                    isPrimary = Program.EliteApi.Status.Lights;
+                    isPrimary = EliteData.StatusData.LightsOn;
                     break;
 
                 case "NightVisionToggle":
-                    isPrimary = Program.EliteApi.Status.NightVision;
+                    isPrimary = EliteData.StatusData.NightVision;
                     break;
 
                 case "PlayerHUDModeToggle":
-                    isPrimary = Program.EliteApi.Status.AnalysisMode;
+                    isPrimary = EliteData.StatusData.HudInAnalysisMode;
                     break;
 
                 case "DeployHardpointToggle":
-                    isPrimary = Program.EliteApi.Status.Hardpoints;
+                    isPrimary = EliteData.StatusData.HardpointsDeployed;
                     break;
 
                 case "Supercruise":
-                    isPrimary = Program.EliteApi.Status.Supercruise;
+                    isPrimary = EliteData.StatusData.Supercruise;
                     break;
 
                 case "ToggleButtonUpInput":
-                    isPrimary = Program.EliteApi.Status.SilentRunning;
+                    isPrimary = EliteData.StatusData.SilentRunning;
                     break;
 
                 case "ToggleBuggyTurretButton":
-                    isPrimary = Program.EliteApi.Status.SrvTurrent;
+                    isPrimary = EliteData.StatusData.SrvTurret;
                     break;
 
                 case "ToggleDriveAssist":
-                    isPrimary = Program.EliteApi.Status.SrvDriveAssist;
+                    isPrimary = EliteData.StatusData.SrvDriveAssist;
                     break;
 
                 case "AutoBreakBuggyButton":
-                    isPrimary = Program.EliteApi.Status.SrvHandbreak;
+                    isPrimary = EliteData.StatusData.SrvHandbrake;
                     break;
 
             }
@@ -167,9 +167,7 @@ namespace Elite
 
             }
 
-            Program.EliteApi.Events.AllEvent += async (sender, e) => await HandleDisplay();
-
-
+            Program.watcher.AllEventHandler += async (sender, e) => await HandleDisplay();
 
         }
 

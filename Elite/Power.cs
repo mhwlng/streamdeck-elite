@@ -7,7 +7,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using StandardBindingInfo = Elite.EliteApi.StandardBindingInfo;
+using StandardBindingInfo = Elite.StandardBindingInfo;
 
 // ReSharper disable StringLiteralTypo
 
@@ -69,15 +69,15 @@ namespace Elite
                 {
                     case "SYS":
                         SendKeypress(Program.Bindings.IncreaseSystemsPower, repeatCount);
-                        Program.EliteApi.Status.Pips[0] = 8;
+                        EliteData.StatusData.Pips[0] = 8;
                         break;
                     case "ENG":
                         SendKeypress(Program.Bindings.IncreaseEnginesPower, repeatCount);
-                        Program.EliteApi.Status.Pips[1] = 8;
+                        EliteData.StatusData.Pips[1] = 8;
                         break;
                     case "WEP":
                         SendKeypress(Program.Bindings.IncreaseWeaponsPower, repeatCount);
-                        Program.EliteApi.Status.Pips[2] = 8;
+                        EliteData.StatusData.Pips[2] = 8;
                         break;
                 }
 
@@ -88,13 +88,13 @@ namespace Elite
             switch (settings.Function)
             {
                 case "SYS":
-                    pips = Program.EliteApi.Status.Pips[0];
+                    pips = EliteData.StatusData.Pips[0];
                     break;
                 case "ENG":
-                    pips = Program.EliteApi.Status.Pips[1];
+                    pips = EliteData.StatusData.Pips[1];
                     break;
                 case "WEP":
-                    pips = Program.EliteApi.Status.Pips[2];
+                    pips = EliteData.StatusData.Pips[2];
                     break;
             }
 
@@ -158,32 +158,32 @@ namespace Elite
                 AsyncHelper.RunSync(() => HandleDisplay());
             }
 
-            Program.EliteApi.Events.AllEvent += async (sender, e) => await HandleDisplay();
-            
+            Program.watcher.AllEventHandler += async (sender, e) => await HandleDisplay();
+
         }
 
         private void AdjustPips(int index)
         {
-            if (Program.EliteApi.Status.Pips[index] < 8)
+            if (EliteData.StatusData.Pips[index] < 8)
             {
                 for (int i = 0; i < 3; i++)
                 {
                     if (i != index)
                     {
-                        Program.EliteApi.Status.Pips[i]--;
+                        EliteData.StatusData.Pips[i]--;
                     }
                     else
                     {
-                        Program.EliteApi.Status.Pips[i] += 2;
+                        EliteData.StatusData.Pips[i] += 2;
                     }
 
-                    if (Program.EliteApi.Status.Pips[i] < 0)
+                    if (EliteData.StatusData.Pips[i] < 0)
                     {
-                        Program.EliteApi.Status.Pips[i] = 0;
+                        EliteData.StatusData.Pips[i] = 0;
                     }
-                    else if (Program.EliteApi.Status.Pips[i] > 8)
+                    else if (EliteData.StatusData.Pips[i] > 8)
                     {
-                        Program.EliteApi.Status.Pips[i] = 8;
+                        EliteData.StatusData.Pips[i] = 8;
                     }
                 }
             }
@@ -220,9 +220,9 @@ namespace Elite
                 case "RST":
                     SendKeypress(Program.Bindings.ResetPowerDistribution);
 
-                    Program.EliteApi.Status.Pips[0] = 4;
-                    Program.EliteApi.Status.Pips[1] = 4;
-                    Program.EliteApi.Status.Pips[2] = 4;
+                    EliteData.StatusData.Pips[0] = 4;
+                    EliteData.StatusData.Pips[1] = 4;
+                    EliteData.StatusData.Pips[2] = 4;
 
                     break;
             }

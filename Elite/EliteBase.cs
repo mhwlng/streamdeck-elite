@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WindowsInput;
-using Elite.EliteApi;
 
 namespace Elite
 {

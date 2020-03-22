@@ -5,8 +5,7 @@ using System;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using EliteAPI.Events;
-using StandardBindingInfo = Elite.EliteApi.StandardBindingInfo;
+using StandardBindingInfo = Elite.StandardBindingInfo;
 
 // ReSharper disable StringLiteralTypo
 
@@ -49,11 +48,6 @@ namespace Elite
         private string _primaryFile;
         private string _secondaryFile;
 
-        private bool _underAttack = false;
-        private DateTime _lastUnderAttackEvent = DateTime.Now;
-
-        protected EventHandler<UnderAttackInfo> HandleUnderAttackEventsDelegate;
-
 
         private async Task HandleDisplay()
         {
@@ -61,26 +55,26 @@ namespace Elite
 
             var isPrimary = false;
 
-            if (_underAttack && (DateTime.Now - _lastUnderAttackEvent).Seconds > 20)
+            if (EliteData.UnderAttack && (DateTime.Now - EliteData.LastUnderAttackEvent).Seconds > 20)
             {
-                _underAttack = false;
+                EliteData.UnderAttack = false;
             }
 
             switch (settings.Function)
             {
                 case "SelectHighestThreat":
-                    isPrimary = !_underAttack;
+                    isPrimary = !EliteData.UnderAttack;
                     break;
                 case "DeployChaff":
-                    isPrimary = !_underAttack;
+                    isPrimary = !EliteData.UnderAttack;
                     break;
 
                 case "DeployHeatsink":
-                    isPrimary = !Program.EliteApi.Status.Overheating;
+                    isPrimary = !EliteData.StatusData.Overheating;
                     break;
 
                 case "DeployShieldCell":
-                    isPrimary = Program.EliteApi.Status.Shields;
+                    isPrimary = EliteData.StatusData.ShieldsUp;
                     break;
             }
 
@@ -125,21 +119,8 @@ namespace Elite
 
             }
 
-            Program.EliteApi.Events.AllEvent += async (sender, e) => await HandleDisplay();
-
-            HandleUnderAttackEventsDelegate = UnderAttackEvent;
-
-            Program.EliteApi.Events.UnderAttackEvent += HandleUnderAttackEventsDelegate;
         }
 
-        private void UnderAttackEvent(object sender, UnderAttackInfo e)
-        {
-            if (e.Target == "You")
-            {
-                _underAttack = true;
-                _lastUnderAttackEvent = DateTime.Now;
-            }
-        }
 
 
         public override void KeyPressed(KeyPayload payload)
@@ -156,11 +137,11 @@ namespace Elite
             {
                 case "SelectHighestThreat":
                     SendKeypress(Program.Bindings.SelectHighestThreat);
-                    _underAttack = false;
+                    EliteData.UnderAttack = false;
                     break;
                 case "DeployChaff":
                     SendKeypress(Program.Bindings.FireChaffLauncher);
-                    _underAttack = false;
+                    EliteData.UnderAttack = false;
                     break;
 
                 case "DeployHeatsink":

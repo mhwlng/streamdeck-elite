@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Elite.EliteApi
+namespace Elite
 {
 
     [Serializable]
