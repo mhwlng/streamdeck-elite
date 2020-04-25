@@ -43,7 +43,7 @@ The supported alarm buttons are:
 
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 
-`%userprofile%\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\`
+`%LocalAppData%\Frontier Developments\Elite Dangerous\Options\Bindings\`
 
 That .start file should contain the exact name of the key binding file. (Without the extension .3.0.binds or .binds)
 
@@ -64,7 +64,7 @@ To install the plugin, double click the file `com.mhwlng.elite.streamDeckPlugin`
 
 This .streamDeckPlugin file is a zip file and the contents are simply copied to :
 
-`%userprofile%\AppData\Roaming\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
+`%appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
 
 To uninstall, stop the Stream Deck application:
 

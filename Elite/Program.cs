@@ -56,6 +56,11 @@ namespace Elite
 
                 Logger.Instance.LogMessage(TracingLevel.INFO, "journal path " + journalPath);
 
+                if (!Directory.Exists(journalPath))
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {journalPath}");
+                }
+
                 statusWatcher = new StatusWatcher(journalPath);
 
                 statusWatcher.StatusUpdated += EliteData.HandleStatusEvents;
@@ -68,12 +73,19 @@ namespace Elite
 
                 watcher.StartWatching().Wait();
 
-                var path =
-                    $@"C:\Users\{Environment.UserName}\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\";
+                var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) , @"Frontier Developments\Elite Dangerous\Options\Bindings");
+                
+                Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
 
-                var bindsName = File.ReadAllText(path + "StartPreset.start");
+                if (!Directory.Exists(bindingsPath))
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
 
-                var fileName = Path.Combine(path, bindsName + ".3.0.binds");
+                }
+
+                var bindsName = File.ReadAllText(Path.Combine(bindingsPath,"StartPreset.start"));
+
+                var fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
 
                 if (!File.Exists(fileName))
                 {
@@ -83,11 +95,11 @@ namespace Elite
 
                     if (!File.Exists(fileName))
                     {
-                        path = SteamPath.FindSteamEliteDirectory();
+                        bindingsPath = SteamPath.FindSteamEliteDirectory();
 
-                        if (!string.IsNullOrEmpty(path))
+                        if (!string.IsNullOrEmpty(bindingsPath))
                         {
-                            fileName = Path.Combine(path, bindsName + ".3.0.binds");
+                            fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
 
                             if (!File.Exists(fileName))
                             {
