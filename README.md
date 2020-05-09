@@ -42,9 +42,9 @@ The supported alarm buttons are:
 - Deploy Shield Cell Bank (alarm = shields down status)
 
 The supported FSD related buttons are:
-- Toggle FSD
+- Toggle FSD, also shows Remaining Jumps In Route
 - Supercruise
-- Hyperspace Jump
+- Hyperspace Jump, also shows Remaining Jumps In Route
 
 These FSD buttons have 3 images:
 - engaged  : supercruise/hyperspace is active
