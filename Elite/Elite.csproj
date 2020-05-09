@@ -169,6 +169,9 @@
     <Content Include="Images\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\jump alarm.png" />
+    <Content Include="Images\jump off.png" />
+    <Content Include="Images\jump on.png" />
     <Content Include="Images\landing gear off.png" />
     <Content Include="Images\landing gear on.png" />
     <Content Include="Images\lights off.png" />
@@ -192,6 +195,7 @@
     <Content Include="Images\srv drive assist on.png" />
     <Content Include="Images\srv turret off.png" />
     <Content Include="Images\srv turret on.png" />
+    <Content Include="Images\supercruise alarm.png" />
     <Content Include="Images\supercruise off.png" />
     <Content Include="Images\supercruise on.png" />
     <Content Include="Images\SYS off.png" />
