@@ -96,19 +96,19 @@ namespace EliteJournalReader
                     }
                     catch (Exception e)
                     {
-                        Trace.TraceError("Error initializing JournalWatcher: " + handler.GetType().FullName);
+                        System.Diagnostics.Trace.TraceError("Error initializing JournalWatcher: " + handler.GetType().FullName);
                         var exception = e;
                         while (exception != null)
                         {
-                            Trace.TraceError(exception.ToString());
-                            Trace.TraceError(exception.StackTrace);
+                            System.Diagnostics.Trace.TraceError(exception.ToString());
+                            System.Diagnostics.Trace.TraceError(exception.StackTrace);
                             exception = exception.InnerException;
                         }
 
                     }
                 }
             }
-            catch (ReflectionTypeLoadException ex)
+            catch (System.Reflection.ReflectionTypeLoadException ex)
             {
                 StringBuilder sb = new StringBuilder();
                 foreach (Exception exSub in ex.LoaderExceptions)
@@ -116,7 +116,7 @@ namespace EliteJournalReader
                     sb.AppendLine(exSub.ToString());
                     if (exSub is FileNotFoundException exFileNotFound)
                     {
-                        if (!String.IsNullOrEmpty(exFileNotFound.FusionLog))
+                        if (!string.IsNullOrEmpty(exFileNotFound.FusionLog))
                         {
                             sb.AppendLine("Fusion Log:");
                             sb.AppendLine(exFileNotFound.FusionLog);
@@ -126,18 +126,18 @@ namespace EliteJournalReader
                 }
 
                 string errorMessage = sb.ToString();
-                Trace.TraceError("Error initializing JournalWatcher, loading " + ex.Message + " - " + ex.Source);
-                Trace.TraceError(ex.ToString());
-                Trace.TraceError(errorMessage);
+                System.Diagnostics.Trace.TraceError("Error initializing JournalWatcher, loading " + ex.Message + " - " + ex.Source);
+                System.Diagnostics.Trace.TraceError(ex.ToString());
+                System.Diagnostics.Trace.TraceError(errorMessage);
             }
             catch (Exception e)
             {
-                Trace.TraceError("Error initializing JournalWatcher");
+                System.Diagnostics.Trace.TraceError("Error initializing JournalWatcher");
                 var exception = e;
                 while (exception != null)
                 {
-                    Trace.TraceError(exception.ToString());
-                    Trace.TraceError(exception.StackTrace);
+                    System.Diagnostics.Trace.TraceError(exception.ToString());
+                    System.Diagnostics.Trace.TraceError(exception.StackTrace);
                     exception = exception.InnerException;
                 }
             }
@@ -186,7 +186,7 @@ namespace EliteJournalReader
                 int partNr = 1;
                 var match = journalFileRegex.Match(journals.First());
                 if (match.Success)
-                    Int32.TryParse(match.Groups["part"].Value, out partNr);
+                    int.TryParse(match.Groups["part"].Value, out partNr);
 
                 var previousFiles = journals.Take(partNr).Reverse();
 
@@ -273,7 +273,7 @@ namespace EliteJournalReader
                     IsLive = true;
                     FireEvent("MagicMau.IsLiveEvent", new JObject(new JProperty("timestamp", DateTime.UtcNow)));
 
-                    if (!String.IsNullOrEmpty(LatestJournalFile))
+                    if (!string.IsNullOrEmpty(LatestJournalFile))
                         CheckForJournalUpdateAsync(LatestJournalFile, offset);
                 }
 
@@ -555,14 +555,14 @@ namespace EliteJournalReader
         /// <param name="line"></param>
         protected void Parse(string line)
         {
-            if (String.IsNullOrEmpty(line))
+            if (string.IsNullOrEmpty(line))
                 return;
 
             try
             {
                 var evt = JObject.Parse(line);
                 var eventType = evt.Value<string>("event");
-                if (String.IsNullOrEmpty(eventType))
+                if (string.IsNullOrEmpty(eventType))
                     return; // no event, nothing to do
 
 #if DEBUG

@@ -80,7 +80,6 @@ namespace Elite
                 if (!Directory.Exists(bindingsPath))
                 {
                     Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
-
                 }
 
                 var bindsName = File.ReadAllText(Path.Combine(bindingsPath,"StartPreset.start"));

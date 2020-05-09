@@ -44,6 +44,21 @@
       "Tooltip": "Elite Dangerous Alarm Button",
       "UUID": "com.mhwlng.elite.alarm",
       "PropertyInspectorPath": "PropertyInspector/Elite/Alarm.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Hyperspace Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Hyperspace Button",
+      "UUID": "com.mhwlng.elite.hyperspace",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Hyperspace.html"
     }
   ],
   "Author": "mhwlng",

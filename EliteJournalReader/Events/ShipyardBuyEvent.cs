@@ -31,7 +31,7 @@ namespace EliteJournalReader.Events
             public string StoreOldShip { get; set; }
             public int? StoreShipId { get; set; }
             public string SellOldShip { get; set; }
-            public int? SellShipId { get; set; }
+            public int? SellShipID { get; set; }
             public int? SellPrice { get; set; }
         }
     }

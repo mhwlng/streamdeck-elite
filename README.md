@@ -4,7 +4,7 @@ Elgato Stream Deck toggle-button plugin for Elite Dangerous
 ![Elgato Stream Deck](https://i.imgur.com/bc3Xrv0.jpg)
 
 This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons, 
-4 buttons to control the power distributor pips and 4 alarm buttons.
+4 buttons to control the power distributor pips, 4 alarm buttons and 3 FSD related buttons.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
 
@@ -20,7 +20,7 @@ The supported toggle-buttons are:
 - Night Vision
 - Analysis Mode
 - Hardpoints
-- Supercruise
+- Supercruise (no longer needed)
 - Silent Running
 - SRV Turret
 - SRV Drive Assist
@@ -40,6 +40,16 @@ The supported alarm buttons are:
 - Deploy Chaff (alarm = under attack status)
 - Deploy Heatsink (alarm = overheating status)
 - Deploy Shield Cell Bank (alarm = shields down status)
+
+The supported FSD related buttons are:
+- Toggle FSD
+- Supercruise
+- Hyperspace Jump
+
+These FSD buttons have 3 images:
+- engaged  : supercruise/hyperspace is active
+- enabled  : supercruise/hyperspace is inactive
+- disabled : supercruise/hyperspace is blocked for reasons like (Docked, Landed, LandingGearDown, CargoScoopDeployed, FsdMassLocked, FsdCooldown, HardpointsDeployed)
 
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 

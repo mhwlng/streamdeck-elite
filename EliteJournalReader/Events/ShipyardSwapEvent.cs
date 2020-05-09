@@ -24,11 +24,11 @@ namespace EliteJournalReader.Events
             public long MarketID { get; set; }
             public string ShipType { get; set; }
             public string ShipType_Localised { get; set; }
-            public int ShipId { get; set; }
+            public int ShipID { get; set; }
             public string StoreOldShip { get; set; }
-            public int? StoreShipId { get; set; }
+            public int? StoreShipID { get; set; }
             public string SellOldShip { get; set; }
-            public int? SellShipId { get; set; }
+            public int? SellShipID { get; set; }
             public int? SellPrice { get; set; }  
         }
     }

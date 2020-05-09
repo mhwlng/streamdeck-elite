@@ -100,17 +100,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargoTransfer.cs" />
     <Compile Include="Commodity.cs" />
     <Compile Include="Economy.cs" />
     <Compile Include="EngineeredModule.cs" />
     <Compile Include="EngineeringModifiers.cs" />
     <Compile Include="EnumHelpers.cs" />
     <Compile Include="Events\AfmuRepairsEvent.cs" />
+    <Compile Include="Events\CargoTransferEvent.cs" />
+    <Compile Include="Events\CarrierDockingPermissionEvent.cs" />
+    <Compile Include="Events\CarrierTradeOrderEvent.cs" />
+    <Compile Include="Events\CarrierModulePackEvent.cs" />
+    <Compile Include="Events\CarrierShipPackEvent.cs" />
+    <Compile Include="Events\CarrierFinanceEvent.cs" />
+    <Compile Include="Events\CarrierCrewServicesEvent.cs" />
+    <Compile Include="Events\CarrierDepositFuelEvent.cs" />
+    <Compile Include="Events\CarrierBankTransferEvent.cs" />
+    <Compile Include="Events\CarrierCancelDecommissionEvent.cs" />
+    <Compile Include="Events\CarrierDecommissionEvent.cs" />
     <Compile Include="Events\CrimeVictimEvent.cs" />
     <Compile Include="Events\FSSAllBodiesFoundEvent.cs" />
+    <Compile Include="Events\CarrierJumpEvent.cs" />
     <Compile Include="Events\ReservoirReplenishedEvent.cs" />
     <Compile Include="Events\ProspectedAsteroidEvent.cs" />
     <Compile Include="Events\MultiSellExplorationDataEvent.cs" />
+    <Compile Include="Events\CarrierBuyEvent.cs" />
+    <Compile Include="Events\CarrierStatsEvent.cs" />
+    <Compile Include="Events\CarrierJumpRequestEvent.cs" />
     <Compile Include="SAASignal.cs" />
     <Compile Include="Events\SAASignalsFoundEvent.cs" />
     <Compile Include="Events\SquadronStartupEvent.cs" />
