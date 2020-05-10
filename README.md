@@ -4,7 +4,7 @@ Elgato Stream Deck toggle-button plugin for Elite Dangerous
 ![Elgato Stream Deck](https://i.imgur.com/bc3Xrv0.jpg)
 
 This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons, 
-4 buttons to control the power distributor pips, 4 alarm buttons and 3 FSD related buttons.
+4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons and a generic limpet controller button.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
 
@@ -50,6 +50,12 @@ These FSD buttons have 3 images:
 - engaged  : supercruise/hyperspace is active
 - enabled  : supercruise/hyperspace is inactive
 - disabled : supercruise/hyperspace is blocked for reasons like (Docked, Landed, LandingGearDown, CargoScoopDeployed, FsdMassLocked, FsdCooldown, HardpointsDeployed)
+
+The limpet controller button works with any type of limpet controller.
+
+The button shows the current number of limpets in the cargo hold. (The same value is shown on all buttons).
+There is no specific keybind for any type of limpet controller.
+Instead, you need to set up a fire group letter and primary or secondary fire button.
 
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 

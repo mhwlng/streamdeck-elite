@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="CommandTools.cs" />
     <Compile Include="EliteData.cs" />
+    <Compile Include="Limpet.cs" />
     <Compile Include="Hyperspace.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Alarm.cs" />
@@ -152,6 +153,8 @@
     </Content>
     <Content Include="Images\chaff off.png" />
     <Content Include="Images\chaff on.png" />
+    <Content Include="Images\collector off.png" />
+    <Content Include="Images\collector on.png" />
     <Content Include="Images\Default.png" />
     <Content Include="Images\ENG off.png" />
     <Content Include="Images\ENG on.png" />
@@ -184,6 +187,8 @@
     <Content Include="Images\pluginIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\prospector off.png" />
+    <Content Include="Images\prospector on.png" />
     <Content Include="Images\RST.png" />
     <Content Include="Images\scb off.png" />
     <Content Include="Images\SCB on.png" />
@@ -215,6 +220,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\elg_calendar_inv.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\Elite\Limpet.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\Elite\Hyperspace.html">

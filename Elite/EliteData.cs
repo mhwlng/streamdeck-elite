@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using BarRaider.SdTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using EliteJournalReader;
@@ -24,6 +25,7 @@ namespace Elite
         public static string FsdTargetName { get; set; }
         public static int RemainingJumpsInRoute { get; set; }
         public static string StarSystem { get; set; }
+        public static int LimpetCount { get; set; } 
 
         public class Status
         {
@@ -144,6 +146,7 @@ namespace Elite
 
         }
 
+
         public static void HandleEliteEvents(object sender, JournalEventArgs e)
         {
             var evt = ((JournalEventArgs) e).OriginalEvent.Value<string>("event");
@@ -218,6 +221,33 @@ namespace Elite
                         EliteData.UnderAttack = true;
                         EliteData.LastUnderAttackEvent = DateTime.Now;
                     }
+
+                    break;
+
+                case "Cargo":
+
+                    var cargoInfo = (CargoEvent.CargoEventArgs)e;
+
+                    if (cargoInfo.Vessel == "Ship")
+                    {
+                        if (cargoInfo.Inventory == null)
+                        {
+                            cargoInfo = Program.watcher.ReadCargoJson();
+                        }
+
+                        if (cargoInfo.Inventory != null)
+                        {
+                            EliteData.LimpetCount =
+                              cargoInfo.Inventory.Where(x => x.Name.ToLower().Contains("drones")).Sum(x => x.Count);
+                        }
+                    }
+                    break;
+
+                case "Died":
+
+                    var diedInfo = (DiedEvent.DiedEventArgs)e;
+
+                    EliteData.LimpetCount = 0;
 
                     break;
 

@@ -59,6 +59,21 @@
       "Tooltip": "Elite Dangerous Hyperspace Button",
       "UUID": "com.mhwlng.elite.hyperspace",
       "PropertyInspectorPath": "PropertyInspector/Elite/Hyperspace.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Limpet Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Limpet Controller Button",
+      "UUID": "com.mhwlng.elite.limpet",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Limpet.html"
     }
   ],
   "Author": "mhwlng",
