@@ -232,7 +232,7 @@ namespace Elite
                     {
                         if (cargoInfo.Inventory == null)
                         {
-                            cargoInfo = Program.watcher.ReadCargoJson();
+                            cargoInfo = Program.Watcher.ReadCargoJson();
                         }
 
                         if (cargoInfo.Inventory != null)

@@ -1,18 +1,88 @@
 ﻿using BarRaider.SdTools;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Xml.Serialization;
 using EliteJournalReader;
+using EliteJournalReader.Events;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace Elite
 {
+
+    public class KeyBindingFileEvent : EventArgs
+    {
+
+    }
+
+    public class KeyBindingWatcher : FileSystemWatcher
+    {
+        public event EventHandler KeyBindingUpdated;
+
+        protected KeyBindingWatcher()
+        {
+
+        }
+
+        public KeyBindingWatcher(string path, string fileName)
+        {
+            Filter = fileName;
+            NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastWrite;
+            Path = path;
+        }
+
+        public virtual void StartWatching()
+        {
+            if (EnableRaisingEvents)
+            {
+                return;
+            }
+
+            Changed -= UpdateStatus;
+            Changed += UpdateStatus;
+
+            EnableRaisingEvents = true;
+        }
+
+        public virtual void StopWatching()
+        {
+            try
+            {
+                if (EnableRaisingEvents)
+                {
+                    Changed -= UpdateStatus;
+
+                    EnableRaisingEvents = false;
+                }
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError($"Error while stopping Status watcher: {e.Message}");
+                Trace.TraceInformation(e.StackTrace);
+            }
+        }
+
+        protected void UpdateStatus(object sender, FileSystemEventArgs e)
+        {
+            Thread.Sleep(50);
+
+            KeyBindingUpdated?.Invoke(this, EventArgs.Empty);
+        }
+       
+
+    }
+    
+
     class Program
     {
-        public static StatusWatcher statusWatcher;
-        public static JournalWatcher watcher;
-
+        public static KeyBindingWatcher KeyBindingWatcher1;
+        public static KeyBindingWatcher KeyBindingWatcher2;
+        public static StatusWatcher StatusWatcher;
+        public static JournalWatcher Watcher;
 
         public static UserBindings Bindings;
 
@@ -41,7 +111,94 @@ namespace Elite
                 }
             }
         }
-       
+
+        public static void HandleKeyBindingEvents(object sender, object evt)
+        {
+            Logger.Instance.LogMessage(TracingLevel.INFO, $"Reloading Key Bindings");
+
+            GetKeyBindings();
+        }
+
+        public static void GetKeyBindings()
+        {
+            if (KeyBindingWatcher1 != null)
+            {
+                KeyBindingWatcher1.StopWatching();
+                KeyBindingWatcher1.Dispose();
+                KeyBindingWatcher1 = null;
+            }
+
+            if (KeyBindingWatcher2 != null)
+            {
+                KeyBindingWatcher2.StopWatching();
+                KeyBindingWatcher2.Dispose();
+                KeyBindingWatcher2 = null;
+            }
+
+            var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Frontier Developments\Elite Dangerous\Options\Bindings");
+
+            if (!Directory.Exists(bindingsPath))
+            {
+                Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
+            }
+
+            var startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
+
+            //Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
+
+            var bindsName = File.ReadAllText(startPresetPath);
+
+            var keyBindingPath = Path.GetDirectoryName(startPresetPath);
+            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #1 " + keyBindingPath);
+            var keyBindingFileName = Path.GetFileName(startPresetPath);
+            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #1 " + keyBindingFileName);
+            KeyBindingWatcher1 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
+            KeyBindingWatcher1.KeyBindingUpdated += HandleKeyBindingEvents;
+            KeyBindingWatcher1.StartWatching();
+
+            var fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+
+            if (!File.Exists(fileName))
+            {
+                //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+
+                fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                if (!File.Exists(fileName))
+                {
+                    bindingsPath = SteamPath.FindSteamEliteDirectory();
+
+                    if (!string.IsNullOrEmpty(bindingsPath))
+                    {
+                        fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+
+                        if (!File.Exists(fileName))
+                        {
+                            //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+
+                            fileName = fileName.Replace(".3.0.binds", ".binds");
+                        }
+                    }
+                }
+            }
+
+            var serializer = new XmlSerializer(typeof(UserBindings));
+
+            //Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
+
+            var reader = new StreamReader(fileName);
+            Bindings = (UserBindings)serializer.Deserialize(reader);
+            reader.Close();
+
+
+            keyBindingPath = Path.GetDirectoryName(fileName);
+            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #2 " + keyBindingPath);
+            keyBindingFileName = Path.GetFileName(fileName);
+            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #2 " + keyBindingFileName);
+            KeyBindingWatcher2 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
+            KeyBindingWatcher2.KeyBindingUpdated += HandleKeyBindingEvents;
+            KeyBindingWatcher2.StartWatching();
+        }
 
         static void Main(string[] args)
         {
@@ -52,6 +209,9 @@ namespace Elite
 
             try
             {
+                GetKeyBindings();
+
+
                 var journalPath = StandardDirectory.FullName;
 
                 Logger.Instance.LogMessage(TracingLevel.INFO, "journal path " + journalPath);
@@ -61,63 +221,17 @@ namespace Elite
                     Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {journalPath}");
                 }
 
-                statusWatcher = new StatusWatcher(journalPath);
+                StatusWatcher = new StatusWatcher(journalPath);
 
-                statusWatcher.StatusUpdated += EliteData.HandleStatusEvents;
+                StatusWatcher.StatusUpdated += EliteData.HandleStatusEvents;
 
-                statusWatcher.StartWatching();
+                StatusWatcher.StartWatching();
 
-                watcher = new JournalWatcher(journalPath);
+                Watcher = new JournalWatcher(journalPath);
 
-                watcher.AllEventHandler += EliteData.HandleEliteEvents;
+                Watcher.AllEventHandler += EliteData.HandleEliteEvents;
 
-                watcher.StartWatching().Wait();
-
-                var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) , @"Frontier Developments\Elite Dangerous\Options\Bindings");
-                
-                Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
-
-                if (!Directory.Exists(bindingsPath))
-                {
-                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
-                }
-
-                var bindsName = File.ReadAllText(Path.Combine(bindingsPath,"StartPreset.start"));
-
-                var fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
-
-                if (!File.Exists(fileName))
-                {
-                    //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
-
-                    fileName = fileName.Replace(".3.0.binds",".binds");
-
-                    if (!File.Exists(fileName))
-                    {
-                        bindingsPath = SteamPath.FindSteamEliteDirectory();
-
-                        if (!string.IsNullOrEmpty(bindingsPath))
-                        {
-                            fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
-
-                            if (!File.Exists(fileName))
-                            {
-                                //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
-
-                                fileName = fileName.Replace(".3.0.binds", ".binds");
-                            }
-                        }
-                    }
-                }
-
-                var serializer = new XmlSerializer(typeof(UserBindings));
-
-                Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
-
-                var reader = new StreamReader(fileName);
-                Bindings = (UserBindings) serializer.Deserialize(reader);
-                reader.Close();
-
+                Watcher.StartWatching().Wait();
             }
             catch (Exception ex)
             {

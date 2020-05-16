@@ -39,7 +39,7 @@ The supported alarm buttons are:
 - Highest Threat (alarm = under attack status)
 - Deploy Chaff (alarm = under attack status)
 - Deploy Heatsink (alarm = overheating status)
-- Deploy Shield Cell Bank (alarm = shields down status)
+- Deploy Shield Cell Bank (alarm = shields down status. In that case DON'T fire a shield cell bank.)
 
 The supported FSD related buttons are:
 - Toggle FSD, also shows Remaining Jumps In Route
@@ -70,7 +70,7 @@ Also, the steam library directories are searched, for any of the default key bin
 This plugin ony works with keyboard bindings. 
 So, when there is only a binding to a joystick / controller for a function, then you need to add a keyboard binding.
 
-If you change the bindings in Elite Dangerous, then you need to restart the streamdeck application.
+If you change the key bindings in Elite Dangerous, then you don't have to restart the streamdeck software. The plugin key bindings are updated automatically.
 
 The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
 

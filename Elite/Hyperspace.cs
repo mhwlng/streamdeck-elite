@@ -184,7 +184,7 @@ namespace Elite
                 AsyncHelper.RunSync(() => HandleDisplay());
             }
 
-            Program.watcher.AllEventHandler += async (sender, e) => await HandleDisplay();
+            Program.Watcher.AllEventHandler += async (sender, e) => await HandleDisplay();
 
         }
 
