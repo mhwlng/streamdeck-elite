@@ -82,18 +82,28 @@ This .streamDeckPlugin file is a zip file and the contents are simply copied to 
 
 `%appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
 
-To uninstall, stop the Stream Deck application:
+To uninstall : select 'more actions' in the streamdeck application, find the plugin and select uninstall.
+
+or stop the Stream Deck application:
 
 `c:\Program Files\Elgato\StreamDeck\StreamDeck.exe`
 
 and delete the com.mhwlng.elite.sdPlugin directory.
 
+The button configurations are not stored in the plugin directory.
+
+Note that the entire plugin directory is deleted when uninstalling. (including any images that you may have manually put there yourself)
+
+After uninstalling and re-installing the plugin, all the button definition should still be there.
+
 Some example button images can be found in the source code images directory.
 
 The com.mhwlng.elite.sdPlugin directory contains a pluginlog.log file, which may be useful for troubleshooting.
 
+Best is to create a separate directory for the images, so that they are not deleted when uninstalling/reinstalling the plugin.
 
-Also see companion application for Logitech Flight Instrument Panel :
+
+Also see companion application for Logitech Flight Instrument Panel and VR :
 
 https://github.com/mhwlng/fip-elite
 
