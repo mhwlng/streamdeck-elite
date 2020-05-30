@@ -82,7 +82,8 @@ namespace Elite
         public static KeyBindingWatcher KeyBindingWatcher1;
         public static KeyBindingWatcher KeyBindingWatcher2;
         public static StatusWatcher StatusWatcher;
-        public static JournalWatcher Watcher;
+        public static CargoWatcher CargoWatcher;
+        public static JournalWatcher JournalWatcher;
 
         public static UserBindings Bindings;
 
@@ -227,11 +228,18 @@ namespace Elite
 
                 StatusWatcher.StartWatching();
 
-                Watcher = new JournalWatcher(journalPath);
+                JournalWatcher = new JournalWatcher(journalPath);
 
-                Watcher.AllEventHandler += EliteData.HandleEliteEvents;
+                JournalWatcher.AllEventHandler += EliteData.HandleEliteEvents;
 
-                Watcher.StartWatching().Wait();
+                JournalWatcher.StartWatching().Wait();
+
+                CargoWatcher = new CargoWatcher(journalPath);
+
+                CargoWatcher.CargoUpdated += EliteData.HandleCargoEvents;
+
+                CargoWatcher.StartWatching();
+
             }
             catch (Exception ex)
             {

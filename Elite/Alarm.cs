@@ -115,7 +115,7 @@ namespace Elite
                 settings = payload.Settings.ToObject<PluginSettings>();
                 HandleFilenames();
 
-                AsyncHelper.RunSync(() => HandleDisplay());
+                AsyncHelper.RunSync(HandleDisplay);
 
             }
 

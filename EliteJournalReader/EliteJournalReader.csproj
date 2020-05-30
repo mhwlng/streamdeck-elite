@@ -127,6 +127,9 @@
     <Compile Include="Events\CarrierBuyEvent.cs" />
     <Compile Include="Events\CarrierStatsEvent.cs" />
     <Compile Include="Events\CarrierJumpRequestEvent.cs" />
+    <Compile Include="CargoWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SAASignal.cs" />
     <Compile Include="Events\SAASignalsFoundEvent.cs" />
     <Compile Include="Events\SquadronStartupEvent.cs" />
@@ -344,6 +347,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

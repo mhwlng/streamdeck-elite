@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using EliteJournalReader;
 using StandardBindingInfo = Elite.StandardBindingInfo;
 
 // ReSharper disable StringLiteralTypo
@@ -163,12 +164,17 @@ namespace Elite
                 settings = payload.Settings.ToObject<PluginSettings>();
                 HandleFilenames();
 
-                AsyncHelper.RunSync(() => HandleDisplay());
+                AsyncHelper.RunSync(HandleDisplay);
 
             }
 
-            Program.Watcher.AllEventHandler += async (sender, e) => await HandleDisplay();
+            Program.JournalWatcher.AllEventHandler += HandleEliteEvents;
 
+        }
+
+        public void HandleEliteEvents(object sender, JournalEventArgs e)
+        {
+            AsyncHelper.RunSync(HandleDisplay);
         }
 
 
@@ -239,6 +245,8 @@ namespace Elite
         public override void Dispose()
         {
             //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
+
+            Program.JournalWatcher.AllEventHandler -= HandleEliteEvents;
         }
 
         public override async void OnTick()

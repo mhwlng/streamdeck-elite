@@ -85,6 +85,14 @@ namespace Elite
 
         public static Status StatusData = new Status();
 
+        public static void HandleCargoEvents(object sender, CargoEvent.CargoEventArgs evt)
+        {
+            if (evt?.Inventory != null && evt?.Vessel == "Ship")
+            {
+                EliteData.LimpetCount =
+                  evt.Inventory.Where(x => x.Name.ToLower().Contains("drones")).Sum(x => x.Count);
+            }
+        }
 
         public static void HandleStatusEvents(object sender, StatusFileEvent evt)
         {
@@ -227,12 +235,12 @@ namespace Elite
                 case "Cargo":
 
                     var cargoInfo = (CargoEvent.CargoEventArgs)e;
-
+                    /*
                     if (cargoInfo.Vessel == "Ship")
                     {
                         if (cargoInfo.Inventory == null)
                         {
-                            cargoInfo = Program.Watcher.ReadCargoJson();
+                            cargoInfo = Program.JournalWatcher.ReadCargoJson();
                         }
 
                         if (cargoInfo.Inventory != null)
@@ -241,6 +249,7 @@ namespace Elite
                               cargoInfo.Inventory.Where(x => x.Name.ToLower().Contains("drones")).Sum(x => x.Count);
                         }
                     }
+                    */
                     break;
 
                 case "Died":
