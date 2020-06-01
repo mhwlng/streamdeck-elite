@@ -11,8 +11,7 @@ If you press the relevant button on your keyboard or hotas, then the image on th
 When a button has no effect (e.g. when docked) then the image won't change.
 
 The plugin can (optionally) automatically switch to a different profile, if the in-game state changes (e.g. deploy hardpoints, enter SRV etc.)
-
-More instructions on the[Wiki](https://github.com/mhwlng/streamdeck-elite/wiki/Automatic-Profile-Switching)
+More instructions on the [Wiki](https://github.com/mhwlng/streamdeck-elite/wiki/Automatic-Profile-Switching).
 
 (normal buttons don't need any plugin, they simply simulate a keypress)
 
