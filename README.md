@@ -1,7 +1,7 @@
 # streamdeck-elite
 Elgato Stream Deck toggle-button plugin for Elite Dangerous
 
-![Elgato Stream Deck](https://i.imgur.com/bc3Xrv0.jpg)
+![Elgato Stream Deck and Flight Instrument Panel](https://i.imgur.com/bE2ODlF.jpg)
 
 This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons, 
 4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons and a generic limpet controller button.
@@ -10,7 +10,7 @@ If you press the relevant button on your keyboard or hotas, then the image on th
 
 When a button has no effect (e.g. when docked) then the image won't change.
 
-The plugin can (optionally) automatically switch to a different profile, if the in-game state changes (e.g. deploy hardpoints, enter SRV etc.)
+The plugin can (optionally) automatically switch to a different profile, if the in-game state changes. (e.g. deploy hardpoints, enter SRV etc.)
 More instructions on the [Wiki](https://github.com/mhwlng/streamdeck-elite/wiki/Automatic-Profile-Switching).
 
 (normal buttons don't need any plugin, they simply simulate a keypress)
