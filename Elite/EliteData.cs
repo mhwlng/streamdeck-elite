@@ -71,14 +71,13 @@ namespace Elite
             public double JumpRange { get; set; }
 
             public int Firegroup { get; set; }
-            public string GuiFocus { get; set; }
             public double Latitude { get; set; }
             public double Longitude { get; set; }
             public double Altitude { get; set; }
             public double Heading { get; set; }
             public string BodyName { get; set; }
             public double PlanetRadius { get; set; }
-
+            public StatusGuiFocus GuiFocus { get; set; }
 
             public int[] Pips { get; set; } = new int[3];
         }
@@ -139,7 +138,8 @@ namespace Elite
             StatusData.LegalState = evt.LegalState;
 
             StatusData.Firegroup = evt.Firegroup;
-            StatusData.GuiFocus = evt.GuiFocus.ToString();
+            StatusData.GuiFocus = evt.GuiFocus;
+
             StatusData.Latitude = evt.Latitude;
             StatusData.Longitude = evt.Longitude;
             StatusData.Altitude = evt.Altitude;

@@ -1,17 +1,14 @@
-﻿using BarRaider.SdTools;
+﻿using System;
+using System.Threading.Tasks;
+using BarRaider.SdTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Security.Cryptography;
-using System.Threading;
-using System.Threading.Tasks;
-using StandardBindingInfo = Elite.StandardBindingInfo;
 
 // ReSharper disable StringLiteralTypo
 
 //using EliteAPI.Logging;
 
-namespace Elite
+namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.alarm")]
@@ -121,8 +118,6 @@ namespace Elite
 
         }
 
-
-
         public override void KeyPressed(KeyPayload payload)
         {
             if (InputRunning || Program.Bindings == null)
@@ -157,11 +152,15 @@ namespace Elite
 
         public override void Dispose()
         {
+            base.Dispose();
+
             //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
         }
 
         public override async void OnTick()
         {
+            base.OnTick();
+
             await HandleDisplay();
         }
 

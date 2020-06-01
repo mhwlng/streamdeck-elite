@@ -119,16 +119,16 @@
   <ItemGroup>
     <Compile Include="CommandTools.cs" />
     <Compile Include="EliteData.cs" />
-    <Compile Include="Limpet.cs" />
-    <Compile Include="Hyperspace.cs" />
-    <Compile Include="Power.cs" />
-    <Compile Include="Alarm.cs" />
+    <Compile Include="Buttons\Limpet.cs" />
+    <Compile Include="Buttons\Hyperspace.cs" />
+    <Compile Include="Buttons\Power.cs" />
+    <Compile Include="Buttons\Alarm.cs" />
+    <Compile Include="Profile.cs" />
     <Compile Include="SteamPath.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="UserBindings.cs" />
-    <Compile Include="KeystrokeBase.cs" />
-    <Compile Include="EliteBase.cs" />
-    <Compile Include="Toggle.cs" />
+    <Compile Include="Buttons\EliteBase.cs" />
+    <Compile Include="Buttons\Toggle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -288,7 +288,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
-    <Error Condition="!Exists('..\packages\Fody.6.1.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.1.2\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.2.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.2.0\build\Fody.targets'))" />
   </Target>
-  <Import Project="..\packages\Fody.6.1.2\build\Fody.targets" Condition="Exists('..\packages\Fody.6.1.2\build\Fody.targets')" />
+  <Import Project="..\packages\Fody.6.2.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.2.0\build\Fody.targets')" />
 </Project>

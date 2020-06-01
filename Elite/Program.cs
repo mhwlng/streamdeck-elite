@@ -249,6 +249,8 @@ namespace Elite
 
             //EliteAPI.Events.AllEvent += (sender, e) => Console.Beep();
 
+            Profile.ReadProfiles();
+
 
             SDWrapper.Run(args);
         }

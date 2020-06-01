@@ -1,20 +1,17 @@
-﻿using BarRaider.SdTools;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Threading.Tasks;
+using BarRaider.SdTools;
+using EliteJournalReader;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using EliteJournalReader;
-using StandardBindingInfo = Elite.StandardBindingInfo;
 
 // ReSharper disable StringLiteralTypo
 
 //using EliteAPI.Logging;
 
-namespace Elite
+namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.power")]
@@ -244,6 +241,8 @@ namespace Elite
 
         public override void Dispose()
         {
+            base.Dispose();
+
             //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
 
             Program.JournalWatcher.AllEventHandler -= HandleEliteEvents;
@@ -251,6 +250,8 @@ namespace Elite
 
         public override async void OnTick()
         {
+            base.OnTick();
+
             await HandleDisplay();
         }
 

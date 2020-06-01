@@ -80,8 +80,8 @@
   "Description": "Elite Dangerous Buttons",
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
-  "URL": "",
-  "Version": "2.0.1",
+  "URL": "https://github.com/mhwlng/streamdeck-elite",
+  "Version": "2.0.2",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",
@@ -93,6 +93,11 @@
   ],
   "SDKVersion": 2,
   "Software": {
-    "MinimumVersion": "4.1"
-  }
+    "MinimumVersion": "4.6.1"
+  },
+  "Profiles": [
+
+
+
+  ]  
 }
