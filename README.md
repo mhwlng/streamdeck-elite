@@ -1,9 +1,9 @@
 # streamdeck-elite
-Elgato Stream Deck toggle-button plugin for Elite Dangerous
+Elgato Stream Deck button plugin for Elite Dangerous
 
 ![Elgato Stream Deck and Flight Instrument Panel](https://i.imgur.com/bE2ODlF.jpg)
 
-This plugin connects to Elite Dangerous, to get the on/off status for 12 different toggle-buttons, 
+This plugin connects to Elite Dangerous, to get the on/off status for 14 different toggle-buttons, 
 4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons and a generic limpet controller button.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
@@ -28,6 +28,8 @@ The supported toggle-buttons are:
 - SRV Turret
 - SRV Drive Assist
 - SRV Handbrake
+- Galaxy Map
+- System Map
 
 The supported power distributor pips buttons are:
 - Reset

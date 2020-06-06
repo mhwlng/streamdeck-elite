@@ -115,6 +115,15 @@ namespace WindowsInput
         IKeyboardSimulator ModifiedKeyStroke(IEnumerable<DirectInputKeyCode> modifierDikCodes, DirectInputKeyCode dikCode);
 
         /// <summary>
+        /// Simulates a modified keystroke where there are multiple modifiers and one key like CTRL-ALT-C where CTRL and ALT are the modifierKeys and C is the key.
+        /// The flow is Modifiers KeyDown in order, Key Press, Modifiers KeyUp in reverse order.
+        /// </summary>
+        /// <param name="modifierDikCodes">The list of modifier keys</param>
+        /// <param name="dikCode">The key to simulate</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode.</param>
+        IKeyboardSimulator DelayedModifiedKeyStroke(IEnumerable<DirectInputKeyCode> modifierDikCodes, DirectInputKeyCode dikCode, int delay);
+
+        /// <summary>
         /// Simulates a modified keystroke where there is one modifier and multiple keys like CTRL-K-C where CTRL is the modifierKey and K and C are the keys.
         /// The flow is Modifier KeyDown, Keys Press in order, Modifier KeyUp.
         /// </summary>

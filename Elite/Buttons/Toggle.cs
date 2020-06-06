@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using EliteJournalReader;
+using EliteJournalReader.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -77,6 +78,13 @@ namespace Elite.Buttons
 
             switch (settings.Function)
             {
+                case "GalaxyMap":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap;
+                    break;
+                case "SystemMap":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.SystemMap || EliteData.StatusData.GuiFocus == StatusGuiFocus.Orrery;
+                    break;
+
                 case "ToggleCargoScoop":
                     isPrimary = EliteData.StatusData.CargoScoopDeployed;
                     break;
@@ -187,8 +195,41 @@ namespace Elite.Buttons
 
             ForceStop = false;
 
+            // TODO ???
+
+            //FSSMode = 9, // Full Spectrum System Scanner  (needs to be in supercruise mode ??) 
+
+            // <ExplorationFSSEnter>
+            // <Primary Device="Keyboard" Key="Key_F" />
+            // <Secondary Device="{NoDevice}" Key="" />
+            // </ExplorationFSSEnter>
+            //	<ExplorationFSSQuit>
+            //	<Primary Device="Keyboard" Key="Key_L" />
+            //	<Secondary Device="{NoDevice}" Key="" />
+            //</ExplorationFSSQuit>
+
+            //SAAMode = 10,  // Surface Area Analysis scanner (same as Detailed Surface Scanner ???)
+                             // Can only be used in supercruise and only functions in analysis mode.
+                             // no keybind, needs fire group+trigger
+
+            //<ExplorationSAAExitThirdPerson>
+            //	<Primary Device="231D0127" Key="Joy_3" />
+            //	<Secondary Device="Keyboard" Key="Key_W">
+            //		<Modifier Device="Keyboard" Key="Key_LeftAlt" />
+            //		<Modifier Device="Keyboard" Key="Key_RightShift" />
+            //	</Secondary>
+            //</ExplorationSAAExitThirdPerson>
+
+
             switch (settings.Function)
             {
+                case "GalaxyMap":
+                    SendKeypress(Program.Bindings.GalaxyMapOpen);
+                    break;
+                case "SystemMap":
+                    SendKeypress(Program.Bindings.SystemMapOpen);
+                    break;
+
                 case "ToggleCargoScoop":
                     SendKeypress(Program.Bindings.ToggleCargoScoop);
                     break;

@@ -127,7 +127,10 @@ namespace Elite.Buttons
 
                 if (keyStrokes.Count > 0)
                 {
-                    iis.Keyboard.ModifiedKeyStroke(keyStrokes.Select(ks => ks).ToArray(), keyCode);
+                    //iis.Keyboard.ModifiedKeyStroke(keyStrokes.Select(ks => ks).ToArray(), keyCode);
+
+                    iis.Keyboard.DelayedModifiedKeyStroke(keyStrokes.Select(ks => ks), keyCode, 50);
+
                 }
                 else // Single Keycode
                 {
@@ -176,7 +179,7 @@ namespace Elite.Buttons
                     .Replace("RightShift", "RSHIFT")
                     .Replace("LeftShift", "LSHIFT");
 
-                //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
+                Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
 
                 for (var i = 0; i < repeatCount; i++)
                 {

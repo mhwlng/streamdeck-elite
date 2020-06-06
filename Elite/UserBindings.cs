@@ -159,6 +159,8 @@ namespace Elite
         public ToggleBindingInfo HeadLookToggle { get;  set; }
         public StandardBindingInfo Pause { get;  set; }
         public StandardBindingInfo PlayerHUDModeToggle { get; set; }
+        public StandardBindingInfo ExplorationFSSEnter { get; set; }
+
         public StandardBindingInfo Ui_Up { get;  set; }
         public StandardBindingInfo Ui_Down { get;  set; }
         public StandardBindingInfo Ui_Left { get;  set; }
@@ -260,6 +262,8 @@ namespace Elite
         public StandardBindingInfo GalaxyMapOpen_Buggy { get;  set; }
         public StandardBindingInfo SystemMapOpen_Buggy { get;  set; }
         public ToggleBindingInfo HeadLookToggle_Buggy { get;  set; }
+
+        public StandardBindingInfo ExplorationFSSQuit { get; set; }
     }
 
     public  class AxisBindingInfo
