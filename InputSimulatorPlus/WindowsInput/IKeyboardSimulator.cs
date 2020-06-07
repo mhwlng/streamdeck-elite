@@ -99,6 +99,14 @@ namespace WindowsInput
         IKeyboardSimulator KeyPress(DirectInputKeyCode dikCode);
 
         /// <summary>
+        /// Calls the Win32 SendInput method with a KeyDown and KeyUp message in the same input sequence in order to simulate a Key PRESS.
+        /// </summary>
+        /// <param name="dikCode">The <see cref="DirectInputKeyCode"/> to press</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode.</param>
+        IKeyboardSimulator DelayedKeyPress(DirectInputKeyCode dikCode, int delay);
+
+
+        /// <summary>
         /// Simulates a simple modified keystroke like CTRL-C where CTRL is the modifierKey and C is the key.
         /// The flow is Modifier KeyDown, Key Press, Modifier KeyUp.
         /// </summary>

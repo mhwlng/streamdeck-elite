@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>Mhwlng's Elite</title>
+    <link rel="stylesheet" href="../sdpi.css">
+    <link rel="stylesheet" href="../jquery.highlight-within-textarea.css">
+    <script src="../sdtools.common.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../jquery.highlight-within-textarea.js"></script>
+    <script src="../index.js"></script>
+</head>
+<body>
+    <div class="sdpi-wrapper">
+
+        <div class="sdpi-item" id="dvKeyImage">
+            <div class="sdpi-item-label">Engaged Image</div>
+            <div class="sdpi-item-group file" id="filepickergroup">
+                <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
+                <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
+            </div>
+        </div>
+        <div class="sdpi-item" id="dvSecondaryImage">
+            <div class="sdpi-item-label">Enabled Image</div>
+            <div class="sdpi-item-group file" id="filepickergroup">
+                <input class="sdpi-item-value sdProperty sdFile" type="file" id="secondaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
+                <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
+            </div>
+        </div>
+        <div class="sdpi-item" id="dvTertiaryImage">
+            <div class="sdpi-item-label">Disabled Image</div>
+            <div class="sdpi-item-group file" id="filepickergroup">
+                <input class="sdpi-item-value sdProperty sdFile" type="file" id="tertiaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                <label class="sdpi-file-info " for="tertiaryImage" id="tertiaryImageFilename">No file...</label>
+                <label class="sdpi-file-label" for="tertiaryImage">Choose file...</label>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

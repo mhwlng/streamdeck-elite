@@ -129,12 +129,14 @@ namespace Elite.Buttons
                 {
                     //iis.Keyboard.ModifiedKeyStroke(keyStrokes.Select(ks => ks).ToArray(), keyCode);
 
-                    iis.Keyboard.DelayedModifiedKeyStroke(keyStrokes.Select(ks => ks), keyCode, 50);
+                    iis.Keyboard.DelayedModifiedKeyStroke(keyStrokes.Select(ks => ks), keyCode, 20);
 
                 }
                 else // Single Keycode
                 {
-                    iis.Keyboard.KeyPress(keyCode);
+                    //iis.Keyboard.KeyPress(keyCode);
+
+                    iis.Keyboard.DelayedKeyPress(keyCode, 20);
                 }
             }
         }
@@ -179,7 +181,7 @@ namespace Elite.Buttons
                     .Replace("RightShift", "RSHIFT")
                     .Replace("LeftShift", "LSHIFT");
 
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
 
                 for (var i = 0; i < repeatCount; i++)
                 {

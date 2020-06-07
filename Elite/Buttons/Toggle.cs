@@ -197,17 +197,6 @@ namespace Elite.Buttons
 
             // TODO ???
 
-            //FSSMode = 9, // Full Spectrum System Scanner  (needs to be in supercruise mode ??) 
-
-            // <ExplorationFSSEnter>
-            // <Primary Device="Keyboard" Key="Key_F" />
-            // <Secondary Device="{NoDevice}" Key="" />
-            // </ExplorationFSSEnter>
-            //	<ExplorationFSSQuit>
-            //	<Primary Device="Keyboard" Key="Key_L" />
-            //	<Secondary Device="{NoDevice}" Key="" />
-            //</ExplorationFSSQuit>
-
             //SAAMode = 10,  // Surface Area Analysis scanner (same as Detailed Surface Scanner ???)
                              // Can only be used in supercruise and only functions in analysis mode.
                              // no keybind, needs fire group+trigger

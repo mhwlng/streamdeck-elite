@@ -74,6 +74,21 @@
       "Tooltip": "Elite Dangerous Limpet Controller Button",
       "UUID": "com.mhwlng.elite.limpet",
       "PropertyInspectorPath": "PropertyInspector/Elite/Limpet.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "FSD Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous FSD Button",
+      "UUID": "com.mhwlng.elite.fsd",
+      "PropertyInspectorPath": "PropertyInspector/Elite/FSD.html"
     }
   ],
   "Author": "mhwlng",
@@ -81,7 +96,7 @@
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
   "URL": "https://github.com/mhwlng/streamdeck-elite",
-  "Version": "2.0.3",
+  "Version": "2.0.4",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",

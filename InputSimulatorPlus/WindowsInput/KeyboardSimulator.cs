@@ -305,6 +305,24 @@ namespace WindowsInput
         }
 
         /// <summary>
+        /// Calls the Win32 SendInput method with a KeyDown and KeyUp message in the same input sequence in order to simulate a Key PRESS.
+        /// </summary>
+        /// <param name="dikCode">The <see cref="DirectInputKeyCode"/> to press</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
+        public IKeyboardSimulator DelayedKeyPress(DirectInputKeyCode dikCode, int delay)
+        {
+            var inputList1 = new InputBuilder().AddKeyDown(dikCode).ToArray();
+            SendSimulatedInput(inputList1);
+
+            Thread.Sleep(delay);
+
+            var inputList2 = new InputBuilder().AddKeyUp(dikCode).ToArray();
+            SendSimulatedInput(inputList2);
+
+            return this;
+        }
+
+        /// <summary>
         /// Simulates a simple modified keystroke like CTRL-C where CTRL is the modifierKey and C is the key.
         /// The flow is Modifier KeyDown, Key Press, Modifier KeyUp.
         /// </summary>
