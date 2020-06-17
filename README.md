@@ -4,7 +4,7 @@ Elgato Stream Deck button plugin for Elite Dangerous
 ![Elgato Stream Deck and Flight Instrument Panel](https://i.imgur.com/bE2ODlF.jpg)
 
 This plugin connects to Elite Dangerous, to get the on/off status for 14 different toggle-buttons, 
-4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons, and FSS toggle button and a generic limpet controller button.
+4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons, an FSS toggle button and a generic limpet controller button.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
 
@@ -51,7 +51,7 @@ The supported FSD related buttons are:
 - Supercruise
 - Hyperspace Jump, also shows Remaining Jumps In Route
 
-These FSD buttons have 3 images:
+The FSD buttons have 3 images:
 - engaged  : supercruise/hyperspace is active
 - enabled  : supercruise/hyperspace is inactive
 - disabled : supercruise/hyperspace is blocked for reasons like (Docked, Landed, LandingGearDown, CargoScoopDeployed, FsdMassLocked, FsdCooldown, HardpointsDeployed)

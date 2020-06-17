@@ -16,8 +16,8 @@ using Newtonsoft.Json.Linq;
 namespace Elite.Buttons
 {
 
-    [PluginActionId("com.mhwlng.elite.fsd")]
-    public class FSD : EliteBase
+    [PluginActionId("com.mhwlng.elite.fss")]
+    public class FSS : EliteBase
     {
         protected class PluginSettings
         {
@@ -86,11 +86,11 @@ namespace Elite.Buttons
             }
         }
 
-        public FSD(SDConnection connection, InitialPayload payload) : base(connection, payload)
+        public FSS(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
-                //Logger.Instance.LogMessage(TracingLevel.DEBUG, "FSD Constructor #1");
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, "FSS Constructor #1");
 
                 settings = PluginSettings.CreateDefaultSettings();
                 Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
@@ -98,7 +98,7 @@ namespace Elite.Buttons
             }
             else
             {
-                //Logger.Instance.LogMessage(TracingLevel.DEBUG, "FSD Constructor #2");
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, "FSS Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
                 HandleFilenames();

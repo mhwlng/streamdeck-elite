@@ -26,6 +26,7 @@ namespace EliteJournalReader.Events
             public long SystemAddress { get; set; }
             public string Name { get; set; }
             public int RemainingJumpsInRoute { get; set; }
+            public string StarClass { get; set; }
         }
     }
 }

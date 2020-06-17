@@ -24,6 +24,7 @@ namespace Elite
         public static DateTime LastUnderAttackEvent = DateTime.Now;
         public static string FsdTargetName { get; set; }
         public static int RemainingJumpsInRoute { get; set; }
+        public static string StarClass { get; set; }
         public static string StarSystem { get; set; }
         public static int LimpetCount { get; set; } 
 
@@ -211,11 +212,13 @@ namespace Elite
 
                 case "FSDTarget":
                     //When written: when selecting a star system to jump to
-                    var fSdTargetInfo = (FSDTargetEvent.FSDTargetEventArgs)e;
+                    var fsdTargetInfo = (FSDTargetEvent.FSDTargetEventArgs)e;
 
-                    EliteData.FsdTargetName = fSdTargetInfo.Name;
+                    EliteData.FsdTargetName = fsdTargetInfo.Name;
 
-                    EliteData.RemainingJumpsInRoute = fSdTargetInfo.RemainingJumpsInRoute;
+                    EliteData.RemainingJumpsInRoute = fsdTargetInfo.RemainingJumpsInRoute;
+
+                    EliteData.StarClass = fsdTargetInfo.StarClass;
 
                     break;
 

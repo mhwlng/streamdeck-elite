@@ -97,7 +97,7 @@ namespace Elite.Buttons
                     break;
 
                 case "ShipSpotLightToggle":
-                    isPrimary = EliteData.StatusData.LightsOn;
+                    isPrimary = EliteData.StatusData.LightsOn || EliteData.StatusData.SrvHighBeam;
                     break;
 
                 case "NightVisionToggle":
