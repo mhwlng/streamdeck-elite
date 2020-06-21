@@ -167,8 +167,13 @@ namespace Elite.Buttons
 
             if (!string.IsNullOrEmpty(inputText))
             {
-
                 inputText = inputText.Replace("_", "")
+
+                    .Replace("Subtract", "MINUS")   //DIKNumpadSubtract   -> DikNumpadMinus
+                    .Replace("Add", "PLUS")         //DIKNumpadAdd        -> DikNumpadPlus
+                    .Replace("Divide", "SLASH")     //DIKNumpadDivide     -> DikNumpadSlash
+                    .Replace("Decimal", "PERIOD")   //DIKNumpadDecimal    -> DikNumpadPeriod
+                    .Replace("Multiply", "STAR")    //DIKNumpadMultiply   -> DikNumpadStar
                     .Replace("Backspace", "BACK")
                     .Replace("UpArrow", "UP")
                     .Replace("DownArrow", "DOWN")
