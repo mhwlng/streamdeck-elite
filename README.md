@@ -15,6 +15,7 @@ After you install the plugin in the streamdeck software, then there will be seve
 Choose a button in the streamdeck software (drag and drop), then choose an elite dangerous function for that button (that must have a keyboard binding in elite dangerous!) and then choose any pictures for that button.
 
 Do NOT add an image to the button in this way :
+
 ![Button Image](https://i.imgur.com/xkgy7uZ.png)
 
 The plugin can (optionally) automatically switch to a different profile, if the in-game state changes. (e.g. deploy hardpoints, enter SRV etc.)
