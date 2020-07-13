@@ -203,6 +203,13 @@ namespace Elite
                     EliteData.StarSystem = fsdJumpInfo.StarSystem;
                     break;
 
+                case "CarrierJump":
+
+                    var carrierJumpInfo = (CarrierJumpEvent.CarrierJumpEventArgs)e;
+
+                    EliteData.StarSystem = carrierJumpInfo.StarSystem;
+                    break;
+
                 case "SupercruiseExit":
                     //When written: leaving supercruise for normal space
                     var supercruiseExitInfo = (SupercruiseExitEvent.SupercruiseExitEventArgs)e;

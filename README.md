@@ -12,7 +12,7 @@ When a button has no effect (e.g. when docked) then the image won't change.
 
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 
-Choose a button in the streamdeck software (drag and drop), then choose an elite dangerous function for that button (that must have a keyboard binding in elite dangerous!) and then choose any pictures for that button.
+Choose a button in the streamdeck software (drag and drop), then choose an Elite Dangerous function for that button (that must have a keyboard binding in Elite Dangerous!) and then choose any pictures for that button.
 
 Do NOT add an image to the button in this way :
 

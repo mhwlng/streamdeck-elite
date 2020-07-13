@@ -161,12 +161,14 @@ namespace Elite
 
             if (!File.Exists(fileName))
             {
-                //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
 
                 fileName = fileName.Replace(".3.0.binds", ".binds");
 
                 if (!File.Exists(fileName))
                 {
+                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+
                     bindingsPath = SteamPath.FindSteamEliteDirectory();
 
                     if (!string.IsNullOrEmpty(bindingsPath))
@@ -175,30 +177,40 @@ namespace Elite
 
                         if (!File.Exists(fileName))
                         {
-                            //Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
 
                             fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                            if (!File.Exists(fileName))
+                            {
+                                Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                            }
+
                         }
                     }
                 }
             }
 
-            var serializer = new XmlSerializer(typeof(UserBindings));
+            if (File.Exists(fileName))
+            {
+                var serializer = new XmlSerializer(typeof(UserBindings));
 
-            //Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
+                //Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
 
-            var reader = new StreamReader(fileName);
-            Bindings = (UserBindings)serializer.Deserialize(reader);
-            reader.Close();
+                var reader = new StreamReader(fileName);
+                Bindings = (UserBindings) serializer.Deserialize(reader);
+                reader.Close();
 
 
-            keyBindingPath = Path.GetDirectoryName(fileName);
-            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #2 " + keyBindingPath);
-            keyBindingFileName = Path.GetFileName(fileName);
-            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #2 " + keyBindingFileName);
-            KeyBindingWatcher2 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
-            KeyBindingWatcher2.KeyBindingUpdated += HandleKeyBindingEvents;
-            KeyBindingWatcher2.StartWatching();
+                keyBindingPath = Path.GetDirectoryName(fileName);
+                Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #2 " + keyBindingPath);
+                keyBindingFileName = Path.GetFileName(fileName);
+                Logger.Instance.LogMessage(TracingLevel.INFO,
+                    "monitoring key binding file name #2 " + keyBindingFileName);
+                KeyBindingWatcher2 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
+                KeyBindingWatcher2.KeyBindingUpdated += HandleKeyBindingEvents;
+                KeyBindingWatcher2.StartWatching();
+            }
         }
 
         static void Main(string[] args)
