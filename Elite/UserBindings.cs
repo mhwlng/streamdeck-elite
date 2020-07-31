@@ -28,7 +28,7 @@ namespace Elite
         public ValueInfo MouseDecayRate { get;  set; }
         public ValueInfo MouseDeadzone { get;  set; }
         public ValueInfo MouseLinearity { get;  set; }
-        public ValueInfo MouseGui { get;  set; }
+        public ValueInfo MouseGUI { get;  set; }
         public AxisBindingInfo YawAxisRaw { get;  set; }
         public StandardBindingInfo YawLeftButton { get;  set; }
         public StandardBindingInfo YawRightButton { get;  set; }
@@ -128,11 +128,11 @@ namespace Elite
         public StandardBindingInfo IncreaseWeaponsPower { get;  set; }
         public StandardBindingInfo IncreaseSystemsPower { get;  set; }
         public StandardBindingInfo ResetPowerDistribution { get;  set; }
-        public StandardBindingInfo HmdReset { get;  set; }
+        public StandardBindingInfo HMDReset { get;  set; }
         public ToggleBindingInfo ToggleCargoScoop { get;  set; }
         public StandardBindingInfo EjectAllCargo { get;  set; }
         public StandardBindingInfo LandingGearToggle { get;  set; }
-        public StandardBindingInfo MicrophoneMute { get;  set; }
+        public ToggleBindingInfo MicrophoneMute { get;  set; }
         public ValueInfo MuteButtonMode { get;  set; }
         public ValueInfo CqcMuteButtonMode { get;  set; }
         public StandardBindingInfo UseShieldCell { get;  set; }
@@ -140,8 +140,8 @@ namespace Elite
         public StandardBindingInfo PhotoCameraToggle { get;  set; }
         public ValueInfo EnableMenuGroups { get;  set; }
         public StandardBindingInfo NightVisionToggle { get; set; }
-        public StandardBindingInfo UiFocus { get;  set; }
-        public ValueInfo UiFocusMode { get;  set; }
+        public StandardBindingInfo UIFocus { get;  set; }
+        public ValueInfo UIFocusMode { get;  set; }
         public StandardBindingInfo FocusLeftPanel { get;  set; }
         public StandardBindingInfo FocusCommsPanel { get;  set; }
         public ValueInfo FocusOnTextEntryField { get;  set; }
@@ -155,19 +155,19 @@ namespace Elite
         public ValueInfo EnableCameraLockOn { get;  set; }
         public StandardBindingInfo GalaxyMapOpen { get;  set; }
         public StandardBindingInfo SystemMapOpen { get;  set; }
-        public ToggleBindingInfo ShowPgScoreSummaryInput { get;  set; }
+        public ToggleBindingInfo ShowPGScoreSummaryInput { get;  set; }
         public ToggleBindingInfo HeadLookToggle { get;  set; }
         public StandardBindingInfo Pause { get;  set; }
         public StandardBindingInfo PlayerHUDModeToggle { get; set; }
         public StandardBindingInfo ExplorationFSSEnter { get; set; }
 
-        public StandardBindingInfo Ui_Up { get;  set; }
-        public StandardBindingInfo Ui_Down { get;  set; }
-        public StandardBindingInfo Ui_Left { get;  set; }
-        public StandardBindingInfo Ui_Right { get;  set; }
-        public StandardBindingInfo Ui_Select { get;  set; }
-        public StandardBindingInfo Ui_Back { get;  set; }
-        public StandardBindingInfo Ui_Toggle { get;  set; }
+        public StandardBindingInfo UI_Up { get;  set; }
+        public StandardBindingInfo UI_Down { get;  set; }
+        public StandardBindingInfo UI_Left { get;  set; }
+        public StandardBindingInfo UI_Right { get;  set; }
+        public StandardBindingInfo UI_Select { get;  set; }
+        public StandardBindingInfo UI_Back { get;  set; }
+        public StandardBindingInfo UI_Toggle { get;  set; }
         public StandardBindingInfo CycleNextPanel { get;  set; }
         public StandardBindingInfo CyclePreviousPanel { get;  set; }
         public ValueInfo MouseHeadlook { get;  set; }
@@ -253,7 +253,7 @@ namespace Elite
         public ToggleBindingInfo ToggleCargoScoop_Buggy { get;  set; }
         public StandardBindingInfo EjectAllCargo_Buggy { get;  set; }
         public ToggleBindingInfo PhotoCameraToggle_Buggy { get;  set; }
-        public StandardBindingInfo UiFocus_Buggy { get;  set; }
+        public StandardBindingInfo UIFocus_Buggy { get;  set; }
         public StandardBindingInfo FocusLeftPanel_Buggy { get;  set; }
         public StandardBindingInfo FocusCommsPanel_Buggy { get;  set; }
         public StandardBindingInfo QuickCommsPanel_Buggy { get;  set; }
@@ -264,6 +264,121 @@ namespace Elite
         public ToggleBindingInfo HeadLookToggle_Buggy { get;  set; }
 
         public StandardBindingInfo ExplorationFSSQuit { get; set; }
+
+        //-------------------------------------------------
+
+        public StandardBindingInfo StorePitchCameraDown { get; set; }
+        public StandardBindingInfo StorePitchCameraUp { get; set; }
+        public StandardBindingInfo StoreEnableRotation { get; set; }
+        public StandardBindingInfo StoreYawCameraLeft { get; set; }
+        public StandardBindingInfo StoreYawCameraRight { get; set; }
+        public StandardBindingInfo StoreCamZoomIn { get; set; }
+        public StandardBindingInfo StoreCamZoomOut { get; set; }
+        public StandardBindingInfo StoreToggle { get; set; }
+        public StandardBindingInfo ToggleAdvanceMode { get; set; }
+        public StandardBindingInfo VanityCameraEight { get; set; }
+        public StandardBindingInfo VanityCameraTwo { get; set; }
+        public StandardBindingInfo VanityCameraOne { get; set; }
+        public StandardBindingInfo VanityCameraThree { get; set; }
+        public StandardBindingInfo VanityCameraFour { get; set; }
+        public StandardBindingInfo VanityCameraFive { get; set; }
+        public StandardBindingInfo VanityCameraSix { get; set; }
+        public StandardBindingInfo VanityCameraSeven { get; set; }
+        public StandardBindingInfo VanityCameraNine { get; set; }
+        public StandardBindingInfo MoveFreeCamBackwards { get; set; }
+        public StandardBindingInfo MoveFreeCamDown { get; set; }
+        public StandardBindingInfo MoveFreeCamForward { get; set; }
+        public StandardBindingInfo MoveFreeCamLeft { get; set; }
+        public StandardBindingInfo PitchCameraDown { get; set; }
+        public StandardBindingInfo PitchCameraUp { get; set; }
+        public ToggleBindingInfo ToggleReverseThrottleInputFreeCam { get; set; }
+        public StandardBindingInfo MoveFreeCamRight { get; set; }
+        public StandardBindingInfo RollCameraLeft { get; set; }
+        public StandardBindingInfo RollCameraRight { get; set; }
+        public StandardBindingInfo ToggleRotationLock { get; set; }
+        public StandardBindingInfo MoveFreeCamUp { get; set; }
+        public StandardBindingInfo YawCameraLeft { get; set; }
+        public StandardBindingInfo YawCameraRight { get; set; }
+        public StandardBindingInfo FStopDec { get; set; }
+        public StandardBindingInfo FreeCamSpeedDec { get; set; }
+        public StandardBindingInfo QuitCamera { get; set; }
+        public StandardBindingInfo FocusDistanceInc { get; set; }
+        public StandardBindingInfo FocusDistanceDec { get; set; }
+        public StandardBindingInfo ToggleFreeCam { get; set; }
+        public StandardBindingInfo FStopInc { get; set; }
+        public StandardBindingInfo FreeCamSpeedInc { get; set; }
+        public StandardBindingInfo FixCameraRelativeToggle { get; set; }
+        public StandardBindingInfo FixCameraWorldToggle { get; set; }
+        public StandardBindingInfo VanityCameraScrollRight { get; set; }
+        public StandardBindingInfo VanityCameraScrollLeft { get; set; }
+        public StandardBindingInfo FreeCamToggleHUD { get; set; }
+        public StandardBindingInfo FreeCamZoomIn { get; set; }
+        public StandardBindingInfo FreeCamZoomOut { get; set; }
+        public StandardBindingInfo OrderFocusTarget { get; set; }
+        public StandardBindingInfo OrderAggressiveBehaviour { get; set; }
+        public StandardBindingInfo OrderDefensiveBehaviour { get; set; }
+        public StandardBindingInfo OpenOrders { get; set; }
+        public StandardBindingInfo OrderRequestDock { get; set; }
+        public StandardBindingInfo OrderFollow { get; set; }
+        public StandardBindingInfo OrderHoldFire { get; set; }
+        public StandardBindingInfo OrderHoldPosition { get; set; }
+        public StandardBindingInfo CommanderCreator_Redo { get; set; }
+        public StandardBindingInfo CommanderCreator_Rotation { get; set; }
+        public StandardBindingInfo CommanderCreator_Rotation_MouseToggle { get; set; }
+        public StandardBindingInfo CommanderCreator_Undo { get; set; }
+        public StandardBindingInfo GalnetAudio_ClearQueue { get; set; }
+        public StandardBindingInfo OpenCodexGoToDiscovery { get; set; }
+        public StandardBindingInfo FriendsMenu { get; set; }
+        public StandardBindingInfo GalnetAudio_SkipForward { get; set; }
+        public StandardBindingInfo GalnetAudio_Play_Pause { get; set; }
+        public StandardBindingInfo GalnetAudio_SkipBackward { get; set; }
+        public StandardBindingInfo OculusReset { get; set; }
+        public StandardBindingInfo MultiCrewThirdPersonFovInButton { get; set; }
+        public StandardBindingInfo MultiCrewThirdPersonFovOutButton { get; set; }
+        public StandardBindingInfo MultiCrewPrimaryFire { get; set; }
+        public StandardBindingInfo MultiCrewSecondaryFire { get; set; }
+        public StandardBindingInfo MultiCrewToggleMode { get; set; }
+        public StandardBindingInfo MultiCrewThirdPersonPitchDownButton { get; set; }
+        public StandardBindingInfo MultiCrewThirdPersonPitchUpButton { get; set; }
+        public StandardBindingInfo MultiCrewPrimaryUtilityFire { get; set; }
+        public StandardBindingInfo MultiCrewSecondaryUtilityFire { get; set; }
+        public StandardBindingInfo MultiCrewCockpitUICycleBackward { get; set; }
+        public StandardBindingInfo MultiCrewCockpitUICycleForward { get; set; }
+        public StandardBindingInfo MultiCrewThirdPersonYawLeftButton { get; set; }
+        public StandardBindingInfo MultiCrewThirdPersonYawRightButton { get; set; }
+        public StandardBindingInfo SAAThirdPersonFovInButton { get; set; }
+        public StandardBindingInfo SAAThirdPersonFovOutButton { get; set; }
+        public StandardBindingInfo ExplorationSAAExitThirdPerson { get; set; }
+        public StandardBindingInfo ExplorationFSSShowHelp { get; set; }
+        public StandardBindingInfo ExplorationFSSDiscoveryScan { get; set; }
+        public StandardBindingInfo ExplorationFSSCameraPitchDecreaseButton { get; set; }
+        public StandardBindingInfo ExplorationFSSCameraPitchIncreaseButton { get; set; }
+        public StandardBindingInfo ExplorationFSSRadioTuningX_Decrease { get; set; }
+        public StandardBindingInfo ExplorationFSSRadioTuningX_Increase { get; set; }
+        public StandardBindingInfo ExplorationFSSCameraYawDecreaseButton { get; set; }
+        public StandardBindingInfo ExplorationFSSCameraYawIncreaseButton { get; set; }
+        public StandardBindingInfo SAAThirdPersonPitchDownButton { get; set; }
+        public StandardBindingInfo SAAThirdPersonPitchUpButton { get; set; }
+        public StandardBindingInfo ExplorationFSSMiniZoomIn { get; set; }
+        public StandardBindingInfo ExplorationFSSMiniZoomOut { get; set; }
+        public StandardBindingInfo ExplorationFSSTarget { get; set; }
+        public ToggleBindingInfo ExplorationSAAChangeScannedAreaViewToggle { get; set; }
+        public StandardBindingInfo SAAThirdPersonYawLeftButton { get; set; }
+        public StandardBindingInfo SAAThirdPersonYawRightButton { get; set; }
+        public StandardBindingInfo ExplorationFSSZoomIn { get; set; }
+        public StandardBindingInfo ExplorationFSSZoomOut { get; set; }
+        public StandardBindingInfo ChargeECM { get; set; }
+        public StandardBindingInfo EngineColourToggle { get; set; }
+        public StandardBindingInfo WeaponColourToggle { get; set; }
+        public StandardBindingInfo SelectTarget_Buggy { get; set; }
+        public StandardBindingInfo DecreaseSpeedButtonPartial { get; set; }
+        public StandardBindingInfo IncreaseSpeedButtonPartial { get; set; }
+        public StandardBindingInfo RecallDismissShip { get; set; }
+        public StandardBindingInfo BuggyRollLeft { get; set; }
+        public StandardBindingInfo BuggyRollRight { get; set; }
+        public StandardBindingInfo CycleNextPage { get; set; }
+        public StandardBindingInfo CyclePreviousPage { get; set; }
+
     }
 
     public  class AxisBindingInfo

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>Mhwlng's Elite</title>
+    <link rel="stylesheet" href="../sdpi.css">
+    <link rel="stylesheet" href="../jquery.highlight-within-textarea.css">
+    <script src="../sdtools.common.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../jquery.highlight-within-textarea.js"></script>
+    <script src="../index.js"></script>
+</head>
+<body>
+<div class="sdpi-wrapper">
+
+    <div class="sdpi-item" id="select_single">
+        <div class="sdpi-item-label">Function</div>
+        <select class="sdpi-item-value select sdProperty" id="function" oninput="setSettings()">
+            <optgroup label="Combat">
+                <option value="ChargeECM">ECM</option>
+                <option value="CycleFireGroupNext">Next Fire Group</option>
+                <option value="CycleFireGroupPrevious">Prev Fire Group</option>
+                <option value="CycleNextHostileTarget">Next Hostile</option>
+                <option value="CyclePreviousHostileTarget">Prev Hostile</option>
+                <option value="CycleNextSubsystem">Next Subsystem</option>
+                <option value="CyclePreviousSubsystem">Prev Subsystem</option>
+                <option value="CycleNextTarget">Next Contact</option>
+                <option value="CyclePreviousTarget">Prev Contact</option>
+                <option value="SelectTarget">Target Ahead</option>
+            </optgroup>
+            <optgroup label="Fighter">
+                <option value="OpenOrders">Crew Orders</option>
+                <option value="OrderAggressiveBehaviour">Be Aggressive</option>
+                <option value="OrderDefensiveBehaviour">Be Defensive</option>
+                <option value="OrderFocusTarget">Attack My Target</option>
+                <option value="OrderFollow">Follow</option>
+                <option value="OrderHoldFire">Hold Fire</option>
+                <option value="OrderHoldPosition">Hold Position</option>
+                <option value="OrderRequestDock">Dock SLF</option>
+            </optgroup>
+            <optgroup label="Misc">
+                <option value="FriendsMenu">Friends</option>
+                <option value="GalnetAudio_ClearQueue">Clear Audio Queue</option>
+                <option value="GalnetAudio_Play_Pause">Play/Pause Audio</option>
+                <option value="GalnetAudio_SkipBackward">Prev Audio Track</option>
+                <option value="GalnetAudio_SkipForward">Next Audio Track</option>
+                <option value="MicrophoneMute">Microphone</option>
+                <option value="OpenCodexGoToDiscovery">Codex</option>
+                <option value="Pause">Main Menu</option>
+                <option value="HMDReset">Reset HMD</option>
+                <option value="OculusReset">Reset Oculus</option>
+            </optgroup>
+            <optgroup label="Navigation">
+                <option value="SetSpeed100">100% Throttle</option>
+                <option value="SetSpeed75">75% Throttle</option>
+                <option value="SetSpeed50">50% Throttle</option>
+                <option value="SetSpeed25">25% Throttle</option>
+                <option value="SetSpeedMinus100">100% Reverse</option>
+                <option value="SetSpeedMinus75">75% Reverse</option>
+                <option value="SetSpeedMinus50">50% Reverse</option>
+                <option value="SetSpeedMinus25">25% Reverse</option>
+                <option value="SetSpeedZero">All Stop</option>
+                <option value="TargetNextRouteSystem">Next Jump Dest</option>
+                <option value="ToggleReverseThrottleInput">Reverse</option>
+                <option value="UseAlternateFlightValuesToggle">Alternate Controls</option>
+                <option value="UseBoostJuice">Boost</option>
+            </optgroup>
+            <optgroup label="Ship">
+                <option value="FocusCommsPanel">Comms Panel</option>
+                <option value="FocusLeftPanel">Nav Panel</option>
+                <option value="FocusRadarPanel">Role Panel</option>
+                <option value="FocusRightPanel">Systems Panel</option>
+                <option value="QuickCommsPanel">Quick Comms</option>
+                <option value="EjectAllCargo">Eject All Cargo</option>
+                <option value="HeadLookToggle">Toggle Headlook</option>
+                <option value="MouseReset">Reset Mouse</option>
+                <option value="OrbitLinesToggle">Orbit Lines</option>
+                <option value="SelectTargetsTarget">Wingman's target</option>
+                <option value="WingNavLock">Wingman Navlock</option>
+                <option value="TargetWingman0">Wingman 1</option>
+                <option value="TargetWingman1">Wingman 2</option>
+                <option value="TargetWingman2">Wingman 3</option>
+                <option value="EngineColourToggle">Engine Colour</option>
+                <option value="WeaponColourToggle">Weapon Colour</option>
+            </optgroup>
+        </select>
+    </div>
+</div>
+</body>
+</html>

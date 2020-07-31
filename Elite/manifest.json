@@ -2,36 +2,6 @@
   "Actions": [
     {
       "Icon": "Images/icon",
-      "Name": "Toggle Button",
-      "States": [
-        {
-          "Image": "Images/Default",
-          "TitleAlignment": "bottom",
-          "FontSize": "8"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Elite Dangerous Toggle Button",
-      "UUID": "com.mhwlng.elite",
-      "PropertyInspectorPath": "PropertyInspector/Elite/Toggle.html"
-    },
-    {
-      "Icon": "Images/icon",
-      "Name": "Power Button",
-      "States": [
-        {
-          "Image": "Images/Default",
-          "TitleAlignment": "bottom",
-          "FontSize": "8"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Elite Dangerous Power Distributor Button",
-      "UUID": "com.mhwlng.elite.power",
-      "PropertyInspectorPath": "PropertyInspector/Elite/Power.html"
-    },
-    {
-      "Icon": "Images/icon",
       "Name": "Alarm Button",
       "States": [
         {
@@ -44,6 +14,21 @@
       "Tooltip": "Elite Dangerous Alarm Button",
       "UUID": "com.mhwlng.elite.alarm",
       "PropertyInspectorPath": "PropertyInspector/Elite/Alarm.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "FSS Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous FSS Button",
+      "UUID": "com.mhwlng.elite.fss",
+      "PropertyInspectorPath": "PropertyInspector/Elite/FSS.html"
     },
     {
       "Icon": "Images/icon",
@@ -77,7 +62,7 @@
     },
     {
       "Icon": "Images/icon",
-      "Name": "FSS Button",
+      "Name": "Power Button",
       "States": [
         {
           "Image": "Images/Default",
@@ -86,9 +71,39 @@
         }
       ],
       "SupportedInMultiActions": false,
-      "Tooltip": "Elite Dangerous FSS Button",
-      "UUID": "com.mhwlng.elite.fss",
-      "PropertyInspectorPath": "PropertyInspector/Elite/FSS.html"
+      "Tooltip": "Elite Dangerous Power Distributor Button",
+      "UUID": "com.mhwlng.elite.power",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Power.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Static Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Static Button",
+      "UUID": "com.mhwlng.elite.static",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Static.html"
+    },
+    {
+      "Icon": "Images/icon",
+      "Name": "Toggle Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Toggle Button",
+      "UUID": "com.mhwlng.elite",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Toggle.html"
     }
   ],
   "Author": "mhwlng",
@@ -96,7 +111,7 @@
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
   "URL": "https://github.com/mhwlng/streamdeck-elite",
-  "Version": "2.0.7",
+  "Version": "2.0.8",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",

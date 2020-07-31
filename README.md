@@ -10,33 +10,37 @@ If you press the relevant button on your keyboard or hotas, then the image on th
 
 When a button has no effect (e.g. when docked) then the image won't change.
 
+There is also a STATIC button type, that works the same as the streamdeck 'Hotkey' button type. 
+So, there is only one image and there is no game state feedback for these buttons.
+The only difference with the 'Hotkey' button is, that it gets the keyboard binding from the game.
+
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 
 Choose a button in the streamdeck software (drag and drop), then choose an Elite Dangerous function for that button (that must have a keyboard binding in Elite Dangerous!) and then choose any pictures for that button.
 
-Do NOT add an image to the button in this way :
+ONLY add an image to a STATIC button in this way, do NOT set this image for any of the other button types :
 
 ![Button Image](https://i.imgur.com/xkgy7uZ.png)
+
+Animated gif files are only supported for the STATIC buttons.
 
 The plugin can (optionally) automatically switch to a different profile, if the in-game state changes. (e.g. deploy hardpoints, enter SRV etc.)
 More instructions on the [Wiki](https://github.com/mhwlng/streamdeck-elite/wiki/Automatic-Profile-Switching).
 
-(normal buttons don't need any plugin, they simply simulate a keypress)
-
 The supported toggle-buttons are:
+- Analysis Mode
 - Cargo Scoop
-- Landing Gear
 - Flight Assist
+- Galaxy Map
+- Hardpoints
+- Landing Gear
 - Lights
 - Night Vision
-- Analysis Mode
-- Hardpoints
-- Supercruise (no longer needed)
 - Silent Running
-- SRV Turret
 - SRV Drive Assist
 - SRV Handbrake
-- Galaxy Map
+- SRV Turret
+- Supercruise (no longer needed)
 - System Map
 
 The supported power distributor pips buttons are:
@@ -86,7 +90,7 @@ Also, the steam library directories are searched, for any of the default key bin
 `....\steamapps\common\Elite Dangerous\Products\elite-dangerous-64\ControlSchemes`
 
 This plugin ony works with keyboard bindings. 
-So, when there is only a binding to a joystick / controller for a function, then you need to add a keyboard binding.
+So, when there is only a binding to a joystick / controller / mouse for a function, then you need to add a keyboard binding.
 
 If you change the key bindings in Elite Dangerous, then you don't have to restart the streamdeck software. The plugin key bindings are updated automatically.
 
