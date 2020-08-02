@@ -56,8 +56,6 @@ namespace Elite.Buttons
         private readonly Font drawFont = new Font("Arial", 60);
 
         private readonly SolidBrush whiteBrush = new SolidBrush(Color.White);
-        private readonly SolidBrush blackBrush = new SolidBrush(Color.FromArgb(0x30, 030, 0x30));
-        private readonly SolidBrush greyBrush = new SolidBrush(Color.FromArgb(0x90, 0x90, 0x90));
 
 
         private async Task HandleDisplay()

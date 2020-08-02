@@ -174,6 +174,7 @@ namespace Elite.Buttons
                     .Replace("Divide", "SLASH")     //DIKNumpadDivide     -> DikNumpadSlash
                     .Replace("Decimal", "PERIOD")   //DIKNumpadDecimal    -> DikNumpadPeriod
                     .Replace("Multiply", "STAR")    //DIKNumpadMultiply   -> DikNumpadStar
+                    .Replace("Enter", "RETURN")
                     .Replace("Backspace", "BACK")
                     .Replace("UpArrow", "UP")
                     .Replace("DownArrow", "DOWN")
