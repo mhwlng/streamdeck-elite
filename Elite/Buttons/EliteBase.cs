@@ -129,14 +129,14 @@ namespace Elite.Buttons
                 {
                     //iis.Keyboard.ModifiedKeyStroke(keyStrokes.Select(ks => ks).ToArray(), keyCode);
 
-                    iis.Keyboard.DelayedModifiedKeyStroke(keyStrokes.Select(ks => ks), keyCode, 20);
+                    iis.Keyboard.DelayedModifiedKeyStroke(keyStrokes.Select(ks => ks), keyCode, 40);
 
                 }
                 else // Single Keycode
                 {
                     //iis.Keyboard.KeyPress(keyCode);
 
-                    iis.Keyboard.DelayedKeyPress(keyCode, 20);
+                    iis.Keyboard.DelayedKeyPress(keyCode, 40);
                 }
             }
         }
