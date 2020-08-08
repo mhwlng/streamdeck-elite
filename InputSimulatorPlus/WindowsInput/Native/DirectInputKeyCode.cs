@@ -733,9 +733,193 @@
         /// PageDown key on arrow keypad
         /// </summary>
         DikPgdn = DikNext,
+
         /// <summary>
-        /// Japanese keyboard
         /// </summary>
-        DikCircumflex = DikPrevtrack,
+        DikEnter = DikReturn,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Equals = DikNumpadequals,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Enter = DikNumpadenter,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Comma = DikNumpadcomma,
+
+        /// <summary>
+        /// </summary>
+        DikNumpad_Divide = DikNumpadSlash,
+        /// <summary>
+        /// </summary>
+        DikNumpadDivide = DikNumpadSlash,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Multiply = DikNumpadStar,
+        /// <summary>
+        /// </summary>
+        DikNumpadMultiply = DikNumpadStar,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Subtract = DikNumpadMinus,
+        /// <summary>
+        /// </summary>
+        DikNumpadSubtract = DikNumpadMinus,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Decimal = DikNumpadPeriod,
+        /// <summary>
+        /// </summary>
+        DikNumpadDecimal = DikNumpadPeriod,
+        /// <summary>
+        /// </summary>
+        DikNumpad_Add = DikNumpadPlus,
+        /// <summary>
+        /// </summary>
+        DikNumpadAdd = DikNumpadPlus,
+        /// <summary>
+        /// </summary>
+        DikNumpad_7 = DikNumpad7,
+        /// <summary>
+        /// </summary>
+        DikNumpad_8 = DikNumpad8,
+        /// <summary>
+        /// </summary>
+        DikNumpad_9 = DikNumpad9,
+        /// <summary>
+        /// </summary>
+        DikNumpad_4 = DikNumpad4,
+        /// <summary>
+        /// </summary>
+        DikNumpad_5 = DikNumpad5,
+        /// <summary>
+        /// </summary>
+        DikNumpad_6 = DikNumpad6,
+        /// <summary>
+        /// </summary>
+        DikNumpad_1 = DikNumpad1,
+        /// <summary>
+        /// </summary>
+        DikNumpad_2 = DikNumpad2,
+        /// <summary>
+        /// </summary>
+        DikNumpad_3 = DikNumpad3,
+        /// <summary>
+        /// </summary>
+        DikNumpad_0 = DikNumpad0,
+        /// <summary>
+        /// </summary>
+        DikLeftBracket = DikLbracket,
+        /// <summary>
+        /// </summary>
+        DikRightBracket = DikRbracket,
+
+        /// <summary>
+        /// </summary>
+        DikLeftAlt = DikLmenu,
+        /// <summary>
+        /// </summary>
+        DikRightAlt = DikRmenu,
+        /// <summary>
+        /// </summary>
+        DikRightControl = DikRcontrol,
+        /// <summary>
+        /// </summary>
+        DikLeftControl = DikLcontrol,
+        /// <summary>
+        /// </summary>
+        DikRightShift = DikRshift,
+        /// <summary>
+        /// </summary>
+        DikLeftShift = DikLshift
+
+
+        /*
+        //DikCircumflex = DikPrevtrack,
+
+        Dikß = 0x0C,
+        Dikü = 0,
+        Dikö = 0,
+        Dikä = 0,
+        Diké = 0,
+        Dikè = 0,
+        Dikç = 0,
+        Dikà = 0,
+        Dikù = 0,
+
+        DikAcute = 0,
+        DikCircumflex = 0,
+        DikPlus = 0,
+        DikHash = 0,
+
+        DikSuperscriptTwo = 0,
+        DikAmpersand = 0,
+        DikDoubleQuote = 0,
+        DikLeftParenthesis = 0,
+        DikRightParenthesis = 0,
+        DikDollar = 0,
+        DikAsterisk = 0,
+        DikExclamationPoint = 0
+                
+        DikScrollLock = 0x46,
+        DikABNT_C1 = 0x73,
+        DikABNT_C2 = 0x7E,
+        DikWebFavourites = 0,
+        DikGreenModifier = 0,
+        DikOrangeModifier = 0,
+        DikSection = 0,
+        DikClear = 0,
+        DikLeftBracket = 0,
+        DikRightBracket = 0,
+        DikUnderline = 0,
+        DikLessThan = 0,
+        DikGreaterThan = 0,
+        DikTilde = 0,
+        DikRing = 0,
+        DikUmlaut = 0,
+        DikHalf = 0,
+        DikDollar = 0,
+        DikSuperscriptTwo = 0,
+        DikAmpersand = 0,
+        DikDoubleQuote = 0,
+        DikLeftParenthesis = 0,
+        DikRightParenthesis = 0,
+        DikAsterisk = 0,
+        DikExclamationPoint = 0,
+        DikMacron = 0,
+        DikOverline = 0,
+        DikBreve = 0,
+        DikOverdot = 0,
+        DikHookAbove = 0,
+        DikRingAbove = 0,
+        DikDoubleAcute = 0,
+        DikCaron = 0,
+        DikVerticalLineAbove = 0,
+        DikDoubleVerticalLineAbove = 0,
+        DikDoubleGrave = 0,
+        DikCandrabindu = 0,
+        DikInvertedBreve = 0,
+        DikTurnedCommaAbove = 0,
+        DikCommaAbove = 0,
+        DikReversedCommaAbove = 0,
+        DikCommaAboveRight = 0,
+        DikGraveBelow = 0,
+        DikAcuteBelow = 0,
+        DikLeftTackBelow = 0,
+        DikRightTackBelow = 0,
+        DikLeftAngleAbove = 0,
+        DikHorn = 0,
+        DikLeftHalfRingBelow = 0,
+        DikUpTackBelow = 0,
+        DikDownTackBelow = 0,
+        DikPlusSignBelow = 0,
+        DikCedilla = 0*/
+
+
+
+
+
+
+
     }
 }

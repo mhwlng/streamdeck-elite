@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using WindowsInput;
+using WindowsInput.Native;
 using BarRaider.SdTools;
 using EliteJournalReader.Events;
 
@@ -10,6 +13,18 @@ namespace Elite.Buttons
 {
     public abstract class EliteBase : PluginBase
     {
+        [DllImport("user32.dll")]
+        private static extern uint MapVirtualKeyEx(uint uCode, uint uMapType, IntPtr dwhkl);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern int GetWindowThreadProcessId(IntPtr handleWindow, out int lpdwProcessID);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetKeyboardLayout(int WindowsThreadProcessID);
+
         private static Dictionary<string,bool?> _lastStatus = new Dictionary<string, bool?>();
 
         protected bool InputRunning;
@@ -94,6 +109,56 @@ namespace Elite.Buttons
         }
 
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
+
+        public DirectInputKeyCode ConvertLocaleScanCode(DirectInputKeyCode scanCode)
+        {
+            //german
+
+            // http://kbdlayout.info/KBDGR/shiftstates+scancodes/base
+
+            // french
+            // http://kbdlayout.info/kbdfr/shiftstates+scancodes/base
+
+            // usa
+            // http://kbdlayout.info/kbdusx/shiftstates+scancodes/base
+
+            if (Program.Bindings.KeyboardLayout != "en-US")
+            {
+                Logger.Instance.LogMessage(TracingLevel.INFO, scanCode.ToString() + " " + ((ushort)scanCode).ToString("X"));
+                
+                int lpdwProcessId;
+                IntPtr hWnd = GetForegroundWindow();
+                int WinThreadProcId = GetWindowThreadProcessId(hWnd, out lpdwProcessId);
+                var hkl = GetKeyboardLayout(WinThreadProcId);
+
+                Logger.Instance.LogMessage(TracingLevel.INFO, ((long)hkl).ToString("X"));
+
+                //hkl = (IntPtr)67568647; // de-DE 4070407
+
+                // Maps the virtual scanCode to key code for the current locale
+                var virtualKeyCode = MapVirtualKeyEx((ushort)scanCode, 3, hkl);
+
+                if (virtualKeyCode > 0)
+                {
+                    // map key code back to en-US scan code :
+
+                    hkl = (IntPtr) 67699721; // en-US 4090409
+
+                    var virtualScanCode = MapVirtualKeyEx((ushort) virtualKeyCode, 4, hkl) ; 
+
+                    if (virtualScanCode > 0)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.INFO,
+                            "keycode " + virtualKeyCode.ToString("X") + " scancode " + virtualScanCode.ToString("X") +
+                            " keyboard code " + hkl.ToString("X"));
+
+                        return (DirectInputKeyCode) (virtualScanCode & 0xff); // only use low byte
+                    }
+                }
+            }
+
+            return scanCode;
+        }
 
         protected async void SendInput(string inputText)
         {
