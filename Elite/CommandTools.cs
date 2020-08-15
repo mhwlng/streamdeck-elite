@@ -59,6 +59,29 @@ namespace Elite
                         // THIRD ROW  DIKSEMICOLON      DIKAPOSTROPHE
                         // FOURTH ROW DIKCOMMA          DIKPERIOD       DIKSLASH
                     }
+                    else if (Program.Bindings.KeyboardLayout == "es-ES")
+                    {
+                        // http://kbdlayout.info/kbdsp/shiftstates+scancodes/base
+
+                        // FIRST ROW
+                        // SECOND ROW 
+                        // THIRD ROW
+                        // FOURTH ROW
+
+                        // all the keys are the same as en-US in binding file , for some reason ????
+                    }
+                    else if (Program.Bindings.KeyboardLayout == "en-GB")
+                    {
+                        // http://kbdlayout.info/kbduk/shiftstates+scancodes/base
+
+                        switch (matchText)
+                        {
+                            // third row
+                            case "DIKHASH":
+                                matchText = "DIKBACKSLASH";
+                                break;
+                        }
+                    }
                     else if (Program.Bindings.KeyboardLayout == "fr-FR")
                     {
                         // http://kbdlayout.info/kbdfr/shiftstates+scancodes/base

@@ -214,6 +214,16 @@ namespace Elite.Buttons
             {
                 inputText =
                     "{" + keyInfo.Primary.Key.Replace("Key_", "DIK") + "}";
+                foreach (var m in keyInfo.Primary.Modifier)
+                {
+                    if (m.Device == "Keyboard")
+                    {
+                        inputText =
+                            "{" + m.Key.Replace("Key_", "DIK") +
+                            "}" + inputText;
+                    }
+                }
+
             }
             else if (keyInfo.Secondary.Device == "Keyboard")
             {
