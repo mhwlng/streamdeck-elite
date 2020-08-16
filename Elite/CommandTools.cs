@@ -195,6 +195,9 @@ namespace Elite
                             case "DIKPLUS":
                                 matchText = "DIKRIGHTBRACKET";
                                 break;
+                            case "DIKHASH":
+                                matchText = "DIKBACKSLASH";
+                                break;
 
                             // THIRD ROW
                             case "DIKÖ":
@@ -202,9 +205,6 @@ namespace Elite
                                 break;
                             case "DIKÄ":
                                 matchText = "DIKAPOSTROPHE";
-                                break;
-                            case "DIKHASH":
-                                matchText = "DIKBACKSLASH";
                                 break;
 
                             // FOURTH ROW
@@ -217,6 +217,179 @@ namespace Elite
                         }
 
                     }
+                    else if (Program.Bindings.KeyboardLayout == "de-CH")
+                    {
+                        switch (matchText)
+                        {
+                            // FIRST ROW
+                            case "DIK§":
+                                matchText = "DIKGRAVE";
+                                break;
+                            case "DIKAPOSTROPHE":
+                                matchText = "DIKMINUS";
+                                break;
+                            case "DIKCIRCUMFLEX":
+                                matchText = "DIKEQUALS";
+                                break;
+
+                            // SECOND ROW 
+                            case "DIKZ":
+                                matchText = "DIKY";
+                                break;
+                            case "DIKÜ":
+                                matchText = "DIKLEFTBRACKET";
+                                break;
+                            case "DIKUMLAUT":
+                                matchText = "DIKRIGHTBRACKET";
+                                break;
+                            case "DIKDOLLAR":
+                                matchText = "DIKBACKSLASH";
+                                break;
+
+                            // THIRD ROW
+                            case "DIKÖ":
+                                matchText = "DIKSEMICOLON";
+                                break;
+                            case "DIKÄ":
+                                matchText = "DIKAPOSTROPHE";
+                                break;
+
+                            // FOURTH ROW
+                            case "DIKY":
+                                matchText = "DIKZ";
+                                break;
+                            case "DIKMINUS":
+                                matchText = "DIKSLASH";
+                                break;
+
+                        }
+
+                    }
+                    else if (Program.Bindings.KeyboardLayout == "da-DK")
+                    {
+                        switch (matchText)
+                        {
+                            // FIRST ROW
+                            case "DIKHALF":
+                                matchText = "DIKGRAVE";
+                                break;
+                            case "DIKPLUS":
+                                matchText = "DIKMINUS";
+                                break;
+                            case "DIKACUTE":
+                                matchText = "DIKEQUALS";
+                                break;
+
+                            // SECOND ROW 
+                            case "DIKÅ":
+                                matchText = "DIKLEFTBRACKET";
+                                break;
+                            case "DIKUMLAUT":
+                                matchText = "DIKRIGHTBRACKET";
+                                break;
+                            case "DIKAPOSTROPHE":
+                                matchText = "DIKBACKSLASH";
+                                break;
+
+                            // THIRD ROW
+                            case "DIKÆ":
+                                matchText = "DIKSEMICOLON";
+                                break;
+                            case "DIKØ":
+                                matchText = "DIKAPOSTROPHE";
+                                break;
+
+                            // FOURTH ROW
+                            case "DIKMINUS":
+                                matchText = "DIKSLASH";
+                                break;
+                        }
+
+                    }
+                    else if (Program.Bindings.KeyboardLayout == "it-IT")
+                    {
+                        switch (matchText)
+                        {
+                            // FIRST ROW
+                            case "DIKBACKSLASH":
+                                matchText = "DIKGRAVE";
+                                break;
+                            case "DIKAPOSTROPHE":
+                                matchText = "DIKMINUS";
+                                break;
+                            case "DIKÌ":
+                                matchText = "DIKEQUALS";
+                                break;
+
+                            // SECOND ROW 
+                            case "DIKÈ":
+                                matchText = "DIKLEFTBRACKET";
+                                break;
+                            case "DIKPLUS":
+                                matchText = "DIKRIGHTBRACKET";
+                                break;
+                            case "DIKÙ":
+                                matchText = "DIKBACKSLASH";
+                                break;
+
+                            // THIRD ROW
+                            case "DIKÒ":
+                                matchText = "DIKSEMICOLON";
+                                break;
+                            case "DIKÀ":
+                                matchText = "DIKAPOSTROPHE";
+                                break;
+
+                            // FOURTH ROW
+                            case "DIKMINUS":
+                                matchText = "DIKSLASH";
+                                break;
+                        }
+
+                    }
+
+                    else if (Program.Bindings.KeyboardLayout == "pt-PT")
+                    {
+                        switch (matchText)
+                        {
+                            // FIRST ROW
+                            case "DIKBACKSLASH":
+                                matchText = "DIKGRAVE";
+                                break;
+                            case "DIKAPOSTROPHE":
+                                matchText = "DIKMINUS";
+                                break;
+                            case "DIK«":
+                                matchText = "DIKEQUALS";
+                                break;
+
+                            // SECOND ROW 
+                            case "DIKPLUS":
+                                matchText = "DIKLEFTBRACKET";
+                                break;
+                            case "DIKACUTE":
+                                matchText = "DIKRIGHTBRACKET";
+                                break;
+                            case "DIKTILDE":
+                                matchText = "DIKBACKSLASH";
+                                break;
+
+                            // THIRD ROW
+                            case "DIKÇ":
+                                matchText = "DIKSEMICOLON";
+                                break;
+                            case "DIKº":
+                                matchText = "DIKAPOSTROPHE";
+                                break;
+
+                            // FOURTH ROW
+                            case "DIKMINUS":
+                                matchText = "DIKSLASH";
+                                break;
+                        }
+
+                    }
+
 
                     var stroke = (DirectInputKeyCode)Enum.Parse(typeof(DirectInputKeyCode), matchText, true);
 
