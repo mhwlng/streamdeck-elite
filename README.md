@@ -18,6 +18,8 @@ After you install the plugin in the streamdeck software, then there will be seve
 
 Choose a button in the streamdeck software (drag and drop), then choose an Elite Dangerous function for that button (that must have a keyboard binding in Elite Dangerous!) and then choose any pictures for that button.
 
+**Example button images, like in above picture, can be found in the source code images directory.**
+
 ONLY add an image to a STATIC button in this way, do NOT set this image for any of the other button types :
 
 ![Button Image](https://i.imgur.com/xkgy7uZ.png)
@@ -117,8 +119,6 @@ The button configurations are not stored in the plugin directory.
 Note that the entire plugin directory is deleted when uninstalling. (including any images that you may have manually put there yourself)
 
 After uninstalling and re-installing the plugin, all the button definition should still be there.
-
-Some example button images can be found in the source code images directory.
 
 The com.mhwlng.elite.sdPlugin directory contains a pluginlog.log file, which may be useful for troubleshooting.
 
