@@ -41,6 +41,8 @@ namespace Elite.Buttons
 
         private bool HandleProfile(StreamDeckDeviceInfo deviceInfo, Dictionary<Profile.ProfileType, Profile.ProfileData> profiles, Profile.ProfileType stateType, bool state)
         {
+            if (!profiles.ContainsKey(stateType)) return false;
+
             var key = stateType + deviceInfo.Id;
 
             if (!_lastStatus.ContainsKey(key))
@@ -50,12 +52,11 @@ namespace Elite.Buttons
 
             if (state && _lastStatus[key] != true)
             {
-                foreach (var p in profiles.Where(x => x.Key == stateType))
-                {
-                    Logger.Instance.LogMessage(TracingLevel.DEBUG, "switch profile " + stateType + " to " + p.Value.Name + " for " + p.Value.DeviceType);
+                var p = profiles[stateType];
 
-                    Connection.SwitchProfileAsync(p.Value.Name);
-                }
+                Logger.Instance.LogMessage(TracingLevel.DEBUG, "switch profile " + stateType + " to " + p.Name + " for " + p.DeviceType);
+
+                Connection.SwitchProfileAsync(p.Name);
             }
 
             _lastStatus[key] = state;

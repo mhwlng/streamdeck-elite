@@ -76,7 +76,7 @@ namespace Elite
 
                         switch (matchText)
                         {
-                            // third row
+                            // second row
                             case "DIKHASH":
                                 matchText = "DIKBACKSLASH";
                                 break;
@@ -139,6 +139,9 @@ namespace Elite
                             case "DIKDOLLAR":
                                 matchText = "DIKRIGHTBRACKET";
                                 break;
+                            case "DIKASTERISK":
+                                matchText = "DIKBACKSLASH";
+                                break;
 
                             // THIRD ROW
                             case "DIKM":
@@ -146,9 +149,6 @@ namespace Elite
                                 break;
                             case "DIKÙ":
                                 matchText = "DIKAPOSTROPHE";
-                                break;
-                            case "DIKASTERISK":
-                                matchText = "DIKBACKSLASH";
                                 break;
 
                             // FOURTH ROW
@@ -172,6 +172,8 @@ namespace Elite
                     }
                     else if (Program.Bindings.KeyboardLayout == "de-DE")
                     {
+                        // http://kbdlayout.info/kbdgr/shiftstates+scancodes/base
+
                         switch (matchText)
                         {
                             // FIRST ROW
@@ -219,6 +221,8 @@ namespace Elite
                     }
                     else if (Program.Bindings.KeyboardLayout == "de-CH")
                     {
+                        // http://kbdlayout.info/kbdsg/shiftstates+scancodes/base
+
                         switch (matchText)
                         {
                             // FIRST ROW
@@ -267,6 +271,8 @@ namespace Elite
                     }
                     else if (Program.Bindings.KeyboardLayout == "da-DK")
                     {
+                        // http://kbdlayout.info/kbdda/shiftstates+scancodes/base
+
                         switch (matchText)
                         {
                             // FIRST ROW
@@ -308,6 +314,8 @@ namespace Elite
                     }
                     else if (Program.Bindings.KeyboardLayout == "it-IT")
                     {
+                        // http://kbdlayout.info/kbdit/shiftstates+scancodes/base
+
                         switch (matchText)
                         {
                             // FIRST ROW
@@ -350,6 +358,8 @@ namespace Elite
 
                     else if (Program.Bindings.KeyboardLayout == "pt-PT")
                     {
+                        // http://kbdlayout.info/kbdpo/shiftstates+scancodes/base
+
                         switch (matchText)
                         {
                             // FIRST ROW
