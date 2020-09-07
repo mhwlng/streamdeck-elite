@@ -25,7 +25,7 @@ namespace Elite.Buttons
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern IntPtr GetKeyboardLayout(int WindowsThreadProcessID);
 
-        private static Dictionary<string,bool?> _lastStatus = new Dictionary<string, bool?>();
+        private static Dictionary<string,string> _lastStatus = new Dictionary<string, string>();
 
         protected bool InputRunning;
         protected bool ForceStop = false;
@@ -43,27 +43,21 @@ namespace Elite.Buttons
         {
             if (!profiles.ContainsKey(stateType)) return false;
 
-            var key = stateType + deviceInfo.Id;
-
-            if (!_lastStatus.ContainsKey(key))
+            if (!_lastStatus.ContainsKey(deviceInfo.Id))
             {
-                _lastStatus.Add(key, null);
+                _lastStatus.Add(deviceInfo.Id, null);
             }
 
-            if (state && _lastStatus[key] != true)
+            if (state && _lastStatus[deviceInfo.Id] !=  stateType.ToString())
             {
                 var p = profiles[stateType];
 
                 Logger.Instance.LogMessage(TracingLevel.DEBUG, "switch profile " + stateType + " to " + p.Name + " for " + p.DeviceType);
 
                 Connection.SwitchProfileAsync(p.Name);
-            }
 
-            _lastStatus[key] = state;
+                _lastStatus[deviceInfo.Id] = stateType.ToString();
 
-            if (state && stateType != Profile.ProfileType.Main)
-            {
-                _lastStatus[Profile.ProfileType.Main + deviceInfo.Id] = false;
             }
 
             return state;
