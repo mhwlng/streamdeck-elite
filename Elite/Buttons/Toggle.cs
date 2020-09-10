@@ -213,14 +213,23 @@ namespace Elite.Buttons
             switch (settings.Function)
             {
                 case "GalaxyMap":
-                    SendKeypress(Program.Bindings.GalaxyMapOpen);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.GalaxyMapOpen_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.GalaxyMapOpen);
                     break;
                 case "SystemMap":
-                    SendKeypress(Program.Bindings.SystemMapOpen);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.SystemMapOpen_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.SystemMapOpen);
                     break;
 
                 case "ToggleCargoScoop":
-                    SendKeypress(Program.Bindings.ToggleCargoScoop);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.ToggleCargoScoop_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.ToggleCargoScoop);
                     break;
                 case "LandingGearToggle":
                     SendKeypress(Program.Bindings.LandingGearToggle);
@@ -231,7 +240,10 @@ namespace Elite.Buttons
                     break;
 
                 case "ShipSpotLightToggle":
-                    SendKeypress(Program.Bindings.ShipSpotLightToggle);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.HeadlightsBuggyButton);
+                    else
+                        SendKeypress(Program.Bindings.ShipSpotLightToggle);
                     break;
 
                 case "NightVisionToggle":
