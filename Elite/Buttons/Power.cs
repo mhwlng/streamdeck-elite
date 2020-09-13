@@ -25,7 +25,8 @@ namespace Elite.Buttons
                 {
                     Function = string.Empty,
                     PrimaryImageFilename = string.Empty,
-                    SecondaryImageFilename = string.Empty
+                    SecondaryImageFilename = string.Empty,
+                    TertiaryImageFilename = string.Empty
                 };
 
                 return instance;
@@ -41,13 +42,19 @@ namespace Elite.Buttons
             [FilenameProperty]
             [JsonProperty(PropertyName = "secondaryImage")]
             public string SecondaryImageFilename { get; set; }
+
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "tertiaryImage")]
+            public string TertiaryImageFilename { get; set; }
+
         }
 
         private DateTime? lastPressedTime = null;
         private PluginSettings settings;
         private Bitmap _primaryImage = null;
         private Bitmap _secondaryImage = null;
-				
+        private Bitmap _tertiaryImage = null;
+
         private readonly SolidBrush whiteBrush = new SolidBrush(Color.White);
         private readonly SolidBrush blackBrush = new SolidBrush(Color.FromArgb(0x30, 030, 0x30));
         private readonly SolidBrush greyBrush = new SolidBrush(Color.FromArgb(0x90, 0x90, 0x90));
@@ -57,7 +64,10 @@ namespace Elite.Buttons
         {
             var timeDiff = DateTime.Now - (lastPressedTime ?? DateTime.Now);
 
-            // ??????????? handle SRV buttons ????????
+            if (EliteData.UnderAttack && (DateTime.Now - EliteData.LastUnderAttackEvent).Seconds > 20)
+            {
+                EliteData.UnderAttack = false;
+            }
 
             if (timeDiff.TotalMilliseconds > 500)
             {
@@ -66,15 +76,24 @@ namespace Elite.Buttons
                 switch (settings.Function)
                 {
                     case "SYS":
-                        SendKeypress(Program.Bindings.IncreaseSystemsPower, repeatCount);
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Bindings.IncreaseSystemsPower_Buggy, repeatCount);
+                        else
+                            SendKeypress(Program.Bindings.IncreaseSystemsPower, repeatCount);
                         EliteData.StatusData.Pips[0] = 8;
                         break;
                     case "ENG":
-                        SendKeypress(Program.Bindings.IncreaseEnginesPower, repeatCount);
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Bindings.IncreaseEnginesPower_Buggy, repeatCount);
+                        else
+                            SendKeypress(Program.Bindings.IncreaseEnginesPower, repeatCount);
                         EliteData.StatusData.Pips[1] = 8;
                         break;
                     case "WEP":
-                        SendKeypress(Program.Bindings.IncreaseWeaponsPower, repeatCount);
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Bindings.IncreaseWeaponsPower_Buggy, repeatCount);
+                        else
+                            SendKeypress(Program.Bindings.IncreaseWeaponsPower, repeatCount);
                         EliteData.StatusData.Pips[2] = 8;
                         break;
                 }
@@ -98,7 +117,14 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                using (var bitmap = new Bitmap(pips == 8 ? _primaryImage : _secondaryImage))
+                var bitmapImage = pips == 8 ? _primaryImage : _secondaryImage;
+
+                if (settings.Function == "SYS" && pips < 8 && EliteData.UnderAttack)
+                {
+                    bitmapImage = _tertiaryImage;
+                }
+
+                using (var bitmap = new Bitmap(bitmapImage))
                 {
                     if (settings.Function != "RST")
                     {
@@ -204,24 +230,34 @@ namespace Elite.Buttons
 
             lastPressedTime = DateTime.Now;
 
-            // ??????????? handle SRV buttons ????????
-
             switch (settings.Function)
             {
                 case "SYS":
-                    SendKeypress(Program.Bindings.IncreaseSystemsPower);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.IncreaseSystemsPower_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.IncreaseSystemsPower);
                     AdjustPips(0);
                     break;
                 case "ENG":
-                    SendKeypress(Program.Bindings.IncreaseEnginesPower);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.IncreaseEnginesPower_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.IncreaseEnginesPower);
                     AdjustPips(1);
                     break;
                 case "WEP":
-                    SendKeypress(Program.Bindings.IncreaseWeaponsPower);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.IncreaseWeaponsPower_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.IncreaseWeaponsPower);
                     AdjustPips(2);
                     break;
                 case "RST":
-                    SendKeypress(Program.Bindings.ResetPowerDistribution);
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Bindings.ResetPowerDistribution_Buggy);
+                    else
+                        SendKeypress(Program.Bindings.ResetPowerDistribution);
 
                     EliteData.StatusData.Pips[0] = 4;
                     EliteData.StatusData.Pips[1] = 4;
@@ -280,6 +316,12 @@ namespace Elite.Buttons
                 _secondaryImage = null;
             }
 
+            if (_tertiaryImage != null)
+            {
+                _tertiaryImage.Dispose();
+                _tertiaryImage = null;
+            }
+
             if (File.Exists(settings.PrimaryImageFilename))
             {
                 _primaryImage = (Bitmap)Image.FromFile(settings.PrimaryImageFilename);
@@ -298,6 +340,17 @@ namespace Elite.Buttons
             {
                 _primaryImage = _secondaryImage;
             }
+
+
+            if (File.Exists(settings.TertiaryImageFilename))
+            {
+                _tertiaryImage = (Bitmap)Image.FromFile(settings.TertiaryImageFilename);
+            }
+            else
+            {
+                _tertiaryImage = _primaryImage;
+            }
+
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }
