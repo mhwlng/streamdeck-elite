@@ -24,9 +24,9 @@
                 <option value="HYPERSPACE">Hyperspace Jump</option>
             </select>
         </div>
-        <div class="sdpi-item" id="dvKeyImage">
+        <div class="sdpi-item" id="dvPrimaryImage">
             <div class="sdpi-item-label">Engaged Image</div>
-            <div class="sdpi-item-group file" id="filepickergroup">
+            <div class="sdpi-item-group file" id="filepickergroup1">
                 <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
                 <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
                 <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
@@ -34,7 +34,7 @@
         </div>
         <div class="sdpi-item" id="dvSecondaryImage">
             <div class="sdpi-item-label">Enabled Image</div>
-            <div class="sdpi-item-group file" id="filepickergroup">
+            <div class="sdpi-item-group file" id="filepickergroup2">
                 <input class="sdpi-item-value sdProperty sdFile" type="file" id="secondaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
                 <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
                 <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
@@ -42,11 +42,24 @@
         </div>
         <div class="sdpi-item" id="dvTertiaryImage">
             <div class="sdpi-item-label">Disabled Image</div>
-            <div class="sdpi-item-group file" id="filepickergroup">
+            <div class="sdpi-item-group file" id="filepickergroup3">
                 <input class="sdpi-item-value sdProperty sdFile" type="file" id="tertiaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
                 <label class="sdpi-file-info " for="tertiaryImage" id="tertiaryImageFilename">No file...</label>
                 <label class="sdpi-file-label" for="tertiaryImage">Choose file...</label>
             </div>
+        </div>
+
+        <div type="color" class="sdpi-item" id="dvPrimaryColor">
+            <div class="sdpi-item-label">Engaged Color</div>
+            <input class="sdpi-item-value sdProperty" type="color" id="primaryColor" oninput="setSettings()">
+        </div>
+        <div type="color" class="sdpi-item" id="dvSecondaryColor">
+            <div class="sdpi-item-label">Enabled Color</div>
+            <input class="sdpi-item-value sdProperty" type="color" id="secondaryColor" oninput="setSettings()">
+        </div>
+        <div type="color" class="sdpi-item" id="dvTertiaryColor">
+            <div class="sdpi-item-label">Disabled Color</div>
+            <input class="sdpi-item-value sdProperty" type="color" id="tertiaryColor" oninput="setSettings()">
         </div>
 
     </div>

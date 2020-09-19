@@ -25,7 +25,10 @@ namespace Elite.Buttons
                     Function = string.Empty,
                     PrimaryImageFilename = string.Empty,
                     SecondaryImageFilename = string.Empty,
-                    TertiaryImageFilename = string.Empty
+                    TertiaryImageFilename = string.Empty,
+                    PrimaryColor = "#ffffff",
+                    SecondaryColor = "#ffffff",
+                    TertiaryColor = "#ffffff",
                 };
 
                 return instance;
@@ -46,6 +49,15 @@ namespace Elite.Buttons
             [JsonProperty(PropertyName = "tertiaryImage")]
             public string TertiaryImageFilename { get; set; }
 
+            [JsonProperty(PropertyName = "primaryColor")]
+            public string PrimaryColor { get; set; }
+
+            [JsonProperty(PropertyName = "secondaryColor")]
+            public string SecondaryColor { get; set; }
+
+            [JsonProperty(PropertyName = "tertiaryColor")]
+            public string TertiaryColor { get; set; }
+
         }
 
         private PluginSettings settings;
@@ -61,16 +73,19 @@ namespace Elite.Buttons
         private string _secondaryFile;
         private string _tertiaryFile;
 
+        private SolidBrush _primaryBrush = new SolidBrush(Color.White);
+        private SolidBrush _secondaryBrush = new SolidBrush(Color.White);
+        private SolidBrush _tertiaryBrush = new SolidBrush(Color.White);
+
         private readonly Font drawFont = new Font("Arial", 60);
-
-        private readonly SolidBrush textBrush = new SolidBrush(Color.White);
-
 
         private async Task HandleDisplay()
         {
             var myBitmap = _primaryImage; // Engaged Image
             var imgBase64 = _primaryFile;
             var bitmapImageIsGif = _primaryImageIsGif;
+            var textBrush = _primaryBrush;
+            var textHtmlColor = settings.PrimaryColor;
 
             var isDisabled = (EliteData.StatusData.Docked ||
                                 EliteData.StatusData.Landed ||
@@ -96,6 +111,8 @@ namespace Elite.Buttons
                 myBitmap = _tertiaryImage; // Disabled Image
                 imgBase64 = _tertiaryFile;
                 bitmapImageIsGif = _tertiaryImageIsGif;
+                textBrush = _tertiaryBrush;
+                textHtmlColor = settings.TertiaryColor;
             }
             else
             {
@@ -107,6 +124,8 @@ namespace Elite.Buttons
                             myBitmap = _secondaryImage;
                             imgBase64 = _secondaryFile;
                             bitmapImageIsGif = _secondaryImageIsGif;
+                            textBrush = _secondaryBrush;
+                            textHtmlColor = settings.SecondaryColor;
                         }
 
                         break;
@@ -116,6 +135,8 @@ namespace Elite.Buttons
                             myBitmap = _secondaryImage;
                             imgBase64 = _secondaryFile;
                             bitmapImageIsGif = _secondaryImageIsGif;
+                            textBrush = _secondaryBrush;
+                            textHtmlColor = settings.SecondaryColor;
                         }
 
                         break;
@@ -125,6 +146,8 @@ namespace Elite.Buttons
                             myBitmap = _secondaryImage;
                             imgBase64 = _secondaryFile;
                             bitmapImageIsGif = _secondaryImageIsGif;
+                            textBrush = _secondaryBrush;
+                            textHtmlColor = settings.SecondaryColor;
                         }
 
                         break;
@@ -133,7 +156,7 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && EliteData.StarSystem != EliteData.FsdTargetName && EliteData.RemainingJumpsInRoute > 0)
+                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && EliteData.StarSystem != EliteData.FsdTargetName && EliteData.RemainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
                 {
                     using (var bitmap = new Bitmap(myBitmap))
                     {
@@ -192,7 +215,7 @@ namespace Elite.Buttons
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Hyperspace Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
-                HandleFilenames();
+                InitializeSettings();
 
                 AsyncHelper.RunSync(HandleDisplay);
             }
@@ -261,13 +284,34 @@ namespace Elite.Buttons
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
-            HandleFilenames();
+            InitializeSettings();
 
             AsyncHelper.RunSync(HandleDisplay);
         }
 
-        private void HandleFilenames()
+        private void InitializeSettings()
         {
+            if (string.IsNullOrEmpty(settings.PrimaryColor))
+            {
+                settings.PrimaryColor = "#ffffff";
+            }
+
+            if (string.IsNullOrEmpty(settings.SecondaryColor))
+            {
+                settings.SecondaryColor = "#ffffff";
+            }
+
+            if (string.IsNullOrEmpty(settings.TertiaryColor))
+            {
+                settings.TertiaryColor = "#ffffff";
+            }
+
+            ColorConverter converter = new ColorConverter();
+
+            _primaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.PrimaryColor));
+            _secondaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryColor));
+            _tertiaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryColor));
+
             if (_primaryImage != null)
             {
                 _primaryImage.Dispose();

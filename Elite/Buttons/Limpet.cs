@@ -27,7 +27,10 @@ namespace Elite.Buttons
                     Firegroup = string.Empty,
                     Fire = string.Empty,
                     PrimaryImageFilename = string.Empty,
-                    SecondaryImageFilename = string.Empty
+                    SecondaryImageFilename = string.Empty,
+                    PrimaryColor = "#ffffff",
+                    SecondaryColor = "#ffffff"
+
                 };
 
                 return instance;
@@ -47,6 +50,12 @@ namespace Elite.Buttons
             [JsonProperty(PropertyName = "secondaryImage")]
             public string SecondaryImageFilename { get; set; }
 
+            [JsonProperty(PropertyName = "primaryColor")]
+            public string PrimaryColor { get; set; }
+
+            [JsonProperty(PropertyName = "secondaryColor")]
+            public string SecondaryColor { get; set; }
+
         }
 
         private PluginSettings settings;
@@ -59,10 +68,11 @@ namespace Elite.Buttons
         private string _primaryFile;
         private string _secondaryFile;
 
+        private SolidBrush _primaryBrush = new SolidBrush(Color.White);
+        private SolidBrush _secondaryBrush = new SolidBrush(Color.White);
 
         private readonly Font drawFont = new Font("Arial", 60);
 
-        private readonly SolidBrush textBrush = new SolidBrush(Color.White);
 
         private async Task HandleDisplay()
         {
@@ -89,10 +99,12 @@ namespace Elite.Buttons
             var myBitmap = EliteData.LimpetCount > 0 && !isDisabled  ? _primaryImage : _secondaryImage;
             var imgBase64 = EliteData.LimpetCount > 0 && !isDisabled ? _primaryFile : _secondaryFile;
             var bitmapImageIsGif = EliteData.LimpetCount > 0 && !isDisabled ? _primaryImageIsGif : _secondaryImageIsGif;
+            var textBrush = EliteData.LimpetCount > 0 && !isDisabled ? _primaryBrush : _secondaryBrush;
+            var textHtmlColor = EliteData.LimpetCount > 0 && !isDisabled ? settings.PrimaryColor : settings.SecondaryColor;
 
             if (_primaryImage != null)
             {
-                if (!bitmapImageIsGif && EliteData.LimpetCount > 0)
+                if (!bitmapImageIsGif && EliteData.LimpetCount > 0 && textHtmlColor != "#ff00ff")
                 {
                     using (var bitmap = new Bitmap(myBitmap))
                     {
@@ -148,7 +160,7 @@ namespace Elite.Buttons
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Limpet Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
-                HandleFilenames();
+                InitializeSettings();
 
                 AsyncHelper.RunSync(HandleDisplay);
             }
@@ -252,13 +264,28 @@ namespace Elite.Buttons
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
-            HandleFilenames();
+            InitializeSettings();
 
             AsyncHelper.RunSync(HandleDisplay);
         }
 
-        private void HandleFilenames()
+        private void InitializeSettings()
         {
+            if (string.IsNullOrEmpty(settings.PrimaryColor))
+            {
+                settings.PrimaryColor = "#ffffff";
+            }
+
+            if (string.IsNullOrEmpty(settings.SecondaryColor))
+            {
+                settings.SecondaryColor = "#ffffff";
+            }
+
+            ColorConverter converter = new ColorConverter();
+
+            _primaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.PrimaryColor));
+            _secondaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryColor));
+
             if (_primaryImage != null)
             {
                 _primaryImage.Dispose();

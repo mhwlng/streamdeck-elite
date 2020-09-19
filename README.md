@@ -26,6 +26,8 @@ ONLY add an image to a STATIC button in this way, do NOT set this image for any 
 
 Animated gif files are only supported for the STATIC buttons.
 
+If .gif images are configured for Power/Limpet/Hyperspace buttons, then no texts or pips are drawn on top of them.
+
 The plugin can (optionally) automatically switch to a different profile, if the in-game state changes. (e.g. deploy hardpoints, enter SRV etc.)
 More instructions on the [Wiki](https://github.com/mhwlng/streamdeck-elite/wiki/Automatic-Profile-Switching).
 
