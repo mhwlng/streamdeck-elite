@@ -75,6 +75,9 @@ The FSD buttons have 3 images:
 - enabled  : supercruise/hyperspace is inactive
 - disabled : supercruise/hyperspace is blocked for reasons like (Docked, Landed, LandingGearDown, CargoScoopDeployed, FsdMassLocked, FsdCooldown, HardpointsDeployed)
 
+Text colors can be configured separately for each button state. 
+If color #ff00ff is chosen, then the text will always be hidden.
+
 The FSS button has 3 images:
 - engaged  : FSS screen is visible
 - enabled  : FSS screen is not visible
@@ -83,8 +86,12 @@ The FSS button has 3 images:
 The limpet controller button works with any type of limpet controller.
 
 The button shows the current number of limpets in the cargo hold. (The same value is shown on all buttons).
+
 There is no specific keybind for any type of limpet controller.
 Instead, you need to set up a fire group letter and primary or secondary fire button.
+
+Text colors can be configured separately for each button state. 
+If color #ff00ff is chosen, then the text will always be hidden.
 
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 
