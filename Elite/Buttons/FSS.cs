@@ -48,34 +48,31 @@ namespace Elite.Buttons
         }
 
         private PluginSettings settings;
-        private Bitmap _primaryImage = null;
-        private Bitmap _secondaryImage = null;
-        private Bitmap _tertiaryImage = null;
+
+        private string _primaryFile;
+        private string _secondaryFile;
+        private string _tertiaryFile;
+
 
         private async Task HandleDisplay()
         {
-            var myBitmap = _primaryImage; // Engaged Image
+            var imgBase64 = _primaryFile; // Engaged Image
 
             if (!EliteData.StatusData.Supercruise)
             {
-                myBitmap = _tertiaryImage; // Disabled Image
+                imgBase64 = _tertiaryFile; // Disabled Image
             }
             else
             {
                 if (EliteData.StatusData.GuiFocus != StatusGuiFocus.FSSMode)
                 {
-                    myBitmap = _secondaryImage;
+                    imgBase64 = _secondaryFile;
                 }
             }
 
-            if (_primaryImage != null)
+            if (!string.IsNullOrWhiteSpace(imgBase64))
             {
-                using (var bitmap = new Bitmap(myBitmap))
-                {
-                    var imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
-
-                    await Connection.SetImageAsync(imgBase64);
-                }
+                await Connection.SetImageAsync(imgBase64);
             }
         }
 
@@ -181,55 +178,41 @@ namespace Elite.Buttons
 
         private void HandleFilenames()
         {
-            if (_primaryImage != null)
-            {
-                _primaryImage.Dispose();
-                _primaryImage = null;
-            }
-
-            if (_secondaryImage != null)
-            {
-                _secondaryImage.Dispose();
-                _secondaryImage = null;
-            }
-
-            if (_tertiaryImage != null)
-            {
-                _tertiaryImage.Dispose();
-                _tertiaryImage = null;
-            }
+            _primaryFile = null;
+            _secondaryFile = null;
+            _tertiaryFile = null;
 
             if (File.Exists(settings.PrimaryImageFilename))
             {
-                _primaryImage = (Bitmap)Image.FromFile(settings.PrimaryImageFilename);
+                _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
             }
 
             if (File.Exists(settings.SecondaryImageFilename))
             {
-                _secondaryImage = (Bitmap)Image.FromFile(settings.SecondaryImageFilename);
+                _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
             }
             else
             {
-                _secondaryImage = _primaryImage;
+                _secondaryFile = _primaryFile;
             }
 
             if (File.Exists(settings.TertiaryImageFilename))
             {
-                _tertiaryImage = (Bitmap)Image.FromFile(settings.TertiaryImageFilename);
+                _tertiaryFile = Tools.FileToBase64(settings.TertiaryImageFilename, true);
             }
             else
             {
-                _tertiaryImage = _primaryImage;
+                _tertiaryFile = _primaryFile;
             }
 
-            if (_primaryImage == null)
+            if (_primaryFile == null)
             {
-                _primaryImage = _secondaryImage;
+                _primaryFile = _secondaryFile;
             }
 
-            if (_primaryImage == null)
+            if (_primaryFile == null)
             {
-                _primaryImage = _tertiaryImage;
+                _primaryFile = _tertiaryFile;
             }
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();

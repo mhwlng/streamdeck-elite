@@ -53,14 +53,24 @@ namespace Elite.Buttons
         private Bitmap _secondaryImage = null;
         private Bitmap _tertiaryImage = null;
 
+        private bool _primaryImageIsGif = false;
+        private bool _secondaryImageIsGif = false;
+        private bool _tertiaryImageIsGif = false;
+
+        private string _primaryFile;
+        private string _secondaryFile;
+        private string _tertiaryFile;
+
         private readonly Font drawFont = new Font("Arial", 60);
 
-        private readonly SolidBrush whiteBrush = new SolidBrush(Color.White);
+        private readonly SolidBrush textBrush = new SolidBrush(Color.White);
 
 
         private async Task HandleDisplay()
         {
             var myBitmap = _primaryImage; // Engaged Image
+            var imgBase64 = _primaryFile;
+            var bitmapImageIsGif = _primaryImageIsGif;
 
             var isDisabled = (EliteData.StatusData.Docked ||
                                 EliteData.StatusData.Landed ||
@@ -84,6 +94,8 @@ namespace Elite.Buttons
             if (isDisabled)
             {
                 myBitmap = _tertiaryImage; // Disabled Image
+                imgBase64 = _tertiaryFile;
+                bitmapImageIsGif = _tertiaryImageIsGif;
             }
             else
             {
@@ -93,6 +105,8 @@ namespace Elite.Buttons
                         if (!EliteData.StatusData.FsdJump)
                         {
                             myBitmap = _secondaryImage;
+                            imgBase64 = _secondaryFile;
+                            bitmapImageIsGif = _secondaryImageIsGif;
                         }
 
                         break;
@@ -100,6 +114,8 @@ namespace Elite.Buttons
                         if (!EliteData.StatusData.FsdJump)
                         {
                             myBitmap = _secondaryImage;
+                            imgBase64 = _secondaryFile;
+                            bitmapImageIsGif = _secondaryImageIsGif;
                         }
 
                         break;
@@ -107,6 +123,8 @@ namespace Elite.Buttons
                         if (!EliteData.StatusData.Supercruise)
                         {
                             myBitmap = _secondaryImage;
+                            imgBase64 = _secondaryFile;
+                            bitmapImageIsGif = _secondaryImageIsGif;
                         }
 
                         break;
@@ -115,47 +133,47 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                using (var bitmap = new Bitmap(myBitmap))
+                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && EliteData.StarSystem != EliteData.FsdTargetName && EliteData.RemainingJumpsInRoute > 0)
                 {
-                    if (settings.Function != "SUPERCRUISE")
+                    using (var bitmap = new Bitmap(myBitmap))
                     {
-                        if (EliteData.StarSystem != EliteData.FsdTargetName && EliteData.RemainingJumpsInRoute > 0)
+                        using (var graphics = Graphics.FromImage(bitmap))
                         {
-                            using (var graphics = Graphics.FromImage(bitmap))
+                            var width = bitmap.Width; // assumes rectangular bitmap
+
+                            var fontContainerHeight = 100 * (width / 256.0);
+
+                            for (int adjustedSize = 60; adjustedSize >= 10; adjustedSize -= 5)
                             {
-                                var width = bitmap.Width; // assumes rectangular bitmap
+                                var testFont = new Font(drawFont.Name, adjustedSize, drawFont.Style);
 
-                                var fontContainerHeight = 100 * (width / 256.0);
+                                var adjustedSizeNew =
+                                    graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(),
+                                        testFont);
 
-                                for (int adjustedSize = 60; adjustedSize >= 10; adjustedSize-=5)
+                                if (fontContainerHeight >= adjustedSizeNew.Height)
                                 {
-                                    var testFont = new Font(drawFont.Name, adjustedSize, drawFont.Style);
+                                    var stringSize =
+                                        graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(),
+                                            testFont);
 
-                                    var adjustedSizeNew = graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(), testFont);
+                                    var x = (width - stringSize.Width) / 2.0;
+                                    var y = 28.0 * (width / 256.0);
 
-                                    if (fontContainerHeight >= adjustedSizeNew.Height)
-                                    {
-                                        var stringSize = graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(), testFont);
+                                    graphics.DrawString(EliteData.RemainingJumpsInRoute.ToString(), testFont,
+                                        textBrush, (float) x, (float) y);
 
-                                        var x = (width - stringSize.Width) / 2.0;
-                                        var y = 28.0 * (width / 256.0);
+                                    testFont.Dispose();
 
-                                        graphics.DrawString(EliteData.RemainingJumpsInRoute.ToString(), testFont, whiteBrush, (float)x, (float)y);
-
-                                        testFont.Dispose();
-
-                                        break;
-                                    }
+                                    break;
                                 }
-
                             }
                         }
+
+                        imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
                     }
-
-                    var imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
-
-                    await Connection.SetImageAsync(imgBase64);
                 }
+                await Connection.SetImageAsync(imgBase64);
             }
         }
 
@@ -254,51 +272,85 @@ namespace Elite.Buttons
             {
                 _primaryImage.Dispose();
                 _primaryImage = null;
+                _primaryFile = null;
+                _primaryImageIsGif = false;
             }
 
             if (_secondaryImage != null)
             {
                 _secondaryImage.Dispose();
                 _secondaryImage = null;
+                _secondaryFile = null;
+                _secondaryImageIsGif = false;
             }
 
             if (_tertiaryImage != null)
             {
                 _tertiaryImage.Dispose();
                 _tertiaryImage = null;
+                _tertiaryFile = null;
+                _tertiaryImageIsGif = false;
             }
 
             if (File.Exists(settings.PrimaryImageFilename))
             {
                 _primaryImage = (Bitmap)Image.FromFile(settings.PrimaryImageFilename);
+
+                _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
+
+                _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
             }
 
             if (File.Exists(settings.SecondaryImageFilename))
             {
                 _secondaryImage = (Bitmap)Image.FromFile(settings.SecondaryImageFilename);
+
+                _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
+
+                _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
             }
             else
             {
                 _secondaryImage = _primaryImage;
+
+                _secondaryFile = _primaryFile;
+
+                _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
             }
 
             if (File.Exists(settings.TertiaryImageFilename))
             {
                 _tertiaryImage = (Bitmap)Image.FromFile(settings.TertiaryImageFilename);
+
+                _tertiaryFile = Tools.FileToBase64(settings.TertiaryImageFilename, true);
+
+                _tertiaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
             }
             else
             {
                 _tertiaryImage = _primaryImage;
+
+                _tertiaryFile = _primaryFile;
+
+                _tertiaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
             }
 
             if (_primaryImage == null)
             {
                 _primaryImage = _secondaryImage;
+
+                _primaryFile = _secondaryFile;
+
+                _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
             }
 
             if (_primaryImage == null)
             {
                 _primaryImage = _tertiaryImage;
+
+                _primaryFile = _tertiaryFile;
+
+                _primaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
             }
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();

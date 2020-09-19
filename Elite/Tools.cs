@@ -29,7 +29,7 @@ namespace Elite
                 return null;
             }
 
-            if (fileName.ToLower().Contains(".gif"))
+            if (fileName.ToLower().EndsWith(".gif"))
             {
                 byte[] imageBytes = File.ReadAllBytes(fileName);
 

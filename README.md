@@ -54,8 +54,8 @@ The supported power distributor pips buttons are:
 A long press on a button will set the power distributor to 4 pips.
 There is a separate button image for 4 pips.
 
-There is a separate alarm image that is only used for the SYS button 
-and activates when under attack and pips are not set to max.
+There is a separate alarm image that is only used for the SYS button.
+That image is shown when under attack and pips are not set to 4 pips.
 
 The supported alarm buttons are:
 - Highest Threat (alarm = under attack status)

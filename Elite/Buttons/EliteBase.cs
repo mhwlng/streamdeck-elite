@@ -274,5 +274,10 @@ namespace Elite.Buttons
 
         }
 
+        protected static bool CheckForGif(string imageFilename)
+        {
+            return imageFilename?.ToLower().EndsWith(".gif") == true;
+        }
+
     }
 }
