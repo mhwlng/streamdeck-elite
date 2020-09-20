@@ -25,30 +25,99 @@
                 <option value="RST">Reset</option>
             </select>
         </div>
-        <div class="sdpi-item" id="dvPrimaryImage">
-            <div class="sdpi-item-label">MAX Pips Image</div>
-            <div class="sdpi-item-group file" id="filepickergroup1">
-                <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
-                <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
-                <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
+
+        <hr>
+
+        <div type="group" class="sdpi-item" id="maxpipsgroup">
+            <div class="sdpi-item-label">MAX Pips</div>
+            <div class="sdpi-item-group" id="maxpipsgroup_items">
+
+                <div class="sdpi-item" id="dvPrimaryImage">
+                    <div class="sdpi-item-label">Image</div>
+                    <div class="sdpi-item-group file" id="filepickergroup1">
+                        <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                        <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
+                        <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
+                    </div>
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvPrimaryPipColor">
+                    <div class="sdpi-item-label">Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="primaryPipColor" oninput="setSettings()">
+                </div>
+
             </div>
+
         </div>
-        <div class="sdpi-item" id="dvSecondaryImage">
-            <div class="sdpi-item-label">Default Image</div>
-            <div class="sdpi-item-group file" id="filepickergroup2">
-                <input class="sdpi-item-value sdProperty sdFile" type="file" id="secondaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
-                <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
-                <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
+
+        <hr>
+
+        <div type="group" class="sdpi-item" id="defaultgroup">
+            <div class="sdpi-item-label">Default</div>
+            <div class="sdpi-item-group" id="defaultgroup_items">
+
+                <div class="sdpi-item" id="dvSecondaryImage">
+                    <div class="sdpi-item-label">Image</div>
+                    <div class="sdpi-item-group file" id="filepickergroup2">
+                        <input class="sdpi-item-value sdProperty sdFile" type="file" id="secondaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                        <label class="sdpi-file-info " for="secondaryImage" id="secondaryImageFilename">No file...</label>
+                        <label class="sdpi-file-label" for="secondaryImage">Choose file...</label>
+                    </div>
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvSecondaryPipColor">
+                    <div class="sdpi-item-label">Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="secondaryPipColor" oninput="setSettings()">
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvSecondaryHalfPipColor">
+                    <div class="sdpi-item-label">Half Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="secondaryHalfPipColor" oninput="setSettings()">
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvSecondaryNoPipColor">
+                    <div class="sdpi-item-label">No Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="secondaryNoPipColor" oninput="setSettings()">
+                </div>
+
             </div>
+
         </div>
-        <div class="sdpi-item" id="dvTertiaryImage">
-            <div class="sdpi-item-label">Alarm Image (SYS)</div>
-            <div class="sdpi-item-group file" id="filepickergroup3">
-                <input class="sdpi-item-value sdProperty sdFile" type="file" id="tertiaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
-                <label class="sdpi-file-info " for="tertiaryImage" id="tertiaryImageFilename">No file...</label>
-                <label class="sdpi-file-label" for="tertiaryImage">Choose file...</label>
+
+        <hr>
+
+        <div type="group" class="sdpi-item" id="alarmgroup">
+            <div class="sdpi-item-label">Alarm (SYS)</div>
+            <div class="sdpi-item-group" id="alarmgroup_items">
+
+                <div class="sdpi-item" id="dvTertiaryImage">
+                    <div class="sdpi-item-label">Image</div>
+                    <div class="sdpi-item-group file" id="filepickergroup3">
+                        <input class="sdpi-item-value sdProperty sdFile" type="file" id="tertiaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                        <label class="sdpi-file-info " for="tertiaryImage" id="tertiaryImageFilename">No file...</label>
+                        <label class="sdpi-file-label" for="tertiaryImage">Choose file...</label>
+                    </div>
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvTertiaryPipColor">
+                    <div class="sdpi-item-label">Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="tertiaryPipColor" oninput="setSettings()">
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvTertiaryHalfPipColor">
+                    <div class="sdpi-item-label">Half Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="tertiaryHalfPipColor" oninput="setSettings()">
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvTertiaryNoPipColor">
+                    <div class="sdpi-item-label">No Pip Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="tertiaryNoPipColor" oninput="setSettings()">
+                </div>
+
             </div>
+
         </div>
+
     </div>
 </body>
 </html>

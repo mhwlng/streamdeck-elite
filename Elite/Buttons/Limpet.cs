@@ -281,7 +281,7 @@ namespace Elite.Buttons
                 settings.SecondaryColor = "#ffffff";
             }
 
-            ColorConverter converter = new ColorConverter();
+            var converter = new ColorConverter();
 
             _primaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.PrimaryColor));
             _secondaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryColor));

@@ -46,6 +46,28 @@ namespace Elite.Buttons
             [FilenameProperty]
             [JsonProperty(PropertyName = "tertiaryImage")]
             public string TertiaryImageFilename { get; set; }
+            
+            [JsonProperty(PropertyName = "primaryPipColor")]
+            public string PrimaryPipColor { get; set; }
+
+            [JsonProperty(PropertyName = "secondaryPipColor")]
+            public string SecondaryPipColor { get; set; }
+
+            [JsonProperty(PropertyName = "secondaryHalfPipColor")]
+            public string SecondaryHalfPipColor { get; set; }
+
+            [JsonProperty(PropertyName = "secondaryNoPipColor")]
+            public string SecondaryNoPipColor { get; set; }
+
+            [JsonProperty(PropertyName = "tertiaryPipColor")]
+            public string TertiaryPipColor { get; set; }
+
+            [JsonProperty(PropertyName = "tertiaryHalfPipColor")]
+            public string TertiaryHalfPipColor { get; set; }
+
+            [JsonProperty(PropertyName = "tertiaryNoPipColor")]
+            public string TertiaryNoPipColor { get; set; }
+
 
         }
 
@@ -63,10 +85,15 @@ namespace Elite.Buttons
         private string _secondaryFile;
         private string _tertiaryFile;
 
-        private readonly SolidBrush fullPipBrush = new SolidBrush(Color.White);
-        private readonly SolidBrush noPipBrush = new SolidBrush(Color.FromArgb(0x30, 030, 0x30));
-        private readonly SolidBrush halfPipBrush = new SolidBrush(Color.FromArgb(0x90, 0x90, 0x90));
+        private SolidBrush _primaryPipBrush = new SolidBrush(Color.White);
 
+        private SolidBrush _secondaryPipBrush = new SolidBrush(Color.White);
+        private SolidBrush _secondaryHalfPipBrush = new SolidBrush(Color.FromArgb(0x90, 0x90, 0x90));
+        private SolidBrush _secondaryNoPipBrush = new SolidBrush(Color.FromArgb(0x30, 030, 0x30));
+
+        private SolidBrush _tertiaryPipBrush = new SolidBrush(Color.White);
+        private SolidBrush _tertiaryHalfPipBrush = new SolidBrush(Color.FromArgb(0x90, 0x90, 0x90));
+        private SolidBrush _tertiaryNoPipBrush = new SolidBrush(Color.FromArgb(0x30, 030, 0x30));
 
         private async Task HandleDisplay()
         {
@@ -129,11 +156,27 @@ namespace Elite.Buttons
                 var imgBase64 = pips == 8 ? _primaryFile : _secondaryFile;
                 var bitmapImageIsGif = pips == 8 ? _primaryImageIsGif : _secondaryImageIsGif;
 
+                var pipBrush = pips == 8 ? _primaryPipBrush : _secondaryPipBrush;
+                var pipHtmlColor = pips == 8 ? settings.PrimaryPipColor : settings.SecondaryPipColor;
+
+                var halfPipBrush = _secondaryHalfPipBrush;
+
+                var noPipBrush =  _secondaryNoPipBrush;
+                var noPipHtmlColor =  settings.SecondaryNoPipColor;
+
                 if (settings.Function == "SYS" && pips < 8 && EliteData.UnderAttack)
                 {
                     bitmapImage = _tertiaryImage;
                     imgBase64 = _tertiaryFile;
                     bitmapImageIsGif = _tertiaryImageIsGif;
+
+                    pipBrush = _tertiaryPipBrush;
+                    pipHtmlColor = settings.TertiaryPipColor;
+
+                    halfPipBrush = _tertiaryHalfPipBrush;
+
+                    noPipBrush = _tertiaryNoPipBrush;
+                    noPipHtmlColor = settings.TertiaryNoPipColor;
                 }
 
                 if (!bitmapImageIsGif && settings.Function != "RST")
@@ -144,8 +187,6 @@ namespace Elite.Buttons
                         {
                             var width = bitmap.Width; // assumes rectangular bitmap
 
-                            var outline = new Pen(fullPipBrush, 1);
-
                             for (var i = 2; i <= 8; i += 2)
                             {
                                 var x = (12.0 + (i / 2) * 40) * (width / 256.0);
@@ -155,11 +196,14 @@ namespace Elite.Buttons
 
                                 if (pips > 0 && i <= pips + 1)
                                 {
-                                    var brush = (pips == i - 1) ? halfPipBrush : fullPipBrush;
+                                    if (pipHtmlColor != "#ff00ff")
+                                    {
+                                        var brush = (pips == i - 1) ? halfPipBrush : pipBrush;
 
-                                    graphics.FillRectangle(brush, (float) x, (float) y, (float) w, (float) h);
+                                        graphics.FillRectangle(brush, (float) x, (float) y, (float) w, (float) h);
+                                    }
                                 }
-                                else
+                                else if (noPipHtmlColor != "#ff00ff")
                                 {
                                     graphics.FillRectangle(noPipBrush, (float) x, (float) y, (float) w, (float) h);
                                 }
@@ -314,6 +358,54 @@ namespace Elite.Buttons
 
         private void HandleFilenames()
         {
+            if (string.IsNullOrEmpty(settings.PrimaryPipColor))
+            {
+                settings.PrimaryPipColor = "#ffffff";
+            }
+
+            if (string.IsNullOrEmpty(settings.SecondaryPipColor))
+            {
+                settings.SecondaryPipColor = "#ffffff";
+            }
+
+            if (string.IsNullOrEmpty(settings.TertiaryPipColor))
+            {
+                settings.TertiaryPipColor = "#ffffff";
+            }
+
+            if (string.IsNullOrEmpty(settings.SecondaryHalfPipColor))
+            {
+                settings.SecondaryHalfPipColor = "#909090";
+            }
+
+            if (string.IsNullOrEmpty(settings.TertiaryHalfPipColor))
+            {
+                settings.TertiaryHalfPipColor = "#909090";
+            }
+
+
+            if (string.IsNullOrEmpty(settings.SecondaryNoPipColor))
+            {
+                settings.SecondaryNoPipColor = "#303030";
+            }
+
+            if (string.IsNullOrEmpty(settings.TertiaryNoPipColor))
+            {
+                settings.TertiaryNoPipColor = "#303030";
+            }
+
+            var converter = new ColorConverter();
+
+            _primaryPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.PrimaryPipColor));
+
+            _secondaryPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryPipColor));
+            _secondaryHalfPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryHalfPipColor));
+            _secondaryNoPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryNoPipColor));
+
+            _tertiaryPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryPipColor));
+            _tertiaryHalfPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryHalfPipColor));
+            _tertiaryNoPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryNoPipColor));
+
             if (_primaryImage != null)
             {
                 _primaryImage.Dispose();
