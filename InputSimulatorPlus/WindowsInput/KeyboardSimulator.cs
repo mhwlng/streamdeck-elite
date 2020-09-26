@@ -311,11 +311,35 @@ namespace WindowsInput
         /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
         public IKeyboardSimulator DelayedKeyPress(DirectInputKeyCode dikCode, int delay)
         {
-            var inputList1 = new InputBuilder().AddKeyDown(dikCode).ToArray();
-            SendSimulatedInput(inputList1);
+            DelayedKeyPressDown(dikCode, delay);
 
             Thread.Sleep(delay);
 
+            DelayedKeyPressUp(dikCode, delay);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Calls the Win32 SendInput method with a KeyDown message
+        /// </summary>
+        /// <param name="dikCode">The <see cref="DirectInputKeyCode"/> to press</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
+        public IKeyboardSimulator DelayedKeyPressDown(DirectInputKeyCode dikCode, int delay)
+        {
+            var inputList1 = new InputBuilder().AddKeyDown(dikCode).ToArray();
+            SendSimulatedInput(inputList1);
+            
+            return this;
+        }
+
+        /// <summary>
+        /// Calls the Win32 SendInput method with a KeyUp message
+        /// </summary>
+        /// <param name="dikCode">The <see cref="DirectInputKeyCode"/> to press</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
+        public IKeyboardSimulator DelayedKeyPressUp(DirectInputKeyCode dikCode, int delay)
+        {
             var inputList2 = new InputBuilder().AddKeyUp(dikCode).ToArray();
             SendSimulatedInput(inputList2);
 
@@ -383,6 +407,24 @@ namespace WindowsInput
         /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
         public IKeyboardSimulator DelayedModifiedKeyStroke(IEnumerable<DirectInputKeyCode> modifierDikCodes, DirectInputKeyCode dikCode, int delay)
         {
+            DelayedModifiedKeyStrokeDown(modifierDikCodes, dikCode, delay);
+
+            Thread.Sleep(delay);
+
+            DelayedModifiedKeyStrokeUp(modifierDikCodes, dikCode, delay);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Simulates a modified keystroke where there are multiple modifiers and multiple keys like CTRL-ALT-K-C where CTRL and ALT are the modifierKeys and K and C are the keys.
+        /// The flow is Modifiers KeyDown in order, Keys Press in order
+        /// </summary>
+        /// <param name="modifierDikCodes">The list of modifier keys</param>
+        /// <param name="dikCode">The list of keys to simulate</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
+        public IKeyboardSimulator DelayedModifiedKeyStrokeDown(IEnumerable<DirectInputKeyCode> modifierDikCodes, DirectInputKeyCode dikCode, int delay)
+        {
             foreach (var keyCode in modifierDikCodes)
             {
                 var inputList = new InputBuilder().AddKeyDown(keyCode).ToArray();
@@ -391,8 +433,18 @@ namespace WindowsInput
 
             KeyDown(dikCode);
 
-            Thread.Sleep(delay);
+            return this;
+        }
 
+        /// <summary>
+        /// Simulates a modified keystroke where there are multiple modifiers and multiple keys like CTRL-ALT-K-C where CTRL and ALT are the modifierKeys and K and C are the keys.
+        /// The flow is Keys Press in order, Modifiers KeyUp in reverse order.
+        /// </summary>
+        /// <param name="modifierDikCodes">The list of modifier keys</param>
+        /// <param name="dikCode">The list of keys to simulate</param>
+        /// <param name="delay">Delay in ms between keydown and keyup of final keyCode. 50ms should be minimum</param>
+        public IKeyboardSimulator DelayedModifiedKeyStrokeUp(IEnumerable<DirectInputKeyCode> modifierDikCodes, DirectInputKeyCode dikCode, int delay)
+        {
             KeyUp(dikCode);
 
             foreach (var keyCode in modifierDikCodes.Reverse())

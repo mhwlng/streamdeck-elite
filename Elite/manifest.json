@@ -92,6 +92,21 @@
     },
     {
       "Icon": "Images/icon",
+      "Name": "Repeating Static Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Repeating Static Button",
+      "UUID": "com.mhwlng.elite.repeatingstatic",
+      "PropertyInspectorPath": "PropertyInspector/Elite/RepeatingStatic.html"
+    },
+    {
+      "Icon": "Images/icon",
       "Name": "Toggle Button",
       "States": [
         {
@@ -111,7 +126,7 @@
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
   "URL": "https://github.com/mhwlng/streamdeck-elite",
-  "Version": "2.2.0",
+  "Version": "2.2.1",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",

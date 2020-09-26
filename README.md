@@ -10,9 +10,14 @@ If you press the relevant button on your keyboard or hotas, then the image on th
 
 When a button has no effect (e.g. when docked) then the image won't change.
 
-There is also a STATIC button type, that works the same as the streamdeck 'Hotkey' button type. 
+There is also a STATIC button type, that works in a similar way to the streamdeck 'Hotkey' button type.
 So, there is only one image and there is no game state feedback for these buttons.
-The only difference with the 'Hotkey' button is, that it gets the keyboard binding from the game.
+The differences with the 'Hotkey' buttons are, that it gets the keyboard binding from the game and doesn't repeat the key when the streamdeck button is held.
+
+There is also a 'Repeating Static Button' type. This button is used only for keys, that need to be held for a while.
+So, when the stream deck button is pushed, the 'key down' event is sent to the keyboard
+and only after the stream deck button is released, the 'key up' event is sent to the keyboard.
+The streamdeck 'hotkey' button also has this behaviour.
 
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 
@@ -20,11 +25,11 @@ Choose a button in the streamdeck software (drag and drop), then choose an Elite
 
 **Example button images, like in above picture, can be found in the source code images directory.**
 
-ONLY add an image to a STATIC button in this way, do NOT set this image for any of the other button types :
+ONLY add an image to a (repeating) STATIC button in this way, do NOT set this image for any of the other button types :
 
 ![Button Image](https://i.imgur.com/xkgy7uZ.png)
 
-Animated gif files are only supported for the STATIC buttons.
+Animated gif files are only supported for the (repeating) STATIC buttons.
 
 If .gif images are configured for Power/Limpet/Hyperspace buttons, then no texts or pips are drawn on top of them.
 

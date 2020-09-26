@@ -155,7 +155,7 @@ namespace Elite.Buttons
             return scanCode;
         }
 
-        protected async void SendInput(string inputText)
+        private async void SendInput(string inputText)
         {
             InputRunning = true;
             await Task.Run(() =>
@@ -172,6 +172,35 @@ namespace Elite.Buttons
                 }
             });
             InputRunning = false;
+        }
+
+
+        private void SendInputDown(string inputText)
+        {
+            var text = inputText;
+
+            for (var idx = 0; idx < text.Length && !ForceStop; idx++)
+            {
+                var macro = CommandTools.ExtractMacro(text, idx);
+                idx += macro.Length - 1;
+                macro = macro.Substring(1, macro.Length - 2);
+
+                HandleMacroDown(macro);
+            }
+        }
+
+        private void SendInputUp(string inputText)
+        {
+            var text = inputText;
+
+            for (var idx = 0; idx < text.Length && !ForceStop; idx++)
+            {
+                var macro = CommandTools.ExtractMacro(text, idx);
+                idx += macro.Length - 1;
+                macro = macro.Substring(1, macro.Length - 2);
+
+                HandleMacroUp(macro);
+            }
         }
 
         private void HandleMacro(string macro)
@@ -201,7 +230,54 @@ namespace Elite.Buttons
             }
         }
 
-        protected void SendKeypress(StandardBindingInfo keyInfo, int repeatCount = 1)
+        private void HandleMacroDown(string macro)
+        {
+            var keyStrokes = CommandTools.ExtractKeyStrokes(macro);
+
+            // Actually initiate the keystrokes
+            if (keyStrokes.Count > 0)
+            {
+                var iis = new InputSimulator();
+                var keyCode = keyStrokes.Last();
+                keyStrokes.Remove(keyCode);
+
+                if (keyStrokes.Count > 0)
+                {
+                    iis.Keyboard.DelayedModifiedKeyStrokeDown(keyStrokes.Select(ks => ks), keyCode, 40);
+
+                }
+                else // Single Keycode
+                {
+                    iis.Keyboard.DelayedKeyPressDown(keyCode, 40);
+                }
+            }
+        }
+
+
+        private void HandleMacroUp(string macro)
+        {
+            var keyStrokes = CommandTools.ExtractKeyStrokes(macro);
+
+            // Actually initiate the keystrokes
+            if (keyStrokes.Count > 0)
+            {
+                var iis = new InputSimulator();
+                var keyCode = keyStrokes.Last();
+                keyStrokes.Remove(keyCode);
+
+                if (keyStrokes.Count > 0)
+                {
+                    iis.Keyboard.DelayedModifiedKeyStrokeUp(keyStrokes.Select(ks => ks), keyCode, 40);
+
+                }
+                else // Single Keycode
+                {
+                    iis.Keyboard.DelayedKeyPressUp(keyCode, 40);
+                }
+            }
+        }
+
+        private string BuildInputText(StandardBindingInfo keyInfo)
         {
             var inputText = "";
 
@@ -239,11 +315,11 @@ namespace Elite.Buttons
             {
                 inputText = inputText.Replace("_", "")
 
-                    .Replace("Subtract", "MINUS")   //DIKNumpadSubtract   -> DikNumpadMinus
-                    .Replace("Add", "PLUS")         //DIKNumpadAdd        -> DikNumpadPlus
-                    .Replace("Divide", "SLASH")     //DIKNumpadDivide     -> DikNumpadSlash
-                    .Replace("Decimal", "PERIOD")   //DIKNumpadDecimal    -> DikNumpadPeriod
-                    .Replace("Multiply", "STAR")    //DIKNumpadMultiply   -> DikNumpadStar
+                    .Replace("Subtract", "MINUS") //DIKNumpadSubtract   -> DikNumpadMinus
+                    .Replace("Add", "PLUS") //DIKNumpadAdd        -> DikNumpadPlus
+                    .Replace("Divide", "SLASH") //DIKNumpadDivide     -> DikNumpadSlash
+                    .Replace("Decimal", "PERIOD") //DIKNumpadDecimal    -> DikNumpadPeriod
+                    .Replace("Multiply", "STAR") //DIKNumpadMultiply   -> DikNumpadStar
                     .Replace("Enter", "RETURN")
                     .Replace("Backspace", "BACK")
                     .Replace("UpArrow", "UP")
@@ -256,6 +332,20 @@ namespace Elite.Buttons
                     .Replace("LeftControl", "LCONTROL")
                     .Replace("RightShift", "RSHIFT")
                     .Replace("LeftShift", "LSHIFT");
+
+                //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
+
+            }
+
+            return inputText;
+        }
+
+        protected void SendKeypress(StandardBindingInfo keyInfo, int repeatCount = 1)
+        {
+            var inputText = BuildInputText(keyInfo);
+
+            if (!string.IsNullOrEmpty(inputText))
+            {
 
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
 
@@ -272,6 +362,27 @@ namespace Elite.Buttons
                 // keyboard test page : https://w3c.github.io/uievents/tools/key-event-viewer.html
             }
 
+        }
+
+        protected void SendKeypressDown(StandardBindingInfo keyInfo)
+        {
+            var inputText = BuildInputText(keyInfo);
+
+            if (!string.IsNullOrEmpty(inputText))
+            {
+                SendInputDown("{" + inputText + "}");
+            }
+        }
+
+
+        protected void SendKeypressUp(StandardBindingInfo keyInfo)
+        {
+            var inputText = BuildInputText(keyInfo);
+
+            if (!string.IsNullOrEmpty(inputText))
+            {
+                SendInputUp("{" + inputText + "}");
+            }
         }
 
         protected static bool CheckForGif(string imageFilename)

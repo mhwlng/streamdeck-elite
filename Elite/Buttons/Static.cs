@@ -884,10 +884,6 @@ namespace Elite.Buttons
 
 			/*
         <select class="sdpi-item-value select sdProperty" id="function" oninput="setSettings()">
-            <optgroup label="Misc">
-                <option value="RadarDecreaseRange">Dec Sensor Range</option>
-                <option value="RadarIncreaseRange">Inc Sensor Range</option>
-            </optgroup>
             <optgroup label="Navigation">
                 <option value="BackwardKey">Reverse Thrust</option>
                 <option value="BackwardThrustButton">Reverse thrust</option>
