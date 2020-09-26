@@ -60,7 +60,7 @@ There is a separate alarm image that is only used for the SYS button.
 That image is shown when under attack and pips are not set to 4 pips.
 
 The 3 Pip colors can be configured separately for each button state. 
-If color #ff00ff is chosen as 'Pip' color or 'No Pip' Color, then the pip will always be hidden.
+If color #ff00ff is chosen as 'Pip' color or 'No Pip' Color, then that pip type will always be hidden.
 
 The supported alarm buttons are:
 - Highest Threat (alarm = under attack status)

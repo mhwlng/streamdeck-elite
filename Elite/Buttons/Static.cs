@@ -884,23 +884,7 @@ namespace Elite.Buttons
 
 			/*
         <select class="sdpi-item-value select sdProperty" id="function" oninput="setSettings()">
-            <optgroup label="Combat">
-                <option value="DeployHardpointToggle">Hardpoints</option>
-                <option value="DeployHeatSink">Heatsink</option>
-                <option value="FireChaffLauncher">Chaff</option>
-                <option value="IncreaseEnginesPower">ENG</option>
-                <option value="IncreaseSystemsPower">SYS</option>
-                <option value="IncreaseWeaponsPower">WEP</option>
-                <option value="ResetPowerDistribution">RST</option>
-                <option value="PrimaryFire">Fire 1</option>
-                <option value="SecondaryFire">Fire 2</option>
-                <option value="SelectHighestThreat">Highest Threat</option>
-                <option value="UseShieldCell">SCB</option>
-            </optgroup>
-            <optgroup label="Fighter">
-            </optgroup>
             <optgroup label="Misc">
-                <option value="NightVisionToggle">Night Vision</option>
                 <option value="RadarDecreaseRange">Dec Sensor Range</option>
                 <option value="RadarIncreaseRange">Inc Sensor Range</option>
             </optgroup>
@@ -913,9 +897,6 @@ namespace Elite.Buttons
                 <option value="ForwardKey">Forward Thrust</option>
                 <option value="ForwardThrustButton">Forward Thrust</option>
                 <option value="ForwardThrustButton_Landing">Forward Thrust (Lndg)</option>
-                <option value="Hyperspace">Hyperspace</option>
-                <option value="HyperSuperCombination">Hyperspace/Supercruise</option>
-                <option value="LandingGearToggle">Landing Gear</option>
                 <option value="LeftThrustButton">Thrust Left</option>
                 <option value="LeftThrustButton_Landing">Thrust Left (Lndg)</option>
                 <option value="PitchDownButton">Pitch Down</option>
@@ -924,12 +905,6 @@ namespace Elite.Buttons
                 <option value="PitchUpButton_Landing">Pitch Up (Lndg)</option>
                 <option value="RightThrustButton">Thrust Right</option>
                 <option value="RightThrustButton_Landing">Thrust Right (Lndg)</option>
-                <option value="ShipSpotLightToggle">Lights</option>
-                <option value="Supercruise">Supercruise</option>
-                <option value="SystemMapOpen">System Map</option>
-                <option value="ToggleButtonUpInput">Silent Running</option>
-                <option value="ToggleCargoScoop">Cargo Scoop</option>
-                <option value="ToggleFlightAssist">Flight Assist</option>
                 <option value="UpThrustButton">Thrust Up</option>
                 <option value="UpThrustButton_Landing">Thrust Up (Lndg)</option>
                 <option value="YawLeftButton">Yaw Left</option>
@@ -943,7 +918,6 @@ namespace Elite.Buttons
                 <option value="RollRightButton_Landing">Roll Right (Lndg)</option>
             </optgroup>
             <optgroup label="Ship">
-                <option value="PlayerHUDModeToggle">HUD Mode</option>
                 <option value="ShowPGScoreSummaryInput">CQC Score</option>
                 <option value="UIFocus">UI Focus</option>
             </optgroup>
@@ -1012,7 +986,6 @@ namespace Elite.Buttons
                 <option value="CamYawRight">GalMap Yaw Right</option>
                 <option value="CamZoomIn">GalMap Zoom In</option>
                 <option value="CamZoomOut">GalMap Zoom Out</option>
-                <option value="GalaxyMapOpen">Galaxy Map</option>
             </optgroup>
             <optgroup label="Head look">
                 <option value="HeadLookPitchDown">Look Down</option>
@@ -1043,15 +1016,13 @@ namespace Elite.Buttons
                 <option value="MultiCrewToggleMode">Multicrew Mode</option>
             </optgroup>
             <optgroup label="Scanners">
-                <option value="ExplorationFSSCameraPitchDecreaseButton">FSS Pitch Down </option>
-                <option value="ExplorationFSSCameraPitchIncreaseButton">FSS Pitch Up </option>
-                <option value="ExplorationFSSCameraYawDecreaseButton">FSS Yaw Left </option>
-                <option value="ExplorationFSSCameraYawIncreaseButton">FSS Yaw Right </option>
+                <option value="ExplorationFSSCameraPitchDecreaseButton">FSS Pitch Down</option>
+                <option value="ExplorationFSSCameraPitchIncreaseButton">FSS Pitch Up</option>
+                <option value="ExplorationFSSCameraYawDecreaseButton">FSS Yaw Left</option>
+                <option value="ExplorationFSSCameraYawIncreaseButton">FSS Yaw Right</option>
                 <option value="ExplorationFSSDiscoveryScan">FSS Honk</option>
-                <option value="ExplorationFSSEnter">Enter FSS</option>
                 <option value="ExplorationFSSMiniZoomIn">Step Zoom FSS In</option>
                 <option value="ExplorationFSSMiniZoomOut">Step Zoom FSS Out</option>
-                <option value="ExplorationFSSQuit">Exit FSS</option>
                 <option value="ExplorationFSSRadioTuningX_Decrease">FSS Tune Left</option>
                 <option value="ExplorationFSSRadioTuningX_Increase">FSS Tune Right</option>
                 <option value="ExplorationFSSShowHelp">FSS Help</option>
@@ -1068,45 +1039,29 @@ namespace Elite.Buttons
                 <option value="SAAThirdPersonYawRightButton">Yaw Right (DSS)</option>
             </optgroup>
             <optgroup label="SRV">
-                <option value="AutoBreakBuggyButton">Handbrake</option>
                 <option value="BuggyPitchDownButton">Pitch Down</option>
                 <option value="BuggyPitchUpButton">Pitch Up</option>
                 <option value="BuggyPrimaryFireButton">Primary Weapons</option>
+                <option value="BuggySecondaryFireButton">Secondary Weapons</option>
                 <option value="BuggyRollLeft">Roll Left</option>
                 <option value="BuggyRollLeftButton">Roll Left</option>
                 <option value="BuggyRollRight">Roll Right</option>
                 <option value="BuggyRollRightButton">Roll Right</option>
-                <option value="BuggySecondaryFireButton">Secondary Weapons</option>
-                <option value="BuggyToggleReverseThrottleInput">Reverse</option>
                 <option value="BuggyTurretPitchDownButton">Turret Down</option>
                 <option value="BuggyTurretPitchUpButton">Turret Up</option>
                 <option value="BuggyTurretYawLeftButton">Turret Left</option>
                 <option value="BuggyTurretYawRightButton">Turret Right</option>
-                <option value="DecreaseSpeedButtonMax">Zero Speed</option>
-                <option value="DecreaseSpeedButtonPartial">Dec Speed</option>
                 <option value="EjectAllCargo_Buggy">Eject All Cargo</option>
                 <option value="FocusCommsPanel_Buggy">Comms Panel</option>
                 <option value="FocusLeftPanel_Buggy">Nav Panel</option>
                 <option value="FocusRadarPanel_Buggy">Role Panel</option>
                 <option value="FocusRightPanel_Buggy">Systems Panel</option>
-                <option value="GalaxyMapOpen_Buggy">GalMap</option>
-                <option value="HeadlightsBuggyButton">Lights</option>
                 <option value="HeadLookToggle_Buggy">Toggle Headlook</option>
-                <option value="IncreaseSpeedButtonMax">Maximum Speed</option>
                 <option value="IncreaseSpeedButtonPartial">Inc Speed</option>
-                <option value="IncreaseEnginesPower_Buggy">ENG</option>
-                <option value="IncreaseSystemsPower_Buggy">SYS</option>
-                <option value="IncreaseWeaponsPower_Buggy">WEP</option>
-                <option value="ResetPowerDistribution_Buggy">RST</option>
+                <option value="DecreaseSpeedButtonPartial">Dec Speed</option>
                 <option value="QuickCommsPanel_Buggy">Quick Comms</option>
-                <option value="RecallDismissShip">Recall/Dismiss Ship</option>
-                <option value="SelectTarget_Buggy">Target Ahead</option>
                 <option value="SteerLeftButton">Steer Left</option>
                 <option value="SteerRightButton">Steer Right</option>
-                <option value="SystemMapOpen_Buggy">SysMap</option>
-                <option value="ToggleBuggyTurretButton">Turret Mode</option>
-                <option value="ToggleCargoScoop_Buggy">Cargo Scoop</option>
-                <option value="ToggleDriveAssist">Drive Assist</option>
                 <option value="UIFocus_Buggy">UI Focus</option>
                 <option value="VerticalThrustersButton">Vertical Thrusters</option>
             </optgroup>
