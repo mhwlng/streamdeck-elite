@@ -1799,11 +1799,7 @@ namespace Elite.Buttons
             <optgroup label="Galaxy map">
                 <option value="CamPitchDown">GalMap Pitch Down</option>
                 <option value="CamPitchUp">GalMap Pitch Up</option>
-                <option value="CamTranslateBackward">GalMap Backward</option>
                 <option value="CamTranslateDown">GalMap Down</option>
-                <option value="CamTranslateForward">GalMap Forward</option>
-                <option value="CamTranslateLeft">GalMap Left</option>
-                <option value="CamTranslateRight">GalMap Right</option>
                 <option value="CamTranslateUp">GalMap Up</option>
                 <option value="CamTranslateZHold">GalMap Z Hold</option>
                 <option value="CamYawLeft">GalMap Yaw Left</option>

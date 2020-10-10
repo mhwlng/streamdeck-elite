@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -27,7 +28,9 @@ namespace Elite.Buttons
                 {
                     PrimaryImageFilename = string.Empty,
                     SecondaryImageFilename = string.Empty,
-                    TertiaryImageFilename = string.Empty
+                    TertiaryImageFilename = string.Empty,
+                    ClickSoundFilename = string.Empty,
+                    ErrorSoundFilename = string.Empty
                 };
 
                 return instance;
@@ -45,6 +48,14 @@ namespace Elite.Buttons
             [JsonProperty(PropertyName = "tertiaryImage")]
             public string TertiaryImageFilename { get; set; }
 
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "clickSound")]
+            public string ClickSoundFilename { get; set; }
+
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "errorSound")]
+            public string ErrorSoundFilename { get; set; }
+
         }
 
         private PluginSettings settings;
@@ -52,6 +63,8 @@ namespace Elite.Buttons
         private string _primaryFile;
         private string _secondaryFile;
         private string _tertiaryFile;
+        private CachedSound _clickSound = null;
+        private CachedSound _errorSound = null;
 
 
         private async Task HandleDisplay()
@@ -138,9 +151,38 @@ namespace Elite.Buttons
 
                     SendKeypress(Program.Bindings.ExplorationFSSEnter);
                 }
+
+                if (_clickSound != null)
+                {
+                    try
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(_clickSound);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                    }
+                }
+
+            }
+            else
+            {
+                if (_errorSound != null)
+                {
+                    try
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(_errorSound);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                    }
+                }
             }
 
             AsyncHelper.RunSync(HandleDisplay);
+
+
         }
 
 
@@ -178,6 +220,18 @@ namespace Elite.Buttons
 
         private void HandleFilenames()
         {
+            _clickSound = null;
+            if (File.Exists(settings.ClickSoundFilename))
+            {
+                _clickSound = new CachedSound(settings.ClickSoundFilename);
+            }
+
+            _errorSound = null;
+            if (File.Exists(settings.ErrorSoundFilename))
+            {
+                _errorSound = new CachedSound(settings.ErrorSoundFilename);
+            }
+
             _primaryFile = null;
             _secondaryFile = null;
             _tertiaryFile = null;
@@ -214,6 +268,8 @@ namespace Elite.Buttons
             {
                 _primaryFile = _tertiaryFile;
             }
+
+            
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }

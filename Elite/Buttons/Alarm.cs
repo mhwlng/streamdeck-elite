@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using Newtonsoft.Json;
@@ -22,7 +23,8 @@ namespace Elite.Buttons
                 {
                     Function = string.Empty,
                     PrimaryImageFilename = string.Empty,
-                    SecondaryImageFilename = string.Empty
+                    SecondaryImageFilename = string.Empty,
+                    ClickSoundFilename = string.Empty
                 };
 
                 return instance;
@@ -38,13 +40,18 @@ namespace Elite.Buttons
             [FilenameProperty]
             [JsonProperty(PropertyName = "secondaryImage")]
             public string SecondaryImageFilename { get; set; }
+
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "clickSound")]
+            public string ClickSoundFilename { get; set; }
+
         }
 
 
         PluginSettings settings;
         private string _primaryFile;
         private string _secondaryFile;
-
+        private CachedSound _clickSound = null;
 
         private async Task HandleDisplay()
         {
@@ -147,6 +154,17 @@ namespace Elite.Buttons
                     break;
             }
 
+            if (_clickSound != null)
+            {
+                try
+                {
+                    AudioPlaybackEngine.Instance.PlaySound(_clickSound);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                }
+            }
 
         }
 
@@ -155,6 +173,8 @@ namespace Elite.Buttons
             base.Dispose();
 
             //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
+
+            
         }
 
         public override async void OnTick()
@@ -177,8 +197,16 @@ namespace Elite.Buttons
 
         private void HandleFilenames()
         {
+            _clickSound = null;
+            if (File.Exists(settings.ClickSoundFilename))
+            {
+                _clickSound = new CachedSound(settings.ClickSoundFilename);
+            }
+
             _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
             _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
+
+           
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }

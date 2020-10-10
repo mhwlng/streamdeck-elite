@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using Newtonsoft.Json;
@@ -21,7 +22,8 @@ namespace Elite.Buttons
                 var instance = new PluginSettings
                 {
                     Function = string.Empty,
-                };
+                    ClickSoundFilename = string.Empty
+				};
 
                 return instance;
             }
@@ -29,13 +31,18 @@ namespace Elite.Buttons
             [JsonProperty(PropertyName = "function")]
             public string Function { get; set; }
 
-        }
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "clickSound")]
+            public string ClickSoundFilename { get; set; }
+
+		}
 
 
-        PluginSettings settings;
+		PluginSettings settings;
+        private CachedSound _clickSound = null;
 
 
-        public Static(SDConnection connection, InitialPayload payload) : base(connection, payload)
+		public Static(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
@@ -971,11 +978,7 @@ namespace Elite.Buttons
             <optgroup label="Galaxy map">
                 <option value="CamPitchDown">GalMap Pitch Down</option>
                 <option value="CamPitchUp">GalMap Pitch Up</option>
-                <option value="CamTranslateBackward">GalMap Backward</option>
                 <option value="CamTranslateDown">GalMap Down</option>
-                <option value="CamTranslateForward">GalMap Forward</option>
-                <option value="CamTranslateLeft">GalMap Left</option>
-                <option value="CamTranslateRight">GalMap Right</option>
                 <option value="CamTranslateUp">GalMap Up</option>
                 <option value="CamTranslateZHold">GalMap Z Hold</option>
                 <option value="CamYawLeft">GalMap Yaw Left</option>
@@ -1078,14 +1081,26 @@ namespace Elite.Buttons
 			 
 			 */
 
+            if (_clickSound != null)
+            {
+                try
+                {
+                    AudioPlaybackEngine.Instance.PlaySound(_clickSound);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                }
+            }
+
 		}
 
 		public override void Dispose()
         {
             base.Dispose();
 
-            //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
-        }
+			//Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
+		}
 
 
         public override void ReceivedSettings(ReceivedSettingsPayload payload)
@@ -1099,8 +1114,14 @@ namespace Elite.Buttons
 
         private void HandleFilenames()
         {
-            Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
-        }
+            _clickSound = null;
+            if (File.Exists(settings.ClickSoundFilename))
+            {
+                _clickSound = new CachedSound(settings.ClickSoundFilename);
+            }
 
-    }
+			Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
+		}
+
+	}
 }

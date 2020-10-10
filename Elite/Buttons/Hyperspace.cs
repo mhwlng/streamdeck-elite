@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
@@ -29,6 +30,8 @@ namespace Elite.Buttons
                     PrimaryColor = "#ffffff",
                     SecondaryColor = "#ffffff",
                     TertiaryColor = "#ffffff",
+                    ClickSoundFilename = string.Empty,
+                    ErrorSoundFilename = string.Empty
                 };
 
                 return instance;
@@ -58,6 +61,14 @@ namespace Elite.Buttons
             [JsonProperty(PropertyName = "tertiaryColor")]
             public string TertiaryColor { get; set; }
 
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "clickSound")]
+            public string ClickSoundFilename { get; set; }
+
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "errorSound")]
+            public string ErrorSoundFilename { get; set; }
+
         }
 
         private PluginSettings settings;
@@ -72,6 +83,8 @@ namespace Elite.Buttons
         private string _primaryFile;
         private string _secondaryFile;
         private string _tertiaryFile;
+        private CachedSound _clickSound = null;
+        private CachedSound _errorSound = null;
 
         private SolidBrush _primaryBrush = new SolidBrush(Color.White);
         private SolidBrush _secondaryBrush = new SolidBrush(Color.White);
@@ -239,19 +252,69 @@ namespace Elite.Buttons
 
             ForceStop = false;
 
-            switch (settings.Function)
-            {
-                case "HYPERSUPERCOMBINATION": // context dependent, i.e. jump if another system is targeted, supercruise if not.
-                    SendKeypress(Program.Bindings.HyperSuperCombination);
-                    break;
-                case "SUPERCRUISE": // supercruise even if another system targeted
-                    SendKeypress(Program.Bindings.Supercruise);
-                    break;
-                case "HYPERSPACE": // jump
-                    SendKeypress(Program.Bindings.Hyperspace);
-                    break;
-            }
+            var isDisabled = (EliteData.StatusData.Docked ||
+                              EliteData.StatusData.Landed ||
+                              EliteData.StatusData.LandingGearDown ||
+                              EliteData.StatusData.CargoScoopDeployed ||
 
+                              //EliteData.StatusData.SilentRunning ||
+                              //EliteData.StatusData.ScoopingFuel ||
+                              //EliteData.StatusData.IsInDanger ||
+                              //EliteData.StatusData.BeingInterdicted ||
+                              //EliteData.StatusData.HudInAnalysisMode ||
+
+                              EliteData.StatusData.FsdMassLocked ||
+                              //EliteData.StatusData.FsdCharging ||
+                              EliteData.StatusData.FsdCooldown ||
+
+                              //EliteData.StatusData.Supercruise ||
+                              //EliteData.StatusData.FsdJump ||
+                              EliteData.StatusData.HardpointsDeployed);
+
+            if (!isDisabled)
+            {
+                switch (settings.Function)
+                {
+                    case "HYPERSUPERCOMBINATION"
+                        : // context dependent, i.e. jump if another system is targeted, supercruise if not.
+                        SendKeypress(Program.Bindings.HyperSuperCombination);
+                        break;
+                    case "SUPERCRUISE": // supercruise even if another system targeted
+                        SendKeypress(Program.Bindings.Supercruise);
+                        break;
+                    case "HYPERSPACE": // jump
+                        SendKeypress(Program.Bindings.Hyperspace);
+                        break;
+                }
+
+                if (_clickSound != null)
+                {
+                    try
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(_clickSound);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                    }
+                }
+
+            }
+            else
+            {
+                if (_errorSound != null)
+                {
+                    try
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(_errorSound);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                    }
+                }
+
+            }
 
             AsyncHelper.RunSync(HandleDisplay);
         }
@@ -291,6 +354,18 @@ namespace Elite.Buttons
 
         private void InitializeSettings()
         {
+            _clickSound = null;
+            if (File.Exists(settings.ClickSoundFilename))
+            {
+                _clickSound = new CachedSound(settings.ClickSoundFilename);
+            }
+
+            _errorSound = null;
+            if (File.Exists(settings.ErrorSoundFilename))
+            {
+                _errorSound = new CachedSound(settings.ErrorSoundFilename);
+            }
+
             if (string.IsNullOrEmpty(settings.PrimaryColor))
             {
                 settings.PrimaryColor = "#ffffff";
@@ -396,6 +471,8 @@ namespace Elite.Buttons
 
                 _primaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
             }
+
+            
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }

@@ -29,8 +29,9 @@ namespace Elite.Buttons
                     PrimaryImageFilename = string.Empty,
                     SecondaryImageFilename = string.Empty,
                     PrimaryColor = "#ffffff",
-                    SecondaryColor = "#ffffff"
-
+                    SecondaryColor = "#ffffff",
+                    ClickSoundFilename = string.Empty,
+                    ErrorSoundFilename = string.Empty
                 };
 
                 return instance;
@@ -56,6 +57,14 @@ namespace Elite.Buttons
             [JsonProperty(PropertyName = "secondaryColor")]
             public string SecondaryColor { get; set; }
 
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "clickSound")]
+            public string ClickSoundFilename { get; set; }
+
+            [FilenameProperty]
+            [JsonProperty(PropertyName = "errorSound")]
+            public string ErrorSoundFilename { get; set; }
+
         }
 
         private PluginSettings settings;
@@ -67,6 +76,8 @@ namespace Elite.Buttons
 
         private string _primaryFile;
         private string _secondaryFile;
+        private CachedSound _clickSound = null;
+        private CachedSound _errorSound = null;
 
         private SolidBrush _primaryBrush = new SolidBrush(Color.White);
         private SolidBrush _secondaryBrush = new SolidBrush(Color.White);
@@ -184,7 +195,28 @@ namespace Elite.Buttons
 
             ForceStop = false;
 
-            if (EliteData.LimpetCount > 0 && !string.IsNullOrEmpty(settings.Firegroup) && !string.IsNullOrEmpty(settings.Fire))
+            var isDisabled = (EliteData.StatusData.Docked ||
+                              EliteData.StatusData.Landed ||
+                              EliteData.StatusData.LandingGearDown ||
+                              EliteData.StatusData.Supercruise ||
+                              EliteData.StatusData.FsdJump //||
+
+                    //EliteData.StatusData.CargoScoopDeployed ||
+                    //EliteData.StatusData.SilentRunning ||
+                    //EliteData.StatusData.ScoopingFuel ||
+                    //EliteData.StatusData.IsInDanger ||
+                    //EliteData.StatusData.BeingInterdicted ||
+                    //EliteData.StatusData.HudInAnalysisMode ||
+                    //EliteData.StatusData.FsdMassLocked ||
+                    //EliteData.StatusData.FsdCharging ||
+                    //EliteData.StatusData.FsdCooldown ||
+
+                    //EliteData.StatusData.HardpointsDeployed
+                );
+
+
+
+            if (!isDisabled && EliteData.LimpetCount > 0 && !string.IsNullOrEmpty(settings.Firegroup) && !string.IsNullOrEmpty(settings.Fire))
             {
                 var cycle = Convert.ToInt32(settings.Firegroup) - EliteData.StatusData.Firegroup;
 
@@ -231,6 +263,33 @@ namespace Elite.Buttons
                     }
                 }
 
+                if (_clickSound != null)
+                {
+                    try
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(_clickSound);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                    }
+                }
+
+            }
+            else
+            {
+                if (_errorSound != null)
+                {
+                    try
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(_errorSound);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, $"PlaySound: {ex}");
+                    }
+                }
+
             }
 
             AsyncHelper.RunSync(HandleDisplay);
@@ -271,6 +330,18 @@ namespace Elite.Buttons
 
         private void InitializeSettings()
         {
+            _clickSound = null;
+            if (File.Exists(settings.ClickSoundFilename))
+            {
+                _clickSound = new CachedSound(settings.ClickSoundFilename);
+            }
+
+            _errorSound = null;
+            if (File.Exists(settings.ErrorSoundFilename))
+            {
+                _errorSound = new CachedSound(settings.ErrorSoundFilename);
+            }
+
             if (string.IsNullOrEmpty(settings.PrimaryColor))
             {
                 settings.PrimaryColor = "#ffffff";
@@ -336,6 +407,8 @@ namespace Elite.Buttons
 
                 _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
             }
+
+            
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }

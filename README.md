@@ -14,7 +14,9 @@ There is also a STATIC button type, that works in a similar way to the streamdec
 So, there is only one image and there is no game state feedback for these buttons.
 The differences with the 'Hotkey' buttons are, that it gets the keyboard binding from the game and doesn't repeat the key when the streamdeck button is held.
 
-There is also a 'Repeating Static Button' type. This button is used only for keys, that need to be held for a while.
+A sound can be played when pressing a static button.
+
+There is also a 'Repeating Static Button' type. This button is used only for keys, that need to be held down.
 So, when the stream deck button is pushed, the 'key down' event is sent to the keyboard
 and only after the stream deck button is released, the 'key up' event is sent to the keyboard.
 The streamdeck 'hotkey' button also has this behaviour.
@@ -52,6 +54,8 @@ The supported toggle-buttons are:
 - Supercruise (no longer needed)
 - System Map
 
+A sound can be played when pressing a toggle button.
+
 The supported power distributor pips buttons are:
 - Reset
 - System
@@ -73,6 +77,8 @@ The supported alarm buttons are:
 - Deploy Heatsink (alarm = overheating status)
 - Deploy Shield Cell Bank (alarm = shields down status. In that case DON'T fire a shield cell bank.)
 
+A sound can be played when pressing an alarm button.
+
 The supported FSD related buttons are:
 - Toggle FSD, also shows Remaining Jumps In Route
 - Supercruise
@@ -86,10 +92,14 @@ The FSD buttons have 3 images:
 Text colors can be configured separately for each button state. 
 If color #ff00ff is chosen, then the text will always be hidden.
 
+A normal and disabled sound can be played when pressing an FSD button.
+
 The FSS button has 3 images:
 - engaged  : FSS screen is visible
 - enabled  : FSS screen is not visible
 - disabled : not in supercruise mode (note that throttle position can't be detected)
+
+A normal and disabled sound can be played when pressing the FSS button.
 
 The limpet controller button works with any type of limpet controller.
 
@@ -100,6 +110,8 @@ Instead, you need to set up a fire group letter and primary or secondary fire bu
 
 Text colors can be configured separately for each button state. 
 If color #ff00ff is chosen, then the text will always be hidden.
+
+A normal and disabled sound can be played when pressing a limpet button.
 
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 
