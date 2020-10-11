@@ -35,6 +35,8 @@ Animated gif files are only supported for the (repeating) STATIC buttons.
 
 If .gif images are configured for Power/Limpet/Hyperspace buttons, then no texts or pips are drawn on top of them.
 
+**You can clear the image/sound path, by clicking on the label in front of the file picker edit box.**
+
 The plugin can (optionally) automatically switch to a different profile, if the in-game state changes. (e.g. deploy hardpoints, enter SRV etc.)
 More instructions on the [Wiki](https://github.com/mhwlng/streamdeck-elite/wiki/Automatic-Profile-Switching).
 

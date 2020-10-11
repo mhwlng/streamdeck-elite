@@ -11,7 +11,6 @@
     <script src="../sdtools.common.js"></script>
     <script src="../jquery-3.3.1.min.js"></script>
     <script src="../jquery.highlight-within-textarea.js"></script>
-    <script src="../index.js"></script>
 </head>
 <body>
 <div class="sdpi-wrapper">
@@ -102,7 +101,7 @@
     </div>
 
     <div class="sdpi-item" id="dvClickSound">
-        <div class="sdpi-item-label">Sound</div>
+        <div class="sdpi-item-label" onclick="clearFileName('clickSound');">Sound</div>
         <div class="sdpi-item-group file" id="filepickergroup1">
             <input class="sdpi-item-value sdProperty sdFile" type="file" id="clickSound" accept=".wav" oninput="setSettings()">
             <label class="sdpi-file-info " for="clickSound" id="clickSoundFilename">No file...</label>

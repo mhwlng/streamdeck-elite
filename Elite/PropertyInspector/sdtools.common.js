@@ -82,6 +82,44 @@ function loadConfiguration(payload) {
     }
 }
 
+function clearFileName(id) {
+    var payload = {};
+    var elements = document.getElementsByClassName("sdProperty");
+
+    Array.prototype.forEach.call(elements, function (elem) {
+        var key = elem.id;
+        if (elem.classList.contains("sdCheckbox")) { // Checkbox
+            payload[key] = elem.checked;
+        }
+        else if (elem.classList.contains("sdFile")) { // File
+            var elemFile = document.getElementById(elem.id + "Filename");
+            payload[key] = elem.value;
+            if (!elem.value) {
+                // Fetch innerText if file is empty (happens when we lose and regain focus to this key)
+                payload[key] = elemFile.innerText;
+            }
+            else {
+                // Set value on initial file selection
+                elemFile.innerText = elem.value;
+            }
+        }
+        else { // Normal value
+            payload[key] = elem.value;
+        }
+        
+        if (key == id)
+        {
+          elem.value = null;
+          payload[key] = null;
+          var elemFile = document.getElementById(id + "Filename");
+          elemFile.innerText = null;
+        }
+        
+        console.log("Save: " + key + "<=" + payload[key]);
+    });
+    setSettingsToPlugin(payload);
+}
+
 function setSettings() {
     var payload = {};
     var elements = document.getElementsByClassName("sdProperty");
