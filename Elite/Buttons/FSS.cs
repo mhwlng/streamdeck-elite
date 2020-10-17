@@ -104,7 +104,7 @@ namespace Elite.Buttons
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, "FSS Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
-                HandleFilenames();
+                HandleFileNames();
 
                 AsyncHelper.RunSync(HandleDisplay);
             }
@@ -213,23 +213,43 @@ namespace Elite.Buttons
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
-            HandleFilenames();
+            HandleFileNames();
 
             AsyncHelper.RunSync(HandleDisplay);
         }
 
-        private void HandleFilenames()
+        private void HandleFileNames()
         {
             _clickSound = null;
             if (File.Exists(settings.ClickSoundFilename))
             {
-                _clickSound = new CachedSound(settings.ClickSoundFilename);
+                try
+                {
+                    _clickSound = new CachedSound(settings.ClickSoundFilename);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"CachedSound: {settings.ClickSoundFilename} {ex}");
+
+                    _clickSound = null;
+                    settings.ClickSoundFilename = null;
+                }
             }
 
             _errorSound = null;
             if (File.Exists(settings.ErrorSoundFilename))
             {
-                _errorSound = new CachedSound(settings.ErrorSoundFilename);
+                try
+                {
+                    _errorSound = new CachedSound(settings.ErrorSoundFilename);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"CachedSound: {settings.ErrorSoundFilename} {ex}");
+
+                    _errorSound = null;
+                    settings.ErrorSoundFilename = null;
+                }
             }
 
             _primaryFile = null;

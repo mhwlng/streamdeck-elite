@@ -333,13 +333,33 @@ namespace Elite.Buttons
             _clickSound = null;
             if (File.Exists(settings.ClickSoundFilename))
             {
-                _clickSound = new CachedSound(settings.ClickSoundFilename);
+                try
+                {
+                    _clickSound = new CachedSound(settings.ClickSoundFilename);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"CachedSound: {settings.ClickSoundFilename} {ex}");
+
+                    _clickSound = null;
+                    settings.ClickSoundFilename = null;
+                }
             }
 
             _errorSound = null;
             if (File.Exists(settings.ErrorSoundFilename))
             {
-                _errorSound = new CachedSound(settings.ErrorSoundFilename);
+                try
+                {
+                    _errorSound = new CachedSound(settings.ErrorSoundFilename);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"CachedSound: {settings.ErrorSoundFilename} {ex}");
+
+                    _errorSound = null;
+                    settings.ErrorSoundFilename = null;
+                }
             }
 
             if (string.IsNullOrEmpty(settings.PrimaryColor))

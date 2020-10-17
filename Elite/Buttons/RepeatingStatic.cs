@@ -50,7 +50,7 @@ namespace Elite.Buttons
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Repeating Static Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
-                HandleFilenames();
+                HandleFileNames();
             }
 
         }
@@ -1918,10 +1918,10 @@ namespace Elite.Buttons
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
-            HandleFilenames();
+            HandleFileNames();
         }
 
-        private void HandleFilenames()
+        private void HandleFileNames()
         {
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }

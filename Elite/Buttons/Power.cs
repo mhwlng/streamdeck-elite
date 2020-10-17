@@ -231,7 +231,7 @@ namespace Elite.Buttons
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Power Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
-                HandleFilenames();
+                HandleFileNames();
 
                 AsyncHelper.RunSync(HandleDisplay);
             }
@@ -351,12 +351,12 @@ namespace Elite.Buttons
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
-            HandleFilenames();
+            HandleFileNames();
 
             AsyncHelper.RunSync(HandleDisplay);
         }
 
-        private void HandleFilenames()
+        private void HandleFileNames()
         {
             if (string.IsNullOrEmpty(settings.PrimaryPipColor))
             {

@@ -57,7 +57,7 @@ namespace Elite.Buttons
                 //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Static Constructor #2");
 
                 settings = payload.Settings.ToObject<PluginSettings>();
-                HandleFilenames();
+                HandleFileNames();
             }
 
         }
@@ -1109,16 +1109,26 @@ namespace Elite.Buttons
 
             // New in StreamDeck-Tools v2.0:
             BarRaider.SdTools.Tools.AutoPopulateSettings(settings, payload.Settings);
-            HandleFilenames();
+            HandleFileNames();
         }
 
-        private void HandleFilenames()
+        private void HandleFileNames()
         {
             _clickSound = null;
             if (File.Exists(settings.ClickSoundFilename))
             {
-                _clickSound = new CachedSound(settings.ClickSoundFilename);
-            }
+                try
+                {
+                    _clickSound = new CachedSound(settings.ClickSoundFilename);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, $"CachedSound: {settings.ClickSoundFilename} {ex}");
+
+					_clickSound = null;
+                    settings.ClickSoundFilename = null;
+                }
+			}
 
 			Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
 		}
