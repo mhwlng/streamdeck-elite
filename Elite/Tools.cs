@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
+using BarRaider.SdTools;
 
 namespace Elite
 {
@@ -40,10 +40,20 @@ namespace Elite
             }
             else
             {
-                using (Image image = Image.FromFile(fileName))
+                try
                 {
-                    return BarRaider.SdTools.Tools.ImageToBase64(image, addHeaderPrefix);
+                    using (Image image = Image.FromFile(fileName))
+                    {
+                        return BarRaider.SdTools.Tools.ImageToBase64(image, addHeaderPrefix);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.FATAL, "FileToBase64 " + ex);
+
+                    return null;
+                }
+
             }
         }
 

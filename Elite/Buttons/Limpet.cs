@@ -117,39 +117,47 @@ namespace Elite.Buttons
             {
                 if (!bitmapImageIsGif && EliteData.LimpetCount > 0 && textHtmlColor != "#ff00ff")
                 {
-                    using (var bitmap = new Bitmap(myBitmap))
+                    try
                     {
-                        using (var graphics = Graphics.FromImage(bitmap))
+                        using (var bitmap = new Bitmap(myBitmap))
                         {
-                            var width = bitmap.Width; // assumes rectangular bitmap
-
-                            var fontContainerHeight = 100 * (width / 256.0);
-
-                            for (int adjustedSize = 60; adjustedSize >= 10; adjustedSize -= 5)
+                            using (var graphics = Graphics.FromImage(bitmap))
                             {
-                                var testFont = new Font(drawFont.Name, adjustedSize, drawFont.Style);
+                                var width = bitmap.Width; // assumes rectangular bitmap
 
-                                var adjustedSizeNew =
-                                    graphics.MeasureString(EliteData.LimpetCount.ToString(), testFont);
+                                var fontContainerHeight = 100 * (width / 256.0);
 
-                                if (fontContainerHeight >= adjustedSizeNew.Height)
+                                for (int adjustedSize = 60; adjustedSize >= 10; adjustedSize -= 5)
                                 {
-                                    var stringSize = graphics.MeasureString(EliteData.LimpetCount.ToString(),
-                                        testFont);
+                                    var testFont = new Font(drawFont.Name, adjustedSize, drawFont.Style);
 
-                                    var x = (width - stringSize.Width) / 2.0;
-                                    var y = 28.0 * (width / 256.0);
+                                    var adjustedSizeNew =
+                                        graphics.MeasureString(EliteData.LimpetCount.ToString(), testFont);
 
-                                    graphics.DrawString(EliteData.LimpetCount.ToString(), testFont, textBrush,
-                                        (float) x, (float) y);
+                                    if (fontContainerHeight >= adjustedSizeNew.Height)
+                                    {
+                                        var stringSize = graphics.MeasureString(EliteData.LimpetCount.ToString(),
+                                            testFont);
 
-                                    testFont.Dispose();
+                                        var x = (width - stringSize.Width) / 2.0;
+                                        var y = 28.0 * (width / 256.0);
 
-                                    break;
+                                        graphics.DrawString(EliteData.LimpetCount.ToString(), testFont, textBrush,
+                                            (float) x, (float) y);
+
+                                        testFont.Dispose();
+
+                                        break;
+                                    }
                                 }
                             }
+
+                            imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
                         }
-                        imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, "Limpet HandleDisplay " + ex);
                     }
                 }
                 await Connection.SetImageAsync(imgBase64);
@@ -372,63 +380,70 @@ namespace Elite.Buttons
                 settings.SecondaryColor = "#ffffff";
             }
 
-            var converter = new ColorConverter();
 
-            _primaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.PrimaryColor));
-            _secondaryBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryColor));
-
-            if (_primaryImage != null)
+            try
             {
-                _primaryImage.Dispose();
-                _primaryImage = null;
-                _primaryFile = null;
-                _primaryImageIsGif = false;
-            }
+                var converter = new ColorConverter();
 
-            if (_secondaryImage != null)
+                _primaryBrush = new SolidBrush((Color) converter.ConvertFromString(settings.PrimaryColor));
+                _secondaryBrush = new SolidBrush((Color) converter.ConvertFromString(settings.SecondaryColor));
+
+                if (_primaryImage != null)
+                {
+                    _primaryImage.Dispose();
+                    _primaryImage = null;
+                    _primaryFile = null;
+                    _primaryImageIsGif = false;
+                }
+
+                if (_secondaryImage != null)
+                {
+                    _secondaryImage.Dispose();
+                    _secondaryImage = null;
+                    _secondaryFile = null;
+                    _secondaryImageIsGif = false;
+                }
+
+                if (File.Exists(settings.PrimaryImageFilename))
+                {
+                    _primaryImage = (Bitmap) Image.FromFile(settings.PrimaryImageFilename);
+
+                    _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
+
+                    _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                }
+
+                if (File.Exists(settings.SecondaryImageFilename))
+                {
+                    _secondaryImage = (Bitmap) Image.FromFile(settings.SecondaryImageFilename);
+
+                    _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
+
+                    _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                }
+                else
+                {
+                    _secondaryImage = _primaryImage;
+
+                    _secondaryFile = _primaryFile;
+
+                    _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                }
+
+                if (_primaryImage == null)
+                {
+                    _primaryImage = _secondaryImage;
+
+                    _primaryFile = _secondaryFile;
+
+                    _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                }
+            }
+            catch (Exception ex)
             {
-                _secondaryImage.Dispose();
-                _secondaryImage = null;
-                _secondaryFile = null;
-                _secondaryImageIsGif = false;
+                Logger.Instance.LogMessage(TracingLevel.FATAL, "Limpet InitializeSettings " + ex);
+
             }
-
-            if (File.Exists(settings.PrimaryImageFilename))
-            {
-                _primaryImage = (Bitmap)Image.FromFile(settings.PrimaryImageFilename);
-
-                _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
-
-                _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
-            }
-
-            if (File.Exists(settings.SecondaryImageFilename))
-            {
-                _secondaryImage = (Bitmap)Image.FromFile(settings.SecondaryImageFilename);
-
-                _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
-
-                _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
-            }
-            else
-            {
-                _secondaryImage = _primaryImage;
-
-                _secondaryFile = _primaryFile;
-
-                _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
-            }
-
-            if (_primaryImage == null)
-            {
-                _primaryImage = _secondaryImage;
-
-                _primaryFile = _secondaryFile;
-
-                _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
-            }
-
-            
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }

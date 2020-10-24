@@ -46,7 +46,7 @@ namespace Elite.Buttons
             [FilenameProperty]
             [JsonProperty(PropertyName = "tertiaryImage")]
             public string TertiaryImageFilename { get; set; }
-            
+
             [JsonProperty(PropertyName = "primaryPipColor")]
             public string PrimaryPipColor { get; set; }
 
@@ -161,8 +161,8 @@ namespace Elite.Buttons
 
                 var halfPipBrush = _secondaryHalfPipBrush;
 
-                var noPipBrush =  _secondaryNoPipBrush;
-                var noPipHtmlColor =  settings.SecondaryNoPipColor;
+                var noPipBrush = _secondaryNoPipBrush;
+                var noPipHtmlColor = settings.SecondaryNoPipColor;
 
                 if (settings.Function == "SYS" && pips < 8 && EliteData.UnderAttack)
                 {
@@ -181,37 +181,46 @@ namespace Elite.Buttons
 
                 if (!bitmapImageIsGif && settings.Function != "RST")
                 {
-                    using (var bitmap = new Bitmap(bitmapImage))
+                    try
                     {
-                        using (var graphics = Graphics.FromImage(bitmap))
+                        using (var bitmap = new Bitmap(bitmapImage))
                         {
-                            var width = bitmap.Width; // assumes rectangular bitmap
-
-                            for (var i = 2; i <= 8; i += 2)
+                            using (var graphics = Graphics.FromImage(bitmap))
                             {
-                                var x = (12.0 + (i / 2) * 40) * (width / 256.0);
-                                var y = 58.0 * (width / 256.0);
-                                var w = 30.0 * (width / 256.0);
-                                var h = 30.0 * (width / 256.0);
+                                var width = bitmap.Width; // assumes rectangular bitmap
 
-                                if (pips > 0 && i <= pips + 1)
+                                for (var i = 2; i <= 8; i += 2)
                                 {
-                                    if (pipHtmlColor != "#ff00ff")
-                                    {
-                                        var brush = (pips == i - 1) ? halfPipBrush : pipBrush;
+                                    var x = (12.0 + (i / 2) * 40) * (width / 256.0);
+                                    var y = 58.0 * (width / 256.0);
+                                    var w = 30.0 * (width / 256.0);
+                                    var h = 30.0 * (width / 256.0);
 
-                                        graphics.FillRectangle(brush, (float) x, (float) y, (float) w, (float) h);
+                                    if (pips > 0 && i <= pips + 1)
+                                    {
+                                        if (pipHtmlColor != "#ff00ff")
+                                        {
+                                            var brush = (pips == i - 1) ? halfPipBrush : pipBrush;
+
+                                            graphics.FillRectangle(brush, (float) x, (float) y, (float) w, (float) h);
+                                        }
+                                    }
+                                    else if (noPipHtmlColor != "#ff00ff")
+                                    {
+                                        graphics.FillRectangle(noPipBrush, (float) x, (float) y, (float) w, (float) h);
                                     }
                                 }
-                                else if (noPipHtmlColor != "#ff00ff")
-                                {
-                                    graphics.FillRectangle(noPipBrush, (float) x, (float) y, (float) w, (float) h);
-                                }
                             }
+
+                            imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
                         }
-                        imgBase64 = BarRaider.SdTools.Tools.ImageToBase64(bitmap, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.FATAL, "Power HandleDisplay " + ex);
                     }
                 }
+
                 await Connection.SetImageAsync(imgBase64);
             }
         }
@@ -394,95 +403,104 @@ namespace Elite.Buttons
                 settings.TertiaryNoPipColor = "#303030";
             }
 
-            var converter = new ColorConverter();
-
-            _primaryPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.PrimaryPipColor));
-
-            _secondaryPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryPipColor));
-            _secondaryHalfPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryHalfPipColor));
-            _secondaryNoPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.SecondaryNoPipColor));
-
-            _tertiaryPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryPipColor));
-            _tertiaryHalfPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryHalfPipColor));
-            _tertiaryNoPipBrush = new SolidBrush((Color)converter.ConvertFromString(settings.TertiaryNoPipColor));
-
-            if (_primaryImage != null)
+            try
             {
-                _primaryImage.Dispose();
-                _primaryImage = null;
-                _primaryFile = null;
-                _primaryImageIsGif = false;
-            }
+                var converter = new ColorConverter();
 
-            if (_secondaryImage != null)
+                _primaryPipBrush = new SolidBrush((Color) converter.ConvertFromString(settings.PrimaryPipColor));
+
+                _secondaryPipBrush = new SolidBrush((Color) converter.ConvertFromString(settings.SecondaryPipColor));
+                _secondaryHalfPipBrush =
+                    new SolidBrush((Color) converter.ConvertFromString(settings.SecondaryHalfPipColor));
+                _secondaryNoPipBrush =
+                    new SolidBrush((Color) converter.ConvertFromString(settings.SecondaryNoPipColor));
+
+                _tertiaryPipBrush = new SolidBrush((Color) converter.ConvertFromString(settings.TertiaryPipColor));
+                _tertiaryHalfPipBrush =
+                    new SolidBrush((Color) converter.ConvertFromString(settings.TertiaryHalfPipColor));
+                _tertiaryNoPipBrush = new SolidBrush((Color) converter.ConvertFromString(settings.TertiaryNoPipColor));
+
+                if (_primaryImage != null)
+                {
+                    _primaryImage.Dispose();
+                    _primaryImage = null;
+                    _primaryFile = null;
+                    _primaryImageIsGif = false;
+                }
+
+                if (_secondaryImage != null)
+                {
+                    _secondaryImage.Dispose();
+                    _secondaryImage = null;
+                    _secondaryFile = null;
+                    _secondaryImageIsGif = false;
+                }
+
+                if (_tertiaryImage != null)
+                {
+                    _tertiaryImage.Dispose();
+                    _tertiaryImage = null;
+                    _tertiaryFile = null;
+                    _tertiaryImageIsGif = false;
+                }
+
+                if (File.Exists(settings.PrimaryImageFilename))
+                {
+                    _primaryImage = (Bitmap) Image.FromFile(settings.PrimaryImageFilename);
+
+                    _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
+
+                    _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                }
+
+                if (File.Exists(settings.SecondaryImageFilename))
+                {
+                    _secondaryImage = (Bitmap) Image.FromFile(settings.SecondaryImageFilename);
+
+                    _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
+
+                    _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                }
+                else
+                {
+                    _secondaryImage = _primaryImage;
+
+                    _secondaryFile = _primaryFile;
+
+                    _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                }
+
+                if (_primaryImage == null)
+                {
+                    _primaryImage = _secondaryImage;
+
+                    _primaryFile = _secondaryFile;
+
+                    _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                }
+
+
+                if (File.Exists(settings.TertiaryImageFilename))
+                {
+                    _tertiaryImage = (Bitmap) Image.FromFile(settings.TertiaryImageFilename);
+
+                    _tertiaryFile = Tools.FileToBase64(settings.TertiaryImageFilename, true);
+
+                    _tertiaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
+                }
+                else
+                {
+                    _tertiaryImage = _primaryImage;
+
+                    _tertiaryFile = _primaryFile;
+
+                    _tertiaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                }
+            }
+            catch (Exception ex)
             {
-                _secondaryImage.Dispose();
-                _secondaryImage = null;
-                _secondaryFile = null;
-                _secondaryImageIsGif = false;
+                Logger.Instance.LogMessage(TracingLevel.FATAL, "Power HandleFileNames " + ex);
             }
-
-            if (_tertiaryImage != null)
-            {
-                _tertiaryImage.Dispose();
-                _tertiaryImage = null;
-                _tertiaryFile = null;
-                _tertiaryImageIsGif = false;
-            }
-
-            if (File.Exists(settings.PrimaryImageFilename))
-            {
-                _primaryImage = (Bitmap)Image.FromFile(settings.PrimaryImageFilename);
-
-                _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
-
-                _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
-            }
-
-            if (File.Exists(settings.SecondaryImageFilename))
-            {
-                _secondaryImage = (Bitmap)Image.FromFile(settings.SecondaryImageFilename);
-
-                _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
-
-                _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
-            }
-            else
-            {
-                _secondaryImage = _primaryImage;
-
-                _secondaryFile = _primaryFile;
-
-                _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
-            }
-
-            if (_primaryImage == null)
-            {
-                _primaryImage = _secondaryImage;
-
-                _primaryFile = _secondaryFile;
-
-                _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
-            }
-
-
-            if (File.Exists(settings.TertiaryImageFilename))
-            {
-                _tertiaryImage = (Bitmap)Image.FromFile(settings.TertiaryImageFilename);
-
-                _tertiaryFile = Tools.FileToBase64(settings.TertiaryImageFilename, true);
-
-                _tertiaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
-            }
-            else
-            {
-                _tertiaryImage = _primaryImage;
-
-                _tertiaryFile = _primaryFile;
-
-                _tertiaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
-            }
-
 
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
         }
