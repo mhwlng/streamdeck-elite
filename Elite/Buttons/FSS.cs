@@ -28,7 +28,8 @@ namespace Elite.Buttons
                     SecondaryImageFilename = string.Empty,
                     TertiaryImageFilename = string.Empty,
                     ClickSoundFilename = string.Empty,
-                    ErrorSoundFilename = string.Empty
+                    ErrorSoundFilename = string.Empty,
+                    DontSwitchToCombatMode = false
                 };
 
                 return instance;
@@ -53,6 +54,9 @@ namespace Elite.Buttons
             [FilenameProperty]
             [JsonProperty(PropertyName = "errorSound")]
             public string ErrorSoundFilename { get; set; }
+
+            [JsonProperty(PropertyName = "dontSwitchToCombatMode")]
+            public bool DontSwitchToCombatMode { get; set; }
 
         }
 
@@ -125,14 +129,14 @@ namespace Elite.Buttons
             }
 
             ForceStop = false;
-
+            
             if (EliteData.StatusData.Supercruise)
             {
                 if (EliteData.StatusData.GuiFocus == StatusGuiFocus.FSSMode)
                 {
                     SendKeypress(Program.Bindings.ExplorationFSSQuit);
 
-                    if (EliteData.StatusData.HudInAnalysisMode)
+                    if (!settings.DontSwitchToCombatMode && EliteData.StatusData.HudInAnalysisMode)
                     {
                         Thread.Sleep(300);
 
