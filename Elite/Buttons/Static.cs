@@ -71,8 +71,9 @@ namespace Elite.Buttons
             }
 
             ForceStop = false;
+            var isPrimary = false;
 
-            switch (settings.Function)
+			switch (settings.Function)
             {
 				case "PhotoCameraToggle":
 					SendKeypress(Program.Bindings.PhotoCameraToggle);
@@ -329,9 +330,6 @@ namespace Elite.Buttons
 				case "GalnetAudio_SkipForward":
 					SendKeypress(Program.Bindings.GalnetAudio_SkipForward);
 					break;
-				case "NightVisionToggle":
-					SendKeypress(Program.Bindings.NightVisionToggle);
-					break;
 				case "GalnetAudio_Play_Pause":
 					SendKeypress(Program.Bindings.GalnetAudio_Play_Pause);
 					break;
@@ -506,9 +504,6 @@ namespace Elite.Buttons
 				case "SecondaryFire":
 					SendKeypress(Program.Bindings.SecondaryFire);
 					break;
-				case "DeployHardpointToggle":
-					SendKeypress(Program.Bindings.DeployHardpointToggle);
-					break;
 				case "DeployHeatSink":
 					SendKeypress(Program.Bindings.DeployHeatSink);
 					break;
@@ -563,9 +558,6 @@ namespace Elite.Buttons
 				case "EngineColourToggle":
 					SendKeypress(Program.Bindings.EngineColourToggle);
 					break;
-				case "PlayerHUDModeToggle":
-					SendKeypress(Program.Bindings.PlayerHUDModeToggle);
-					break;
 				case "OrbitLinesToggle":
 					SendKeypress(Program.Bindings.OrbitLinesToggle);
 					break;
@@ -611,12 +603,6 @@ namespace Elite.Buttons
 				case "UseBoostJuice":
 					SendKeypress(Program.Bindings.UseBoostJuice);
 					break;
-				case "ToggleCargoScoop":
-					SendKeypress(Program.Bindings.ToggleCargoScoop);
-					break;
-				case "ToggleFlightAssist":
-					SendKeypress(Program.Bindings.ToggleFlightAssist);
-					break;
 				case "ForwardKey":
 					SendKeypress(Program.Bindings.ForwardKey);
 					break;
@@ -629,17 +615,8 @@ namespace Elite.Buttons
 				case "GalaxyMapOpen":
 					SendKeypress(Program.Bindings.GalaxyMapOpen);
 					break;
-				case "Hyperspace":
-					SendKeypress(Program.Bindings.Hyperspace);
-					break;
 				case "HyperSuperCombination":
 					SendKeypress(Program.Bindings.HyperSuperCombination);
-					break;
-				case "LandingGearToggle":
-					SendKeypress(Program.Bindings.LandingGearToggle);
-					break;
-				case "ShipSpotLightToggle":
-					SendKeypress(Program.Bindings.ShipSpotLightToggle);
 					break;
 				case "TargetNextRouteSystem":
 					SendKeypress(Program.Bindings.TargetNextRouteSystem);
@@ -682,12 +659,6 @@ namespace Elite.Buttons
 					break;
 				case "DisableRotationCorrectToggle":
 					SendKeypress(Program.Bindings.DisableRotationCorrectToggle);
-					break;
-				case "ToggleButtonUpInput":
-					SendKeypress(Program.Bindings.ToggleButtonUpInput);
-					break;
-				case "Supercruise":
-					SendKeypress(Program.Bindings.Supercruise);
 					break;
 				case "SystemMapOpen":
 					SendKeypress(Program.Bindings.SystemMapOpen);
@@ -887,6 +858,134 @@ namespace Elite.Buttons
 				case "UI_Up":
 					SendKeypress(Program.Bindings.UI_Up);
 					break;
+
+
+                case "Supercruise":
+                    SendKeypress(Program.Bindings.Supercruise);
+                    break;
+                case "Hyperspace":
+                    SendKeypress(Program.Bindings.Hyperspace);
+                    break;
+
+                case "PlayerHUDModeToggle-AM":
+                    isPrimary = EliteData.StatusData.HudInAnalysisMode;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.PlayerHUDModeToggle);
+                    }
+                    break;
+                case "PlayerHUDModeToggle-CM":
+                    isPrimary = EliteData.StatusData.HudInAnalysisMode;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.PlayerHUDModeToggle);
+                    }
+                    break;
+
+				case "ToggleCargoScoop-ON":
+                    isPrimary = EliteData.StatusData.CargoScoopDeployed;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ToggleCargoScoop);
+                    }
+                    break;
+                case "ToggleCargoScoop-OFF":
+                    isPrimary = EliteData.StatusData.CargoScoopDeployed;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ToggleCargoScoop);
+                    }
+                    break;
+
+				case "ToggleFlightAssist-ON":
+                    isPrimary = !EliteData.StatusData.FlightAssistOff;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ToggleFlightAssist);
+                    }
+                    break;
+                case "ToggleFlightAssist-OFF":
+                    isPrimary = !EliteData.StatusData.FlightAssistOff;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ToggleFlightAssist);
+                    }
+                    break;
+
+				case "DeployHardpointToggle-ON":
+                    isPrimary = EliteData.StatusData.HardpointsDeployed;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.DeployHardpointToggle);
+                    }
+                    break;
+                case "DeployHardpointToggle-OFF":
+                    isPrimary = EliteData.StatusData.HardpointsDeployed;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.DeployHardpointToggle);
+                    }
+                    break;
+
+				case "LandingGearToggle-ON":
+                    isPrimary = EliteData.StatusData.LandingGearDown;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.LandingGearToggle);
+                    }
+                    break;
+                case "LandingGearToggle-OFF":
+                    isPrimary = EliteData.StatusData.LandingGearDown;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.LandingGearToggle);
+                    }
+                    break;
+
+				case "ShipSpotLightToggle-ON":
+                    isPrimary = EliteData.StatusData.LightsOn || EliteData.StatusData.SrvHighBeam;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ShipSpotLightToggle);
+                    }
+                    break;
+                case "ShipSpotLightToggle-OFF":
+                    isPrimary = EliteData.StatusData.LightsOn || EliteData.StatusData.SrvHighBeam;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ShipSpotLightToggle);
+                    }
+                    break;
+
+				case "NightVisionToggle-ON":
+                    isPrimary = EliteData.StatusData.NightVision;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.NightVisionToggle);
+                    }
+                    break;
+                case "NightVisionToggle-OFF":
+                    isPrimary = EliteData.StatusData.NightVision;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.NightVisionToggle);
+                    }
+                    break;
+
+				case "ToggleButtonUpInput-ON":
+                    isPrimary = EliteData.StatusData.SilentRunning;
+                    if (!isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ToggleButtonUpInput);
+                    }
+                    break;
+                case "ToggleButtonUpInput-OFF":
+                    isPrimary = EliteData.StatusData.SilentRunning;
+                    if (isPrimary)
+                    {
+                        SendKeypress(Program.Bindings.ToggleButtonUpInput);
+                    }
+                    break;
 			}
 
 			/*
@@ -1081,7 +1180,7 @@ namespace Elite.Buttons
 			 
 			 */
 
-            if (_clickSound != null)
+			if (_clickSound != null)
             {
                 try
                 {
