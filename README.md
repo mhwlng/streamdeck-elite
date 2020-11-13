@@ -19,7 +19,7 @@ A sound can be played when pressing a static button.
 The static buttons can also be used with multi-action buttons.
 
 The static buttons under the 'Toggles' group (like Combat Mode or Deploy Hardpoints) are meant for multi-actions. 
-These buttons can't be pressed multiple times in quick succession, because it takes some time for the plugin to see that the game state has changed.
+These kinds of buttons should not be pressed multiple times in quick succession, because it takes some time for the plugin to receive the game state change.
 
 There is also a 'Repeating Static Button' type. This button is used only for keys, that need to be held down.
 So, when the stream deck button is pushed, the 'key down' event is sent to the keyboard
