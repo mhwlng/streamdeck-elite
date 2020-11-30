@@ -168,24 +168,50 @@ namespace Elite
                 if (!File.Exists(fileName))
                 {
                     Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                }
+            }
 
-                    bindingsPath = SteamPath.FindSteamEliteDirectory();
+            // steam
+            if (!File.Exists(fileName))
+            {
+                bindingsPath = SteamPath.FindSteamEliteDirectory();
 
-                    if (!string.IsNullOrEmpty(bindingsPath))
+                if (!string.IsNullOrEmpty(bindingsPath))
+                {
+                    fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+
+                    if (!File.Exists(fileName))
                     {
-                        fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+                        Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
+
+                        fileName = fileName.Replace(".3.0.binds", ".binds");
 
                         if (!File.Exists(fileName))
                         {
-                            Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
+                        }
+                    }
+                }
+            }
 
-                            fileName = fileName.Replace(".3.0.binds", ".binds");
+            // epic
+            if (!File.Exists(fileName))
+            {
+                bindingsPath = EpicPath.FindEpicEliteDirectory();
 
-                            if (!File.Exists(fileName))
-                            {
-                                Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
-                            }
+                if (!string.IsNullOrEmpty(bindingsPath))
+                {
+                    fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
 
+                    if (!File.Exists(fileName))
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
+
+                        fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                        if (!File.Exists(fileName))
+                        {
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
                         }
                     }
                 }
