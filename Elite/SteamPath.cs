@@ -28,26 +28,29 @@ namespace Elite
                 {
                     using (var subKey = key32.OpenSubKey(k32SubKey))
                     {
-                        var steam32Path = subKey.GetValue("InstallPath").ToString();
-                        var config32Path = steam32Path + "/steamapps/libraryfolders.vdf";
-                        string driveRegex = @"[A-Z]:\\";
-                        if (File.Exists(config32Path))
+                        var steam32Path = subKey.GetValue("InstallPath")?.ToString();
+                        if (steam32Path != null)
                         {
-                            string[] configLines = File.ReadAllLines(config32Path);
-                            foreach (var item in configLines)
+                            var config32Path = steam32Path + "/steamapps/libraryfolders.vdf";
+                            string driveRegex = @"[A-Z]:\\";
+                            if (File.Exists(config32Path))
                             {
-                                //Console.WriteLine("32:  " + item);
-                                Match match = Regex.Match(item, driveRegex);
-                                if (item != string.Empty && match.Success)
+                                string[] configLines = File.ReadAllLines(config32Path);
+                                foreach (var item in configLines)
                                 {
-                                    string matched = match.ToString();
-                                    string item2 = item.Substring(item.IndexOf(matched));
-                                    item2 = item2.Replace("\\\\", "\\");
-                                    item2 = item2.Replace("\"", "\\steamapps\\common\\");
-                                    steamGameDirs.Add(item2);
+                                    //Console.WriteLine("32:  " + item);
+                                    Match match = Regex.Match(item, driveRegex);
+                                    if (item != string.Empty && match.Success)
+                                    {
+                                        string matched = match.ToString();
+                                        string item2 = item.Substring(item.IndexOf(matched));
+                                        item2 = item2.Replace("\\\\", "\\");
+                                        item2 = item2.Replace("\"", "\\steamapps\\common\\");
+                                        steamGameDirs.Add(item2);
+                                    }
                                 }
+                                steamGameDirs.Add(steam32Path + "\\steamapps\\common\\");
                             }
-                            steamGameDirs.Add(steam32Path + "\\steamapps\\common\\");
                         }
                     }
                 }
@@ -59,27 +62,29 @@ namespace Elite
                 {
                     using (RegistryKey subKey = key64.OpenSubKey(k64SubKey))
                     {
-                        var steam64path = subKey.GetValue("InstallPath").ToString();
-                        var config64path = steam64path + "/steamapps/libraryfolders.vdf";
-                        var driveRegex = @"[A-Z]:\\";
-                        if (File.Exists(config64path))
+                        var steam64path = subKey.GetValue("InstallPath")?.ToString();
+                        if (steam64path != null)
                         {
-                            var configLines = File.ReadAllLines(config64path);
-                            foreach (var item in configLines)
+                            var config64path = steam64path + "/steamapps/libraryfolders.vdf";
+                            var driveRegex = @"[A-Z]:\\";
+                            if (File.Exists(config64path))
                             {
-                                //Console.WriteLine("64:  " + item);
-                                Match match = Regex.Match(item, driveRegex);
-                                if (item != string.Empty && match.Success)
+                                var configLines = File.ReadAllLines(config64path);
+                                foreach (var item in configLines)
                                 {
-                                    var matched = match.ToString();
-                                    var item2 = item.Substring(item.IndexOf(matched));
-                                    item2 = item2.Replace("\\\\", "\\");
-                                    item2 = item2.Replace("\"", "\\steamapps\\common\\");
-                                    steamGameDirs.Add(item2);
+                                    //Console.WriteLine("64:  " + item);
+                                    Match match = Regex.Match(item, driveRegex);
+                                    if (item != string.Empty && match.Success)
+                                    {
+                                        var matched = match.ToString();
+                                        var item2 = item.Substring(item.IndexOf(matched));
+                                        item2 = item2.Replace("\\\\", "\\");
+                                        item2 = item2.Replace("\"", "\\steamapps\\common\\");
+                                        steamGameDirs.Add(item2);
+                                    }
                                 }
+                                steamGameDirs.Add(steam64path + "\\steamapps\\common\\");
                             }
-                            steamGameDirs.Add(steam64path + "\\steamapps\\common\\");
-
                         }
                     }
                 }
