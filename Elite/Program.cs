@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Xml.Serialization;
 using EliteJournalReader;
@@ -120,6 +121,103 @@ namespace Elite
             GetKeyBindings();
         }
 
+        private static bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally
+            {
+                stream?.Close();
+            }
+
+            //file is not locked
+            return false;
+        }
+
+
+        // copied from https://github.com/MagicMau/EliteJournalReader
+
+        private static FileInfo FileInfo(string cargoPath)
+        {
+            try
+            {
+                var info = new FileInfo(cargoPath);
+                if (info.Exists)
+                {
+                    // This info can be cached so force a refresh
+                    info.Refresh();
+                }
+                return info;
+            }
+            catch { return null; }
+        }
+
+
+        // copied from https://github.com/MagicMau/EliteJournalReader
+        public static string ReadStartPreset(string startPresetPath)
+        {
+            try
+            {
+                Thread.Sleep(100);
+
+                FileInfo fileInfo = null;
+                try
+                {
+                    fileInfo = FileInfo(startPresetPath);
+                }
+                catch (NotSupportedException)
+                {
+                    // do nothing
+                }
+
+                if (fileInfo != null)
+                {
+                    var maxTries = 6;
+                    while (IsFileLocked(fileInfo))
+                    {
+                        Thread.Sleep(100);
+                        maxTries--;
+                        if (maxTries == 0)
+                        {
+                            return null;
+                        }
+                    }
+
+                    using (var fs = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    using (var reader = new StreamReader(fs, Encoding.UTF8))
+                    {
+                        fs.Seek(0, SeekOrigin.Begin);
+                        var bindsName = reader.ReadToEnd();
+
+                        if (string.IsNullOrEmpty(bindsName))
+                        {
+                            return null;
+                        }
+                        return bindsName;
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Instance.LogMessage(TracingLevel.FATAL, e.ToString());
+            }
+
+            return null;
+        }
+
         public static void GetKeyBindings()
         {
             if (KeyBindingWatcher1 != null)
@@ -143,11 +241,14 @@ namespace Elite
                 Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
             }
 
+
             var startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
 
             //Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
 
-            var bindsName = File.ReadAllText(startPresetPath);
+            var bindsName = ReadStartPreset(startPresetPath);
+
+            //var bindsName = File.ReadAllText(startPresetPath);
 
             var keyBindingPath = Path.GetDirectoryName(startPresetPath);
             Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #1 " + keyBindingPath);
