@@ -25,6 +25,8 @@ namespace Elite
             SrvTurret,
             InSRV,
 
+            OnFoot,
+
             AnalysisMode,
             CargoScoop,
             Hardpoints
@@ -56,6 +58,8 @@ namespace Elite
             if (name.Contains("infighter")) return ProfileType.InFighter;
             if (name.Contains("srvturret")) return ProfileType.SrvTurret;
             if (name.Contains("insrv")) return ProfileType.InSRV;
+
+            if (name.Contains("onfoot")) return ProfileType.OnFoot;
 
             if (name.Contains("analysismode")) return ProfileType.AnalysisMode;
             if (name.Contains("cargoscoop")) return ProfileType.CargoScoop;

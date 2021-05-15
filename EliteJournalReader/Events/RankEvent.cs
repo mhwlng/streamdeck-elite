@@ -36,6 +36,10 @@ namespace EliteJournalReader.Events
             public EmpireRank Empire { get; set; }
             public FederationRank Federation { get; set; }
             public CQCRank CQC { get; set; }
+
+            public SoldierRank Soldier { get; set; }
+            public ExobiologistRank Exobiologist { get; set; }
+
         }
     }
 }

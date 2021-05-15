@@ -20,7 +20,7 @@ namespace EliteJournalReader.Events
             public long MarketID { get; set; }
             public string ShipType { get; set; }
             public string ShipType_Localised { get; set; }
-            public int NewShipID { get; set; }
+            public string NewShipID { get; set; }
         }
     }
 }

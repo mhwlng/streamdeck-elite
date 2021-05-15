@@ -43,7 +43,7 @@ namespace EliteJournalReader.Events
         {
             public struct StoredShip
             {
-                public int ShipID;
+                public string ShipID;
                 public string ShipType;
                 public string ShipType_Localised;
                 public string Name;

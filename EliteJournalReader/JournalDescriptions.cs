@@ -248,6 +248,13 @@ namespace EliteJournalReader
         Oxygen
     }
 
+    public enum OrganicScanType
+    {
+        Log,
+        Sample,
+        Analyse
+    }
+
     public enum BodyType
     {
         Unknown,

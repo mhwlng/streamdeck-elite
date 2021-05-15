@@ -13,6 +13,7 @@ When a button has no effect (e.g. when docked) then the image won't change.
 There is also a STATIC button type, that works in a similar way to the streamdeck 'Hotkey' button type.
 So, there is only one image and there is no game state feedback for these buttons.
 The differences with the 'Hotkey' buttons are, that it gets the keyboard binding from the game and doesn't repeat the key when the streamdeck button is held.
+For Odyssey, various new buttons are available here.
 
 A sound can be played when pressing a static button.
 
@@ -25,6 +26,7 @@ There is also a 'Repeating Static Button' type. This button is used only for key
 So, when the stream deck button is pushed, the 'key down' event is sent to the keyboard
 and only after the stream deck button is released, the 'key up' event is sent to the keyboard.
 The streamdeck 'hotkey' button also has this behaviour.
+For Odyssey, the 'Open Access Panel' button is available here.
 
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 
@@ -60,6 +62,9 @@ The supported toggle-buttons are:
 - SRV Turret
 - Supercruise (no longer needed)
 - System Map
+
+For Odyssey, when On Foot, the Galaxy Map,System Map,Lights & Night Vision buttons will call the on-foot key bindings, 
+but there is no state feedback. So the button image won't change.
 
 A sound can be played when pressing a toggle button.
 

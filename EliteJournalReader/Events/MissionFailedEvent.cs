@@ -17,7 +17,7 @@ namespace EliteJournalReader.Events
         public class MissionFailedEventArgs : JournalEventArgs
         {
             public string Name { get; set; }
-            public long MissionID { get; set; }
+            public string MissionID { get; set; }
             public int Fine { get; set; }
         }
     }

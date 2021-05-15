@@ -227,7 +227,7 @@ namespace EliteJournalReader
 #if DEBUG
             catch (Exception ex)
             {
-                Trace.TraceInformation($"Error while reading from status.json: {ex.Message}\n{ex.StackTrace}");
+                Trace.TraceInformation($"Error while reading from cargo.json: {ex.Message}\n{ex.StackTrace}");
 #else
             catch (Exception)
             {

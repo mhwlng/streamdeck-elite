@@ -7,6 +7,32 @@ using System.Threading.Tasks;
 
 namespace EliteJournalReader
 {
+    public enum SoldierRank
+    {
+        Defenceless = 0,
+        [Description("Mostly Defenceless")] MostlyDefenceless,
+        Rookie,
+        Soldier,
+        Gunslinger,
+        Warrior,
+        Gladiator,
+        Deadeye,
+        Elite
+    }
+
+    public enum ExobiologistRank
+    {
+        Directionless = 0,
+        [Description("Mostly Directionless")] MostlyDirectionless,
+        Compiler,
+        Collector,
+        Cataloguer,
+        Taxonomist,
+        Ecologist,
+        Geneticist,
+        Elite
+    }
+
     public enum CombatRank
     {
         Harmless = 0,

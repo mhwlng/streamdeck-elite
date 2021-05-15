@@ -23,7 +23,7 @@ namespace EliteJournalReader.Events
         {
             public long SystemAddress { get; set; }
             public string BodyName { get; set; }
-            public int BodyID { get; set; }
+            public long BodyID { get; set; }
             public SAASignal[] Signals { get; set; }
         }
     }

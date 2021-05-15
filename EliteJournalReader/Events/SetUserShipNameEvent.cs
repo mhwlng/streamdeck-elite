@@ -20,7 +20,7 @@ namespace EliteJournalReader.Events
         public class SetUserShipNameEventArgs : JournalEventArgs
         {
             public string Ship { get; set; }
-            public int ShipID { get; set; }
+            public string ShipID { get; set; }
             public string UserShipName { get; set; }
             public string UserShipId { get; set; }
         }

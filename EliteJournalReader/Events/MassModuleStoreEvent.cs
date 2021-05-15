@@ -33,7 +33,7 @@ namespace EliteJournalReader.Events
             }
 
             public string Ship { get; set; }
-            public int ShipId { get; set; }
+            public string ShipId { get; set; }
             public ModuleItems[] Items { get; set; }
         }
     }

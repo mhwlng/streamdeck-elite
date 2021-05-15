@@ -30,7 +30,7 @@ namespace EliteJournalReader.Events
 
         public class MissionAcceptedEventArgs : JournalEventArgs
         {
-            public long MissionID { get; set; }
+            public string MissionID { get; set; }
             public string Name { get; set; }
             public string LocalisedName { get; set; }
             public string Faction { get; set; }

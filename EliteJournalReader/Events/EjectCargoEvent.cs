@@ -23,7 +23,7 @@ namespace EliteJournalReader.Events
             public int Count { get; set; }
             public bool Abandoned { get; set; }
             public string PowerplayOrigin { get; set; }
-            public int MissionID { get; set; }
+            public string MissionID { get; set; }
         }
     }
 }

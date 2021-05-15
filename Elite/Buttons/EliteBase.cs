@@ -96,6 +96,8 @@ namespace Elite.Buttons
             if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.SrvTurret, EliteData.StatusData.SrvTurret)) return;
             if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.InSRV, EliteData.StatusData.InSRV)) return;
 
+            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.OnFoot, EliteData.StatusData.OnFoot)) return;
+
             if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.AnalysisMode, EliteData.StatusData.HudInAnalysisMode)) return;
             if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.CargoScoop, EliteData.StatusData.CargoScoopDeployed)) return;
             if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.Hardpoints, EliteData.StatusData.HardpointsDeployed)) return;

@@ -13,6 +13,8 @@ namespace EliteJournalReader.Events
 
         public StatusFlags Flags { get; set; }
 
+        public StatusFlags2 Flags2 { get; set; }
+
         [JsonConverter(typeof(JsonPipsConverter))]
         public (int System, int Engine, int Weapons) Pips { get; set; }
 
@@ -37,6 +39,12 @@ namespace EliteJournalReader.Events
         public string BodyName { get; set; }
            
         public double PlanetRadius { get; set; }
+
+        public double Oxygen { get; set; }
+        public double Health { get; set; }
+        public double Temperature { get; set; }
+        public string SelectedWeapon { get; set; }
+        public double Gravity { get; set; }
 
 
         class JsonPipsConverter : JsonConverter
@@ -112,6 +120,24 @@ namespace EliteJournalReader.Events
         AltitudeFromAverageRadius = 0x20000000,
         FsdJump = 0x40000000,
         SrvHighBeam = 0x80000000,
+    }
+
+    [Flags]
+    public enum StatusFlags2 : long
+    {
+        None = 0,
+        OnFoot = 0x00000001,
+        InTaxi = 0x00000002,//(or dropship/shuttle
+        InMulticrew = 0x00000004, // ie in someone else’s ship) 
+        OnFootInStation = 0x00000008,
+        OnFootOnPlanet = 0x00000010,
+        AimDownSight = 0x00000020,
+        LowOxygen = 0x00000040,
+        LowHealth = 0x00000080,
+        Cold = 0x00000100,
+        Hot = 0x00000200,
+        VeryCold = 0x00000400,
+        VeryHot = 0x00000800
     }
 
     public enum StatusGuiFocus

@@ -58,6 +58,11 @@ namespace EliteJournalReader.Events
             public BodyType BodyType { get; set; }
 
             public bool Docked { get; set; }
+            public bool Taxi { get; set; }
+            public bool Multicrew { get; set; }
+            public bool InSRV { get; set; }
+            public bool OnFoot { get; set; }
+
             public double? Latitude { get; set; }
             public double? Longitude { get; set; }
 
@@ -86,8 +91,7 @@ namespace EliteJournalReader.Events
             public long? Population { get; set; }
             public string[] Powers { get; set; }
 
-            [JsonConverter(typeof(ExtendedStringEnumConverter<PowerplayState>))]
-            public PowerplayState PowerplayState { get; set; }
+            public string PowerplayState { get; set; }
 
             public Faction[] Factions { get; set; }
             public Conflict[] Conflicts { get; set; }

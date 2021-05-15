@@ -253,6 +253,7 @@ namespace Elite
         public ToggleBindingInfo ToggleCargoScoop_Buggy { get;  set; }
         public StandardBindingInfo EjectAllCargo_Buggy { get;  set; }
         public ToggleBindingInfo PhotoCameraToggle_Buggy { get;  set; }
+        public ToggleBindingInfo PhotoCameraToggle_Humanoid { get; set; }
         public StandardBindingInfo UIFocus_Buggy { get;  set; }
         public StandardBindingInfo FocusLeftPanel_Buggy { get;  set; }
         public StandardBindingInfo FocusCommsPanel_Buggy { get;  set; }
@@ -349,6 +350,8 @@ namespace Elite
         public StandardBindingInfo SAAThirdPersonFovInButton { get; set; }
         public StandardBindingInfo SAAThirdPersonFovOutButton { get; set; }
         public StandardBindingInfo ExplorationSAAExitThirdPerson { get; set; }
+        public StandardBindingInfo ExplorationSAANextGenus { get; set; }
+        public StandardBindingInfo ExplorationSAAPreviousGenus { get; set; }
         public StandardBindingInfo ExplorationFSSShowHelp { get; set; }
         public StandardBindingInfo ExplorationFSSDiscoveryScan { get; set; }
         public StandardBindingInfo ExplorationFSSCameraPitchDecreaseButton { get; set; }
@@ -378,6 +381,51 @@ namespace Elite
         public StandardBindingInfo BuggyRollRight { get; set; }
         public StandardBindingInfo CycleNextPage { get; set; }
         public StandardBindingInfo CyclePreviousPage { get; set; }
+
+        public StandardBindingInfo HumanoidForwardButton { get; set; }
+        public StandardBindingInfo HumanoidBackwardButton { get; set; }
+        public StandardBindingInfo HumanoidStrafeLeftButton { get; set; }
+        public StandardBindingInfo HumanoidStrafeRightButton { get; set; }
+        public StandardBindingInfo HumanoidSprintButton { get; set; }
+        public StandardBindingInfo HumanoidCrouchButton { get; set; }
+        public StandardBindingInfo HumanoidJumpButton { get; set; }
+        public StandardBindingInfo HumanoidPrimaryInteractButton { get; set; }
+        public StandardBindingInfo HumanoidSecondaryInteractButton { get; set; }
+        public StandardBindingInfo HumanoidItemWheelButton { get; set; }
+        public StandardBindingInfo HumanoidPrimaryFireButton { get; set; }
+        public StandardBindingInfo HumanoidZoomButton { get; set; }
+        public StandardBindingInfo HumanoidThrowGrenadeButton { get; set; }
+        public StandardBindingInfo HumanoidMeleeButton { get; set; }
+        public StandardBindingInfo HumanoidReloadButton { get; set; }
+        public StandardBindingInfo HumanoidSelectPrimaryWeaponButton { get; set; }
+        public StandardBindingInfo HumanoidSelectSecondaryWeaponButton { get; set; }
+        public StandardBindingInfo HumanoidHideWeaponButton { get; set; }
+        public StandardBindingInfo HumanoidToggleFlashlightButton { get; set; }
+        public StandardBindingInfo HumanoidToggleNightVisionButton { get; set; }
+        public StandardBindingInfo HumanoidToggleShieldsButton { get; set; }
+        public StandardBindingInfo HumanoidSwitchToRechargeTool { get; set; }
+        public StandardBindingInfo HumanoidSwitchToCompAnalyser { get; set; }
+        public StandardBindingInfo HumanoidSwitchToSuitTool { get; set; }
+        public StandardBindingInfo HumanoidToggleToolModeButton { get; set; }
+        public StandardBindingInfo HumanoidToggleMissionHelpPanelButton { get; set; }
+        public StandardBindingInfo GalaxyMapOpen_Humanoid { get; set; }
+        public StandardBindingInfo SystemMapOpen_Humanoid { get; set; }
+        public StandardBindingInfo FocusCommsPanel_Humanoid { get; set; }
+        public StandardBindingInfo QuickCommsPanel_Humanoid { get; set; }
+        public StandardBindingInfo HumanoidOpenAccessPanelButton { get; set; }
+        public StandardBindingInfo HumanoidConflictContextualUIButton { get; set; }
+
+        public StandardBindingInfo HumanoidRotateLeftButton { get; set; }
+        public StandardBindingInfo HumanoidRotateRightButton { get; set; }
+        public StandardBindingInfo HumanoidPitchUpButton { get; set; }
+        public StandardBindingInfo HumanoidPitchDownButton { get; set; }
+        public StandardBindingInfo HumanoidSwitchWeapon { get; set; }
+        public StandardBindingInfo HumanoidSelectUtilityWeaponButton { get; set; }
+        public StandardBindingInfo HumanoidSelectNextWeaponButton { get; set; }
+        public StandardBindingInfo HumanoidSelectPreviousWeaponButton { get; set; }
+        public StandardBindingInfo HumanoidSelectNextGrenadeTypeButton { get; set; }
+        public StandardBindingInfo HumanoidSelectPreviousGrenadeTypeButton { get; set; }
+
 
     }
 

@@ -73,6 +73,9 @@ namespace Elite.Buttons
                 case "PhotoCameraToggle_Buggy":
                     SendKeypressDown(Program.Bindings.PhotoCameraToggle_Buggy);
                     break;
+                case "PhotoCameraToggle_Humanoid":
+                    SendKeypressDown(Program.Bindings.PhotoCameraToggle_Humanoid);
+                    break;
                 case "StorePitchCameraDown":
                     SendKeypressDown(Program.Bindings.StorePitchCameraDown);
                     break;
@@ -399,6 +402,12 @@ namespace Elite.Buttons
                     break;
                 case "ExplorationFSSShowHelp":
                     SendKeypressDown(Program.Bindings.ExplorationFSSShowHelp);
+                    break;
+                case "ExplorationSAANextGenus":
+                    SendKeypressDown(Program.Bindings.ExplorationSAANextGenus);
+                    break;
+                case "ExplorationSAAPreviousGenus":
+                    SendKeypressDown(Program.Bindings.ExplorationSAAPreviousGenus);
                     break;
                 case "ExplorationFSSDiscoveryScan":
                     SendKeypressDown(Program.Bindings.ExplorationFSSDiscoveryScan);
@@ -880,6 +889,136 @@ namespace Elite.Buttons
                 case "UI_Up":
                     SendKeypressDown(Program.Bindings.UI_Up);
                     break;
+
+
+                case "HumanoidForwardButton":
+                    SendKeypressDown(Program.Bindings.HumanoidForwardButton);
+                    break;
+                case "HumanoidBackwardButton":
+                    SendKeypressDown(Program.Bindings.HumanoidBackwardButton);
+                    break;
+                case "HumanoidStrafeLeftButton":
+                    SendKeypressDown(Program.Bindings.HumanoidStrafeLeftButton);
+                    break;
+                case "HumanoidStrafeRightButton":
+                    SendKeypressDown(Program.Bindings.HumanoidStrafeRightButton);
+                    break;
+                case "HumanoidSprintButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSprintButton);
+                    break;
+                case "HumanoidCrouchButton":
+                    SendKeypressDown(Program.Bindings.HumanoidCrouchButton);
+                    break;
+                case "HumanoidJumpButton":
+                    SendKeypressDown(Program.Bindings.HumanoidJumpButton);
+                    break;
+                case "HumanoidPrimaryInteractButton":
+                    SendKeypressDown(Program.Bindings.HumanoidPrimaryInteractButton);
+                    break;
+                case "HumanoidItemWheelButton":
+                    SendKeypressDown(Program.Bindings.HumanoidItemWheelButton);
+                    break;
+                case "HumanoidPrimaryFireButton":
+                    SendKeypressDown(Program.Bindings.HumanoidPrimaryFireButton);
+                    break;
+                case "HumanoidSelectPrimaryWeaponButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectPrimaryWeaponButton);
+                    break;
+                case "HumanoidSelectSecondaryWeaponButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectSecondaryWeaponButton);
+                    break;
+                case "HumanoidHideWeaponButton":
+                    SendKeypressDown(Program.Bindings.HumanoidHideWeaponButton);
+                    break;
+                case "HumanoidZoomButton":
+                    SendKeypressDown(Program.Bindings.HumanoidZoomButton);
+                    break;
+                case "HumanoidReloadButton":
+                    SendKeypressDown(Program.Bindings.HumanoidReloadButton);
+                    break;
+                case "HumanoidThrowGrenadeButton":
+                    SendKeypressDown(Program.Bindings.HumanoidThrowGrenadeButton);
+                    break;
+                case "HumanoidMeleeButton":
+                    SendKeypressDown(Program.Bindings.HumanoidMeleeButton);
+                    break;
+                case "HumanoidOpenAccessPanelButton":
+                    SendKeypressDown(Program.Bindings.HumanoidOpenAccessPanelButton);
+                    break;
+                case "HumanoidSecondaryInteractButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSecondaryInteractButton);
+                    break;
+                case "HumanoidSwitchToRechargeTool":
+                    SendKeypressDown(Program.Bindings.HumanoidSwitchToRechargeTool);
+                    break;
+                case "HumanoidSwitchToCompAnalyser":
+                    SendKeypressDown(Program.Bindings.HumanoidSwitchToCompAnalyser);
+                    break;
+                case "HumanoidToggleToolModeButton":
+                    SendKeypressDown(Program.Bindings.HumanoidToggleToolModeButton);
+                    break;
+                case "HumanoidToggleNightVisionButton":
+                    SendKeypressDown(Program.Bindings.HumanoidToggleNightVisionButton);
+                    break;
+                case "HumanoidSwitchToSuitTool":
+                    SendKeypressDown(Program.Bindings.HumanoidSwitchToSuitTool);
+                    break;
+                case "HumanoidToggleFlashlightButton":
+                    SendKeypressDown(Program.Bindings.HumanoidToggleFlashlightButton);
+                    break;
+                case "GalaxyMapOpen_Humanoid":
+                    SendKeypressDown(Program.Bindings.GalaxyMapOpen_Humanoid);
+                    break;
+                case "SystemMapOpen_Humanoid":
+                    SendKeypressDown(Program.Bindings.SystemMapOpen_Humanoid);
+                    break;
+                case "FocusCommsPanel_Humanoid":
+                    SendKeypressDown(Program.Bindings.FocusCommsPanel_Humanoid);
+                    break;
+                case "QuickCommsPanel_Humanoid":
+                    SendKeypressDown(Program.Bindings.QuickCommsPanel_Humanoid);
+                    break;
+                case "HumanoidConflictContextualUIButton":
+                    SendKeypressDown(Program.Bindings.HumanoidConflictContextualUIButton);
+                    break;
+                case "HumanoidToggleShieldsButton":
+                    SendKeypressDown(Program.Bindings.HumanoidToggleShieldsButton);
+                    break;
+
+                case "HumanoidRotateLeftButton":
+                    SendKeypressDown(Program.Bindings.HumanoidRotateLeftButton);
+                    break;
+                case "HumanoidRotateRightButton":
+                    SendKeypressDown(Program.Bindings.HumanoidRotateRightButton);
+                    break;
+                case "HumanoidPitchUpButton":
+                    SendKeypressDown(Program.Bindings.HumanoidPitchUpButton);
+                    break;
+                case "HumanoidPitchDownButton":
+                    SendKeypressDown(Program.Bindings.HumanoidPitchDownButton);
+                    break;
+                case "HumanoidSwitchWeapon":
+                    SendKeypressDown(Program.Bindings.HumanoidSwitchWeapon);
+                    break;
+                case "HumanoidSelectUtilityWeaponButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectUtilityWeaponButton);
+                    break;
+                case "HumanoidSelectNextWeaponButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectNextWeaponButton);
+                    break;
+                case "HumanoidSelectPreviousWeaponButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectPreviousWeaponButton);
+                    break;
+                case "HumanoidSelectNextGrenadeTypeButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectNextGrenadeTypeButton);
+                    break;
+                case "HumanoidSelectPreviousGrenadeTypeButton":
+                    SendKeypressDown(Program.Bindings.HumanoidSelectPreviousGrenadeTypeButton);
+                    break;
+                case "HumanoidToggleMissionHelpPanelButton":
+                    SendKeypressDown(Program.Bindings.HumanoidToggleMissionHelpPanelButton);
+                    break;
+
             }
         }
 
@@ -901,7 +1040,10 @@ namespace Elite.Buttons
 				case "PhotoCameraToggle_Buggy":
 					SendKeypressUp(Program.Bindings.PhotoCameraToggle_Buggy);
 					break;
-				case "StorePitchCameraDown":
+                case "PhotoCameraToggle_Humanoid":
+                    SendKeypressUp(Program.Bindings.PhotoCameraToggle_Humanoid);
+                    break;
+                case "StorePitchCameraDown":
 					SendKeypressUp(Program.Bindings.StorePitchCameraDown);
 					break;
 				case "StorePitchCameraUp":
@@ -1228,7 +1370,13 @@ namespace Elite.Buttons
 				case "ExplorationFSSShowHelp":
 					SendKeypressUp(Program.Bindings.ExplorationFSSShowHelp);
 					break;
-				case "ExplorationFSSDiscoveryScan":
+                case "ExplorationSAANextGenus":
+                    SendKeypressUp(Program.Bindings.ExplorationSAANextGenus);
+                    break;
+                case "ExplorationSAAPreviousGenus":
+                    SendKeypressUp(Program.Bindings.ExplorationSAAPreviousGenus);
+                    break;
+                case "ExplorationFSSDiscoveryScan":
 					SendKeypressUp(Program.Bindings.ExplorationFSSDiscoveryScan);
 					break;
 				case "ExplorationFSSCameraPitchDecreaseButton":
@@ -1708,9 +1856,138 @@ namespace Elite.Buttons
 				case "UI_Up":
 					SendKeypressUp(Program.Bindings.UI_Up);
 					break;
-			}
 
-			/*
+                case "HumanoidForwardButton":
+                    SendKeypressUp(Program.Bindings.HumanoidForwardButton);
+                    break;
+                case "HumanoidBackwardButton":
+                    SendKeypressUp(Program.Bindings.HumanoidBackwardButton);
+                    break;
+                case "HumanoidStrafeLeftButton":
+                    SendKeypressUp(Program.Bindings.HumanoidStrafeLeftButton);
+                    break;
+                case "HumanoidStrafeRightButton":
+                    SendKeypressUp(Program.Bindings.HumanoidStrafeRightButton);
+                    break;
+                case "HumanoidSprintButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSprintButton);
+                    break;
+                case "HumanoidCrouchButton":
+                    SendKeypressUp(Program.Bindings.HumanoidCrouchButton);
+                    break;
+                case "HumanoidJumpButton":
+                    SendKeypressUp(Program.Bindings.HumanoidJumpButton);
+                    break;
+                case "HumanoidPrimaryInteractButton":
+                    SendKeypressUp(Program.Bindings.HumanoidPrimaryInteractButton);
+                    break;
+                case "HumanoidItemWheelButton":
+                    SendKeypressUp(Program.Bindings.HumanoidItemWheelButton);
+                    break;
+                case "HumanoidPrimaryFireButton":
+                    SendKeypressUp(Program.Bindings.HumanoidPrimaryFireButton);
+                    break;
+                case "HumanoidSelectPrimaryWeaponButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectPrimaryWeaponButton);
+                    break;
+                case "HumanoidSelectSecondaryWeaponButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectSecondaryWeaponButton);
+                    break;
+                case "HumanoidHideWeaponButton":
+                    SendKeypressUp(Program.Bindings.HumanoidHideWeaponButton);
+                    break;
+                case "HumanoidZoomButton":
+                    SendKeypressUp(Program.Bindings.HumanoidZoomButton);
+                    break;
+                case "HumanoidReloadButton":
+                    SendKeypressUp(Program.Bindings.HumanoidReloadButton);
+                    break;
+                case "HumanoidThrowGrenadeButton":
+                    SendKeypressUp(Program.Bindings.HumanoidThrowGrenadeButton);
+                    break;
+                case "HumanoidMeleeButton":
+                    SendKeypressUp(Program.Bindings.HumanoidMeleeButton);
+                    break;
+                case "HumanoidOpenAccessPanelButton":
+                    SendKeypressUp(Program.Bindings.HumanoidOpenAccessPanelButton);
+                    break;
+                case "HumanoidSecondaryInteractButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSecondaryInteractButton);
+                    break;
+                case "HumanoidSwitchToRechargeTool":
+                    SendKeypressUp(Program.Bindings.HumanoidSwitchToRechargeTool);
+                    break;
+                case "HumanoidSwitchToCompAnalyser":
+                    SendKeypressUp(Program.Bindings.HumanoidSwitchToCompAnalyser);
+                    break;
+                case "HumanoidToggleToolModeButton":
+                    SendKeypressUp(Program.Bindings.HumanoidToggleToolModeButton);
+                    break;
+                case "HumanoidToggleNightVisionButton":
+                    SendKeypressUp(Program.Bindings.HumanoidToggleNightVisionButton);
+                    break;
+                case "HumanoidSwitchToSuitTool":
+                    SendKeypressUp(Program.Bindings.HumanoidSwitchToSuitTool);
+                    break;
+                case "HumanoidToggleFlashlightButton":
+                    SendKeypressUp(Program.Bindings.HumanoidToggleFlashlightButton);
+                    break;
+                case "GalaxyMapOpen_Humanoid":
+                    SendKeypressUp(Program.Bindings.GalaxyMapOpen_Humanoid);
+                    break;
+                case "SystemMapOpen_Humanoid":
+                    SendKeypressUp(Program.Bindings.SystemMapOpen_Humanoid);
+                    break;
+                case "FocusCommsPanel_Humanoid":
+                    SendKeypressDown(Program.Bindings.FocusCommsPanel_Humanoid);
+                    break;
+                case "QuickCommsPanel_Humanoid":
+                    SendKeypressUp(Program.Bindings.QuickCommsPanel_Humanoid);
+                    break;
+                case "HumanoidConflictContextualUIButton":
+                    SendKeypressUp(Program.Bindings.HumanoidConflictContextualUIButton);
+                    break;
+                case "HumanoidToggleShieldsButton":
+                    SendKeypressUp(Program.Bindings.HumanoidToggleShieldsButton);
+                    break;
+
+                case "HumanoidRotateLeftButton":
+                    SendKeypressUp(Program.Bindings.HumanoidRotateLeftButton);
+                    break;
+                case "HumanoidRotateRightButton":
+                    SendKeypressUp(Program.Bindings.HumanoidRotateRightButton);
+                    break;
+                case "HumanoidPitchUpButton":
+                    SendKeypressUp(Program.Bindings.HumanoidPitchUpButton);
+                    break;
+                case "HumanoidPitchDownButton":
+                    SendKeypressUp(Program.Bindings.HumanoidPitchDownButton);
+                    break;
+                case "HumanoidSwitchWeapon":
+                    SendKeypressUp(Program.Bindings.HumanoidSwitchWeapon);
+                    break;
+                case "HumanoidSelectUtilityWeaponButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectUtilityWeaponButton);
+                    break;
+                case "HumanoidSelectNextWeaponButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectNextWeaponButton);
+                    break;
+                case "HumanoidSelectPreviousWeaponButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectPreviousWeaponButton);
+                    break;
+                case "HumanoidSelectNextGrenadeTypeButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectNextGrenadeTypeButton);
+                    break;
+                case "HumanoidSelectPreviousGrenadeTypeButton":
+                    SendKeypressUp(Program.Bindings.HumanoidSelectPreviousGrenadeTypeButton);
+                    break;
+
+                case "HumanoidToggleMissionHelpPanelButton":
+                    SendKeypressUp(Program.Bindings.HumanoidToggleMissionHelpPanelButton);
+                    break;
+            }
+
+            /*
         <select class="sdpi-item-value select sdProperty" id="function" oninput="setSettings()">
             <optgroup label="Navigation">
                 <option value="BackwardKey">Reverse Thrust</option>
@@ -1765,6 +2042,7 @@ namespace Elite.Buttons
                 <option value="MoveFreeCamUp">Cam Up</option>
                 <option value="PhotoCameraToggle">External Cam</option>
                 <option value="PhotoCameraToggle_Buggy">External Cam Buggy</option>
+                <option value="PhotoCameraToggle_Humanoid">External Cam Cmdr</option>
                 <option value="PitchCameraDown">Cam Pitch Down</option>
                 <option value="PitchCameraUp">Cam Pitch Up</option>
                 <option value="QuitCamera">Exit free Cam</option>
@@ -1851,6 +2129,8 @@ namespace Elite.Buttons
                 <option value="ExplorationFSSZoomOut">Zoom FSS Out</option>
                 <option value="ExplorationSAAChangeScannedAreaViewToggle">Toggle Planet Front/Back</option>
                 <option value="ExplorationSAAExitThirdPerson">Exit DSS</option>
+                <option value="ExplorationSAANextGenus">DSS Next Genus</option>
+                <option value="ExplorationSAAPreviousGenus">DSS Previous Genus</option>
                 <option value="SAAThirdPersonFovInButton">DSS Field of View In</option>
                 <option value="SAAThirdPersonFovOutButton">DSS Field of View Out</option>
                 <option value="SAAThirdPersonPitchDownButton">Pitch Down (DSS)</option>
@@ -1899,12 +2179,12 @@ namespace Elite.Buttons
                 <option value="UI_Up">UI Up</option>
             </optgroup>
         </select>
-			 
-			 */
 
-		}
+             */
 
-		public override void Dispose()
+        }
+
+        public override void Dispose()
         {
             base.Dispose();
 

@@ -19,6 +19,7 @@ namespace EliteJournalReader.Events
 
         public class SupercruiseExitEventArgs : JournalEventArgs
         {
+            public long  SystemAddress { get; set; }
             public string StarSystem { get; set; }
             public string Body { get; set; }
             public long BodyID { get; set; }

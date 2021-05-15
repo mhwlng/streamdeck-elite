@@ -23,7 +23,7 @@ namespace EliteJournalReader.Events
         public class EngineerContributionEventArgs : JournalEventArgs
         {
             public string Engineer { get; set; }
-            public long EngineerID { get; set; }
+            public string EngineerID { get; set; }
             public string Type { get; set; }
             public string Commodity { get; set; }
             public string Commodity_Localised { get; set; }

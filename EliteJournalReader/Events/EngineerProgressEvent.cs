@@ -19,7 +19,7 @@ namespace EliteJournalReader.Events
         public class EngineerProgressEventArgs : JournalEventArgs
         {
             public string Engineer { get; set; }
-            public long EngineerID { get; set; }
+            public string EngineerID { get; set; }
             public int? Rank { get; set; }
             public string Progress { get; set; }
 

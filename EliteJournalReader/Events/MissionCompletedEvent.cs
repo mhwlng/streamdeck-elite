@@ -56,6 +56,7 @@ namespace EliteJournalReader.Events
                 public FactionEffect[] Effects;
                 public FactionInfluenceEffect[] Influence;
                 public string Reputation;
+                public string ReputationTrend;
             }
 
             public struct FactionEffect
@@ -74,7 +75,7 @@ namespace EliteJournalReader.Events
 
             public string Faction { get; set; }
             public string Name { get; set; }
-            public long MissionID { get; set; }
+            public string MissionID { get; set; }
             public string Commodity { get; set; }
             public string Commodity_Localised { get; set; }
             public int? Count { get; set; }
@@ -86,7 +87,7 @@ namespace EliteJournalReader.Events
             public int? Donated { get; set; }
             public string[] PermitsAwarded { get; set; }
             public CommodityRewardItem[] CommodityReward { get; set; }
-            public MaterialRewardItem[] MaterialReward { get; set; }
+            public MaterialRewardItem[] MaterialsReward { get; set; }
             public FactionEffectsDesc[] FactionEffects { get; set; }
         }
     }

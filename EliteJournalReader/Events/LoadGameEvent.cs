@@ -36,7 +36,8 @@ namespace EliteJournalReader.Events
             public string FID { get; set; }
             public bool Horizons { get; set; }
             public string Ship { get; set; }
-            public int ShipID { get; set; }
+            public string ShipID { get; set; }
+            public string Ship_Localised { get; set; }
             public bool StartLanded { get; set; } = false;
             public bool StartDead { get; set; } = false;
 

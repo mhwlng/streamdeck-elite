@@ -29,7 +29,7 @@ namespace EliteJournalReader.Events
             public string ToItem { get; set; }
             public string ToItem_Localised { get; set; }
             public string Ship { get; set; }
-            public int ShipID { get; set; }
+            public string ShipID { get; set; }
         }
     }
 }

@@ -56,7 +56,7 @@ namespace EliteJournalReader.Events
         public class LoadoutEventArgs : JournalEventArgs
         {
             public string Ship { get; set; }
-            public int ShipID { get; set; }
+            public string ShipID { get; set; }
             public string ShipName { get; set; }
             public string ShipIdent { get; set; }
             public int HullValue { get; set; }

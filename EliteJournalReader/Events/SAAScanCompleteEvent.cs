@@ -22,7 +22,7 @@ namespace EliteJournalReader.Events
         {
             public long SystemAddress { get; set; }
             public string BodyName { get; set; }
-            public int BodyID { get; set; }
+            public long BodyID { get; set; }
             public int ProbesUsed { get; set; }
             public int EfficiencyTarget { get; set; }
         }

@@ -258,17 +258,22 @@ namespace Elite
             KeyBindingWatcher1.KeyBindingUpdated += HandleKeyBindingEvents;
             KeyBindingWatcher1.StartWatching();
 
-            var fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+            var fileName = Path.Combine(bindingsPath, bindsName + ".4.0.binds");
 
             if (!File.Exists(fileName))
             {
                 Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
 
-                fileName = fileName.Replace(".3.0.binds", ".binds");
+                fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
 
                 if (!File.Exists(fileName))
                 {
-                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                    fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                    if (!File.Exists(fileName))
+                    {
+                        Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                    }
                 }
             }
 
@@ -279,17 +284,22 @@ namespace Elite
 
                 if (!string.IsNullOrEmpty(bindingsPath))
                 {
-                    fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+                    fileName = Path.Combine(bindingsPath, bindsName + ".4.0.binds");
 
                     if (!File.Exists(fileName))
                     {
                         Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
 
-                        fileName = fileName.Replace(".3.0.binds", ".binds");
+                        fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
 
                         if (!File.Exists(fileName))
                         {
-                            Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
+                            fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                            if (!File.Exists(fileName))
+                            {
+                                Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
+                            }
                         }
                     }
                 }
@@ -302,17 +312,22 @@ namespace Elite
 
                 if (!string.IsNullOrEmpty(bindingsPath))
                 {
-                    fileName = Path.Combine(bindingsPath, bindsName + ".3.0.binds");
+                    fileName = Path.Combine(bindingsPath, bindsName + ".4.0.binds");
 
                     if (!File.Exists(fileName))
                     {
                         Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
 
-                        fileName = fileName.Replace(".3.0.binds", ".binds");
+                        fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
 
                         if (!File.Exists(fileName))
                         {
-                            Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
+                            fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                            if (!File.Exists(fileName))
+                            {
+                                Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
+                            }
                         }
                     }
                 }
@@ -361,13 +376,18 @@ namespace Elite
                     Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {journalPath}");
                 }
 
+                var defaultFilter = @"Journal.*.log";
+//#if DEBUG
+            //defaultFilter = @"JournalAlpha.*.log";
+//#endif
+
                 StatusWatcher = new StatusWatcher(journalPath);
 
                 StatusWatcher.StatusUpdated += EliteData.HandleStatusEvents;
 
                 StatusWatcher.StartWatching();
 
-                JournalWatcher = new JournalWatcher(journalPath);
+                JournalWatcher = new JournalWatcher(journalPath, defaultFilter);
 
                 JournalWatcher.AllEventHandler += EliteData.HandleEliteEvents;
 

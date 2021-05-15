@@ -25,7 +25,7 @@ namespace EliteJournalReader.Events
             public string SellItem_Localised { get; set; }
             public int SellPrice { get; set; }
             public string Ship { get; set; }
-            public int ShipID { get; set; }
+            public string ShipID { get; set; }
         }
     }
 }

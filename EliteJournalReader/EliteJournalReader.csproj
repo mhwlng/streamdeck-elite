@@ -87,8 +87,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -101,6 +101,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CargoTransfer.cs" />
+    <Compile Include="Events\BookDropshipEvent.cs" />
+    <Compile Include="Events\DropShipDeployEvent.cs" />
+    <Compile Include="Events\CollectItemsEvent.cs" />
+    <Compile Include="Events\DropItemsEvent.cs" />
+    <Compile Include="Events\UseConsumableEvent.cs" />
+    <Compile Include="Events\LoadoutEquipModuleEvent.cs" />
+    <Compile Include="Events\LoadoutRemoveModuleEvent.cs" />
+    <Compile Include="Events\RenameSuitLoadoutEvent.cs" />
+    <Compile Include="Events\ScanOrganicEvent.cs" />
+    <Compile Include="Events\SellOrganicDataEvent.cs" />
+    <Compile Include="Events\UpgradeWeaponEvent.cs" />
+    <Compile Include="Events\UpgradeSuitEvent.cs" />
+    <Compile Include="Events\BuySuitEvent.cs" />
+    <Compile Include="Events\CancelDropshipEvent.cs" />
+    <Compile Include="Events\DeleteSuitLoadoutEvent.cs" />
+    <Compile Include="Events\SellSuitEvent.cs" />
+    <Compile Include="Events\SellWeaponEvent.cs" />
+    <Compile Include="Events\ShipLockerMaterialsEvent.cs" />
+    <Compile Include="Events\BuyMicroResourcesEvent.cs" />
+    <Compile Include="Events\TradeMicroResourcesEvent.cs" />
+    <Compile Include="Events\TransferMicroResourcesEvent.cs" />
+    <Compile Include="Events\SellMicroResourcesEvent.cs" />
+    <Compile Include="Events\BackPackMaterialsEvent.cs" />
+    <Compile Include="Events\BookTaxiEvent.cs" />
+    <Compile Include="Events\CancelTaxiEvent.cs" />
+    <Compile Include="Events\EmbarkEvent.cs" />
+    <Compile Include="Events\DisembarkEvent.cs" />
+    <Compile Include="Events\BuyWeaponEvent.cs" />
+    <Compile Include="Events\CreateSuitLoadoutEvent.cs" />
+    <Compile Include="Events\SwitchSuitLoadoutEvent.cs" />
+    <Compile Include="RouteItem.cs" />
+    <Compile Include="Events\NavRouteEvent.cs" />
+    <Compile Include="NavRouteWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Commodity.cs" />
     <Compile Include="Economy.cs" />
     <Compile Include="EngineeredModule.cs" />

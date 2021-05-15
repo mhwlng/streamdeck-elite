@@ -223,11 +223,17 @@ namespace Elite.Buttons
                     if (EliteData.StatusData.InSRV)
                         SendKeypress(Program.Bindings.GalaxyMapOpen_Buggy);
                     else
+                    if (EliteData.StatusData.OnFoot)
+                        SendKeypress(Program.Bindings.GalaxyMapOpen_Humanoid);
+                    else
                         SendKeypress(Program.Bindings.GalaxyMapOpen);
                     break;
                 case "SystemMap":
                     if (EliteData.StatusData.InSRV)
                         SendKeypress(Program.Bindings.SystemMapOpen_Buggy);
+                    else
+                    if (EliteData.StatusData.OnFoot)
+                        SendKeypress(Program.Bindings.SystemMapOpen_Humanoid);
                     else
                         SendKeypress(Program.Bindings.SystemMapOpen);
                     break;
@@ -250,11 +256,17 @@ namespace Elite.Buttons
                     if (EliteData.StatusData.InSRV)
                         SendKeypress(Program.Bindings.HeadlightsBuggyButton);
                     else
+                    if (EliteData.StatusData.OnFoot)
+                        SendKeypress(Program.Bindings.HumanoidToggleFlashlightButton );
+                    else
                         SendKeypress(Program.Bindings.ShipSpotLightToggle);
                     break;
 
                 case "NightVisionToggle":
-                    SendKeypress(Program.Bindings.NightVisionToggle);
+                    if (EliteData.StatusData.OnFoot)
+                        SendKeypress(Program.Bindings.HumanoidToggleNightVisionButton);
+                    else
+                        SendKeypress(Program.Bindings.NightVisionToggle);
                     break;
 
                 case "PlayerHUDModeToggle":

@@ -25,7 +25,7 @@ namespace EliteJournalReader.Events
             public long MarketID { get; set; }
             public string Slot { get; set; }
             public string Ship { get; set; }
-            public int ShipId { get; set; }
+            public string ShipId { get; set; }
             public string RetrievedItem { get; set; }
             public string RetrievedItem_Localised { get; set; }
             public string EngineerModifications { get; set; }

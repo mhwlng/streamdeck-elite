@@ -203,7 +203,7 @@ namespace EliteJournalReader.Events
 
             public string BodyName { get; set; }
 
-            public int BodyID { get; set; }
+            public long BodyID { get; set; }
 
             public double DistanceFromArrivalLs { get; set; }
 
@@ -297,7 +297,7 @@ namespace EliteJournalReader.Events
     public struct BodyParent
     {
         public string Type;
-        public int BodyID;
+        public long BodyID;
     }
 
 
@@ -324,7 +324,7 @@ namespace EliteJournalReader.Events
                             var bp = new BodyParent
                             {
                                 Type = prop.Name,
-                                BodyID = prop.Value.Value<int>()
+                                BodyID = prop.Value.Value<long>()
                             };
                             bps.Add(bp);
                         }

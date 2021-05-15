@@ -100,24 +100,26 @@ namespace Elite.Buttons
             var textBrush = _primaryBrush;
             var textHtmlColor = settings.PrimaryColor;
 
-            var isDisabled = (EliteData.StatusData.Docked ||
-                                EliteData.StatusData.Landed ||
-                                EliteData.StatusData.LandingGearDown ||
-                                EliteData.StatusData.CargoScoopDeployed ||
+            var isDisabled = (EliteData.StatusData.OnFoot ||
+                              EliteData.StatusData.InSRV ||
+                              EliteData.StatusData.Docked ||
+                              EliteData.StatusData.Landed ||
+                              EliteData.StatusData.LandingGearDown ||
+                              EliteData.StatusData.CargoScoopDeployed ||
 
-                                //EliteData.StatusData.SilentRunning ||
-                                //EliteData.StatusData.ScoopingFuel ||
-                                //EliteData.StatusData.IsInDanger ||
-                                //EliteData.StatusData.BeingInterdicted ||
-                                //EliteData.StatusData.HudInAnalysisMode ||
+                              //EliteData.StatusData.SilentRunning ||
+                              //EliteData.StatusData.ScoopingFuel ||
+                              //EliteData.StatusData.IsInDanger ||
+                              //EliteData.StatusData.BeingInterdicted ||
+                              //EliteData.StatusData.HudInAnalysisMode ||
 
-                                EliteData.StatusData.FsdMassLocked ||
-                                //EliteData.StatusData.FsdCharging ||
-                                EliteData.StatusData.FsdCooldown ||
+                              EliteData.StatusData.FsdMassLocked ||
+                              //EliteData.StatusData.FsdCharging ||
+                              EliteData.StatusData.FsdCooldown ||
 
-                                //EliteData.StatusData.Supercruise ||
-                                //EliteData.StatusData.FsdJump ||
-                                EliteData.StatusData.HardpointsDeployed);
+                              //EliteData.StatusData.Supercruise ||
+                              //EliteData.StatusData.FsdJump ||
+                              EliteData.StatusData.HardpointsDeployed);
 
             if (isDisabled)
             {
@@ -260,7 +262,9 @@ namespace Elite.Buttons
 
             ForceStop = false;
 
-            var isDisabled = (EliteData.StatusData.Docked ||
+            var isDisabled = (EliteData.StatusData.OnFoot ||
+                              EliteData.StatusData.InSRV ||
+                              EliteData.StatusData.Docked ||
                               EliteData.StatusData.Landed ||
                               EliteData.StatusData.LandingGearDown ||
                               EliteData.StatusData.CargoScoopDeployed ||

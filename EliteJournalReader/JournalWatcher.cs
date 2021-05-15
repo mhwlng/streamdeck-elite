@@ -29,7 +29,7 @@ namespace EliteJournalReader
         /// <summary>
         ///     The default filter
         /// </summary>
-        private const string DefaultFilter = @"Journal*.*.log";
+        private static string DefaultFilter = @"Journal.*.log";
 
         /// <summary>
         ///     The latest log file
@@ -146,8 +146,13 @@ namespace EliteJournalReader
         /// <summary>
         ///     Initializes a new instance of the <see cref="T:System.Object" /> class.
         /// </summary>
-        public JournalWatcher(string path)
+        public JournalWatcher(string path, string defaultFilter = null)
         {
+            if (!string.IsNullOrEmpty(defaultFilter))
+            {
+                DefaultFilter = defaultFilter;
+            }
+
             Filter = DefaultFilter;
             NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size;
             try

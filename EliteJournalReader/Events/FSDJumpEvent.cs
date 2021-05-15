@@ -80,8 +80,7 @@ namespace EliteJournalReader.Events
             public bool Wanted { get; set; }
             public string[] Powers { get; set; }
 
-            [JsonConverter(typeof(ExtendedStringEnumConverter<PowerplayState>))]
-            public PowerplayState PowerplayState { get; set; }
+            public string PowerplayState { get; set; }
 
             public Faction[] Factions { get; set; }
 

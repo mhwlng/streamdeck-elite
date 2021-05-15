@@ -70,6 +70,19 @@ namespace Elite
             public StatusGuiFocus GuiFocus { get; set; }
 
             public int[] Pips { get; set; } = new int[3];
+
+            public bool OnFoot { get; set; }
+            public bool InTaxi { get; set; }
+            public bool InMulticrew { get; set; }
+            public bool OnFootInStation { get; set; }
+            public bool OnFootOnPlanet { get; set; }
+            public bool AimDownSight { get; set; }
+            public bool LowOxygen { get; set; }
+            public bool LowHealth { get; set; }
+            public bool Cold { get; set; }
+            public bool Hot { get; set; }
+            public bool VeryCold { get; set; }
+            public bool VeryHot { get; set; }
         }
 
         public static Status StatusData = new Status();
@@ -141,6 +154,18 @@ namespace Elite
             StatusData.Pips[1] = evt.Pips.Engine;
             StatusData.Pips[2] = evt.Pips.Weapons;
 
+            StatusData.OnFoot = (evt.Flags2 & StatusFlags2.OnFoot) != 0;
+            StatusData.InTaxi = (evt.Flags2 & StatusFlags2.InTaxi) != 0;
+            StatusData.InMulticrew = (evt.Flags2 & StatusFlags2.InMulticrew) != 0;
+            StatusData.OnFootInStation = (evt.Flags2 & StatusFlags2.OnFootInStation) != 0;
+            StatusData.OnFootOnPlanet = (evt.Flags2 & StatusFlags2.OnFootOnPlanet) != 0;
+            StatusData.AimDownSight = (evt.Flags2 & StatusFlags2.AimDownSight) != 0;
+            StatusData.LowOxygen = (evt.Flags2 & StatusFlags2.LowOxygen) != 0;
+            StatusData.LowHealth = (evt.Flags2 & StatusFlags2.LowHealth) != 0;
+            StatusData.Cold = (evt.Flags2 & StatusFlags2.Cold) != 0;
+            StatusData.Hot = (evt.Flags2 & StatusFlags2.Hot) != 0;
+            StatusData.VeryCold = (evt.Flags2 & StatusFlags2.VeryCold) != 0;
+            StatusData.VeryHot = (evt.Flags2 & StatusFlags2.VeryHot) != 0;
 
         }
 

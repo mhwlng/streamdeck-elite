@@ -26,7 +26,7 @@ namespace EliteJournalReader.Events
             public bool AllFines { get; set; }
             public string Faction { get; set; }
             public string Faction_Localised { get; set; }
-            public int ShipID { get; set; }
+            public string ShipID { get; set; }
 
         }
     }

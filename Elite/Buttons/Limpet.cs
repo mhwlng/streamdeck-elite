@@ -87,7 +87,9 @@ namespace Elite.Buttons
 
         private async Task HandleDisplay()
         {
-            var isDisabled = (EliteData.StatusData.Docked ||
+            var isDisabled = (EliteData.StatusData.OnFoot ||
+                              EliteData.StatusData.InSRV ||
+                              EliteData.StatusData.Docked ||
                               EliteData.StatusData.Landed ||
                               EliteData.StatusData.LandingGearDown ||
                               EliteData.StatusData.Supercruise ||
@@ -203,7 +205,9 @@ namespace Elite.Buttons
 
             ForceStop = false;
 
-            var isDisabled = (EliteData.StatusData.Docked ||
+            var isDisabled = (EliteData.StatusData.OnFoot ||
+                              EliteData.StatusData.InSRV ||
+                              EliteData.StatusData.Docked ||
                               EliteData.StatusData.Landed ||
                               EliteData.StatusData.LandingGearDown ||
                               EliteData.StatusData.Supercruise ||

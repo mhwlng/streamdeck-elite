@@ -30,6 +30,7 @@ namespace EliteJournalReader.Events
             public struct StoredModule
             {
                 public string Name;
+                public string Name_Localised;
                 public string StarSystem;
                 public string StationName;
                 public long MarketID;

@@ -28,7 +28,7 @@ namespace EliteJournalReader.Events
 
         public class CargoDepotEventArgs : JournalEventArgs
         {
-            public long MissionID { get; set; }
+            public string MissionID { get; set; }
             public string UpdateType { get; set; }
             public string CargoType { get; set; }
             public string CargoType_Localised { get; set; }
