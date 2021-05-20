@@ -19,6 +19,7 @@ namespace EliteJournalReader.Events
         {
             public string SuitID { get; set; }
             public string SuitName { get; set; }
+            public string SlotName { get; set; }
             public string LoadoutID { get; set; }
             public string LoadoutName { get; set; }
             public string ModuleName { get; set; }

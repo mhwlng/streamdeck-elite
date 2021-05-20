@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -166,7 +167,7 @@ namespace Elite
 
 
         // copied from https://github.com/MagicMau/EliteJournalReader
-        public static string ReadStartPreset(string startPresetPath)
+        public static string[] ReadStartPreset(string startPresetPath)
         {
             try
             {
@@ -199,13 +200,13 @@ namespace Elite
                     using (var reader = new StreamReader(fs, Encoding.UTF8))
                     {
                         fs.Seek(0, SeekOrigin.Begin);
-                        var bindsName = reader.ReadToEnd();
+                        var bindsNames = reader.ReadToEnd();
 
-                        if (string.IsNullOrEmpty(bindsName))
+                        if (string.IsNullOrEmpty(bindsNames))
                         {
                             return null;
                         }
-                        return bindsName;
+                        return bindsNames.Split('\n');
 
                     }
                 }
@@ -217,15 +218,10 @@ namespace Elite
 
             return null;
         }
-
-        public static void GetKeyBindings()
+        
+        public static void HandleKeyBinding(string  bindingsPath, string bindsName)
         {
-            if (KeyBindingWatcher1 != null)
-            {
-                KeyBindingWatcher1.StopWatching();
-                KeyBindingWatcher1.Dispose();
-                KeyBindingWatcher1 = null;
-            }
+            Logger.Instance.LogMessage(TracingLevel.INFO, "handle key binding " + bindsName);
 
             if (KeyBindingWatcher2 != null)
             {
@@ -233,30 +229,6 @@ namespace Elite
                 KeyBindingWatcher2.Dispose();
                 KeyBindingWatcher2 = null;
             }
-
-            var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Frontier Developments\Elite Dangerous\Options\Bindings");
-
-            if (!Directory.Exists(bindingsPath))
-            {
-                Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
-            }
-
-
-            var startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
-
-            //Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
-
-            var bindsName = ReadStartPreset(startPresetPath);
-
-            //var bindsName = File.ReadAllText(startPresetPath);
-
-            var keyBindingPath = Path.GetDirectoryName(startPresetPath);
-            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #1 " + keyBindingPath);
-            var keyBindingFileName = Path.GetFileName(startPresetPath);
-            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #1 " + keyBindingFileName);
-            KeyBindingWatcher1 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
-            KeyBindingWatcher1.KeyBindingUpdated += HandleKeyBindingEvents;
-            KeyBindingWatcher1.StartWatching();
 
             var fileName = Path.Combine(bindingsPath, bindsName + ".4.0.binds");
 
@@ -340,19 +312,59 @@ namespace Elite
                 //Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
 
                 var reader = new StreamReader(fileName);
-                Bindings = (UserBindings) serializer.Deserialize(reader);
+                Bindings = (UserBindings)serializer.Deserialize(reader);
                 reader.Close();
 
 
-                keyBindingPath = Path.GetDirectoryName(fileName);
+                var keyBindingPath = Path.GetDirectoryName(fileName);
                 Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #2 " + keyBindingPath);
-                keyBindingFileName = Path.GetFileName(fileName);
-                Logger.Instance.LogMessage(TracingLevel.INFO,
-                    "monitoring key binding file name #2 " + keyBindingFileName);
+                var keyBindingFileName = Path.GetFileName(fileName);
+
+
+                Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #2 " + keyBindingFileName);
                 KeyBindingWatcher2 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
                 KeyBindingWatcher2.KeyBindingUpdated += HandleKeyBindingEvents;
                 KeyBindingWatcher2.StartWatching();
             }
+        }
+
+        public static void GetKeyBindings()
+        {
+            if (KeyBindingWatcher1 != null)
+            {
+                KeyBindingWatcher1.StopWatching();
+                KeyBindingWatcher1.Dispose();
+                KeyBindingWatcher1 = null;
+            }
+            
+            var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Frontier Developments\Elite Dangerous\Options\Bindings");
+
+            if (!Directory.Exists(bindingsPath))
+            {
+                Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
+            }
+
+
+            var startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
+
+            //Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
+
+            var bindsNames = ReadStartPreset(startPresetPath);
+
+            Logger.Instance.LogMessage(TracingLevel.INFO, "key bindings " + string.Join(",",bindsNames));
+
+            var keyBindingPath = Path.GetDirectoryName(startPresetPath);
+            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #1 " + keyBindingPath);
+            var keyBindingFileName = Path.GetFileName(startPresetPath);
+            Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #1 " + keyBindingFileName);
+            KeyBindingWatcher1 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
+            KeyBindingWatcher1.KeyBindingUpdated += HandleKeyBindingEvents;
+            KeyBindingWatcher1.StartWatching();
+
+
+            HandleKeyBinding(bindingsPath, bindsNames.First());
+
+
         }
 
         static void Main(string[] args)

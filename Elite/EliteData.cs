@@ -83,6 +83,12 @@ namespace Elite
             public bool Hot { get; set; }
             public bool VeryCold { get; set; }
             public bool VeryHot { get; set; }
+            public bool GlideMode { get; set; }
+            public bool OnFootInHangar { get; set; }
+            public bool OnFootSocialSpace { get; set; }
+            public bool OnFootExterior { get; set; }
+            public bool BreathableAtmosphere { get; set; }
+
         }
 
         public static Status StatusData = new Status();
@@ -167,6 +173,11 @@ namespace Elite
             StatusData.VeryCold = (evt.Flags2 & StatusFlags2.VeryCold) != 0;
             StatusData.VeryHot = (evt.Flags2 & StatusFlags2.VeryHot) != 0;
 
+            StatusData.GlideMode = (evt.Flags2 & StatusFlags2.GlideMode) != 0;
+            StatusData.OnFootInHangar = (evt.Flags2 & StatusFlags2.OnFootInHangar) != 0;
+            StatusData.OnFootSocialSpace = (evt.Flags2 & StatusFlags2.OnFootSocialSpace) != 0;
+            StatusData.OnFootExterior = (evt.Flags2 & StatusFlags2.OnFootExterior) != 0;
+            StatusData.BreathableAtmosphere = (evt.Flags2 & StatusFlags2.BreathableAtmosphere) != 0;
         }
 
 

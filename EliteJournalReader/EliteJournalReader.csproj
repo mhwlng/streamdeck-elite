@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="CargoTransfer.cs" />
     <Compile Include="Events\BookDropshipEvent.cs" />
+    <Compile Include="Events\SuitLoadoutEvent.cs" />
     <Compile Include="Events\DropShipDeployEvent.cs" />
     <Compile Include="Events\CollectItemsEvent.cs" />
     <Compile Include="Events\DropItemsEvent.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="Events\TradeMicroResourcesEvent.cs" />
     <Compile Include="Events\TransferMicroResourcesEvent.cs" />
     <Compile Include="Events\SellMicroResourcesEvent.cs" />
-    <Compile Include="Events\BackPackMaterialsEvent.cs" />
     <Compile Include="Events\BookTaxiEvent.cs" />
     <Compile Include="Events\CancelTaxiEvent.cs" />
     <Compile Include="Events\EmbarkEvent.cs" />
