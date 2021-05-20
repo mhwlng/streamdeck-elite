@@ -122,7 +122,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -134,24 +134,24 @@ namespace Elite.Buttons
             {
                 if (EliteData.StatusData.GuiFocus == StatusGuiFocus.FSSMode)
                 {
-                    SendKeypress(Program.Bindings.ExplorationFSSQuit);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSQuit);
 
                     if (!settings.DontSwitchToCombatMode && EliteData.StatusData.HudInAnalysisMode)
                     {
                         Thread.Sleep(300);
 
-                        SendKeypress(Program.Bindings.PlayerHUDModeToggle); // back to combat mode
+                        SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle); // back to combat mode
                     }
                 }
                 else
                 {
                     if (!EliteData.StatusData.HudInAnalysisMode)
                     {
-                        SendKeypress(Program.Bindings.PlayerHUDModeToggle); // to analysis mode
+                        SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle); // to analysis mode
                         Thread.Sleep(100);
                     }
 
-                    SendKeypress(Program.Bindings.ExplorationFSSEnter);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSEnter);
                 }
 
                 if (_clickSound != null)

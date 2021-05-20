@@ -112,23 +112,23 @@ namespace Elite.Buttons
                 {
                     case "SYS":
                         if (EliteData.StatusData.InSRV)
-                            SendKeypress(Program.Bindings.IncreaseSystemsPower_Buggy, repeatCount);
+                            SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy, repeatCount);
                         else
-                            SendKeypress(Program.Bindings.IncreaseSystemsPower, repeatCount);
+                            SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower, repeatCount);
                         EliteData.StatusData.Pips[0] = 8;
                         break;
                     case "ENG":
                         if (EliteData.StatusData.InSRV)
-                            SendKeypress(Program.Bindings.IncreaseEnginesPower_Buggy, repeatCount);
+                            SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy, repeatCount);
                         else
-                            SendKeypress(Program.Bindings.IncreaseEnginesPower, repeatCount);
+                            SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower, repeatCount);
                         EliteData.StatusData.Pips[1] = 8;
                         break;
                     case "WEP":
                         if (EliteData.StatusData.InSRV)
-                            SendKeypress(Program.Bindings.IncreaseWeaponsPower_Buggy, repeatCount);
+                            SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy, repeatCount);
                         else
-                            SendKeypress(Program.Bindings.IncreaseWeaponsPower, repeatCount);
+                            SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower, repeatCount);
                         EliteData.StatusData.Pips[2] = 8;
                         break;
                 }
@@ -283,7 +283,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -297,30 +297,30 @@ namespace Elite.Buttons
             {
                 case "SYS":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.IncreaseSystemsPower_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy);
                     else
-                        SendKeypress(Program.Bindings.IncreaseSystemsPower);
+                        SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower);
                     AdjustPips(0);
                     break;
                 case "ENG":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.IncreaseEnginesPower_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy);
                     else
-                        SendKeypress(Program.Bindings.IncreaseEnginesPower);
+                        SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower);
                     AdjustPips(1);
                     break;
                 case "WEP":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.IncreaseWeaponsPower_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy);
                     else
-                        SendKeypress(Program.Bindings.IncreaseWeaponsPower);
+                        SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower);
                     AdjustPips(2);
                     break;
                 case "RST":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.ResetPowerDistribution_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].ResetPowerDistribution_Buggy);
                     else
-                        SendKeypress(Program.Bindings.ResetPowerDistribution);
+                        SendKeypress(Program.Binding[BindingType.Ship].ResetPowerDistribution);
 
                     EliteData.StatusData.Pips[0] = 4;
                     EliteData.StatusData.Pips[1] = 4;

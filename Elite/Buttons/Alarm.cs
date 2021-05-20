@@ -127,7 +127,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -138,19 +138,19 @@ namespace Elite.Buttons
             switch (settings.Function)
             {
                 case "SelectHighestThreat":
-                    SendKeypress(Program.Bindings.SelectHighestThreat);
+                    SendKeypress(Program.Binding[BindingType.Ship].SelectHighestThreat);
                     EliteData.UnderAttack = false;
                     break;
                 case "DeployChaff":
-                    SendKeypress(Program.Bindings.FireChaffLauncher);
+                    SendKeypress(Program.Binding[BindingType.Ship].FireChaffLauncher);
                     EliteData.UnderAttack = false;
                     break;
 
                 case "DeployHeatsink":
-                    SendKeypress(Program.Bindings.DeployHeatSink);
+                    SendKeypress(Program.Binding[BindingType.Ship].DeployHeatSink);
                     break;
                 case "DeployShieldCell":
-                    SendKeypress(Program.Bindings.UseShieldCell);
+                    SendKeypress(Program.Binding[BindingType.Ship].UseShieldCell);
                     break;
             }
 

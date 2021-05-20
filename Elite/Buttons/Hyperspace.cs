@@ -254,7 +254,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -289,13 +289,13 @@ namespace Elite.Buttons
                 {
                     case "HYPERSUPERCOMBINATION"
                         : // context dependent, i.e. jump if another system is targeted, supercruise if not.
-                        SendKeypress(Program.Bindings.HyperSuperCombination);
+                        SendKeypress(Program.Binding[BindingType.Ship].HyperSuperCombination);
                         break;
                     case "SUPERCRUISE": // supercruise even if another system targeted
-                        SendKeypress(Program.Bindings.Supercruise);
+                        SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
                         break;
                     case "HYPERSPACE": // jump
-                        SendKeypress(Program.Bindings.Hyperspace);
+                        SendKeypress(Program.Binding[BindingType.Ship].Hyperspace);
                         break;
                 }
 

@@ -119,7 +119,7 @@ namespace Elite.Buttons
             // usa
             // http://kbdlayout.info/kbdusx/shiftstates+scancodes/base
 
-            if (Program.Bindings.KeyboardLayout != "en-US")
+            if (Program.Binding[BindingType.OnFoot].KeyboardLayout != "en-US")
             {
                 Logger.Instance.LogMessage(TracingLevel.INFO, scanCode.ToString() + " " + ((ushort)scanCode).ToString("X"));
                 

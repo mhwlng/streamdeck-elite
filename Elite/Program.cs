@@ -1,5 +1,6 @@
 ﻿using BarRaider.SdTools;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -81,13 +82,16 @@ namespace Elite
 
     class Program
     {
-        public static KeyBindingWatcher KeyBindingWatcher1;
-        public static KeyBindingWatcher KeyBindingWatcher2;
+        public static FifoExecution keywatcherjob = new FifoExecution(); 
+
+        public static KeyBindingWatcher KeyBindingWatcherStartPreset;
         public static StatusWatcher StatusWatcher;
         public static CargoWatcher CargoWatcher;
         public static JournalWatcher JournalWatcher;
 
-        public static UserBindings Bindings;
+        public static Dictionary<BindingType, UserBindings> Binding = new Dictionary<BindingType, UserBindings>();
+
+        public static KeyBindingWatcher[] KeyBindingWatcher = new KeyBindingWatcher[4];
 
         private class UnsafeNativeMethods
         {
@@ -119,7 +123,7 @@ namespace Elite
         {
             Logger.Instance.LogMessage(TracingLevel.INFO, $"Reloading Key Bindings");
 
-            GetKeyBindings();
+            keywatcherjob.QueueUserWorkItem(GetKeyBindings, null);
         }
 
         private static bool IsFileLocked(FileInfo file)
@@ -219,15 +223,15 @@ namespace Elite
             return null;
         }
         
-        public static void HandleKeyBinding(string  bindingsPath, string bindsName)
+        public static void HandleKeyBinding(BindingType bindingType, string  bindingsPath, string bindsName)
         {
             Logger.Instance.LogMessage(TracingLevel.INFO, "handle key binding " + bindsName);
 
-            if (KeyBindingWatcher2 != null)
+            if (KeyBindingWatcher[(int)bindingType] != null)
             {
-                KeyBindingWatcher2.StopWatching();
-                KeyBindingWatcher2.Dispose();
-                KeyBindingWatcher2 = null;
+                KeyBindingWatcher[(int)bindingType].StopWatching();
+                KeyBindingWatcher[(int)bindingType].Dispose();
+                KeyBindingWatcher[(int)bindingType] = null;
             }
 
             var fileName = Path.Combine(bindingsPath, bindsName + ".4.0.binds");
@@ -312,7 +316,7 @@ namespace Elite
                 //Logger.Instance.LogMessage(TracingLevel.INFO, "using " + fileName);
 
                 var reader = new StreamReader(fileName);
-                Bindings = (UserBindings)serializer.Deserialize(reader);
+                Binding[bindingType] = (UserBindings)serializer.Deserialize(reader);
                 reader.Close();
 
 
@@ -322,19 +326,25 @@ namespace Elite
 
 
                 Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #2 " + keyBindingFileName);
-                KeyBindingWatcher2 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
-                KeyBindingWatcher2.KeyBindingUpdated += HandleKeyBindingEvents;
-                KeyBindingWatcher2.StartWatching();
+
+                KeyBindingWatcher[(int)bindingType] = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
+                KeyBindingWatcher[(int)bindingType].KeyBindingUpdated += HandleKeyBindingEvents;
+                KeyBindingWatcher[(int)bindingType].StartWatching();
+            }
+            else
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
             }
         }
 
-        public static void GetKeyBindings()
+
+        private static void GetKeyBindings(Object threadContext)
         {
-            if (KeyBindingWatcher1 != null)
+            if (KeyBindingWatcherStartPreset != null)
             {
-                KeyBindingWatcher1.StopWatching();
-                KeyBindingWatcher1.Dispose();
-                KeyBindingWatcher1 = null;
+                KeyBindingWatcherStartPreset.StopWatching();
+                KeyBindingWatcherStartPreset.Dispose();
+                KeyBindingWatcherStartPreset = null;
             }
             
             var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Frontier Developments\Elite Dangerous\Options\Bindings");
@@ -356,14 +366,30 @@ namespace Elite
             var keyBindingPath = Path.GetDirectoryName(startPresetPath);
             Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding path #1 " + keyBindingPath);
             var keyBindingFileName = Path.GetFileName(startPresetPath);
+
             Logger.Instance.LogMessage(TracingLevel.INFO, "monitoring key binding file name #1 " + keyBindingFileName);
-            KeyBindingWatcher1 = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
-            KeyBindingWatcher1.KeyBindingUpdated += HandleKeyBindingEvents;
-            KeyBindingWatcher1.StartWatching();
+            KeyBindingWatcherStartPreset = new KeyBindingWatcher(keyBindingPath, keyBindingFileName);
+            KeyBindingWatcherStartPreset.KeyBindingUpdated += HandleKeyBindingEvents;
+            KeyBindingWatcherStartPreset.StartWatching();
 
+            if (bindsNames.Length == 4) // odyssey
+            {
+                Logger.Instance.LogMessage(TracingLevel.INFO, "odyssey key bindings");
 
-            HandleKeyBinding(bindingsPath, bindsNames.First());
+                HandleKeyBinding(BindingType.General, bindingsPath, bindsNames[0]);
+                HandleKeyBinding(BindingType.Ship, bindingsPath, bindsNames[1]);
+                HandleKeyBinding(BindingType.Srv, bindingsPath, bindsNames[2]);
+                HandleKeyBinding(BindingType.OnFoot, bindingsPath, bindsNames[3]);
+            }
+            else // horizon
+            {
+                Logger.Instance.LogMessage(TracingLevel.INFO, "horizon key bindings");
 
+                HandleKeyBinding(BindingType.General, bindingsPath, bindsNames.First());
+                HandleKeyBinding(BindingType.Ship, bindingsPath, bindsNames.First());
+                HandleKeyBinding(BindingType.Srv, bindingsPath, bindsNames.First());
+                HandleKeyBinding(BindingType.OnFoot, bindingsPath, bindsNames.First());
+            }
 
         }
 
@@ -376,7 +402,7 @@ namespace Elite
 
             try
             {
-                GetKeyBindings();
+                GetKeyBindings(null);
 
 
                 var journalPath = StandardDirectory.FullName;

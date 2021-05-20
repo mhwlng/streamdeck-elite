@@ -50,7 +50,7 @@ namespace Elite
                 {
                     var matchText = match.ToString().ToUpperInvariant().Replace("{", "").Replace("}", "");
 
-                    if (Program.Bindings.KeyboardLayout == "en-US")
+                    if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "en-US")
                     {
                         // http://kbdlayout.info/kbdusx/shiftstates+scancodes/base
 
@@ -59,7 +59,7 @@ namespace Elite
                         // THIRD ROW  DIKSEMICOLON      DIKAPOSTROPHE
                         // FOURTH ROW DIKCOMMA          DIKPERIOD       DIKSLASH
                     }
-                    else if (Program.Bindings.KeyboardLayout == "es-ES")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "es-ES")
                     {
                         // http://kbdlayout.info/kbdsp/shiftstates+scancodes/base
 
@@ -70,7 +70,7 @@ namespace Elite
 
                         // all the keys are the same as en-US in binding file , for some reason ????
                     }
-                    else if (Program.Bindings.KeyboardLayout == "en-GB")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "en-GB")
                     {
                         // http://kbdlayout.info/kbduk/shiftstates+scancodes/base
 
@@ -82,7 +82,7 @@ namespace Elite
                                 break;
                         }
                     }
-                    else if (Program.Bindings.KeyboardLayout == "fr-FR")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "fr-FR")
                     {
                         // http://kbdlayout.info/kbdfr/shiftstates+scancodes/base
 
@@ -170,7 +170,7 @@ namespace Elite
                         }
 
                     }
-                    else if (Program.Bindings.KeyboardLayout == "de-DE")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "de-DE")
                     {
                         // http://kbdlayout.info/kbdgr/shiftstates+scancodes/base
 
@@ -219,7 +219,7 @@ namespace Elite
                         }
 
                     }
-                    else if (Program.Bindings.KeyboardLayout == "de-CH")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "de-CH")
                     {
                         // http://kbdlayout.info/kbdsg/shiftstates+scancodes/base
 
@@ -269,7 +269,7 @@ namespace Elite
                         }
 
                     }
-                    else if (Program.Bindings.KeyboardLayout == "da-DK")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "da-DK")
                     {
                         // http://kbdlayout.info/kbdda/shiftstates+scancodes/base
 
@@ -312,7 +312,7 @@ namespace Elite
                         }
 
                     }
-                    else if (Program.Bindings.KeyboardLayout == "it-IT")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "it-IT")
                     {
                         // http://kbdlayout.info/kbdit/shiftstates+scancodes/base
 
@@ -356,7 +356,7 @@ namespace Elite
 
                     }
 
-                    else if (Program.Bindings.KeyboardLayout == "pt-PT")
+                    else if (Program.Binding[BindingType.OnFoot].KeyboardLayout == "pt-PT")
                     {
                         // http://kbdlayout.info/kbdpo/shiftstates+scancodes/base
 

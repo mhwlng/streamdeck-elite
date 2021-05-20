@@ -197,7 +197,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -236,7 +236,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0; f < -cycle; f++)
                     {
-                        SendKeypress(Program.Bindings.CycleFireGroupPrevious);
+                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                         Thread.Sleep(30);
                     }
                 }
@@ -244,7 +244,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0 ; f < cycle; f++)
                     {
-                        SendKeypress(Program.Bindings.CycleFireGroupNext);
+                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                         Thread.Sleep(30);
                     }
                 }
@@ -252,8 +252,8 @@ namespace Elite.Buttons
                 Thread.Sleep(100);
 
                 SendKeypress(settings.Fire == "PRIMARY"
-                    ? Program.Bindings.PrimaryFire
-                    : Program.Bindings.SecondaryFire);
+                    ? Program.Binding[BindingType.Ship].PrimaryFire
+                    : Program.Binding[BindingType.Ship].SecondaryFire);
 
                 Thread.Sleep(100);
 
@@ -262,7 +262,7 @@ namespace Elite.Buttons
                     for (var f = 0; f < -cycle; f++)
                     {
                         Thread.Sleep(30);
-                        SendKeypress(Program.Bindings.CycleFireGroupNext);
+                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                     }
 
                 }
@@ -271,7 +271,7 @@ namespace Elite.Buttons
                     for (var f = 0; f < cycle; f++)
                     {
                         Thread.Sleep(30);
-                        SendKeypress(Program.Bindings.CycleFireGroupPrevious);
+                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                     }
                 }
 

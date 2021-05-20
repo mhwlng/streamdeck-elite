@@ -194,7 +194,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -221,80 +221,80 @@ namespace Elite.Buttons
             {
                 case "GalaxyMap":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.GalaxyMapOpen_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].GalaxyMapOpen_Buggy);
                     else
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Bindings.GalaxyMapOpen_Humanoid);
+                        SendKeypress(Program.Binding[BindingType.OnFoot].GalaxyMapOpen_Humanoid);
                     else
-                        SendKeypress(Program.Bindings.GalaxyMapOpen);
+                        SendKeypress(Program.Binding[BindingType.Ship].GalaxyMapOpen);
                     break;
                 case "SystemMap":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.SystemMapOpen_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].SystemMapOpen_Buggy);
                     else
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Bindings.SystemMapOpen_Humanoid);
+                        SendKeypress(Program.Binding[BindingType.OnFoot].SystemMapOpen_Humanoid);
                     else
-                        SendKeypress(Program.Bindings.SystemMapOpen);
+                        SendKeypress(Program.Binding[BindingType.Ship].SystemMapOpen);
                     break;
 
                 case "ToggleCargoScoop":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.ToggleCargoScoop_Buggy);
+                        SendKeypress(Program.Binding[BindingType.Srv].ToggleCargoScoop_Buggy);
                     else
-                        SendKeypress(Program.Bindings.ToggleCargoScoop);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleCargoScoop);
                     break;
                 case "LandingGearToggle":
-                    SendKeypress(Program.Bindings.LandingGearToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].LandingGearToggle);
                     break;
 
                 case "ToggleFlightAssist":
-                    SendKeypress(Program.Bindings.ToggleFlightAssist);
+                    SendKeypress(Program.Binding[BindingType.Ship].ToggleFlightAssist);
                     break;
 
                 case "ShipSpotLightToggle":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Bindings.HeadlightsBuggyButton);
+                        SendKeypress(Program.Binding[BindingType.Srv].HeadlightsBuggyButton);
                     else
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Bindings.HumanoidToggleFlashlightButton );
+                        SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleFlashlightButton );
                     else
-                        SendKeypress(Program.Bindings.ShipSpotLightToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].ShipSpotLightToggle);
                     break;
 
                 case "NightVisionToggle":
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Bindings.HumanoidToggleNightVisionButton);
+                        SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleNightVisionButton);
                     else
-                        SendKeypress(Program.Bindings.NightVisionToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].NightVisionToggle);
                     break;
 
                 case "PlayerHUDModeToggle":
-                    SendKeypress(Program.Bindings.PlayerHUDModeToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle);
                     break;
 
                 case "DeployHardpointToggle":
-                    SendKeypress(Program.Bindings.DeployHardpointToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].DeployHardpointToggle);
                     break;
 
                 case "Supercruise":
-                    SendKeypress(Program.Bindings.Supercruise);
+                    SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
                     break;
 
                 case "ToggleButtonUpInput":
-                    SendKeypress(Program.Bindings.ToggleButtonUpInput);
+                    SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
                     break;
 
                 case "ToggleBuggyTurretButton":
-                    SendKeypress(Program.Bindings.ToggleBuggyTurretButton);
+                    SendKeypress(Program.Binding[BindingType.Srv].ToggleBuggyTurretButton);
                     break;
 
                 case "ToggleDriveAssist":
-                    SendKeypress(Program.Bindings.ToggleDriveAssist);
+                    SendKeypress(Program.Binding[BindingType.Srv].ToggleDriveAssist);
                     break;
 
                 case "AutoBreakBuggyButton":
-                    SendKeypress(Program.Bindings.AutoBreakBuggyButton);
+                    SendKeypress(Program.Binding[BindingType.Srv].AutoBreakBuggyButton);
                     break;
 
             }

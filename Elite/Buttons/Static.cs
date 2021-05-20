@@ -64,7 +64,7 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Bindings == null)
+            if (InputRunning || Program.Binding == null)
             {
                 ForceStop = true;
                 return;
@@ -75,819 +75,452 @@ namespace Elite.Buttons
 
             switch (settings.Function)
             {
-                case "PhotoCameraToggle":
-                    SendKeypress(Program.Bindings.PhotoCameraToggle);
-                    break;
-                case "PhotoCameraToggle_Buggy":
-                    SendKeypress(Program.Bindings.PhotoCameraToggle_Buggy);
-                    break;
-                case "PhotoCameraToggle_Humanoid":
-                    SendKeypress(Program.Bindings.PhotoCameraToggle_Humanoid);
-                    break;
-                case "StorePitchCameraDown":
-                    SendKeypress(Program.Bindings.StorePitchCameraDown);
-                    break;
-                case "StorePitchCameraUp":
-                    SendKeypress(Program.Bindings.StorePitchCameraUp);
-                    break;
-                case "StoreEnableRotation":
-                    SendKeypress(Program.Bindings.StoreEnableRotation);
-                    break;
-                case "StoreYawCameraLeft":
-                    SendKeypress(Program.Bindings.StoreYawCameraLeft);
-                    break;
-                case "StoreYawCameraRight":
-                    SendKeypress(Program.Bindings.StoreYawCameraRight);
-                    break;
-                case "StoreCamZoomIn":
-                    SendKeypress(Program.Bindings.StoreCamZoomIn);
-                    break;
-                case "StoreCamZoomOut":
-                    SendKeypress(Program.Bindings.StoreCamZoomOut);
-                    break;
-                case "StoreToggle":
-                    SendKeypress(Program.Bindings.StoreToggle);
-                    break;
-                case "ToggleAdvanceMode":
-                    SendKeypress(Program.Bindings.ToggleAdvanceMode);
-                    break;
-                case "VanityCameraEight":
-                    SendKeypress(Program.Bindings.VanityCameraEight);
-                    break;
-                case "VanityCameraTwo":
-                    SendKeypress(Program.Bindings.VanityCameraTwo);
-                    break;
-                case "VanityCameraOne":
-                    SendKeypress(Program.Bindings.VanityCameraOne);
-                    break;
-                case "VanityCameraThree":
-                    SendKeypress(Program.Bindings.VanityCameraThree);
-                    break;
-                case "VanityCameraFour":
-                    SendKeypress(Program.Bindings.VanityCameraFour);
-                    break;
-                case "VanityCameraFive":
-                    SendKeypress(Program.Bindings.VanityCameraFive);
-                    break;
-                case "VanityCameraSix":
-                    SendKeypress(Program.Bindings.VanityCameraSix);
-                    break;
-                case "VanityCameraSeven":
-                    SendKeypress(Program.Bindings.VanityCameraSeven);
-                    break;
-                case "VanityCameraNine":
-                    SendKeypress(Program.Bindings.VanityCameraNine);
-                    break;
-                case "MoveFreeCamBackwards":
-                    SendKeypress(Program.Bindings.MoveFreeCamBackwards);
-                    break;
-                case "MoveFreeCamDown":
-                    SendKeypress(Program.Bindings.MoveFreeCamDown);
-                    break;
-                case "MoveFreeCamForward":
-                    SendKeypress(Program.Bindings.MoveFreeCamForward);
-                    break;
-                case "MoveFreeCamLeft":
-                    SendKeypress(Program.Bindings.MoveFreeCamLeft);
-                    break;
-                case "PitchCameraDown":
-                    SendKeypress(Program.Bindings.PitchCameraDown);
-                    break;
-                case "PitchCameraUp":
-                    SendKeypress(Program.Bindings.PitchCameraUp);
-                    break;
-                case "ToggleReverseThrottleInputFreeCam":
-                    SendKeypress(Program.Bindings.ToggleReverseThrottleInputFreeCam);
-                    break;
-                case "MoveFreeCamRight":
-                    SendKeypress(Program.Bindings.MoveFreeCamRight);
-                    break;
-                case "RollCameraLeft":
-                    SendKeypress(Program.Bindings.RollCameraLeft);
-                    break;
-                case "RollCameraRight":
-                    SendKeypress(Program.Bindings.RollCameraRight);
-                    break;
-                case "ToggleRotationLock":
-                    SendKeypress(Program.Bindings.ToggleRotationLock);
-                    break;
-                case "MoveFreeCamUp":
-                    SendKeypress(Program.Bindings.MoveFreeCamUp);
-                    break;
-                case "YawCameraLeft":
-                    SendKeypress(Program.Bindings.YawCameraLeft);
-                    break;
-                case "YawCameraRight":
-                    SendKeypress(Program.Bindings.YawCameraRight);
-                    break;
-                case "FStopDec":
-                    SendKeypress(Program.Bindings.FStopDec);
-                    break;
-                case "FreeCamSpeedDec":
-                    SendKeypress(Program.Bindings.FreeCamSpeedDec);
-                    break;
-                case "QuitCamera":
-                    SendKeypress(Program.Bindings.QuitCamera);
-                    break;
-                case "FocusDistanceInc":
-                    SendKeypress(Program.Bindings.FocusDistanceInc);
-                    break;
-                case "FocusDistanceDec":
-                    SendKeypress(Program.Bindings.FocusDistanceDec);
-                    break;
-                case "ToggleFreeCam":
-                    SendKeypress(Program.Bindings.ToggleFreeCam);
-                    break;
-                case "FStopInc":
-                    SendKeypress(Program.Bindings.FStopInc);
-                    break;
-                case "FreeCamSpeedInc":
-                    SendKeypress(Program.Bindings.FreeCamSpeedInc);
-                    break;
-                case "FixCameraRelativeToggle":
-                    SendKeypress(Program.Bindings.FixCameraRelativeToggle);
-                    break;
-                case "FixCameraWorldToggle":
-                    SendKeypress(Program.Bindings.FixCameraWorldToggle);
-                    break;
-                case "VanityCameraScrollRight":
-                    SendKeypress(Program.Bindings.VanityCameraScrollRight);
-                    break;
-                case "VanityCameraScrollLeft":
-                    SendKeypress(Program.Bindings.VanityCameraScrollLeft);
-                    break;
-                case "FreeCamToggleHUD":
-                    SendKeypress(Program.Bindings.FreeCamToggleHUD);
-                    break;
-                case "FreeCamZoomIn":
-                    SendKeypress(Program.Bindings.FreeCamZoomIn);
-                    break;
-                case "FreeCamZoomOut":
-                    SendKeypress(Program.Bindings.FreeCamZoomOut);
-                    break;
                 case "OrderFocusTarget":
-                    SendKeypress(Program.Bindings.OrderFocusTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderFocusTarget);
                     break;
                 case "OrderAggressiveBehaviour":
-                    SendKeypress(Program.Bindings.OrderAggressiveBehaviour);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderAggressiveBehaviour);
                     break;
                 case "OrderDefensiveBehaviour":
-                    SendKeypress(Program.Bindings.OrderDefensiveBehaviour);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderDefensiveBehaviour);
                     break;
                 case "OpenOrders":
-                    SendKeypress(Program.Bindings.OpenOrders);
+                    SendKeypress(Program.Binding[BindingType.Ship].OpenOrders);
                     break;
                 case "OrderRequestDock":
-                    SendKeypress(Program.Bindings.OrderRequestDock);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderRequestDock);
                     break;
                 case "OrderFollow":
-                    SendKeypress(Program.Bindings.OrderFollow);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderFollow);
                     break;
                 case "OrderHoldFire":
-                    SendKeypress(Program.Bindings.OrderHoldFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderHoldFire);
                     break;
                 case "OrderHoldPosition":
-                    SendKeypress(Program.Bindings.OrderHoldPosition);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrderHoldPosition);
                     break;
-                case "CamTranslateBackward":
-                    SendKeypress(Program.Bindings.CamTranslateBackward);
-                    break;
-                case "CamTranslateDown":
-                    SendKeypress(Program.Bindings.CamTranslateDown);
-                    break;
-                case "CamTranslateForward":
-                    SendKeypress(Program.Bindings.CamTranslateForward);
-                    break;
-                case "CamTranslateLeft":
-                    SendKeypress(Program.Bindings.CamTranslateLeft);
-                    break;
-                case "CamPitchDown":
-                    SendKeypress(Program.Bindings.CamPitchDown);
-                    break;
-                case "CamPitchUp":
-                    SendKeypress(Program.Bindings.CamPitchUp);
-                    break;
-                case "CamTranslateRight":
-                    SendKeypress(Program.Bindings.CamTranslateRight);
-                    break;
-                case "CamTranslateUp":
-                    SendKeypress(Program.Bindings.CamTranslateUp);
-                    break;
-                case "CamYawLeft":
-                    SendKeypress(Program.Bindings.CamYawLeft);
-                    break;
-                case "CamYawRight":
-                    SendKeypress(Program.Bindings.CamYawRight);
-                    break;
-                case "CamTranslateZHold":
-                    SendKeypress(Program.Bindings.CamTranslateZHold);
-                    break;
-                case "CamZoomIn":
-                    SendKeypress(Program.Bindings.CamZoomIn);
-                    break;
-                case "CamZoomOut":
-                    SendKeypress(Program.Bindings.CamZoomOut);
-                    break;
+          
                 case "HeadLookPitchDown":
-                    SendKeypress(Program.Bindings.HeadLookPitchDown);
+                    SendKeypress(Program.Binding[BindingType.Ship].HeadLookPitchDown);
                     break;
                 case "HeadLookYawLeft":
-                    SendKeypress(Program.Bindings.HeadLookYawLeft);
+                    SendKeypress(Program.Binding[BindingType.Ship].HeadLookYawLeft);
                     break;
                 case "HeadLookYawRight":
-                    SendKeypress(Program.Bindings.HeadLookYawRight);
+                    SendKeypress(Program.Binding[BindingType.Ship].HeadLookYawRight);
                     break;
                 case "HeadLookPitchUp":
-                    SendKeypress(Program.Bindings.HeadLookPitchUp);
+                    SendKeypress(Program.Binding[BindingType.Ship].HeadLookPitchUp);
                     break;
                 case "HeadLookReset":
-                    SendKeypress(Program.Bindings.HeadLookReset);
-                    break;
-                case "CommanderCreator_Redo":
-                    SendKeypress(Program.Bindings.CommanderCreator_Redo);
-                    break;
-                case "CommanderCreator_Rotation":
-                    SendKeypress(Program.Bindings.CommanderCreator_Rotation);
-                    break;
-                case "CommanderCreator_Rotation_MouseToggle":
-                    SendKeypress(Program.Bindings.CommanderCreator_Rotation_MouseToggle);
-                    break;
-                case "CommanderCreator_Undo":
-                    SendKeypress(Program.Bindings.CommanderCreator_Undo);
-                    break;
-                case "GalnetAudio_ClearQueue":
-                    SendKeypress(Program.Bindings.GalnetAudio_ClearQueue);
+                    SendKeypress(Program.Binding[BindingType.Ship].HeadLookReset);
                     break;
                 case "OpenCodexGoToDiscovery":
-                    SendKeypress(Program.Bindings.OpenCodexGoToDiscovery);
+                    SendKeypress(Program.Binding[BindingType.Ship].OpenCodexGoToDiscovery);
                     break;
                 case "FriendsMenu":
-                    SendKeypress(Program.Bindings.FriendsMenu);
+                    SendKeypress(Program.Binding[BindingType.Ship].FriendsMenu);
                     break;
                 case "Pause":
-                    SendKeypress(Program.Bindings.Pause);
+                    SendKeypress(Program.Binding[BindingType.Ship].Pause);
                     break;
                 case "MicrophoneMute":
-                    SendKeypress(Program.Bindings.MicrophoneMute);
+                    SendKeypress(Program.Binding[BindingType.Ship].MicrophoneMute);
                     break;
-                case "GalnetAudio_SkipForward":
-                    SendKeypress(Program.Bindings.GalnetAudio_SkipForward);
-                    break;
-                case "GalnetAudio_Play_Pause":
-                    SendKeypress(Program.Bindings.GalnetAudio_Play_Pause);
-                    break;
-                case "GalnetAudio_SkipBackward":
-                    SendKeypress(Program.Bindings.GalnetAudio_SkipBackward);
-                    break;
+
                 case "HMDReset":
-                    SendKeypress(Program.Bindings.HMDReset);
+                    SendKeypress(Program.Binding[BindingType.Ship].HMDReset);
                     break;
                 case "OculusReset":
-                    SendKeypress(Program.Bindings.OculusReset);
+                    SendKeypress(Program.Binding[BindingType.Ship].OculusReset);
                     break;
                 case "RadarDecreaseRange":
-                    SendKeypress(Program.Bindings.RadarDecreaseRange);
+                    SendKeypress(Program.Binding[BindingType.Ship].RadarDecreaseRange);
                     break;
                 case "RadarIncreaseRange":
-                    SendKeypress(Program.Bindings.RadarIncreaseRange);
+                    SendKeypress(Program.Binding[BindingType.Ship].RadarIncreaseRange);
                     break;
                 case "MultiCrewThirdPersonFovInButton":
-                    SendKeypress(Program.Bindings.MultiCrewThirdPersonFovInButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewThirdPersonFovInButton);
                     break;
                 case "MultiCrewThirdPersonFovOutButton":
-                    SendKeypress(Program.Bindings.MultiCrewThirdPersonFovOutButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewThirdPersonFovOutButton);
                     break;
                 case "MultiCrewPrimaryFire":
-                    SendKeypress(Program.Bindings.MultiCrewPrimaryFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewPrimaryFire);
                     break;
                 case "MultiCrewSecondaryFire":
-                    SendKeypress(Program.Bindings.MultiCrewSecondaryFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewSecondaryFire);
                     break;
                 case "MultiCrewToggleMode":
-                    SendKeypress(Program.Bindings.MultiCrewToggleMode);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewToggleMode);
                     break;
                 case "MultiCrewThirdPersonPitchDownButton":
-                    SendKeypress(Program.Bindings.MultiCrewThirdPersonPitchDownButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewThirdPersonPitchDownButton);
                     break;
                 case "MultiCrewThirdPersonPitchUpButton":
-                    SendKeypress(Program.Bindings.MultiCrewThirdPersonPitchUpButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewThirdPersonPitchUpButton);
                     break;
                 case "MultiCrewPrimaryUtilityFire":
-                    SendKeypress(Program.Bindings.MultiCrewPrimaryUtilityFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewPrimaryUtilityFire);
                     break;
                 case "MultiCrewSecondaryUtilityFire":
-                    SendKeypress(Program.Bindings.MultiCrewSecondaryUtilityFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewSecondaryUtilityFire);
                     break;
                 case "MultiCrewCockpitUICycleBackward":
-                    SendKeypress(Program.Bindings.MultiCrewCockpitUICycleBackward);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewCockpitUICycleBackward);
                     break;
                 case "MultiCrewCockpitUICycleForward":
-                    SendKeypress(Program.Bindings.MultiCrewCockpitUICycleForward);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewCockpitUICycleForward);
                     break;
                 case "MultiCrewThirdPersonYawLeftButton":
-                    SendKeypress(Program.Bindings.MultiCrewThirdPersonYawLeftButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewThirdPersonYawLeftButton);
                     break;
                 case "MultiCrewThirdPersonYawRightButton":
-                    SendKeypress(Program.Bindings.MultiCrewThirdPersonYawRightButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].MultiCrewThirdPersonYawRightButton);
                     break;
                 case "SAAThirdPersonFovInButton":
-                    SendKeypress(Program.Bindings.SAAThirdPersonFovInButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].SAAThirdPersonFovInButton);
                     break;
                 case "SAAThirdPersonFovOutButton":
-                    SendKeypress(Program.Bindings.SAAThirdPersonFovOutButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].SAAThirdPersonFovOutButton);
                     break;
                 case "ExplorationFSSEnter":
-                    SendKeypress(Program.Bindings.ExplorationFSSEnter);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSEnter);
                     break;
                 case "ExplorationSAAExitThirdPerson":
-                    SendKeypress(Program.Bindings.ExplorationSAAExitThirdPerson);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationSAAExitThirdPerson);
                     break;
                 case "ExplorationFSSQuit":
-                    SendKeypress(Program.Bindings.ExplorationFSSQuit);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSQuit);
                     break;
                 case "ExplorationFSSShowHelp":
-                    SendKeypress(Program.Bindings.ExplorationFSSShowHelp);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSShowHelp);
                     break;
                 case "ExplorationSAANextGenus":
-                    SendKeypress(Program.Bindings.ExplorationSAANextGenus);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationSAANextGenus);
                     break;
                 case "ExplorationSAAPreviousGenus":
-                    SendKeypress(Program.Bindings.ExplorationSAAPreviousGenus);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationSAAPreviousGenus);
                     break;
                 case "ExplorationFSSDiscoveryScan":
-                    SendKeypress(Program.Bindings.ExplorationFSSDiscoveryScan);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSDiscoveryScan);
                     break;
                 case "ExplorationFSSCameraPitchDecreaseButton":
-                    SendKeypress(Program.Bindings.ExplorationFSSCameraPitchDecreaseButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSCameraPitchDecreaseButton);
                     break;
                 case "ExplorationFSSCameraPitchIncreaseButton":
-                    SendKeypress(Program.Bindings.ExplorationFSSCameraPitchIncreaseButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSCameraPitchIncreaseButton);
                     break;
                 case "ExplorationFSSRadioTuningX_Decrease":
-                    SendKeypress(Program.Bindings.ExplorationFSSRadioTuningX_Decrease);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSRadioTuningX_Decrease);
                     break;
                 case "ExplorationFSSRadioTuningX_Increase":
-                    SendKeypress(Program.Bindings.ExplorationFSSRadioTuningX_Increase);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSRadioTuningX_Increase);
                     break;
                 case "ExplorationFSSCameraYawDecreaseButton":
-                    SendKeypress(Program.Bindings.ExplorationFSSCameraYawDecreaseButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSCameraYawDecreaseButton);
                     break;
                 case "ExplorationFSSCameraYawIncreaseButton":
-                    SendKeypress(Program.Bindings.ExplorationFSSCameraYawIncreaseButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSCameraYawIncreaseButton);
                     break;
                 case "SAAThirdPersonPitchDownButton":
-                    SendKeypress(Program.Bindings.SAAThirdPersonPitchDownButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].SAAThirdPersonPitchDownButton);
                     break;
                 case "SAAThirdPersonPitchUpButton":
-                    SendKeypress(Program.Bindings.SAAThirdPersonPitchUpButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].SAAThirdPersonPitchUpButton);
                     break;
                 case "ExplorationFSSMiniZoomIn":
-                    SendKeypress(Program.Bindings.ExplorationFSSMiniZoomIn);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSMiniZoomIn);
                     break;
                 case "ExplorationFSSMiniZoomOut":
-                    SendKeypress(Program.Bindings.ExplorationFSSMiniZoomOut);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSMiniZoomOut);
                     break;
                 case "ExplorationFSSTarget":
-                    SendKeypress(Program.Bindings.ExplorationFSSTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSTarget);
                     break;
                 case "ExplorationSAAChangeScannedAreaViewToggle":
-                    SendKeypress(Program.Bindings.ExplorationSAAChangeScannedAreaViewToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationSAAChangeScannedAreaViewToggle);
                     break;
                 case "SAAThirdPersonYawLeftButton":
-                    SendKeypress(Program.Bindings.SAAThirdPersonYawLeftButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].SAAThirdPersonYawLeftButton);
                     break;
                 case "SAAThirdPersonYawRightButton":
-                    SendKeypress(Program.Bindings.SAAThirdPersonYawRightButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].SAAThirdPersonYawRightButton);
                     break;
                 case "ExplorationFSSZoomIn":
-                    SendKeypress(Program.Bindings.ExplorationFSSZoomIn);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSZoomIn);
                     break;
                 case "ExplorationFSSZoomOut":
-                    SendKeypress(Program.Bindings.ExplorationFSSZoomOut);
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSZoomOut);
                     break;
                 case "FocusCommsPanel":
-                    SendKeypress(Program.Bindings.FocusCommsPanel);
+                    SendKeypress(Program.Binding[BindingType.Ship].FocusCommsPanel);
                     break;
                 case "FocusLeftPanel":
-                    SendKeypress(Program.Bindings.FocusLeftPanel);
+                    SendKeypress(Program.Binding[BindingType.Ship].FocusLeftPanel);
                     break;
                 case "QuickCommsPanel":
-                    SendKeypress(Program.Bindings.QuickCommsPanel);
+                    SendKeypress(Program.Binding[BindingType.Ship].QuickCommsPanel);
                     break;
                 case "FocusRadarPanel":
-                    SendKeypress(Program.Bindings.FocusRadarPanel);
+                    SendKeypress(Program.Binding[BindingType.Ship].FocusRadarPanel);
                     break;
                 case "FocusRightPanel":
-                    SendKeypress(Program.Bindings.FocusRightPanel);
+                    SendKeypress(Program.Binding[BindingType.Ship].FocusRightPanel);
                     break;
                 case "UIFocus":
-                    SendKeypress(Program.Bindings.UIFocus);
+                    SendKeypress(Program.Binding[BindingType.Ship].UIFocus);
                     break;
                 case "TargetWingman0":
-                    SendKeypress(Program.Bindings.TargetWingman0);
+                    SendKeypress(Program.Binding[BindingType.Ship].TargetWingman0);
                     break;
                 case "TargetWingman1":
-                    SendKeypress(Program.Bindings.TargetWingman1);
+                    SendKeypress(Program.Binding[BindingType.Ship].TargetWingman1);
                     break;
                 case "TargetWingman2":
-                    SendKeypress(Program.Bindings.TargetWingman2);
+                    SendKeypress(Program.Binding[BindingType.Ship].TargetWingman2);
                     break;
                 case "WingNavLock":
-                    SendKeypress(Program.Bindings.WingNavLock);
+                    SendKeypress(Program.Binding[BindingType.Ship].WingNavLock);
                     break;
                 case "SelectTargetsTarget":
-                    SendKeypress(Program.Bindings.SelectTargetsTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].SelectTargetsTarget);
                     break;
                 case "FireChaffLauncher":
-                    SendKeypress(Program.Bindings.FireChaffLauncher);
+                    SendKeypress(Program.Binding[BindingType.Ship].FireChaffLauncher);
                     break;
                 case "ChargeECM":
-                    SendKeypress(Program.Bindings.ChargeECM);
+                    SendKeypress(Program.Binding[BindingType.Ship].ChargeECM);
                     break;
                 case "IncreaseEnginesPower":
-                    SendKeypress(Program.Bindings.IncreaseEnginesPower);
+                    SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower);
                     break;
                 case "PrimaryFire":
-                    SendKeypress(Program.Bindings.PrimaryFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].PrimaryFire);
                     break;
                 case "SecondaryFire":
-                    SendKeypress(Program.Bindings.SecondaryFire);
+                    SendKeypress(Program.Binding[BindingType.Ship].SecondaryFire);
                     break;
                 case "DeployHeatSink":
-                    SendKeypress(Program.Bindings.DeployHeatSink);
+                    SendKeypress(Program.Binding[BindingType.Ship].DeployHeatSink);
                     break;
                 case "SelectHighestThreat":
-                    SendKeypress(Program.Bindings.SelectHighestThreat);
+                    SendKeypress(Program.Binding[BindingType.Ship].SelectHighestThreat);
                     break;
                 case "CycleNextTarget":
-                    SendKeypress(Program.Bindings.CycleNextTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].CycleNextTarget);
                     break;
                 case "CycleFireGroupNext":
-                    SendKeypress(Program.Bindings.CycleFireGroupNext);
+                    SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                     break;
                 case "CycleNextHostileTarget":
-                    SendKeypress(Program.Bindings.CycleNextHostileTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].CycleNextHostileTarget);
                     break;
                 case "CycleNextSubsystem":
-                    SendKeypress(Program.Bindings.CycleNextSubsystem);
+                    SendKeypress(Program.Binding[BindingType.Ship].CycleNextSubsystem);
                     break;
                 case "CyclePreviousTarget":
-                    SendKeypress(Program.Bindings.CyclePreviousTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].CyclePreviousTarget);
                     break;
                 case "CycleFireGroupPrevious":
-                    SendKeypress(Program.Bindings.CycleFireGroupPrevious);
+                    SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                     break;
                 case "CyclePreviousHostileTarget":
-                    SendKeypress(Program.Bindings.CyclePreviousHostileTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].CyclePreviousHostileTarget);
                     break;
                 case "CyclePreviousSubsystem":
-                    SendKeypress(Program.Bindings.CyclePreviousSubsystem);
+                    SendKeypress(Program.Binding[BindingType.Ship].CyclePreviousSubsystem);
                     break;
                 case "ResetPowerDistribution":
-                    SendKeypress(Program.Bindings.ResetPowerDistribution);
+                    SendKeypress(Program.Binding[BindingType.Ship].ResetPowerDistribution);
                     break;
                 case "UseShieldCell":
-                    SendKeypress(Program.Bindings.UseShieldCell);
+                    SendKeypress(Program.Binding[BindingType.Ship].UseShieldCell);
                     break;
                 case "IncreaseSystemsPower":
-                    SendKeypress(Program.Bindings.IncreaseSystemsPower);
+                    SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower);
                     break;
                 case "SelectTarget":
-                    SendKeypress(Program.Bindings.SelectTarget);
+                    SendKeypress(Program.Binding[BindingType.Ship].SelectTarget);
                     break;
                 case "IncreaseWeaponsPower":
-                    SendKeypress(Program.Bindings.IncreaseWeaponsPower);
+                    SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower);
                     break;
                 case "ShowPGScoreSummaryInput":
-                    SendKeypress(Program.Bindings.ShowPGScoreSummaryInput);
+                    SendKeypress(Program.Binding[BindingType.Ship].ShowPGScoreSummaryInput);
                     break;
                 case "EjectAllCargo":
-                    SendKeypress(Program.Bindings.EjectAllCargo);
+                    SendKeypress(Program.Binding[BindingType.Ship].EjectAllCargo);
                     break;
                 case "EngineColourToggle":
-                    SendKeypress(Program.Bindings.EngineColourToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].EngineColourToggle);
                     break;
                 case "OrbitLinesToggle":
-                    SendKeypress(Program.Bindings.OrbitLinesToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].OrbitLinesToggle);
                     break;
                 case "MouseReset":
-                    SendKeypress(Program.Bindings.MouseReset);
+                    SendKeypress(Program.Binding[BindingType.Ship].MouseReset);
                     break;
                 case "HeadLookToggle":
-                    SendKeypress(Program.Bindings.HeadLookToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].HeadLookToggle);
                     break;
                 case "WeaponColourToggle":
-                    SendKeypress(Program.Bindings.WeaponColourToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].WeaponColourToggle);
                     break;
                 case "SetSpeedMinus100":
-                    SendKeypress(Program.Bindings.SetSpeedMinus100);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeedMinus100);
                     break;
                 case "SetSpeed100":
-                    SendKeypress(Program.Bindings.SetSpeed100);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeed100);
                     break;
                 case "SetSpeedMinus25":
-                    SendKeypress(Program.Bindings.SetSpeedMinus25);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeedMinus25);
                     break;
                 case "SetSpeed25":
-                    SendKeypress(Program.Bindings.SetSpeed25);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeed25);
                     break;
                 case "SetSpeedMinus50":
-                    SendKeypress(Program.Bindings.SetSpeedMinus50);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeedMinus50);
                     break;
                 case "SetSpeed50":
-                    SendKeypress(Program.Bindings.SetSpeed50);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeed50);
                     break;
                 case "SetSpeedMinus75":
-                    SendKeypress(Program.Bindings.SetSpeedMinus75);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeedMinus75);
                     break;
                 case "SetSpeed75":
-                    SendKeypress(Program.Bindings.SetSpeed75);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeed75);
                     break;
                 case "SetSpeedZero":
-                    SendKeypress(Program.Bindings.SetSpeedZero);
+                    SendKeypress(Program.Binding[BindingType.Ship].SetSpeedZero);
                     break;
                 case "UseAlternateFlightValuesToggle":
-                    SendKeypress(Program.Bindings.UseAlternateFlightValuesToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].UseAlternateFlightValuesToggle);
                     break;
                 case "UseBoostJuice":
-                    SendKeypress(Program.Bindings.UseBoostJuice);
+                    SendKeypress(Program.Binding[BindingType.Ship].UseBoostJuice);
                     break;
                 case "ForwardKey":
-                    SendKeypress(Program.Bindings.ForwardKey);
+                    SendKeypress(Program.Binding[BindingType.Ship].ForwardKey);
                     break;
                 case "ForwardThrustButton":
-                    SendKeypress(Program.Bindings.ForwardThrustButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].ForwardThrustButton);
                     break;
                 case "ForwardThrustButton_Landing":
-                    SendKeypress(Program.Bindings.ForwardThrustButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].ForwardThrustButton_Landing);
                     break;
                 case "GalaxyMapOpen":
-                    SendKeypress(Program.Bindings.GalaxyMapOpen);
+                    SendKeypress(Program.Binding[BindingType.Ship].GalaxyMapOpen);
                     break;
                 case "HyperSuperCombination":
-                    SendKeypress(Program.Bindings.HyperSuperCombination);
+                    SendKeypress(Program.Binding[BindingType.Ship].HyperSuperCombination);
                     break;
                 case "TargetNextRouteSystem":
-                    SendKeypress(Program.Bindings.TargetNextRouteSystem);
+                    SendKeypress(Program.Binding[BindingType.Ship].TargetNextRouteSystem);
                     break;
                 case "PitchDownButton":
-                    SendKeypress(Program.Bindings.PitchDownButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].PitchDownButton);
                     break;
                 case "PitchDownButton_Landing":
-                    SendKeypress(Program.Bindings.PitchDownButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].PitchDownButton_Landing);
                     break;
                 case "PitchUpButton":
-                    SendKeypress(Program.Bindings.PitchUpButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].PitchUpButton);
                     break;
                 case "PitchUpButton_Landing":
-                    SendKeypress(Program.Bindings.PitchUpButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].PitchUpButton_Landing);
                     break;
                 case "ToggleReverseThrottleInput":
-                    SendKeypress(Program.Bindings.ToggleReverseThrottleInput);
+                    SendKeypress(Program.Binding[BindingType.Ship].ToggleReverseThrottleInput);
                     break;
                 case "BackwardKey":
-                    SendKeypress(Program.Bindings.BackwardKey);
+                    SendKeypress(Program.Binding[BindingType.Ship].BackwardKey);
                     break;
                 case "BackwardThrustButton":
-                    SendKeypress(Program.Bindings.BackwardThrustButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].BackwardThrustButton);
                     break;
                 case "BackwardThrustButton_Landing":
-                    SendKeypress(Program.Bindings.BackwardThrustButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].BackwardThrustButton_Landing);
                     break;
                 case "RollLeftButton":
-                    SendKeypress(Program.Bindings.RollLeftButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].RollLeftButton);
                     break;
                 case "RollLeftButton_Landing":
-                    SendKeypress(Program.Bindings.RollLeftButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].RollLeftButton_Landing);
                     break;
                 case "RollRightButton":
-                    SendKeypress(Program.Bindings.RollRightButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].RollRightButton);
                     break;
                 case "RollRightButton_Landing":
-                    SendKeypress(Program.Bindings.RollRightButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].RollRightButton_Landing);
                     break;
                 case "DisableRotationCorrectToggle":
-                    SendKeypress(Program.Bindings.DisableRotationCorrectToggle);
+                    SendKeypress(Program.Binding[BindingType.Ship].DisableRotationCorrectToggle);
                     break;
                 case "SystemMapOpen":
-                    SendKeypress(Program.Bindings.SystemMapOpen);
+                    SendKeypress(Program.Binding[BindingType.Ship].SystemMapOpen);
                     break;
                 case "DownThrustButton":
-                    SendKeypress(Program.Bindings.DownThrustButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].DownThrustButton);
                     break;
                 case "DownThrustButton_Landing":
-                    SendKeypress(Program.Bindings.DownThrustButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].DownThrustButton_Landing);
                     break;
                 case "LeftThrustButton":
-                    SendKeypress(Program.Bindings.LeftThrustButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].LeftThrustButton);
                     break;
                 case "LeftThrustButton_Landing":
-                    SendKeypress(Program.Bindings.LeftThrustButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].LeftThrustButton_Landing);
                     break;
                 case "RightThrustButton":
-                    SendKeypress(Program.Bindings.RightThrustButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].RightThrustButton);
                     break;
                 case "RightThrustButton_Landing":
-                    SendKeypress(Program.Bindings.RightThrustButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].RightThrustButton_Landing);
                     break;
                 case "UpThrustButton":
-                    SendKeypress(Program.Bindings.UpThrustButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].UpThrustButton);
                     break;
                 case "UpThrustButton_Landing":
-                    SendKeypress(Program.Bindings.UpThrustButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].UpThrustButton_Landing);
                     break;
                 case "YawLeftButton":
-                    SendKeypress(Program.Bindings.YawLeftButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].YawLeftButton);
                     break;
                 case "YawLeftButton_Landing":
-                    SendKeypress(Program.Bindings.YawLeftButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].YawLeftButton_Landing);
                     break;
                 case "YawRightButton":
-                    SendKeypress(Program.Bindings.YawRightButton);
+                    SendKeypress(Program.Binding[BindingType.Ship].YawRightButton);
                     break;
                 case "YawRightButton_Landing":
-                    SendKeypress(Program.Bindings.YawRightButton_Landing);
+                    SendKeypress(Program.Binding[BindingType.Ship].YawRightButton_Landing);
                     break;
                 case "YawToRollButton":
-                    SendKeypress(Program.Bindings.YawToRollButton);
-                    break;
-                case "FocusCommsPanel_Buggy":
-                    SendKeypress(Program.Bindings.FocusCommsPanel_Buggy);
-                    break;
-                case "EjectAllCargo_Buggy":
-                    SendKeypress(Program.Bindings.EjectAllCargo_Buggy);
-                    break;
-                case "FocusLeftPanel_Buggy":
-                    SendKeypress(Program.Bindings.FocusLeftPanel_Buggy);
-                    break;
-                case "QuickCommsPanel_Buggy":
-                    SendKeypress(Program.Bindings.QuickCommsPanel_Buggy);
-                    break;
-                case "FocusRadarPanel_Buggy":
-                    SendKeypress(Program.Bindings.FocusRadarPanel_Buggy);
-                    break;
-                case "FocusRightPanel_Buggy":
-                    SendKeypress(Program.Bindings.FocusRightPanel_Buggy);
-                    break;
-                case "HeadLookToggle_Buggy":
-                    SendKeypress(Program.Bindings.HeadLookToggle_Buggy);
-                    break;
-                case "UIFocus_Buggy":
-                    SendKeypress(Program.Bindings.UIFocus_Buggy);
-                    break;
-                case "IncreaseEnginesPower_Buggy":
-                    SendKeypress(Program.Bindings.IncreaseEnginesPower_Buggy);
-                    break;
-                case "BuggyPrimaryFireButton":
-                    SendKeypress(Program.Bindings.BuggyPrimaryFireButton);
-                    break;
-                case "ResetPowerDistribution_Buggy":
-                    SendKeypress(Program.Bindings.ResetPowerDistribution_Buggy);
-                    break;
-                case "BuggySecondaryFireButton":
-                    SendKeypress(Program.Bindings.BuggySecondaryFireButton);
-                    break;
-                case "IncreaseSystemsPower_Buggy":
-                    SendKeypress(Program.Bindings.IncreaseSystemsPower_Buggy);
-                    break;
-                case "SelectTarget_Buggy":
-                    SendKeypress(Program.Bindings.SelectTarget_Buggy);
-                    break;
-                case "BuggyTurretPitchDownButton":
-                    SendKeypress(Program.Bindings.BuggyTurretPitchDownButton);
-                    break;
-                case "BuggyTurretYawLeftButton":
-                    SendKeypress(Program.Bindings.BuggyTurretYawLeftButton);
-                    break;
-                case "ToggleBuggyTurretButton":
-                    SendKeypress(Program.Bindings.ToggleBuggyTurretButton);
-                    break;
-                case "BuggyTurretYawRightButton":
-                    SendKeypress(Program.Bindings.BuggyTurretYawRightButton);
-                    break;
-                case "BuggyTurretPitchUpButton":
-                    SendKeypress(Program.Bindings.BuggyTurretPitchUpButton);
-                    break;
-                case "IncreaseWeaponsPower_Buggy":
-                    SendKeypress(Program.Bindings.IncreaseWeaponsPower_Buggy);
-                    break;
-                case "ToggleCargoScoop_Buggy":
-                    SendKeypress(Program.Bindings.ToggleCargoScoop_Buggy);
-                    break;
-                case "DecreaseSpeedButtonPartial":
-                    SendKeypress(Program.Bindings.DecreaseSpeedButtonPartial);
-                    break;
-                case "ToggleDriveAssist":
-                    SendKeypress(Program.Bindings.ToggleDriveAssist);
-                    break;
-                case "GalaxyMapOpen_Buggy":
-                    SendKeypress(Program.Bindings.GalaxyMapOpen_Buggy);
-                    break;
-                case "AutoBreakBuggyButton":
-                    SendKeypress(Program.Bindings.AutoBreakBuggyButton);
-                    break;
-                case "IncreaseSpeedButtonPartial":
-                    SendKeypress(Program.Bindings.IncreaseSpeedButtonPartial);
-                    break;
-                case "HeadlightsBuggyButton":
-                    SendKeypress(Program.Bindings.HeadlightsBuggyButton);
-                    break;
-                case "IncreaseSpeedButtonMax":
-                    SendKeypress(Program.Bindings.IncreaseSpeedButtonMax);
-                    break;
-                case "BuggyPitchDownButton":
-                    SendKeypress(Program.Bindings.BuggyPitchDownButton);
-                    break;
-                case "BuggyPitchUpButton":
-                    SendKeypress(Program.Bindings.BuggyPitchUpButton);
-                    break;
-                case "RecallDismissShip":
-                    SendKeypress(Program.Bindings.RecallDismissShip);
-                    break;
-                case "BuggyToggleReverseThrottleInput":
-                    SendKeypress(Program.Bindings.BuggyToggleReverseThrottleInput);
-                    break;
-                case "BuggyRollLeft":
-                    SendKeypress(Program.Bindings.BuggyRollLeft);
-                    break;
-                case "BuggyRollLeftButton":
-                    SendKeypress(Program.Bindings.BuggyRollLeftButton);
-                    break;
-                case "BuggyRollRight":
-                    SendKeypress(Program.Bindings.BuggyRollRight);
-                    break;
-                case "BuggyRollRightButton":
-                    SendKeypress(Program.Bindings.BuggyRollRightButton);
-                    break;
-                case "SteerLeftButton":
-                    SendKeypress(Program.Bindings.SteerLeftButton);
-                    break;
-                case "SteerRightButton":
-                    SendKeypress(Program.Bindings.SteerRightButton);
-                    break;
-                case "SystemMapOpen_Buggy":
-                    SendKeypress(Program.Bindings.SystemMapOpen_Buggy);
-                    break;
-                case "VerticalThrustersButton":
-                    SendKeypress(Program.Bindings.VerticalThrustersButton);
-                    break;
-                case "DecreaseSpeedButtonMax":
-                    SendKeypress(Program.Bindings.DecreaseSpeedButtonMax);
-                    break;
-                case "CycleNextPage":
-                    SendKeypress(Program.Bindings.CycleNextPage);
-                    break;
-                case "CycleNextPanel":
-                    SendKeypress(Program.Bindings.CycleNextPanel);
-                    break;
-                case "CyclePreviousPage":
-                    SendKeypress(Program.Bindings.CyclePreviousPage);
-                    break;
-                case "CyclePreviousPanel":
-                    SendKeypress(Program.Bindings.CyclePreviousPanel);
-                    break;
-                case "UI_Back":
-                    SendKeypress(Program.Bindings.UI_Back);
-                    break;
-                case "UI_Down":
-                    SendKeypress(Program.Bindings.UI_Down);
-                    break;
-                case "UI_Left":
-                    SendKeypress(Program.Bindings.UI_Left);
-                    break;
-                case "UI_Right":
-                    SendKeypress(Program.Bindings.UI_Right);
-                    break;
-                case "UI_Select":
-                    SendKeypress(Program.Bindings.UI_Select);
-                    break;
-                case "UI_Toggle":
-                    SendKeypress(Program.Bindings.UI_Toggle);
-                    break;
-                case "UI_Up":
-                    SendKeypress(Program.Bindings.UI_Up);
+                    SendKeypress(Program.Binding[BindingType.Ship].YawToRollButton);
                     break;
 
 
                 case "Supercruise":
-                    SendKeypress(Program.Bindings.Supercruise);
+                    SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
                     break;
                 case "Hyperspace":
-                    SendKeypress(Program.Bindings.Hyperspace);
+                    SendKeypress(Program.Binding[BindingType.Ship].Hyperspace);
                     break;
 
                 case "PlayerHUDModeToggle-AM":
                     isPrimary = EliteData.StatusData.HudInAnalysisMode;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.PlayerHUDModeToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle);
                     }
                     break;
                 case "PlayerHUDModeToggle-CM":
                     isPrimary = EliteData.StatusData.HudInAnalysisMode;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.PlayerHUDModeToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle);
                     }
                     break;
 
@@ -895,14 +528,14 @@ namespace Elite.Buttons
                     isPrimary = EliteData.StatusData.CargoScoopDeployed;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ToggleCargoScoop);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleCargoScoop);
                     }
                     break;
                 case "ToggleCargoScoop-OFF":
                     isPrimary = EliteData.StatusData.CargoScoopDeployed;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ToggleCargoScoop);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleCargoScoop);
                     }
                     break;
 
@@ -910,14 +543,14 @@ namespace Elite.Buttons
                     isPrimary = !EliteData.StatusData.FlightAssistOff;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ToggleFlightAssist);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleFlightAssist);
                     }
                     break;
                 case "ToggleFlightAssist-OFF":
                     isPrimary = !EliteData.StatusData.FlightAssistOff;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ToggleFlightAssist);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleFlightAssist);
                     }
                     break;
 
@@ -925,14 +558,14 @@ namespace Elite.Buttons
                     isPrimary = EliteData.StatusData.HardpointsDeployed;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.DeployHardpointToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].DeployHardpointToggle);
                     }
                     break;
                 case "DeployHardpointToggle-OFF":
                     isPrimary = EliteData.StatusData.HardpointsDeployed;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.DeployHardpointToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].DeployHardpointToggle);
                     }
                     break;
 
@@ -940,14 +573,14 @@ namespace Elite.Buttons
                     isPrimary = EliteData.StatusData.LandingGearDown;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.LandingGearToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].LandingGearToggle);
                     }
                     break;
                 case "LandingGearToggle-OFF":
                     isPrimary = EliteData.StatusData.LandingGearDown;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.LandingGearToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].LandingGearToggle);
                     }
                     break;
 
@@ -955,14 +588,14 @@ namespace Elite.Buttons
                     isPrimary = EliteData.StatusData.LightsOn || EliteData.StatusData.SrvHighBeam;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ShipSpotLightToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].ShipSpotLightToggle);
                     }
                     break;
                 case "ShipSpotLightToggle-OFF":
                     isPrimary = EliteData.StatusData.LightsOn || EliteData.StatusData.SrvHighBeam;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ShipSpotLightToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].ShipSpotLightToggle);
                     }
                     break;
 
@@ -970,14 +603,14 @@ namespace Elite.Buttons
                     isPrimary = EliteData.StatusData.NightVision;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.NightVisionToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].NightVisionToggle);
                     }
                     break;
                 case "NightVisionToggle-OFF":
                     isPrimary = EliteData.StatusData.NightVision;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.NightVisionToggle);
+                        SendKeypress(Program.Binding[BindingType.Ship].NightVisionToggle);
                     }
                     break;
 
@@ -985,143 +618,526 @@ namespace Elite.Buttons
                     isPrimary = EliteData.StatusData.SilentRunning;
                     if (!isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ToggleButtonUpInput);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
                     }
                     break;
                 case "ToggleButtonUpInput-OFF":
                     isPrimary = EliteData.StatusData.SilentRunning;
                     if (isPrimary)
                     {
-                        SendKeypress(Program.Bindings.ToggleButtonUpInput);
+                        SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
                     }
                     break;
 
+                // general
+
+                case "CycleNextPage":
+                    SendKeypress(Program.Binding[BindingType.General].CycleNextPage);
+                    break;
+                case "CycleNextPanel":
+                    SendKeypress(Program.Binding[BindingType.General].CycleNextPanel);
+                    break;
+                case "CyclePreviousPage":
+                    SendKeypress(Program.Binding[BindingType.General].CyclePreviousPage);
+                    break;
+                case "CyclePreviousPanel":
+                    SendKeypress(Program.Binding[BindingType.General].CyclePreviousPanel);
+                    break;
+                case "UI_Back":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                    break;
+                case "UI_Down":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Down);
+                    break;
+                case "UI_Left":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Left);
+                    break;
+                case "UI_Right":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Right);
+                    break;
+                case "UI_Select":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Select);
+                    break;
+                case "UI_Toggle":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Toggle);
+                    break;
+                case "UI_Up":
+                    SendKeypress(Program.Binding[BindingType.General].UI_Up);
+                    break;
+
+                case "CamTranslateBackward":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateBackward);
+                    break;
+                case "CamTranslateDown":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateDown);
+                    break;
+                case "CamTranslateForward":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateForward);
+                    break;
+                case "CamTranslateLeft":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateLeft);
+                    break;
+                case "CamPitchDown":
+                    SendKeypress(Program.Binding[BindingType.General].CamPitchDown);
+                    break;
+                case "CamPitchUp":
+                    SendKeypress(Program.Binding[BindingType.General].CamPitchUp);
+                    break;
+                case "CamTranslateRight":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateRight);
+                    break;
+                case "CamTranslateUp":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateUp);
+                    break;
+                case "CamYawLeft":
+                    SendKeypress(Program.Binding[BindingType.General].CamYawLeft);
+                    break;
+                case "CamYawRight":
+                    SendKeypress(Program.Binding[BindingType.General].CamYawRight);
+                    break;
+                case "CamTranslateZHold":
+                    SendKeypress(Program.Binding[BindingType.General].CamTranslateZHold);
+                    break;
+                case "CamZoomIn":
+                    SendKeypress(Program.Binding[BindingType.General].CamZoomIn);
+                    break;
+                case "CamZoomOut":
+                    SendKeypress(Program.Binding[BindingType.General].CamZoomOut);
+                    break;
+
+                case "MoveFreeCamBackwards":
+                    SendKeypress(Program.Binding[BindingType.General].MoveFreeCamBackwards);
+                    break;
+                case "MoveFreeCamDown":
+                    SendKeypress(Program.Binding[BindingType.General].MoveFreeCamDown);
+                    break;
+                case "MoveFreeCamForward":
+                    SendKeypress(Program.Binding[BindingType.General].MoveFreeCamForward);
+                    break;
+                case "MoveFreeCamLeft":
+                    SendKeypress(Program.Binding[BindingType.General].MoveFreeCamLeft);
+                    break;
+                case "ToggleReverseThrottleInputFreeCam":
+                    SendKeypress(Program.Binding[BindingType.General].ToggleReverseThrottleInputFreeCam);
+                    break;
+                case "MoveFreeCamRight":
+                    SendKeypress(Program.Binding[BindingType.General].MoveFreeCamRight);
+                    break;
+                case "MoveFreeCamUp":
+                    SendKeypress(Program.Binding[BindingType.General].MoveFreeCamUp);
+                    break;
+                case "FreeCamSpeedDec":
+                    SendKeypress(Program.Binding[BindingType.General].FreeCamSpeedDec);
+                    break;
+                case "ToggleFreeCam":
+                    SendKeypress(Program.Binding[BindingType.General].ToggleFreeCam);
+                    break;
+                case "FreeCamSpeedInc":
+                    SendKeypress(Program.Binding[BindingType.General].FreeCamSpeedInc);
+                    break;
+                case "FreeCamToggleHUD":
+                    SendKeypress(Program.Binding[BindingType.General].FreeCamToggleHUD);
+                    break;
+                case "FreeCamZoomIn":
+                    SendKeypress(Program.Binding[BindingType.General].FreeCamZoomIn);
+                    break;
+                case "FreeCamZoomOut":
+                    SendKeypress(Program.Binding[BindingType.General].FreeCamZoomOut);
+                    break;
+
+                case "PhotoCameraToggle":
+                    SendKeypress(Program.Binding[BindingType.General].PhotoCameraToggle);
+                    break;
+                case "StorePitchCameraDown":
+                    SendKeypress(Program.Binding[BindingType.General].StorePitchCameraDown);
+                    break;
+                case "StorePitchCameraUp":
+                    SendKeypress(Program.Binding[BindingType.General].StorePitchCameraUp);
+                    break;
+                case "StoreEnableRotation":
+                    SendKeypress(Program.Binding[BindingType.General].StoreEnableRotation);
+                    break;
+                case "StoreYawCameraLeft":
+                    SendKeypress(Program.Binding[BindingType.General].StoreYawCameraLeft);
+                    break;
+                case "StoreYawCameraRight":
+                    SendKeypress(Program.Binding[BindingType.General].StoreYawCameraRight);
+                    break;
+                case "StoreCamZoomIn":
+                    SendKeypress(Program.Binding[BindingType.General].StoreCamZoomIn);
+                    break;
+                case "StoreCamZoomOut":
+                    SendKeypress(Program.Binding[BindingType.General].StoreCamZoomOut);
+                    break;
+                case "StoreToggle":
+                    SendKeypress(Program.Binding[BindingType.General].StoreToggle);
+                    break;
+                case "ToggleAdvanceMode":
+                    SendKeypress(Program.Binding[BindingType.General].ToggleAdvanceMode);
+                    break;
+                case "VanityCameraEight":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraEight);
+                    break;
+                case "VanityCameraTwo":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraTwo);
+                    break;
+                case "VanityCameraOne":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraOne);
+                    break;
+                case "VanityCameraThree":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraThree);
+                    break;
+                case "VanityCameraFour":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraFour);
+                    break;
+                case "VanityCameraFive":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraFive);
+                    break;
+                case "VanityCameraSix":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraSix);
+                    break;
+                case "VanityCameraSeven":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraSeven);
+                    break;
+                case "VanityCameraNine":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraNine);
+                    break;
+                case "PitchCameraDown":
+                    SendKeypress(Program.Binding[BindingType.General].PitchCameraDown);
+                    break;
+                case "PitchCameraUp":
+                    SendKeypress(Program.Binding[BindingType.General].PitchCameraUp);
+                    break;
+                case "RollCameraLeft":
+                    SendKeypress(Program.Binding[BindingType.General].RollCameraLeft);
+                    break;
+                case "RollCameraRight":
+                    SendKeypress(Program.Binding[BindingType.General].RollCameraRight);
+                    break;
+                case "ToggleRotationLock":
+                    SendKeypress(Program.Binding[BindingType.General].ToggleRotationLock);
+                    break;
+                case "YawCameraLeft":
+                    SendKeypress(Program.Binding[BindingType.General].YawCameraLeft);
+                    break;
+                case "YawCameraRight":
+                    SendKeypress(Program.Binding[BindingType.General].YawCameraRight);
+                    break;
+                case "FStopDec":
+                    SendKeypress(Program.Binding[BindingType.General].FStopDec);
+                    break;
+                case "QuitCamera":
+                    SendKeypress(Program.Binding[BindingType.General].QuitCamera);
+                    break;
+                case "FocusDistanceInc":
+                    SendKeypress(Program.Binding[BindingType.General].FocusDistanceInc);
+                    break;
+                case "FocusDistanceDec":
+                    SendKeypress(Program.Binding[BindingType.General].FocusDistanceDec);
+                    break;
+                case "FStopInc":
+                    SendKeypress(Program.Binding[BindingType.General].FStopInc);
+                    break;
+                case "FixCameraRelativeToggle":
+                    SendKeypress(Program.Binding[BindingType.General].FixCameraRelativeToggle);
+                    break;
+                case "FixCameraWorldToggle":
+                    SendKeypress(Program.Binding[BindingType.General].FixCameraWorldToggle);
+                    break;
+                case "VanityCameraScrollRight":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraScrollRight);
+                    break;
+                case "VanityCameraScrollLeft":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraScrollLeft);
+                    break;
+
+                case "CommanderCreator_Redo":
+                    SendKeypress(Program.Binding[BindingType.General].CommanderCreator_Redo);
+                    break;
+                case "CommanderCreator_Rotation":
+                    SendKeypress(Program.Binding[BindingType.General].CommanderCreator_Rotation);
+                    break;
+                case "CommanderCreator_Rotation_MouseToggle":
+                    SendKeypress(Program.Binding[BindingType.General].CommanderCreator_Rotation_MouseToggle);
+                    break;
+                case "CommanderCreator_Undo":
+                    SendKeypress(Program.Binding[BindingType.General].CommanderCreator_Undo);
+                    break;
+
+                case "GalnetAudio_ClearQueue":
+                    SendKeypress(Program.Binding[BindingType.General].GalnetAudio_ClearQueue);
+                    break;
+                case "GalnetAudio_SkipForward":
+                    SendKeypress(Program.Binding[BindingType.General].GalnetAudio_SkipForward);
+                    break;
+                case "GalnetAudio_Play_Pause":
+                    SendKeypress(Program.Binding[BindingType.General].GalnetAudio_Play_Pause);
+                    break;
+                case "GalnetAudio_SkipBackward":
+                    SendKeypress(Program.Binding[BindingType.General].GalnetAudio_SkipBackward);
+                    break;
+
+                // in srv
+
+                case "ToggleDriveAssist":
+                    SendKeypress(Program.Binding[BindingType.Srv].ToggleDriveAssist);
+                    break;
+                case "SteerLeftButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].SteerLeftButton);
+                    break;
+                case "SteerRightButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].SteerRightButton);
+                    break;
+                case "IncreaseSpeedButtonMax":
+                    SendKeypress(Program.Binding[BindingType.Srv].IncreaseSpeedButtonMax);
+                    break;
+                case "DecreaseSpeedButtonMax":
+                    SendKeypress(Program.Binding[BindingType.Srv].DecreaseSpeedButtonMax);
+                    break;
+                case "IncreaseSpeedButtonPartial":
+                    SendKeypress(Program.Binding[BindingType.Srv].IncreaseSpeedButtonPartial);
+                    break;
+                case "DecreaseSpeedButtonPartial":
+                    SendKeypress(Program.Binding[BindingType.Srv].DecreaseSpeedButtonPartial);
+                    break;
+                case "RecallDismissShip":
+                    SendKeypress(Program.Binding[BindingType.Srv].RecallDismissShip);
+                    break;
+                case "VerticalThrustersButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].VerticalThrustersButton);
+                    break;
+
+                case "PhotoCameraToggle_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].PhotoCameraToggle_Buggy);
+                    break;
+                case "FocusCommsPanel_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].FocusCommsPanel_Buggy);
+                    break;
+                case "EjectAllCargo_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].EjectAllCargo_Buggy);
+                    break;
+                case "FocusLeftPanel_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].FocusLeftPanel_Buggy);
+                    break;
+                case "QuickCommsPanel_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].QuickCommsPanel_Buggy);
+                    break;
+                case "FocusRadarPanel_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].FocusRadarPanel_Buggy);
+                    break;
+                case "FocusRightPanel_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].FocusRightPanel_Buggy);
+                    break;
+                case "HeadLookToggle_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].HeadLookToggle_Buggy);
+                    break;
+                case "UIFocus_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].UIFocus_Buggy);
+                    break;
+                case "IncreaseEnginesPower_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy);
+                    break;
+                case "BuggyPrimaryFireButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyPrimaryFireButton);
+                    break;
+                case "ResetPowerDistribution_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].ResetPowerDistribution_Buggy);
+                    break;
+                case "BuggySecondaryFireButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggySecondaryFireButton);
+                    break;
+                case "IncreaseSystemsPower_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy);
+                    break;
+                case "SelectTarget_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].SelectTarget_Buggy);
+                    break;
+                case "BuggyTurretPitchDownButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyTurretPitchDownButton);
+                    break;
+                case "BuggyTurretYawLeftButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyTurretYawLeftButton);
+                    break;
+                case "ToggleBuggyTurretButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].ToggleBuggyTurretButton);
+                    break;
+                case "BuggyTurretYawRightButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyTurretYawRightButton);
+                    break;
+                case "BuggyTurretPitchUpButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyTurretPitchUpButton);
+                    break;
+                case "IncreaseWeaponsPower_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy);
+                    break;
+                case "ToggleCargoScoop_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].ToggleCargoScoop_Buggy);
+                    break;
+                case "GalaxyMapOpen_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].GalaxyMapOpen_Buggy);
+                    break;
+                case "AutoBreakBuggyButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].AutoBreakBuggyButton);
+                    break;
+                case "HeadlightsBuggyButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].HeadlightsBuggyButton);
+                    break;
+                case "BuggyPitchDownButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyPitchDownButton);
+                    break;
+                case "BuggyPitchUpButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyPitchUpButton);
+                    break;
+                case "BuggyToggleReverseThrottleInput":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyToggleReverseThrottleInput);
+                    break;
+                case "BuggyRollLeft":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyRollLeft);
+                    break;
+                case "BuggyRollLeftButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyRollLeftButton);
+                    break;
+                case "BuggyRollRight":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyRollRight);
+                    break;
+                case "BuggyRollRightButton":
+                    SendKeypress(Program.Binding[BindingType.Srv].BuggyRollRightButton);
+                    break;
+                case "SystemMapOpen_Buggy":
+                    SendKeypress(Program.Binding[BindingType.Srv].SystemMapOpen_Buggy);
+                    break;
+
+                // on foot
+
+                case "PhotoCameraToggle_Humanoid":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].PhotoCameraToggle_Humanoid);
+                    break;
                 case "HumanoidForwardButton":
-                    SendKeypress(Program.Bindings.HumanoidForwardButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidForwardButton);
                     break;
                 case "HumanoidBackwardButton":
-                    SendKeypress(Program.Bindings.HumanoidBackwardButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidBackwardButton);
                     break;
                 case "HumanoidStrafeLeftButton":
-                    SendKeypress(Program.Bindings.HumanoidStrafeLeftButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidStrafeLeftButton);
                     break;
                 case "HumanoidStrafeRightButton":
-                    SendKeypress(Program.Bindings.HumanoidStrafeRightButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidStrafeRightButton);
                     break;
                 case "HumanoidSprintButton":
-                    SendKeypress(Program.Bindings.HumanoidSprintButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSprintButton);
                     break;
                 case "HumanoidCrouchButton":
-                    SendKeypress(Program.Bindings.HumanoidCrouchButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidCrouchButton);
                     break;
                 case "HumanoidJumpButton":
-                    SendKeypress(Program.Bindings.HumanoidJumpButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidJumpButton);
                     break;
                 case "HumanoidPrimaryInteractButton":
-                    SendKeypress(Program.Bindings.HumanoidPrimaryInteractButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidPrimaryInteractButton);
                     break;
                 case "HumanoidItemWheelButton":
-                    SendKeypress(Program.Bindings.HumanoidItemWheelButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidItemWheelButton);
                     break;
                 case "HumanoidPrimaryFireButton":
-                    SendKeypress(Program.Bindings.HumanoidPrimaryFireButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidPrimaryFireButton);
                     break;
                 case "HumanoidSelectPrimaryWeaponButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectPrimaryWeaponButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectPrimaryWeaponButton);
                     break;
                 case "HumanoidSelectSecondaryWeaponButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectSecondaryWeaponButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectSecondaryWeaponButton);
                     break;
                 case "HumanoidHideWeaponButton":
-                    SendKeypress(Program.Bindings.HumanoidHideWeaponButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidHideWeaponButton);
                     break;
                 case "HumanoidZoomButton":
-                    SendKeypress(Program.Bindings.HumanoidZoomButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidZoomButton);
                     break;
                 case "HumanoidReloadButton":
-                    SendKeypress(Program.Bindings.HumanoidReloadButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidReloadButton);
                     break;
                 case "HumanoidThrowGrenadeButton":
-                    SendKeypress(Program.Bindings.HumanoidThrowGrenadeButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidThrowGrenadeButton);
                     break;
                 case "HumanoidMeleeButton":
-                    SendKeypress(Program.Bindings.HumanoidMeleeButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidMeleeButton);
                     break;
                 case "HumanoidOpenAccessPanelButton":
-                    SendKeypress(Program.Bindings.HumanoidOpenAccessPanelButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidOpenAccessPanelButton);
                     break;
                 case "HumanoidSecondaryInteractButton":
-                    SendKeypress(Program.Bindings.HumanoidSecondaryInteractButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSecondaryInteractButton);
                     break;
                 case "HumanoidSwitchToRechargeTool":
-                    SendKeypress(Program.Bindings.HumanoidSwitchToRechargeTool);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSwitchToRechargeTool);
                     break;
                 case "HumanoidSwitchToCompAnalyser":
-                    SendKeypress(Program.Bindings.HumanoidSwitchToCompAnalyser);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSwitchToCompAnalyser);
                     break;
                 case "HumanoidToggleToolModeButton":
-                    SendKeypress(Program.Bindings.HumanoidToggleToolModeButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleToolModeButton);
                     break;
                 case "HumanoidToggleNightVisionButton":
-                    SendKeypress(Program.Bindings.HumanoidToggleNightVisionButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleNightVisionButton);
                     break;
                 case "HumanoidSwitchToSuitTool":
-                    SendKeypress(Program.Bindings.HumanoidSwitchToSuitTool);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSwitchToSuitTool);
                     break;
                 case "HumanoidToggleFlashlightButton":
-                    SendKeypress(Program.Bindings.HumanoidToggleFlashlightButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleFlashlightButton);
                     break;
                 case "GalaxyMapOpen_Humanoid":
-                    SendKeypress(Program.Bindings.GalaxyMapOpen_Humanoid);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].GalaxyMapOpen_Humanoid);
                     break;
                 case "SystemMapOpen_Humanoid":
-                    SendKeypress(Program.Bindings.SystemMapOpen_Humanoid);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].SystemMapOpen_Humanoid);
                     break;
                 case "FocusCommsPanel_Humanoid":
-                    SendKeypress(Program.Bindings.FocusCommsPanel_Humanoid);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].FocusCommsPanel_Humanoid);
                     break;
                 case "QuickCommsPanel_Humanoid":
-                    SendKeypress(Program.Bindings.QuickCommsPanel_Humanoid);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].QuickCommsPanel_Humanoid);
                     break;
                 case "HumanoidConflictContextualUIButton":
-                    SendKeypress(Program.Bindings.HumanoidConflictContextualUIButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidConflictContextualUIButton);
                     break;
                 case "HumanoidToggleShieldsButton":
-                    SendKeypress(Program.Bindings.HumanoidToggleShieldsButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleShieldsButton);
                     break;
 
                 case "HumanoidRotateLeftButton":
-                    SendKeypress(Program.Bindings.HumanoidRotateLeftButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidRotateLeftButton);
                     break;
                 case "HumanoidRotateRightButton":
-                    SendKeypress(Program.Bindings.HumanoidRotateRightButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidRotateRightButton);
                     break;
                 case "HumanoidPitchUpButton":
-                    SendKeypress(Program.Bindings.HumanoidPitchUpButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidPitchUpButton);
                     break;
                 case "HumanoidPitchDownButton":
-                    SendKeypress(Program.Bindings.HumanoidPitchDownButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidPitchDownButton);
                     break;
                 case "HumanoidSwitchWeapon":
-                    SendKeypress(Program.Bindings.HumanoidSwitchWeapon);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSwitchWeapon);
                     break;
                 case "HumanoidSelectUtilityWeaponButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectUtilityWeaponButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectUtilityWeaponButton);
                     break;
                 case "HumanoidSelectNextWeaponButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectNextWeaponButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectNextWeaponButton);
                     break;
                 case "HumanoidSelectPreviousWeaponButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectPreviousWeaponButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectPreviousWeaponButton);
                     break;
                 case "HumanoidSelectNextGrenadeTypeButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectNextGrenadeTypeButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectNextGrenadeTypeButton);
                     break;
                 case "HumanoidSelectPreviousGrenadeTypeButton":
-                    SendKeypress(Program.Bindings.HumanoidSelectPreviousGrenadeTypeButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectPreviousGrenadeTypeButton);
                     break;
                 case "HumanoidToggleMissionHelpPanelButton":
-                    SendKeypress(Program.Bindings.HumanoidToggleMissionHelpPanelButton);
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleMissionHelpPanelButton);
                     break;
 
             }
