@@ -101,7 +101,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CargoTransfer.cs" />
+    <Compile Include="Events\BackPackEvent.cs" />
+    <Compile Include="Events\BackPackChangeEvent.cs" />
     <Compile Include="Events\BookDropshipEvent.cs" />
+    <Compile Include="Events\CarrierJumpCancelledEvent.cs" />
+    <Compile Include="Events\CarrierNameChangedEvent.cs" />
     <Compile Include="Events\SuitLoadoutEvent.cs" />
     <Compile Include="Events\DropShipDeployEvent.cs" />
     <Compile Include="Events\CollectItemsEvent.cs" />
@@ -131,6 +135,9 @@
     <Compile Include="Events\BuyWeaponEvent.cs" />
     <Compile Include="Events\CreateSuitLoadoutEvent.cs" />
     <Compile Include="Events\SwitchSuitLoadoutEvent.cs" />
+    <Compile Include="BackpackWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RouteItem.cs" />
     <Compile Include="Events\NavRouteEvent.cs" />
     <Compile Include="NavRouteWatcher.cs">

@@ -906,6 +906,25 @@ namespace Elite.Buttons
 
                 // on foot
 
+                case "HumanoidClearAuthorityLevel":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidClearAuthorityLevel);
+                    break;
+                case "HumanoidHealthPack":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidHealthPack);
+                    break;
+                case "HumanoidBattery":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidBattery);
+                    break;
+                case "HumanoidSelectFragGrenade":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidSelectFragGrenade);
+                    break;
+                case "HumanoidSelectEMPGrenade":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidSelectEMPGrenade);
+                    break;
+                case "HumanoidSelectShieldGrenade":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidSelectShieldGrenade);
+                    break;
+
                 case "PhotoCameraToggle_Humanoid":
                     SendKeypressDown(Program.Binding[BindingType.OnFoot].PhotoCameraToggle_Humanoid);
                     break;
@@ -1890,6 +1909,25 @@ namespace Elite.Buttons
                     break;
 
                 // on foot
+
+                case "HumanoidClearAuthorityLevel":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidClearAuthorityLevel);
+                    break;
+                case "HumanoidHealthPack":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidHealthPack);
+                    break;
+                case "HumanoidBattery":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidBattery);
+                    break;
+                case "HumanoidSelectFragGrenade":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidSelectFragGrenade);
+                    break;
+                case "HumanoidSelectEMPGrenade":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidSelectEMPGrenade);
+                    break;
+                case "HumanoidSelectShieldGrenade":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidSelectShieldGrenade);
+                    break;
 
                 case "PhotoCameraToggle_Humanoid":
                     SendKeypressUp(Program.Binding[BindingType.OnFoot].PhotoCameraToggle_Humanoid);

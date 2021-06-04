@@ -1009,6 +1009,25 @@ namespace Elite.Buttons
 
                 // on foot
 
+                case "HumanoidClearAuthorityLevel":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidClearAuthorityLevel);
+                    break;
+                case "HumanoidHealthPack":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidHealthPack);
+                    break;
+                case "HumanoidBattery":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidBattery);
+                    break;
+                case "HumanoidSelectFragGrenade":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectFragGrenade);
+                    break;
+                case "HumanoidSelectEMPGrenade":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectEMPGrenade);
+                    break;
+                case "HumanoidSelectShieldGrenade":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidSelectShieldGrenade);
+                    break;
+
                 case "PhotoCameraToggle_Humanoid":
                     SendKeypress(Program.Binding[BindingType.OnFoot].PhotoCameraToggle_Humanoid);
                     break;

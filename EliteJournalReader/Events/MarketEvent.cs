@@ -45,7 +45,7 @@ namespace EliteJournalReader.Events
                 string filepath = Path.Combine(journalPath, "Market.json");
                 try
                 {
-                    MarketInfo result = JToken.ReadFrom(new JsonTextReader(new StreamReader(filepath))).ToObject<MarketInfo>();
+                    var result = JToken.ReadFrom(new JsonTextReader(new StreamReader(filepath))).ToObject<MarketInfo>();
                     return result;
                 }
                 catch (Exception e)

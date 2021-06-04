@@ -17,7 +17,12 @@ namespace EliteJournalReader
         Warrior,
         Gladiator,
         Deadeye,
-        Elite
+        Elite,
+        [Description("Elite I")] Elite1,
+        [Description("Elite II")] Elite2,
+        [Description("Elite III")] Elite3,
+        [Description("Elite IV")] Elite4,
+        [Description("Elite V")] Elite5
     }
 
     public enum ExobiologistRank
@@ -30,7 +35,12 @@ namespace EliteJournalReader
         Taxonomist,
         Ecologist,
         Geneticist,
-        Elite
+        Elite,
+        [Description("Elite I")] Elite1,
+        [Description("Elite II")] Elite2,
+        [Description("Elite III")] Elite3,
+        [Description("Elite IV")] Elite4,
+        [Description("Elite V")] Elite5
     }
 
     public enum CombatRank
@@ -43,7 +53,12 @@ namespace EliteJournalReader
         Master,
         Dangerous,
         Deadly,
-        Elite
+        Elite,
+        [Description("Elite I")] Elite1,
+        [Description("Elite II")] Elite2,
+        [Description("Elite III")] Elite3,
+        [Description("Elite IV")] Elite4,
+        [Description("Elite V")] Elite5
     }
 
     public enum TradeRank
@@ -56,7 +71,12 @@ namespace EliteJournalReader
         Broker,
         Entrepreneur,
         Tycoon,
-        Elite
+        Elite,
+        [Description("Elite I")] Elite1,
+        [Description("Elite II")] Elite2,
+        [Description("Elite III")] Elite3,
+        [Description("Elite IV")] Elite4,
+        [Description("Elite V")] Elite5
     }
 
     public enum ExplorationRank
@@ -69,7 +89,12 @@ namespace EliteJournalReader
         Pathfinder,
         Ranger,
         Pioneer,
-        Elite
+        Elite,
+        [Description("Elite I")] Elite1,
+        [Description("Elite II")] Elite2,
+        [Description("Elite III")] Elite3,
+        [Description("Elite IV")] Elite4,
+        [Description("Elite V")] Elite5
     }
 
     public enum FederationRank
@@ -78,16 +103,16 @@ namespace EliteJournalReader
         Recruit,
         Cadet,
         Midshipman,
-        PettyOfficer,
-        ChiefPettyOfficer,
-        WarrantOfficer,
+        [Description("Petty Officer")] PettyOfficer,
+        [Description("Chief Petty Officer")] ChiefPettyOfficer,
+        [Description("Warrant Officer")] WarrantOfficer,
         Ensign,
         Lieutenant,
         LtCommander,
-        PostCommander,
-        PostCaptain,
-        RearAdmiral,
-        ViceAdmiral,
+        [Description("Post Commander")] PostCommander,
+        [Description("Post Captain")] PostCaptain,
+        [Description("Rear Admiral")] RearAdmiral,
+        [Description("Vice Admiral")] ViceAdmiral,
         Admiral
     }
 
@@ -113,13 +138,18 @@ namespace EliteJournalReader
     public enum CQCRank
     {
         Helpless = 0,
-        MostlyHelpless,
+        [Description("Mostly Helpless")] MostlyHelpless,
         Amateur,
-        SemiProfessional,
+        [Description("Semi Professional")] SemiProfessional,
         Professional,
         Champion,
         Hero,
         Legend,
-        Elite
+        Elite,
+        [Description("Elite I")] Elite1,
+        [Description("Elite II")] Elite2,
+        [Description("Elite III")] Elite3,
+        [Description("Elite IV")] Elite4,
+        [Description("Elite V")] Elite5
     }
 }

@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "SellWeapon" event contains:
+    //The "SellSuit" event contains:
 
     /*
      */
@@ -20,7 +20,7 @@ namespace EliteJournalReader.Events
             public string Name { get; set; }
             public string Name_Localised { get; set; }
             public long Price { get; set; }
-
+			public long SuitID { get; set; }
         }
     }
 }

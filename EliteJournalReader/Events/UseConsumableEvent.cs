@@ -18,6 +18,7 @@ namespace EliteJournalReader.Events
         public class UseConsumableEventArgs : JournalEventArgs
         {
             public string Name { get; set; }
+            public string Name_Localised { get; set; }
             public string Type { get; set; }
 
         }

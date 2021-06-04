@@ -450,6 +450,12 @@ namespace Elite
         public StandardBindingInfo HumanoidSelectNextGrenadeTypeButton { get; set; }
         public StandardBindingInfo HumanoidSelectPreviousGrenadeTypeButton { get; set; }
 
+        public StandardBindingInfo HumanoidClearAuthorityLevel { get; set; }
+        public StandardBindingInfo HumanoidHealthPack { get; set; }
+        public StandardBindingInfo HumanoidBattery { get; set; }
+        public StandardBindingInfo HumanoidSelectFragGrenade { get; set; }
+        public StandardBindingInfo HumanoidSelectEMPGrenade { get; set; }
+        public StandardBindingInfo HumanoidSelectShieldGrenade { get; set; }
 
     }
 
