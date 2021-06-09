@@ -156,14 +156,14 @@ Stop the Stream Deck application:
 
 `c:\Program Files\Elgato\StreamDeck\StreamDeck.exe`
 
-Then delete the %appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin directory. (make a backup copy first)
+Then delete the `%appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin` directory. (make a backup copy first)
 
 Then start the streamdeck software again.
 
 Then double click the file `com.mhwlng.elite.streamDeckPlugin` as usual.
 
 MAKE SURE that you save any images, profiles etc. that you put in these directories yourself, BEFORE deleting the directory.
-and put them back after the installation.
+And put them back after the installation.
 The plugin installer doesn't come with button images.
 
 The button configurations are not stored in the plugin directory.
