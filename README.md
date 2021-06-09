@@ -135,7 +135,7 @@ Also, the steam library directories are searched, for any of the default key bin
  
 `....\steamapps\common\Elite Dangerous\Products\elite-dangerous-64\ControlSchemes`
 
-This plugin ony works with keyboard bindings. 
+This plugin only works with keyboard bindings. 
 So, when there is only a binding to a joystick / controller / mouse for a function, then you need to add a keyboard binding.
 
 If you change the key bindings in Elite Dangerous, then you don't have to restart the streamdeck software. The plugin key bindings are updated automatically.
@@ -150,17 +150,23 @@ This .streamDeckPlugin file is a zip file and the contents are simply copied to 
 
 `%appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
 
-To uninstall : select 'more actions' in the streamdeck application, find the plugin and select uninstall.
+To uninstall :
 
-or stop the Stream Deck application:
+Stop the Stream Deck application:
 
 `c:\Program Files\Elgato\StreamDeck\StreamDeck.exe`
 
-and delete the com.mhwlng.elite.sdPlugin directory.
+Then delete the %appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin directory. (make a backup copy first)
+
+Then start the streamdeck software again.
+
+Then double click the file `com.mhwlng.elite.streamDeckPlugin` as usual.
+
+MAKE SURE that you save any images, profiles etc. that you put in these directories yourself, BEFORE deleting the directory.
+and put them back after the installation.
+The plugin installer doesn't come with button images.
 
 The button configurations are not stored in the plugin directory.
-
-Note that the entire plugin directory is deleted when uninstalling. (including any images that you may have manually put there yourself)
 
 After uninstalling and re-installing the plugin, all the button definition should still be there.
 
