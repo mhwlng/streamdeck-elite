@@ -150,7 +150,7 @@ This .streamDeckPlugin file is a zip file and the contents are simply copied to 
 
 `%appdata%\Elgato\StreamDeck\Plugins\com.mhwlng.elite.sdPlugin`
 
-To uninstall :
+To update to a new version :
 
 Stop the Stream Deck application:
 
