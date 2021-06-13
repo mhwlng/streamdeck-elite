@@ -129,7 +129,7 @@ The plugin looks for a StartPreset.start file in this Elite Dangerous key bindin
 
 `%LocalAppData%\Frontier Developments\Elite Dangerous\Options\Bindings\`
 
-That .start file should contain the exact name of the key binding file. (Without the extension .3.0.binds or .binds)
+That .start file should contain the exact name of the key binding file(s). (Without the extension .3.0.binds or .binds)
 
 Also, the steam library directories are searched, for any of the default key binding files :
  
@@ -139,6 +139,9 @@ This plugin only works with keyboard bindings.
 So, when there is only a binding to a joystick / controller / mouse for a function, then you need to add a keyboard binding.
 
 If you change the key bindings in Elite Dangerous, then you don't have to restart the streamdeck software. The plugin key bindings are updated automatically.
+
+When using Odyssey, the on-foot binding must be 'custom'. (this will happen automatically once you make at least one on-foot keyboard binding)
+If you see a default binding name, then the plugin won't work correctly.
 
 The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
 
