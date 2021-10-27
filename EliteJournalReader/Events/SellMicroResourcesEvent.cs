@@ -7,21 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "SellMicroResources" event contains:
-
-    /*
-     {"timestamp":"2021-03-31T19:57:54Z","event":"SellMicroResources",
-    "TotalCount":13,
-    "MicroResources":[
-    {"Name":"encryptedmemorychip",
-    "Name_Localised":"Encrypted Memory Chip",
-    "Category":"Component",
-    "Count":1},
-    ],
-    "Price":4100,
-    "MarketID":3221558784}
-     */
-
     public class SellMicroResourcesEvent : JournalEvent<SellMicroResourcesEvent.SellMicroResourcesEventArgs>
     {
         public SellMicroResourcesEvent() : base("SellMicroResources") { }

@@ -15,7 +15,7 @@ namespace EliteJournalReader.Events
 
         public class FighterDestroyedEventArgs : JournalEventArgs
         {
-            public int ID { get; set; }
+            public long ID { get; set; }
         }
     }
 }

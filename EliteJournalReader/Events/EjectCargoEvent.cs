@@ -9,9 +9,9 @@ namespace EliteJournalReader.Events
 {
     //When Written:
     //Parameters:
-    //•	Type: cargo type
-    //•	Count: number of units
-    //•	Abandoned: whether ‘abandoned’
+    //ï¿½	Type: cargo type
+    //ï¿½	Count: number of units
+    //ï¿½	Abandoned: whether ï¿½abandonedï¿½
     public class EjectCargoEvent : JournalEvent<EjectCargoEvent.EjectCargoEventArgs>
     {
         public EjectCargoEvent() : base("EjectCargo") { }

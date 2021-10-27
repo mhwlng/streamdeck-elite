@@ -7,10 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "SellWeapon" event contains:
-
-    /*
-     */
     public class SellWeaponEvent : JournalEvent<SellWeaponEvent.SellWeaponEventArgs>
     {
         public SellWeaponEvent() : base("SellWeapon") { }
@@ -21,7 +17,8 @@ namespace EliteJournalReader.Events
             public string Name_Localised { get; set; }
             public long Price { get; set; }
             public string SuitModuleID { get; set; }
-
+            public string Class { get; set; }
+            public string[] WeaponMods { get; set; }
         }
     }
 }

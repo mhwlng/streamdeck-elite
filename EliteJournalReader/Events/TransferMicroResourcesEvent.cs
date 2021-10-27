@@ -7,21 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "TransferMicroResources" event contains:
-
-    /*
-    { "timestamp":"2021-05-29T07:40:42Z", "event":"TransferMicroResources", 
-"Transfers":[ { "Name":"healthpack", "Name_Localised":"Medkit", "Category":"Consumable", "LockerOldCount":1, 
-"LockerNewCount":0, "Direction":"ToBackpack" }, { "Name":"energycell", 
-"Name_Localised":"Energy Cell", "Category":"Consumable", "LockerOldCount":2, "LockerNewCount":0, "Direction":"ToBackpack" },
- { "Name":"amm_grenade_emp", "Name_Localised":"Shield Disruptor", "Category":"Consumable", "LockerOldCount":1, 
-"LockerNewCount":0, "Direction":"ToBackpack" }, { "Name":"amm_grenade_frag", "Name_Localised":"Frag Grenade", 
-"Category":"Consumable", "LockerOldCount":1, "LockerNewCount":0, "Direction":"ToBackpack" }, 
-{ "Name":"amm_grenade_shield", "Name_Localised":"Shield Projector", "Category":"Consumable", "LockerOldCount":1, 
-"LockerNewCount":0, "Direction":"ToBackpack" } ] }
-
-
-     */
     public class TransferMicroResourcesEvent : JournalEvent<TransferMicroResourcesEvent.TransferMicroResourcesEventArgs>
     {
         public TransferMicroResourcesEvent() : base("TransferMicroResources") { }
@@ -38,7 +23,6 @@ namespace EliteJournalReader.Events
                 public string Direction { get; set; }
             }
             public Transfer[] Transfers { get; set; }
-
         }
     }
 }

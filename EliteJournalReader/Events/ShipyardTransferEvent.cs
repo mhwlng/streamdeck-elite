@@ -9,12 +9,12 @@ namespace EliteJournalReader.Events
 {
     //When Written: when requesting a ship at another station be transported to this station
     //Parameters:
-    //•	ShipType: type of ship
-    //•	ShipID
-    //•	System: where it is
-    //•	Distance: how far away
-    //•	TransferPrice: cost of transfer
-    //•	TransferTime: (in seconds)
+    //ï¿½	ShipType: type of ship
+    //ï¿½	ShipID
+    //ï¿½	System: where it is
+    //ï¿½	Distance: how far away
+    //ï¿½	TransferPrice: cost of transfer
+    //ï¿½	TransferTime: (in seconds)
     public class ShipyardTransferEvent : JournalEvent<ShipyardTransferEvent.ShipyardTransferEventArgs>
     {
         public ShipyardTransferEvent() : base("ShipyardTransfer") { }

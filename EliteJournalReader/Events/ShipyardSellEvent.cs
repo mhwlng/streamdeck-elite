@@ -9,10 +9,10 @@ namespace EliteJournalReader.Events
 {
     //When Written: when selling a ship stored in the shipyard
     //Parameters:
-    //•	ShipType: type of ship being sold
-    //•	SellShipID
-    //•	ShipPrice: sale price
-    //•	System: (if ship is in another system) name of system
+    //ï¿½	ShipType: type of ship being sold
+    //ï¿½	SellShipID
+    //ï¿½	ShipPrice: sale price
+    //ï¿½	System: (if ship is in another system) name of system
     public class ShipyardSellEvent : JournalEvent<ShipyardSellEvent.ShipyardSellEventArgs>
     {
         public ShipyardSellEvent() : base("ShipyardSell") { }

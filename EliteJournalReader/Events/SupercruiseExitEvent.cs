@@ -19,6 +19,9 @@ namespace EliteJournalReader.Events
 
         public class SupercruiseExitEventArgs : JournalEventArgs
         {
+            public bool Taxi { get; set; }
+            public bool Multicrew { get; set; }
+
             public long  SystemAddress { get; set; }
             public string StarSystem { get; set; }
             public string Body { get; set; }

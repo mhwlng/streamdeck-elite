@@ -85,6 +85,19 @@ namespace Elite.Buttons
 
             switch (settings.Function)
             {
+                case "FocusCommsPanel":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.CommsPanel;
+                    break;
+                case "FocusRadarPanel":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.RolePanel;
+                    break;
+                case "FocusRightPanel":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel;
+                    break;
+                case "FocusLeftPanel":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.ExternalPanel;
+                    break;
+
                 case "GalaxyMap":
                     isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap;
                     break;
@@ -219,6 +232,33 @@ namespace Elite.Buttons
 
             switch (settings.Function)
             {
+                case "FocusCommsPanel":
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Binding[BindingType.Srv].FocusCommsPanel_Buggy);
+                    else if (EliteData.StatusData.OnFoot)
+                        SendKeypress(Program.Binding[BindingType.OnFoot].FocusCommsPanel_Humanoid);
+                    else
+                        SendKeypress(Program.Binding[BindingType.Ship].FocusCommsPanel);
+                    break;
+                case "FocusLeftPanel":
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Binding[BindingType.Srv].FocusLeftPanel_Buggy);
+                    else
+                        SendKeypress(Program.Binding[BindingType.Ship].FocusLeftPanel);
+                    break;
+                case "FocusRadarPanel":
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Binding[BindingType.Srv].FocusRadarPanel_Buggy);
+                    else
+                        SendKeypress(Program.Binding[BindingType.Ship].FocusRadarPanel);
+                    break;
+                case "FocusRightPanel":
+                    if (EliteData.StatusData.InSRV)
+                        SendKeypress(Program.Binding[BindingType.Srv].FocusRightPanel_Buggy);
+                    else
+                        SendKeypress(Program.Binding[BindingType.Ship].FocusRightPanel);
+                    break;
+
                 case "GalaxyMap":
                     if (EliteData.StatusData.InSRV)
                         SendKeypress(Program.Binding[BindingType.Srv].GalaxyMapOpen_Buggy);

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace Elite
 {
 
-    enum BindingType : int
+    public enum BindingType : int
     {
         General = 0,
         Ship = 1,
@@ -306,6 +306,7 @@ namespace Elite
         public StandardBindingInfo VanityCameraSix { get; set; }
         public StandardBindingInfo VanityCameraSeven { get; set; }
         public StandardBindingInfo VanityCameraNine { get; set; }
+        public StandardBindingInfo VanityCameraTen { get; set; }
         public StandardBindingInfo PitchCameraDown { get; set; }
         public StandardBindingInfo PitchCameraUp { get; set; }
         public StandardBindingInfo RollCameraLeft { get; set; }
@@ -416,6 +417,8 @@ namespace Elite
         public StandardBindingInfo HumanoidPrimaryInteractButton { get; set; }
         public StandardBindingInfo HumanoidSecondaryInteractButton { get; set; }
         public StandardBindingInfo HumanoidItemWheelButton { get; set; }
+        public StandardBindingInfo HumanoidEmoteWheelButton { get; set; }
+        public StandardBindingInfo HumanoidUtilityWheelCycleMode { get; set; }
         public StandardBindingInfo HumanoidPrimaryFireButton { get; set; }
         public StandardBindingInfo HumanoidZoomButton { get; set; }
         public StandardBindingInfo HumanoidThrowGrenadeButton { get; set; }
@@ -432,6 +435,7 @@ namespace Elite
         public StandardBindingInfo HumanoidSwitchToSuitTool { get; set; }
         public StandardBindingInfo HumanoidToggleToolModeButton { get; set; }
         public StandardBindingInfo HumanoidToggleMissionHelpPanelButton { get; set; }
+        public StandardBindingInfo HumanoidPing { get; set; }
         public StandardBindingInfo GalaxyMapOpen_Humanoid { get; set; }
         public StandardBindingInfo SystemMapOpen_Humanoid { get; set; }
         public StandardBindingInfo FocusCommsPanel_Humanoid { get; set; }
@@ -456,6 +460,16 @@ namespace Elite
         public StandardBindingInfo HumanoidSelectFragGrenade { get; set; }
         public StandardBindingInfo HumanoidSelectEMPGrenade { get; set; }
         public StandardBindingInfo HumanoidSelectShieldGrenade { get; set; }
+
+
+        public StandardBindingInfo HumanoidEmoteSlot1 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot2 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot3 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot4 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot5 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot6 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot7 { get; set; }
+        public StandardBindingInfo HumanoidEmoteSlot8 { get; set; }
 
     }
 

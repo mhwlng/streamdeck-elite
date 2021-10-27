@@ -62,6 +62,10 @@ The supported toggle-buttons are:
 - SRV Turret
 - Supercruise (no longer needed)
 - System Map
+- Comms Panel
+- Nav Panel
+- Role Panel
+- Systems Panel
 
 For Odyssey, when On Foot, the Galaxy Map,System Map,Lights & Night Vision buttons will call the on-foot key bindings, 
 but there is no state feedback. So the button image won't change.

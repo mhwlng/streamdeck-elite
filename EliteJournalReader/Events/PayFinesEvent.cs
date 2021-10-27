@@ -9,11 +9,11 @@ namespace EliteJournalReader.Events
 {
     //When Written: when paying fines
     //Parameters:
-    //•	Amount
-    //•	BrokerPercentage (present if paid via a Broker)
-    //•	AllFines: bool
-    //•	Faction: (if paying off an individual faction's fines)
-    //•	ShipID
+    //ï¿½	Amount
+    //ï¿½	BrokerPercentage (present if paid via a Broker)
+    //ï¿½	AllFines: bool
+    //ï¿½	Faction: (if paying off an individual faction's fines)
+    //ï¿½	ShipID
 
     public class PayFinesEvent : JournalEvent<PayFinesEvent.PayFinesEventArgs>
     {

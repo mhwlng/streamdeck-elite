@@ -9,12 +9,12 @@ namespace EliteJournalReader.Events
 {
     //When Written: when switching to another ship already stored at this station
     //Parameters:
-    //•	ShipType: type of ship being switched to
-    //•	ShipID
-    //•	StoreOldShip: (if storing old ship) type of ship being stored
-    //•	StoreShipID
-    //•	SellOldShip: (if selling old ship) type of ship being sold
-    //•	SellShipID
+    //ï¿½	ShipType: type of ship being switched to
+    //ï¿½	ShipID
+    //ï¿½	StoreOldShip: (if storing old ship) type of ship being stored
+    //ï¿½	StoreShipID
+    //ï¿½	SellOldShip: (if selling old ship) type of ship being sold
+    //ï¿½	SellShipID
     public class ShipyardSwapEvent : JournalEvent<ShipyardSwapEvent.ShipyardSwapEventArgs>
     {
         public ShipyardSwapEvent() : base("ShipyardSwap") { }

@@ -160,24 +160,24 @@ namespace Elite
             StatusData.Pips[1] = evt.Pips.Engine;
             StatusData.Pips[2] = evt.Pips.Weapons;
 
-            StatusData.OnFoot = (evt.Flags2 & StatusFlags2.OnFoot) != 0;
-            StatusData.InTaxi = (evt.Flags2 & StatusFlags2.InTaxi) != 0;
-            StatusData.InMulticrew = (evt.Flags2 & StatusFlags2.InMulticrew) != 0;
-            StatusData.OnFootInStation = (evt.Flags2 & StatusFlags2.OnFootInStation) != 0;
-            StatusData.OnFootOnPlanet = (evt.Flags2 & StatusFlags2.OnFootOnPlanet) != 0;
-            StatusData.AimDownSight = (evt.Flags2 & StatusFlags2.AimDownSight) != 0;
-            StatusData.LowOxygen = (evt.Flags2 & StatusFlags2.LowOxygen) != 0;
-            StatusData.LowHealth = (evt.Flags2 & StatusFlags2.LowHealth) != 0;
-            StatusData.Cold = (evt.Flags2 & StatusFlags2.Cold) != 0;
-            StatusData.Hot = (evt.Flags2 & StatusFlags2.Hot) != 0;
-            StatusData.VeryCold = (evt.Flags2 & StatusFlags2.VeryCold) != 0;
-            StatusData.VeryHot = (evt.Flags2 & StatusFlags2.VeryHot) != 0;
+            StatusData.OnFoot = (evt.Flags2 & MoreStatusFlags.OnFoot) != 0;
+            StatusData.InTaxi = (evt.Flags2 & MoreStatusFlags.InTaxi) != 0;
+            StatusData.InMulticrew = (evt.Flags2 & MoreStatusFlags.InMulticrew) != 0;
+            StatusData.OnFootInStation = (evt.Flags2 & MoreStatusFlags.OnFootInStation) != 0;
+            StatusData.OnFootOnPlanet = (evt.Flags2 & MoreStatusFlags.OnFootOnPlanet) != 0;
+            StatusData.AimDownSight = (evt.Flags2 & MoreStatusFlags.AimDownSight) != 0;
+            StatusData.LowOxygen = (evt.Flags2 & MoreStatusFlags.LowOxygen) != 0;
+            StatusData.LowHealth = (evt.Flags2 & MoreStatusFlags.LowHealth) != 0;
+            StatusData.Cold = (evt.Flags2 & MoreStatusFlags.Cold) != 0;
+            StatusData.Hot = (evt.Flags2 & MoreStatusFlags.Hot) != 0;
+            StatusData.VeryCold = (evt.Flags2 & MoreStatusFlags.VeryCold) != 0;
+            StatusData.VeryHot = (evt.Flags2 & MoreStatusFlags.VeryHot) != 0;
 
-            StatusData.GlideMode = (evt.Flags2 & StatusFlags2.GlideMode) != 0;
-            StatusData.OnFootInHangar = (evt.Flags2 & StatusFlags2.OnFootInHangar) != 0;
-            StatusData.OnFootSocialSpace = (evt.Flags2 & StatusFlags2.OnFootSocialSpace) != 0;
-            StatusData.OnFootExterior = (evt.Flags2 & StatusFlags2.OnFootExterior) != 0;
-            StatusData.BreathableAtmosphere = (evt.Flags2 & StatusFlags2.BreathableAtmosphere) != 0;
+            StatusData.GlideMode = (evt.Flags2 & MoreStatusFlags.GlideMode) != 0;
+            StatusData.OnFootInHangar = (evt.Flags2 & MoreStatusFlags.OnFootInHangar) != 0;
+            StatusData.OnFootSocialSpace = (evt.Flags2 & MoreStatusFlags.OnFootSocialSpace) != 0;
+            StatusData.OnFootExterior = (evt.Flags2 & MoreStatusFlags.OnFootExterior) != 0;
+            StatusData.BreathableAtmosphere = (evt.Flags2 & MoreStatusFlags.BreathableAtmosphere) != 0;
         }
 
 

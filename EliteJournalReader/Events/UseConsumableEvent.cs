@@ -7,10 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "UseConsumable" event contains:
-
-    /*
-     */
     public class UseConsumableEvent : JournalEvent<UseConsumableEvent.UseConsumableEventArgs>
     {
         public UseConsumableEvent() : base("UseConsumable") { }
@@ -20,7 +16,7 @@ namespace EliteJournalReader.Events
             public string Name { get; set; }
             public string Name_Localised { get; set; }
             public string Type { get; set; }
-
+            public string Type_Localised { get; set; }
         }
     }
 }

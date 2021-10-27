@@ -7,24 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "ShipLockerMaterials" event contains:
-    /*
-     {"timestamp":"2021-03-31T10:21:35Z","event":"ShipLockerMaterials",
-    "Items":[
-    {"Name":"suitschematic",
-    "Name_Localised":"Suit Schematic",
-    "OwnerID":0,
-    "MissionID":18446744073709551615,
-    "Count":1}],
-    "Components":[],
-    "Consumables":[
-    {"Name":"amm_grenade_frag",
-     "Name_Localised":"Frag Grenade",
-     "OwnerID":0,
-     "MissionID":18446744073709551615,
-     "Count":9}
-    ]}
-     */
     public class ShipLockerMaterialsEvent : JournalEvent<ShipLockerMaterialsEvent.ShipLockerMaterialsEventArgs>
     {
         public ShipLockerMaterialsEvent() : base("ShipLockerMaterials") { }

@@ -11,7 +11,7 @@ namespace EliteJournalReader.Events
 {
     //When written: If you should ever reset your game
     //Parameters:
-    //•	Name: commander name
+    //ï¿½	Name: commander name
     public class CarrierJumpRequestEvent : JournalEvent<CarrierJumpRequestEvent.CarrierJumpRequestEventArgs>
     {
         public CarrierJumpRequestEvent() : base("CarrierJumpRequest") { }

@@ -9,12 +9,12 @@ namespace EliteJournalReader.Events
 {
     //When Written: when moving a module to a different slot on the ship
     //Parameters:
-    //•	FromSlot
-    //•	ToSlot
-    //•	FromItem
-    //•	ToItem
-    //•	Ship
-    //•	ShipID
+    //ï¿½	FromSlot
+    //ï¿½	ToSlot
+    //ï¿½	FromItem
+    //ï¿½	ToItem
+    //ï¿½	Ship
+    //ï¿½	ShipID
     public class ModuleSwapEvent : JournalEvent<ModuleSwapEvent.ModuleSwapEventArgs>
     {
         public ModuleSwapEvent() : base("ModuleSwap") { }

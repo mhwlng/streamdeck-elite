@@ -100,6 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ShipLockerEvent.cs" />
     <Compile Include="ShipLockerWatcher.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -144,6 +144,11 @@ namespace Elite
                                 break;
 
                             // THIRD ROW
+
+                            case "DIKQ":
+                                matchText = "DIKA";
+                                break;
+
                             case "DIKM":
                                 matchText = "DIKSEMICOLON";
                                 break;

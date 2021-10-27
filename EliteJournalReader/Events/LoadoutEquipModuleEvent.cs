@@ -7,10 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "LoadoutEquipModule" event contains:
-
-    /*
-     */
     public class LoadoutEquipModuleEvent : JournalEvent<LoadoutEquipModuleEvent.LoadoutEquipModuleEventArgs>
     {
         public LoadoutEquipModuleEvent() : base("LoadoutEquipModule") { }
@@ -24,7 +20,8 @@ namespace EliteJournalReader.Events
             public string LoadoutName { get; set; }
             public string ModuleName { get; set; }
             public string SuitModuleID { get; set; }
-
+            public string Class { get; set; }
+            public string[] WeaponMods { get; set; }
         }
     }
 }

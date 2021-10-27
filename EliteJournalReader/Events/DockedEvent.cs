@@ -9,29 +9,32 @@ namespace EliteJournalReader.Events
 {
     //    When written: when landing at landing pad in a space station, outpost, or surface settlement
     //    Parameters:
-    //•	StationName: name of station
-    //•	MarketID
-    //•	SystemAddress
-    //•	StationType: type of station
-    //•	StarSystem: name of system
-    //•	CockpitBreach:true (only if landing with breached cockpit)
-    //•	StationFaction: station’s controlling faction
-    //•	FactionState
-    //•	StationAllegiance
-    //•	StationEconomy : (station's primary economy)
-    //•	StationEconomies: (array of name and proportion values)
-    //•	StationGovernment
-    //•	DistFromStarLS
-    //•	StationServices: (Array of strings)
-    //•	Wanted: (only if docking when wanted locally)
-    //•	ActiveFine: true (if any fine is active)
-    //The ‘anonymous docking’ protocol comes into effect if you’re either Wanted(ie have a local bounty) or have an ActiveFine
+    //ï¿½	StationName: name of station
+    //ï¿½	MarketID
+    //ï¿½	SystemAddress
+    //ï¿½	StationType: type of station
+    //ï¿½	StarSystem: name of system
+    //ï¿½	CockpitBreach:true (only if landing with breached cockpit)
+    //ï¿½	StationFaction: stationï¿½s controlling faction
+    //ï¿½	FactionState
+    //ï¿½	StationAllegiance
+    //ï¿½	StationEconomy : (station's primary economy)
+    //ï¿½	StationEconomies: (array of name and proportion values)
+    //ï¿½	StationGovernment
+    //ï¿½	DistFromStarLS
+    //ï¿½	StationServices: (Array of strings)
+    //ï¿½	Wanted: (only if docking when wanted locally)
+    //ï¿½	ActiveFine: true (if any fine is active)
+    //The ï¿½anonymous dockingï¿½ protocol comes into effect if youï¿½re either Wanted(ie have a local bounty) or have an ActiveFine
     public class DockedEvent : JournalEvent<DockedEvent.DockedEventArgs>
     {
         public DockedEvent() : base("Docked") { }
 
         public class DockedEventArgs : JournalEventArgs
         {
+            public bool Taxi { get; set; }
+            public bool Multicrew { get; set; }
+
             public string StarSystem { get; set; }
             public string StationName { get; set; }
             public long SystemAddress { get; set; }
@@ -49,6 +52,7 @@ namespace EliteJournalReader.Events
             public string[] StationServices { get; set; }
             public bool Wanted { get; set; } = false;
             public bool ActiveFine { get; set; } = false;
+            public LandingPad LandingPads { get; set; }
 
             public struct Economy
             {
@@ -56,6 +60,14 @@ namespace EliteJournalReader.Events
                 public string Name_Localised { get; set; }
                 public double Proportion { get; set; }
             }
+
+            public struct LandingPad
+            {
+                public int Small { get; set; }
+                public int Medium { get; set; }
+                public int Large { get; set; }
+            }
+
 
             public override JournalEventArgs Clone()
             {

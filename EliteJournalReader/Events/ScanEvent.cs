@@ -11,63 +11,63 @@ namespace EliteJournalReader.Events
 {
     //When Written: detailed discovery scan of a star, planet or moon
     //Parameters(star)
-    //•	ScanType
-    //•	StarSystem: name
-    //•	SystemAddress
-    //•	Bodyname: name of body
-    //•	DistanceFromArrivalLS
-    //•	StarType: Stellar classification (for a star)
-    //•	Subclass: Star’s heat classification 0..9
-    //•	StellarMass: mass as multiple of Sol’s mass
-    //•	Radius
-    //•	AbsoluteMagnitude
-    //•	RotationPeriod (seconds)
-    //•	SurfaceTemperature
-    //•	Luminosity
-    //•	Age_MY: age in millions of years
-    //•	* Rings: [ array ] - if present
-    //•	WasDiscovered: bool
-    //•	WasMapped: bool
+    //ï¿½	ScanType
+    //ï¿½	StarSystem: name
+    //ï¿½	SystemAddress
+    //ï¿½	Bodyname: name of body
+    //ï¿½	DistanceFromArrivalLS
+    //ï¿½	StarType: Stellar classification (for a star)
+    //ï¿½	Subclass: Starï¿½s heat classification 0..9
+    //ï¿½	StellarMass: mass as multiple of Solï¿½s mass
+    //ï¿½	Radius
+    //ï¿½	AbsoluteMagnitude
+    //ï¿½	RotationPeriod (seconds)
+    //ï¿½	SurfaceTemperature
+    //ï¿½	Luminosity
+    //ï¿½	Age_MY: age in millions of years
+    //ï¿½	* Rings: [ array ] - if present
+    //ï¿½	WasDiscovered: bool
+    //ï¿½	WasMapped: bool
     //
     //Parameters(Planet/Moon) 
-    //•	Bodyname: name of body
-    //•	Parents: Array of BodyType:BodyID pairs
-    //•	DistanceFromArrivalLS
-    //•	* TidalLock: 1 if tidally locked
-    //•	* TerraformState: Terraformable, Terraforming, Terraformed, or null
-    //•	PlanetClass
-    //•	* Atmosphere
-    //•	* AtmosphereType
-    //•	* AtmosphereComposition: [ array of info ]
-    //•	* Volcanism
-    //•	SurfaceGravity
-    //•	* SurfaceTemperature
-    //•	* SurfacePressure
-    //•	* Landable: true (if landable)
-    //•	* Materials: JSON object with material names and percentage occurrence
-    //•	* Composition: structure containing info on solid composition
+    //ï¿½	Bodyname: name of body
+    //ï¿½	Parents: Array of BodyType:BodyID pairs
+    //ï¿½	DistanceFromArrivalLS
+    //ï¿½	* TidalLock: 1 if tidally locked
+    //ï¿½	* TerraformState: Terraformable, Terraforming, Terraformed, or null
+    //ï¿½	PlanetClass
+    //ï¿½	* Atmosphere
+    //ï¿½	* AtmosphereType
+    //ï¿½	* AtmosphereComposition: [ array of info ]
+    //ï¿½	* Volcanism
+    //ï¿½	SurfaceGravity
+    //ï¿½	* SurfaceTemperature
+    //ï¿½	* SurfacePressure
+    //ï¿½	* Landable: true (if landable)
+    //ï¿½	* Materials: JSON object with material names and percentage occurrence
+    //ï¿½	* Composition: structure containing info on solid composition
     //    o Ice
     //    o Rock
     //    o Metal
-    //•	* Rings [ array of info ] - if rings present
-    //•	* ReserveLevel: (Pristine/Major/Common/Low/Depleted) – if rings present
+    //ï¿½	* Rings [ array of info ] - if rings present
+    //ï¿½	* ReserveLevel: (Pristine/Major/Common/Low/Depleted) ï¿½ if rings present
     //If rotating:
-    //•	RotationPeriod(seconds)
-    //•	Axial tilt
+    //ï¿½	RotationPeriod(seconds)
+    //ï¿½	Axial tilt
     //
     // Orbital Parameters for any Star/Planet/Moon (except main star of single-star system)
-    //•	SemiMajorAxis
-    //•	Eccentricity
-    //•	OrbitalInclination
-    //•	Periapsis
-    //•	OrbitalPeriod (seconds)
+    //ï¿½	SemiMajorAxis
+    //ï¿½	Eccentricity
+    //ï¿½	OrbitalInclination
+    //ï¿½	Periapsis
+    //ï¿½	OrbitalPeriod (seconds)
     //
     // Rings properties *
-    //•	Name
-    //•	RingClass
-    //•	MassMT - ie in megatons
-    //•	InnerRad
-    //•	OuterRad
+    //ï¿½	Name
+    //ï¿½	RingClass
+    //ï¿½	MassMT - ie in megatons
+    //ï¿½	InnerRad
+    //ï¿½	OuterRad
     //
     //Note that a basic scan (ie without having a Detailed Surface Scanner installed) will now save a reduced amount of information.
     //A basic scan on a planet will include body name, planet class, orbital data, rotation period, mass, 

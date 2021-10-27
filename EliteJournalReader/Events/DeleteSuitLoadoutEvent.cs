@@ -7,11 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "DeleteSuitLoadout" event contains:
-
-    /*
-     */
-
     public class DeleteSuitLoadoutEvent : JournalEvent<DeleteSuitLoadoutEvent.DeleteSuitLoadoutEventArgs>
     {
         public DeleteSuitLoadoutEvent() : base("DeleteSuitLoadout") { }
@@ -22,7 +17,6 @@ namespace EliteJournalReader.Events
             public string SuitName { get; set; }
             public string LoadoutID { get; set; }
             public string LoadoutName { get; set; }
-
         }
     }
 }

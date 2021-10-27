@@ -9,8 +9,8 @@ namespace EliteJournalReader.Events
 {
     //When written: when launching a fighter
     //Parameters:
-    //•	Loadout
-    //•	PlayerControlled: whether player is controlling the fighter from launch
+    //ï¿½	Loadout
+    //ï¿½	PlayerControlled: whether player is controlling the fighter from launch
     public class LaunchFighterEvent : JournalEvent<LaunchFighterEvent.LaunchFighterEventArgs>
     {
         public LaunchFighterEvent() : base("LaunchFighter") { }
@@ -19,7 +19,7 @@ namespace EliteJournalReader.Events
         {
             public string Loadout { get; set; }
             public bool PlayerControlled { get; set; }
-            public int ID { get; set; }
+            public long ID { get; set; }
         }
     }
 }

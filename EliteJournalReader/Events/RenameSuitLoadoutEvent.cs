@@ -7,10 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "RenameSuitLoadout" event contains:
-
-    /*
-     */
     public class RenameSuitLoadoutEvent : JournalEvent<RenameSuitLoadoutEvent.RenameSuitLoadoutEventArgs>
     {
         public RenameSuitLoadoutEvent() : base("RenameSuitLoadout") { }

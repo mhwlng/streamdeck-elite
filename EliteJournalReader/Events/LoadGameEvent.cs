@@ -13,20 +13,20 @@ namespace EliteJournalReader.Events
     {
         //When written: at startup, when loading from main menu into game
         //Parameters:
-        //•	Commander: commander name
-        //•	Horizons: bool
-        //•	Ship: current ship type
-        //•	ShipID: ship id number
-        //•	StartLanded: true (only present if landed)
-        //•	StartDead:true (only present if starting dead: see “Resurrect”)
-        //•	GameMode: Open, Solo or Group
-        //•	Group: name of group (if in a group)
-        //•	Credits: current credit balance
-        //•	Loan: current loan
-        //•	ShipName: user-defined ship name
-        //•	ShipIdent: user-defined ship ID string
-        //•	FuelLevel: current fuel 
-        //•	FuelCapacity: size of main tank
+        //ï¿½	Commander: commander name
+        //ï¿½	Horizons: bool
+        //ï¿½	Ship: current ship type
+        //ï¿½	ShipID: ship id number
+        //ï¿½	StartLanded: true (only present if landed)
+        //ï¿½	StartDead:true (only present if starting dead: see ï¿½Resurrectï¿½)
+        //ï¿½	GameMode: Open, Solo or Group
+        //ï¿½	Group: name of group (if in a group)
+        //ï¿½	Credits: current credit balance
+        //ï¿½	Loan: current loan
+        //ï¿½	ShipName: user-defined ship name
+        //ï¿½	ShipIdent: user-defined ship ID string
+        //ï¿½	FuelLevel: current fuel 
+        //ï¿½	FuelCapacity: size of main tank
 
         public LoadGameEvent() : base("LoadGame") { }
 
@@ -52,6 +52,10 @@ namespace EliteJournalReader.Events
             public string ShipIdent { get; set; }
             public double FuelLevel { get; set; }
             public double FuelCapacity { get; set; }
+
+            public string Language { get; set; }
+            public string Gameversion { get; set; }
+            public string Build { get; set; }
         }
     }
 }

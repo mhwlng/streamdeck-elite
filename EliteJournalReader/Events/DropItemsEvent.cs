@@ -7,10 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "DropItems" event contains:
-
-    /*
-     */
     public class DropItemsEvent : JournalEvent<DropItemsEvent.DropItemsEventArgs>
     {
         public DropItemsEvent() : base("DropItems") { }
@@ -18,11 +14,12 @@ namespace EliteJournalReader.Events
         public class DropItemsEventArgs : JournalEventArgs
         {
             public string Name { get; set; }
+            public string Name_Localised { get; set; }
             public string Type { get; set; }
+            public string Type_Localised { get; set; }
             public long OwnerID { get; set; }
             public string MissionID { get; set; }
             public int Count { get; set; }
-
         }
     }
 }

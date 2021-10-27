@@ -9,7 +9,7 @@ namespace EliteJournalReader.Events
 {
     //When written: When another player leaves your ship's crew
     //Parameters:
-    //•	Crew: player's commander name
+    //ï¿½	Crew: player's commander name
     public class CrewMemberQuitsEvent : JournalEvent<CrewMemberQuitsEvent.CrewMemberQuitsEventArgs>
     {
         public CrewMemberQuitsEvent() : base("CrewMemberQuits") { }
@@ -17,7 +17,7 @@ namespace EliteJournalReader.Events
         public class CrewMemberQuitsEventArgs : JournalEventArgs
         {
             public string Crew { get; set; }
-            public int CrewID { get; set; }
+            public long CrewID { get; set; }
         }
     }
 }

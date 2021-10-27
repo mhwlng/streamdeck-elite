@@ -802,6 +802,9 @@ namespace Elite.Buttons
                 case "VanityCameraNine":
                     SendKeypress(Program.Binding[BindingType.General].VanityCameraNine);
                     break;
+                case "VanityCameraTen":
+                    SendKeypress(Program.Binding[BindingType.General].VanityCameraTen);
+                    break;
                 case "PitchCameraDown":
                     SendKeypress(Program.Binding[BindingType.General].PitchCameraDown);
                     break;
@@ -1058,6 +1061,13 @@ namespace Elite.Buttons
                 case "HumanoidItemWheelButton":
                     SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidItemWheelButton);
                     break;
+                case "HumanoidEmoteWheelButton":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteWheelButton);
+                    break;
+                case "HumanoidUtilityWheelCycleMode":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidUtilityWheelCycleMode);
+                    break;
+
                 case "HumanoidPrimaryFireButton":
                     SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidPrimaryFireButton);
                     break;
@@ -1158,6 +1168,34 @@ namespace Elite.Buttons
                 case "HumanoidToggleMissionHelpPanelButton":
                     SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleMissionHelpPanelButton);
                     break;
+                case "HumanoidPing":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidPing);
+                    break;
+
+                case "HumanoidEmoteSlot1":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot1);
+                    break;
+                case "HumanoidEmoteSlot2":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot2);
+                    break;
+                case "HumanoidEmoteSlot3":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot3);
+                    break;
+                case "HumanoidEmoteSlot4":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot4);
+                    break;
+                case "HumanoidEmoteSlot5":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot5);
+                    break;
+                case "HumanoidEmoteSlot6":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot6);
+                    break;
+                case "HumanoidEmoteSlot7":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot7);
+                    break;
+                case "HumanoidEmoteSlot8":
+                    SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot8);
+                    break;
 
             }
 
@@ -1176,6 +1214,8 @@ namespace Elite.Buttons
                  <option value="HumanoidCrouchButton">Crouch</option>
                  <option value="HumanoidJumpButton">Jump</option>
                  <option value="HumanoidItemWheelButton">Item Wheel</option>
+                 <option value="HumanoidEmoteWheelButton">Emote Wheel</option>
+                 <option value="HumanoidUtilityWheelCycleMode">Cycle Wheel Mode</option>
                  <option value="HumanoidPrimaryFireButton">Primary Fire</option>
              </optgroup>
              <optgroup label="Navigation">
@@ -1252,7 +1292,8 @@ namespace Elite.Buttons
                  <option value="VanityCameraEight">Cam - Back</option>
                  <option value="VanityCameraFive">Cam - Co-Pilot 1</option>
                  <option value="VanityCameraFour">Cam - Commander 2</option>
-                 <option value="VanityCameraNine">Cam - Low</option>
+                 <option value="VanityCameraNine">Cam - Back</option>
+                 <option value="VanityCameraTen">Cam - Back Low</option>
                  <option value="VanityCameraOne">Cam - Cockpit Front</option>
                  <option value="VanityCameraScrollLeft">Prev Cam</option>
                  <option value="VanityCameraScrollRight">Next Cam</option>

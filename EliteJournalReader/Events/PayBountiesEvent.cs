@@ -9,11 +9,11 @@ namespace EliteJournalReader.Events
 {
     //When written: when paying off bounties
     //Parameters:
-    //•	Amount: (total amount paid, including any broker fee)
-    //•	BrokerPercentage(present if paid via a Broker)
-    //•	AllFines: bool
-    //•	Faction
-    //•	ShipID
+    //ï¿½	Amount: (total amount paid, including any broker fee)
+    //ï¿½	BrokerPercentage(present if paid via a Broker)
+    //ï¿½	AllFines: bool
+    //ï¿½	Faction
+    //ï¿½	ShipID
     public class PayBountiesEvent : JournalEvent<PayBountiesEvent.PayBountiesEventArgs>
     {
         public PayBountiesEvent() : base("PayBounties") { }

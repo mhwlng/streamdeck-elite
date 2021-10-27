@@ -8,10 +8,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "ScanOrganic" event contains:
-
-    /*
-     */
     public class ScanOrganicEvent : JournalEvent<ScanOrganicEvent.ScanOrganicEventArgs>
     {
         public ScanOrganicEvent() : base("ScanOrganic") { }

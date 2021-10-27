@@ -9,10 +9,10 @@ namespace EliteJournalReader.Events
 {
     //When written: When selling a stored ship to raise funds when on insurance/rebuy screen
     //Parameters:
-    //•	ShipType
-    //•	System
-    //•	SellShipId
-    //•	ShipPrice
+    //ï¿½	ShipType
+    //ï¿½	System
+    //ï¿½	SellShipId
+    //ï¿½	ShipPrice
     public class SellShipOnRebuyEvent : JournalEvent<SellShipOnRebuyEvent.SellShipOnRebuyEventArgs>
     {
         public SellShipOnRebuyEvent() : base("SellShipOnRebuy") { }

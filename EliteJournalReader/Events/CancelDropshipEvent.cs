@@ -7,11 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "CancelDropship" event contains:
-    /*
-     
-     */
-
     public class CancelDropshipEvent : JournalEvent<CancelDropshipEvent.CancelDropshipEventArgs>
     {
         public CancelDropshipEvent() : base("CancelDropship") { }

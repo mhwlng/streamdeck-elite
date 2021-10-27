@@ -13,7 +13,7 @@ namespace EliteJournalReader.Events
 
         public StatusFlags Flags { get; set; }
 
-        public StatusFlags2 Flags2 { get; set; }
+        public MoreStatusFlags Flags2 { get; set; }
 
         [JsonConverter(typeof(JsonPipsConverter))]
         public (int System, int Engine, int Weapons) Pips { get; set; }
@@ -21,7 +21,7 @@ namespace EliteJournalReader.Events
         public int Firegroup { get; set; }
 
         public StatusGuiFocus GuiFocus { get; set; }
-        
+
         public StatusFuel Fuel { get; set; }
 
         public double Cargo { get; set; }
@@ -37,13 +37,21 @@ namespace EliteJournalReader.Events
         public double Heading { get; set; }
 
         public string BodyName { get; set; }
-           
+
         public double PlanetRadius { get; set; }
 
+        public long Balance { get; set; }
+
+        public Destination Destination { get; set; }
+
         public double Oxygen { get; set; }
+
         public double Health { get; set; }
+
         public double Temperature { get; set; }
+
         public string SelectedWeapon { get; set; }
+
         public double Gravity { get; set; }
 
 
@@ -52,7 +60,8 @@ namespace EliteJournalReader.Events
             public override bool CanConvert(Type objectType) => true;
             public override bool CanWrite => false;
 
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+                JsonSerializer serializer)
             {
                 (int System, int Engine, int Weapons) result;
 
@@ -66,6 +75,7 @@ namespace EliteJournalReader.Events
                 {
                     result = (0, 0, 0);
                 }
+
                 reader.Read(); // read EndArray
                 return result;
             }
@@ -82,6 +92,14 @@ namespace EliteJournalReader.Events
                 throw new NotImplementedException();
             }
         }
+
+    }
+
+    public struct Destination
+    {
+        public string System { get; set; }
+        public string Body { get; set; }
+        public string Name { get; set; }
     }
 
     [Flags]
@@ -123,7 +141,7 @@ namespace EliteJournalReader.Events
     }
 
     [Flags]
-    public enum StatusFlags2 : long
+    public enum MoreStatusFlags : long
     {
         None = 0,
         OnFoot = 0x00000001,

@@ -7,10 +7,6 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "DropShipDeploy" event contains:
-
-    /*
-     */
     public class DropShipDeployEvent : JournalEvent<DropShipDeployEvent.DropShipDeployEventArgs>
     {
         public DropShipDeployEvent() : base("DropShipDeploy") { }
@@ -23,7 +19,6 @@ namespace EliteJournalReader.Events
             public long BodyID { get; set; }
             public bool OnStation { get; set; }
             public bool OnPlanet { get; set; }
-
         }
     }
 }

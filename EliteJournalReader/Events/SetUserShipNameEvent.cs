@@ -9,10 +9,10 @@ namespace EliteJournalReader.Events
 {
     //When written: when assigning a name to the ship in Starport Services
     //Parameters:
-    //•	Ship: Ship model(eg CobraMkIII)
-    //•	ShipID: player's ship ID number
-    //•	UserShipName: selected name
-    //•	UserShipId: selected ship id
+    //ï¿½	Ship: Ship model(eg CobraMkIII)
+    //ï¿½	ShipID: player's ship ID number
+    //ï¿½	UserShipName: selected name
+    //ï¿½	UserShipId: selected ship id
     public class SetUserShipNameEvent : JournalEvent<SetUserShipNameEvent.SetUserShipNameEventArgs>
     {
         public SetUserShipNameEvent() : base("SetUserShipName") { }

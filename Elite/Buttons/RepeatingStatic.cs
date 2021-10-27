@@ -698,6 +698,9 @@ namespace Elite.Buttons
                 case "VanityCameraNine":
                     SendKeypressDown(Program.Binding[BindingType.General].VanityCameraNine);
                     break;
+                case "VanityCameraTen":
+                    SendKeypressDown(Program.Binding[BindingType.General].VanityCameraTen);
+                    break;
                 case "PitchCameraDown":
                     SendKeypressDown(Program.Binding[BindingType.General].PitchCameraDown);
                     break;
@@ -955,6 +958,13 @@ namespace Elite.Buttons
                 case "HumanoidItemWheelButton":
                     SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidItemWheelButton);
                     break;
+                case "HumanoidEmoteWheelButton":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteWheelButton);
+                    break;
+                case "HumanoidUtilityWheelCycleMode":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidUtilityWheelCycleMode);
+                    break;
+
                 case "HumanoidPrimaryFireButton":
                     SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidPrimaryFireButton);
                     break;
@@ -1054,6 +1064,34 @@ namespace Elite.Buttons
                     break;
                 case "HumanoidToggleMissionHelpPanelButton":
                     SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidToggleMissionHelpPanelButton);
+                    break;
+                case "HumanoidPing":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidPing);
+                    break;
+
+                case "HumanoidEmoteSlot1":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot1);
+                    break;
+                case "HumanoidEmoteSlot2":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot2);
+                    break;
+                case "HumanoidEmoteSlot3":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot3);
+                    break;
+                case "HumanoidEmoteSlot4":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot4);
+                    break;
+                case "HumanoidEmoteSlot5":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot5);
+                    break;
+                case "HumanoidEmoteSlot6":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot6);
+                    break;
+                case "HumanoidEmoteSlot7":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot7);
+                    break;
+                case "HumanoidEmoteSlot8":
+                    SendKeypressDown(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot8);
                     break;
 
             }
@@ -1701,6 +1739,10 @@ namespace Elite.Buttons
                 case "VanityCameraNine":
                     SendKeypressUp(Program.Binding[BindingType.General].VanityCameraNine);
                     break;
+                case "VanityCameraTen":
+                    SendKeypressUp(Program.Binding[BindingType.General].VanityCameraTen);
+                    break;
+
                 case "PitchCameraDown":
                     SendKeypressUp(Program.Binding[BindingType.General].PitchCameraDown);
                     break;
@@ -1959,6 +2001,13 @@ namespace Elite.Buttons
                 case "HumanoidItemWheelButton":
                     SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidItemWheelButton);
                     break;
+                case "HumanoidEmoteWheelButton":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteWheelButton);
+                    break;
+                case "HumanoidUtilityWheelCycleMode":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidUtilityWheelCycleMode);
+                    break;
+
                 case "HumanoidPrimaryFireButton":
                     SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidPrimaryFireButton);
                     break;
@@ -2060,6 +2109,35 @@ namespace Elite.Buttons
                 case "HumanoidToggleMissionHelpPanelButton":
                     SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidToggleMissionHelpPanelButton);
                     break;
+                case "HumanoidPing":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidPing);
+                    break;
+
+                case "HumanoidEmoteSlot1":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot1);
+                    break;
+                case "HumanoidEmoteSlot2":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot2);
+                    break;
+                case "HumanoidEmoteSlot3":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot3);
+                    break;
+                case "HumanoidEmoteSlot4":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot4);
+                    break;
+                case "HumanoidEmoteSlot5":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot5);
+                    break;
+                case "HumanoidEmoteSlot6":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot6);
+                    break;
+                case "HumanoidEmoteSlot7":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot7);
+                    break;
+                case "HumanoidEmoteSlot8":
+                    SendKeypressUp(Program.Binding[BindingType.OnFoot].HumanoidEmoteSlot8);
+                    break;
+
             }
 
             /*
@@ -2138,7 +2216,8 @@ namespace Elite.Buttons
                 <option value="VanityCameraEight">Cam - Back</option>
                 <option value="VanityCameraFive">Cam - Co-Pilot 1</option>
                 <option value="VanityCameraFour">Cam - Commander 2</option>
-                <option value="VanityCameraNine">Cam - Low</option>
+                <option value="VanityCameraNine">Cam - Back</option>
+                <option value="VanityCameraTen">Cam - Back Low</option>
                 <option value="VanityCameraOne">Cam - Cockpit Front</option>
                 <option value="VanityCameraScrollLeft">Prev Cam</option>
                 <option value="VanityCameraScrollRight">Next Cam</option>

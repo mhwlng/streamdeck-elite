@@ -7,11 +7,11 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    public class BackPackEvent : JournalEvent<BackPackEvent.BackPackEventArgs>
+    public class ShipLockerEvent : JournalEvent<ShipLockerEvent.ShipLockerEventArgs>
     {
-        public BackPackEvent() : base("Backpack") { }
+        public ShipLockerEvent() : base("ShipLocker") { }
 
-        public class BackPackEventArgs : JournalEventArgs
+        public class ShipLockerEventArgs : JournalEventArgs
         {
             public struct Item
             {

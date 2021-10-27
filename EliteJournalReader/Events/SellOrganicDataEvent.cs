@@ -7,17 +7,13 @@ using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader.Events
 {
-    //The "SellOrganicData" event contains:
-
-    /*
-     */
     public class SellOrganicDataEvent : JournalEvent<SellOrganicDataEvent.SellOrganicDataEventArgs>
     {
         public SellOrganicDataEvent() : base("SellOrganicData") { }
 
         public class SellOrganicDataEventArgs : JournalEventArgs
         {
-            public class BioDateItem
+            public class BioDataItem
             {
                 public string Genus { get; set; }
                 public string Species { get; set; }
@@ -26,8 +22,7 @@ namespace EliteJournalReader.Events
             }
 
             public long MarketID { get; set; }
-            public BioDateItem [] BioData { get; set; }
-
+            public BioDataItem [] BioData { get; set; }
         }
     }
 }
