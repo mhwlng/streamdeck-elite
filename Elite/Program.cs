@@ -354,8 +354,13 @@ namespace Elite
                 Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
             }
 
+            var startPresetPath = Path.Combine(bindingsPath, "StartPreset.4.start");
 
-            var startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
+            if (!File.Exists(startPresetPath))
+            {
+
+                startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
+            }
 
             //Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);
 
