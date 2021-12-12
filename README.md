@@ -70,6 +70,12 @@ The supported toggle-buttons are:
 For Odyssey, when On Foot, the Galaxy Map,System Map,Lights & Night Vision buttons will call the on-foot key bindings, 
 but there is no state feedback. So the button image won't change.
 
+You could, for example, use the 'multi-action switch' function, that is built into the streamdeck software, 
+to set up a toggle function for on-foot functions. 
+You can add the relevant static function of this plugin to both the ON-and OFF-action of the 'multi-action switch' function. 
+You can then set up different images for each toggle state.
+The disadvantage is: that if you would press e.g. the on-foot shield on/off button when still in a ship, then the button image would be out of sync.
+
 A sound can be played when pressing a toggle button.
 
 The supported power distributor pips buttons are:
