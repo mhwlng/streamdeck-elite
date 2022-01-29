@@ -4,7 +4,7 @@ Elgato Stream Deck button plugin for Elite Dangerous
 ![Elgato Stream Deck and Flight Instrument Panel](https://i.imgur.com/bE2ODlF.jpg)
 
 This plugin connects to Elite Dangerous, to get the on/off status for 14 different toggle-buttons, 
-4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons, an FSS toggle button and a generic limpet controller button.
+4 buttons to control the power distributor pips, 4 alarm buttons, 3 FSD related buttons, an FSS toggle button, a firegroup selection button and a generic limpet controller button.
 
 If you press the relevant button on your keyboard or hotas, then the image on the stream deck will change correctly.
 
@@ -134,6 +134,13 @@ Text colors can be configured separately for each button state.
 If color #ff00ff is chosen, then the text will always be hidden.
 
 A normal and disabled sound can be played when pressing a limpet button.
+
+The firegroup selection buttons have 3 images:
+- on       : firegroup is active
+- off      : firegroup is inactive
+- disabled : firegroup selection is blocked for reasons like (On Foot, in Srv, Docked, Landed, LandingGearDown, FSD Jump)
+
+A normal and disabled sound can be played when pressing a firegroup button.
 
 The plugin looks for a StartPreset.start file in this Elite Dangerous key bindings directory :
 
