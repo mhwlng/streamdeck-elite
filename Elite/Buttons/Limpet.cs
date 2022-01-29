@@ -237,7 +237,7 @@ namespace Elite.Buttons
                     for (var f = 0; f < -cycle; f++)
                     {
                         SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
-                        Thread.Sleep(30);
+                        Thread.Sleep(70);
                     }
                 }
                 else if (cycle > 0)
@@ -245,7 +245,7 @@ namespace Elite.Buttons
                     for (var f = 0 ; f < cycle; f++)
                     {
                         SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
-                        Thread.Sleep(30);
+                        Thread.Sleep(70);
                     }
                 }
 
@@ -261,7 +261,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0; f < -cycle; f++)
                     {
-                        Thread.Sleep(30);
+                        Thread.Sleep(70);
                         SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                     }
 
@@ -270,7 +270,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0; f < cycle; f++)
                     {
-                        Thread.Sleep(30);
+                        Thread.Sleep(70);
                         SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                     }
                 }
