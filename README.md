@@ -166,7 +166,7 @@ You may see errors like this in the plugin log file :
 
 `file not found C:\Users\xxx\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\Custom.4.0.binds`
 
-In that case the plugin has no access to the bindings directory. 
+In that case, the plugin has no access to the bindings directory. 
 
 Start streamdeck.exe as administrator.
 
