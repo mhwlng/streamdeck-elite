@@ -160,16 +160,15 @@ If you change the key bindings in Elite Dangerous, then you don't have to restar
 **When using Odyssey, the on-foot binding must be 'custom'. (this will happen automatically once you make at least one on-foot keyboard binding)
 If you see a default binding name, then the plugin won't work correctly.**
 
-
-**If nothing happens, when pressing streamdeck buttons:
+If nothing happens, when pressing streamdeck buttons:
 
 You may see errors like this in the plugin log file :
 
-file not found C:\Users\xxx\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\Custom.4.0.binds
+`file not found C:\Users\xxx\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\Custom.4.0.binds`
 
 In that case the plugin has no access to the bindings directory. 
 
-Start streamdeck.exe as administrator**
+Start streamdeck.exe as administrator.
 
 The plugin installer is here: https://github.com/mhwlng/streamdeck-elite/releases
 
