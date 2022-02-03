@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
 using Newtonsoft.Json;
@@ -60,6 +61,52 @@ namespace Elite.Buttons
                 HandleFileNames();
             }
 
+        }
+
+        private void HandleFireGroup(int fireGroup)
+        {
+            var isDisabled = (EliteData.StatusData.OnFoot ||
+                              EliteData.StatusData.InSRV ||
+                              EliteData.StatusData.Docked ||
+                              EliteData.StatusData.Landed ||
+                              EliteData.StatusData.LandingGearDown ||
+                              EliteData.StatusData.FsdJump //||
+
+                //EliteData.StatusData.Supercruise ||
+                //EliteData.StatusData.CargoScoopDeployed ||
+                //EliteData.StatusData.SilentRunning ||
+                //EliteData.StatusData.ScoopingFuel ||
+                //EliteData.StatusData.IsInDanger ||
+                //EliteData.StatusData.BeingInterdicted ||
+                //EliteData.StatusData.HudInAnalysisMode ||
+                //EliteData.StatusData.FsdMassLocked ||
+                //EliteData.StatusData.FsdCharging ||
+                //EliteData.StatusData.FsdCooldown ||
+
+                //EliteData.StatusData.HardpointsDeployed
+                );
+
+            if (!isDisabled)
+            {
+                var cycle = fireGroup - EliteData.StatusData.Firegroup;
+
+                if (cycle < 0)
+                {
+                    for (var f = 0; f < -cycle; f++)
+                    {
+                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
+                        Thread.Sleep(70);
+                    }
+                }
+                else if (cycle > 0)
+                {
+                    for (var f = 0; f < cycle; f++)
+                    {
+                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
+                        Thread.Sleep(70);
+                    }
+                }
+            }
         }
 
         public override void KeyPressed(KeyPayload payload)
@@ -627,6 +674,33 @@ namespace Elite.Buttons
                     {
                         SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
                     }
+                    break;
+
+                // fire groups 
+
+                case "FireGroup-A":
+                    HandleFireGroup(0);
+                    break;
+                case "FireGroup-B":
+                    HandleFireGroup(1);
+                    break;
+                case "FireGroup-C":
+                    HandleFireGroup(2);
+                    break;
+                case "FireGroup-D":
+                    HandleFireGroup(3);
+                    break;
+                case "FireGroup-E":
+                    HandleFireGroup(4);
+                    break;
+                case "FireGroup-F":
+                    HandleFireGroup(5);
+                    break;
+                case "FireGroup-G":
+                    HandleFireGroup(6);
+                    break;
+                case "FireGroup-H":
+                    HandleFireGroup(7);
                     break;
 
                 // general
