@@ -170,7 +170,7 @@ namespace EliteJournalReader
             // to be used for unit tests when we're not actually checking file systems
         }
 
-        private readonly Regex journalFileRegex = new Regex(@"^(?<path>.*)\\Journal(Beta)?\.(?<timestamp>\d+)\.(?<part>\d+)\.log$", RegexOptions.Compiled);
+        private readonly Regex journalFileRegex = new Regex(@"^(?<path>.*)\\Journal(Beta)?\.(?<timestamp>[-0-9T]+)\.(?<part>\d+)\.log$", RegexOptions.Compiled);
 
         /// <summary>
         /// This will look into the journal folder and check the latest journal.
