@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using BarRaider.SdTools;
+using EliteJournalReader.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -673,6 +674,110 @@ namespace Elite.Buttons
                     if (isPrimary)
                     {
                         SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
+                    }
+                    break;
+
+
+                case "FocusCommsPanel-ON":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.CommsPanel;
+                    if (!isPrimary && EliteData.StatusData.GuiFocus != StatusGuiFocus.NoFocus)
+                    {
+                        SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                        Thread.Sleep(200);
+                    }
+
+                    if (!isPrimary)
+                    {
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Binding[BindingType.Srv].FocusCommsPanel_Buggy);
+                        else if (EliteData.StatusData.OnFoot)
+                            SendKeypress(Program.Binding[BindingType.OnFoot].FocusCommsPanel_Humanoid);
+                        else
+                            SendKeypress(Program.Binding[BindingType.Ship].FocusCommsPanel);
+                    }
+                    break;
+                case "FocusLeftPanel-ON":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.ExternalPanel;
+                    if (!isPrimary && EliteData.StatusData.GuiFocus != StatusGuiFocus.NoFocus)
+                    {
+                        SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                        Thread.Sleep(200);
+                    }
+
+                    if (!isPrimary)
+                    {
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Binding[BindingType.Srv].FocusLeftPanel_Buggy);
+                        else
+                            SendKeypress(Program.Binding[BindingType.Ship].FocusLeftPanel);
+                    }
+                    break;
+                case "FocusRadarPanel-ON":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.RolePanel;
+                    if (!isPrimary && EliteData.StatusData.GuiFocus != StatusGuiFocus.NoFocus)
+                    {
+                        SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                        Thread.Sleep(200);
+                    }
+
+                    if (!isPrimary)
+                    {
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Binding[BindingType.Srv].FocusRadarPanel_Buggy);
+                        else
+                            SendKeypress(Program.Binding[BindingType.Ship].FocusRadarPanel);
+                    }
+                    break;
+                case "FocusRightPanel-ON":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel;
+                    if (!isPrimary && EliteData.StatusData.GuiFocus != StatusGuiFocus.NoFocus)
+                    {
+                        SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                        Thread.Sleep(200);
+                    }
+
+                    if (!isPrimary)
+                    {
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Binding[BindingType.Srv].FocusRightPanel_Buggy);
+                        else
+                            SendKeypress(Program.Binding[BindingType.Ship].FocusRightPanel);
+                    }
+                    break;
+                case "GalaxyMapOpen-ON":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap;
+                    if (!isPrimary && EliteData.StatusData.GuiFocus != StatusGuiFocus.NoFocus)
+                    {
+                        SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                        Thread.Sleep(200);
+                    }
+
+                    if (!isPrimary)
+                    {
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Binding[BindingType.Srv].GalaxyMapOpen_Buggy);
+                        else if (EliteData.StatusData.OnFoot)
+                            SendKeypress(Program.Binding[BindingType.OnFoot].GalaxyMapOpen_Humanoid);
+                        else
+                            SendKeypress(Program.Binding[BindingType.Ship].GalaxyMapOpen);
+                    }
+                    break;
+                case "SystemMapOpen-ON":
+                    isPrimary = EliteData.StatusData.GuiFocus == StatusGuiFocus.SystemMap || EliteData.StatusData.GuiFocus == StatusGuiFocus.Orrery;
+                    if (!isPrimary && EliteData.StatusData.GuiFocus != StatusGuiFocus.NoFocus)
+                    {
+                        SendKeypress(Program.Binding[BindingType.General].UI_Back);
+                        Thread.Sleep(200);
+                    }
+
+                    if (!isPrimary)
+                    {
+                        if (EliteData.StatusData.InSRV)
+                            SendKeypress(Program.Binding[BindingType.Srv].SystemMapOpen_Buggy);
+                        else if (EliteData.StatusData.OnFoot)
+                            SendKeypress(Program.Binding[BindingType.OnFoot].SystemMapOpen_Humanoid);
+                        else
+                            SendKeypress(Program.Binding[BindingType.Ship].SystemMapOpen);
                     }
                     break;
 

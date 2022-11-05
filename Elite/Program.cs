@@ -134,8 +134,13 @@ namespace Elite
             {
                 stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
             }
-            catch (IOException)
+            catch (IOException e)
             {
+                if (file.FullName.ToLower().Contains(".start"))
+                {
+                    Logger.Instance.LogMessage(TracingLevel.ERROR, $"error opening file {file.FullName} {e}");
+                }
+
                 //the file is unavailable because it is:
                 //still being written to
                 //or being processed by another thread
@@ -182,9 +187,9 @@ namespace Elite
                 {
                     fileInfo = FileInfo(startPresetPath);
                 }
-                catch (NotSupportedException)
+                catch (Exception e)
                 {
-                    // do nothing
+                    Logger.Instance.LogMessage(TracingLevel.ERROR, $"error opening file {startPresetPath} {e}");
                 }
 
                 if (fileInfo != null)
@@ -196,6 +201,8 @@ namespace Elite
                         maxTries--;
                         if (maxTries == 0)
                         {
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, $"file still locked. exiting {startPresetPath}");
+
                             return null;
                         }
                     }
@@ -205,6 +212,8 @@ namespace Elite
                     {
                         fs.Seek(0, SeekOrigin.Begin);
                         var bindsNames = reader.ReadToEnd();
+
+                        Logger.Instance.LogMessage(TracingLevel.INFO, $"startpreset contents : {bindsNames}");
 
                         if (string.IsNullOrEmpty(bindsNames))
                         {
@@ -244,11 +253,13 @@ namespace Elite
 
                 if (!File.Exists(fileName))
                 {
+                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file also not found " + fileName);
+
                     fileName = fileName.Replace(".3.0.binds", ".binds");
 
                     if (!File.Exists(fileName))
                     {
-                        Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+                        Logger.Instance.LogMessage(TracingLevel.ERROR, "file also not found " + fileName);
                     }
                 }
             }
@@ -270,11 +281,13 @@ namespace Elite
 
                         if (!File.Exists(fileName))
                         {
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file also not found " + fileName);
+
                             fileName = fileName.Replace(".3.0.binds", ".binds");
 
                             if (!File.Exists(fileName))
                             {
-                                Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
+                                Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file also not found " + fileName);
                             }
                         }
                     }
@@ -298,6 +311,8 @@ namespace Elite
 
                         if (!File.Exists(fileName))
                         {
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file also not found " + fileName);
+
                             fileName = fileName.Replace(".3.0.binds", ".binds");
 
                             if (!File.Exists(fileName))
@@ -346,20 +361,36 @@ namespace Elite
                 KeyBindingWatcherStartPreset.Dispose();
                 KeyBindingWatcherStartPreset = null;
             }
-            
+
+            Logger.Instance.LogMessage(TracingLevel.INFO, $"LocalApplicationData path {Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}");
+
             var bindingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Frontier Developments\Elite Dangerous\Options\Bindings");
 
             if (!Directory.Exists(bindingsPath))
             {
                 Logger.Instance.LogMessage(TracingLevel.FATAL, $"Directory doesn't exist {bindingsPath}");
             }
+            else
+            {
+                Logger.Instance.LogMessage(TracingLevel.INFO, $"Directory found {bindingsPath}");
+            }
 
             var startPresetPath = Path.Combine(bindingsPath, "StartPreset.4.start");
 
             if (!File.Exists(startPresetPath))
             {
+                Logger.Instance.LogMessage(TracingLevel.INFO, $"StartPreset.4.start not found {startPresetPath}");
 
                 startPresetPath = Path.Combine(bindingsPath, "StartPreset.start");
+
+                if (!File.Exists(startPresetPath))
+                {
+                    Logger.Instance.LogMessage(TracingLevel.INFO, $"StartPreset.start also not found {startPresetPath}");
+                }
+            }
+            else
+            {
+                Logger.Instance.LogMessage(TracingLevel.INFO, $"StartPreset.4.start found {startPresetPath}");
             }
 
             //Logger.Instance.LogMessage(TracingLevel.INFO, "bindings path " + bindingsPath);

@@ -9,7 +9,8 @@ namespace EliteJournalReader.Events
 {
     //When written: When another player joins your ship's crew
     //Parameters:
-    //�	Crew: player's commander name
+    //Crew: player's commander name
+    //Telepresence: (bool) (only from Odyssey build)
     public class CrewMemberJoinsEvent : JournalEvent<CrewMemberJoinsEvent.CrewMemberJoinsEventArgs>
     {
         public CrewMemberJoinsEvent() : base("CrewMemberJoins") { }
@@ -18,6 +19,7 @@ namespace EliteJournalReader.Events
         {
             public string Crew { get; set; }
             public long CrewID { get; set; }
+            public bool Telepresence { get; set; }
         }
     }
 }

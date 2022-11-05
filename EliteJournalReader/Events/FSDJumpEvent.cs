@@ -11,24 +11,24 @@ namespace EliteJournalReader.Events
 {
     //When written: when jumping from one star system to another
     //Parameters:
-    //•	StarSystem: name of destination starsystem
-    //•	StarPos: star position, as a Json array [x, y, z], in light years
-    //•	Body: star’s body name
-    //•	JumpDist: distance jumped
-    //•	FuelUsed
-    //•	FuelLevel
-    //•	BoostUsed: whether FSD boost was used
-    //•	SystemFaction: system controlling faction
+    //	StarSystem: name of destination starsystem
+    //	StarPos: star position, as a Json array [x, y, z], in light years
+    //	Body: star's body name
+    //	JumpDist: distance jumped
+    //	FuelUsed
+    //	FuelLevel
+    //	BoostUsed: whether FSD boost was used
+    //	SystemFaction: system controlling faction
     //    o Name
     //    o FactionState
-    //•	SystemAllegiance
-    //•	SystemEconomy
-    //•	SystemSecondEconomy
-    //•	SystemGovernment
-    //•	SystemSecurity
-    //•	Population
-    //•	Wanted
-    //•	Factions: an array of info for the local minor factions
+    //	SystemAllegiance
+    //	SystemEconomy
+    //	SystemSecondEconomy
+    //	SystemGovernment
+    //	SystemSecurity
+    //	Population
+    //	Wanted
+    //	Factions: an array of info for the local minor factions
     //    o Name
     //    o FactionState
     //    o Government
@@ -41,14 +41,14 @@ namespace EliteJournalReader.Events
     //    o SquadronFaction:true (if player is in squadron aligned to this faction)
     //    o HappiestSystem:true (if player squadron faction, and this is happiest system)
     //    o HomeSystem:true(if player squadron faction, and this is home system)
-    //•	Conflicts: an array of info about local conflicts(if any)
+    //	Conflicts: an array of info about local conflicts(if any)
     //    o WarType
     //    o Status
     //    o Faction1: { Name, Stake, WonDays }
     //    o Faction2: { Name, Stake, WonDays }
     //If the player is pledged to a Power in Powerplay, and the star system is involved in powerplay,
-    //•	Powers: a json array with the names of any powers contesting the system, or the name of the controlling power
-    //•	PowerplayState: the system state – one of("InPrepareRadius", "Prepared", "Exploited", "Contested", "Controlled", "Turmoil", "HomeSystem")
+    //	Powers: a json array with the names of any powers contesting the system, or the name of the controlling power
+    //	PowerplayState: the system state - one of("InPrepareRadius", "Prepared", "Exploited", "Contested", "Controlled", "Turmoil", "HomeSystem")
     public class FSDJumpEvent : JournalEvent<FSDJumpEvent.FSDJumpEventArgs>
     {
         public FSDJumpEvent() : base("FSDJump") { }

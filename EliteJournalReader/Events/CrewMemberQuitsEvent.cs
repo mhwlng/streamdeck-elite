@@ -9,7 +9,8 @@ namespace EliteJournalReader.Events
 {
     //When written: When another player leaves your ship's crew
     //Parameters:
-    //�	Crew: player's commander name
+    //Crew: player's commander name
+    //Telepresence: (bool) (only from Odyssey build)
     public class CrewMemberQuitsEvent : JournalEvent<CrewMemberQuitsEvent.CrewMemberQuitsEventArgs>
     {
         public CrewMemberQuitsEvent() : base("CrewMemberQuits") { }
@@ -18,6 +19,7 @@ namespace EliteJournalReader.Events
         {
             public string Crew { get; set; }
             public long CrewID { get; set; }
+            public bool Telepresence { get; set; }
         }
     }
 }

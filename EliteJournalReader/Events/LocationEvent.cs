@@ -11,33 +11,33 @@ namespace EliteJournalReader.Events
 {
     //When written: at startup, or when being resurrected at a station
     //Parameters:
-    //•	StarSystem: name of destination starsystem
-    //•	StarPos: star position, as a Json array [x, y, z], in light years
-    //•	Body: star’s body name
-    //•	BodyType
-    //•	DistFromStarLS: (unless close to main star)
-    //•	Docked: true (if docked)
-    //•	Latitude (if landed)
-    //•	Longitude (if landed)
-    //•	StationName: station name, (if docked)
-    //•	StationType: (if docked)
-    //•	MarketID
-    //•	SystemFaction: star system controlling faction
+    //	StarSystem: name of destination starsystem
+    //	StarPos: star position, as a Json array [x, y, z], in light years
+    //	Body: star's body name
+    //	BodyType
+    //	DistFromStarLS: (unless close to main star)
+    //	Docked: true (if docked)
+    //	Latitude (if landed)
+    //	Longitude (if landed)
+    //	StationName: station name, (if docked)
+    //	StationType: (if docked)
+    //	MarketID
+    //	SystemFaction: star system controlling faction
     //    o Name
     //    o FactionState
-    //•	Faction: star system controlling faction
-    //•	FactionState
-    //•	SystemAllegiance
-    //•	SystemEconomy
-    //•	SystemSecondEconomy
-    //•	SystemGovernment
-    //•	SystemSecurity
-    //•	Wanted
-    //•	Factions: an array with info on local minor factions (similar to FSDJump)
-    //•	Conflicts: an array with info on local conflicts(similar to FSDJump)
+    //	Faction: star system controlling faction
+    //	FactionState
+    //	SystemAllegiance
+    //	SystemEconomy
+    //	SystemSecondEconomy
+    //	SystemGovernment
+    //	SystemSecurity
+    //	Wanted
+    //	Factions: an array with info on local minor factions (similar to FSDJump)
+    //	Conflicts: an array with info on local conflicts(similar to FSDJump)
     //If the player is pledged to a Power in Powerplay, and the star system is involved in powerplay,
-    //•	Powers: a json array with the names of any powers contesting the system, or the name of the controlling power
-    //•	PowerplayState: the system state – one of("InPrepareRadius", "Prepared", "Exploited", "Contested", "Controlled", "Turmoil", "HomeSystem")
+    //	Powers: a json array with the names of any powers contesting the system, or the name of the controlling power
+    //	PowerplayState: the system state - one of("InPrepareRadius", "Prepared", "Exploited", "Contested", "Controlled", "Turmoil", "HomeSystem")
     public class LocationEvent : JournalEvent<LocationEvent.LocationEventArgs>
     {
         public LocationEvent() : base("Location") { }

@@ -13,17 +13,6 @@ namespace Elite.Buttons
 {
     public abstract class EliteBase : PluginBase
     {
-        [DllImport("user32.dll")]
-        private static extern uint MapVirtualKeyEx(uint uCode, uint uMapType, IntPtr dwhkl);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        private static extern int GetWindowThreadProcessId(IntPtr handleWindow, out int lpdwProcessID);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        private static extern IntPtr GetKeyboardLayout(int WindowsThreadProcessID);
 
         private static Dictionary<string,string> _lastStatus = new Dictionary<string, string>();
 
@@ -107,55 +96,6 @@ namespace Elite.Buttons
 
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
 
-        public DirectInputKeyCode ConvertLocaleScanCode(DirectInputKeyCode scanCode)
-        {
-            //german
-
-            // http://kbdlayout.info/KBDGR/shiftstates+scancodes/base
-
-            // french
-            // http://kbdlayout.info/kbdfr/shiftstates+scancodes/base
-
-            // usa
-            // http://kbdlayout.info/kbdusx/shiftstates+scancodes/base
-
-            if (Program.Binding[BindingType.OnFoot].KeyboardLayout != "en-US")
-            {
-                Logger.Instance.LogMessage(TracingLevel.INFO, scanCode.ToString() + " " + ((ushort)scanCode).ToString("X"));
-                
-                int lpdwProcessId;
-                IntPtr hWnd = GetForegroundWindow();
-                int WinThreadProcId = GetWindowThreadProcessId(hWnd, out lpdwProcessId);
-                var hkl = GetKeyboardLayout(WinThreadProcId);
-
-                Logger.Instance.LogMessage(TracingLevel.INFO, ((long)hkl).ToString("X"));
-
-                //hkl = (IntPtr)67568647; // de-DE 4070407
-
-                // Maps the virtual scanCode to key code for the current locale
-                var virtualKeyCode = MapVirtualKeyEx((ushort)scanCode, 3, hkl);
-
-                if (virtualKeyCode > 0)
-                {
-                    // map key code back to en-US scan code :
-
-                    hkl = (IntPtr) 67699721; // en-US 4090409
-
-                    var virtualScanCode = MapVirtualKeyEx((ushort) virtualKeyCode, 4, hkl) ; 
-
-                    if (virtualScanCode > 0)
-                    {
-                        Logger.Instance.LogMessage(TracingLevel.INFO,
-                            "keycode " + virtualKeyCode.ToString("X") + " scancode " + virtualScanCode.ToString("X") +
-                            " keyboard code " + hkl.ToString("X"));
-
-                        return (DirectInputKeyCode) (virtualScanCode & 0xff); // only use low byte
-                    }
-                }
-            }
-
-            return scanCode;
-        }
 
         private async void SendInput(string inputText)
         {
@@ -170,7 +110,7 @@ namespace Elite.Buttons
                     idx += macro.Length - 1;
                     macro = macro.Substring(1, macro.Length - 2);
 
-                    HandleMacro(macro);
+                    CommandTools.HandleMacro(macro);
                 }
             });
             InputRunning = false;
@@ -187,7 +127,7 @@ namespace Elite.Buttons
                 idx += macro.Length - 1;
                 macro = macro.Substring(1, macro.Length - 2);
 
-                HandleMacroDown(macro);
+                CommandTools.HandleMacroDown(macro);
             }
         }
 
@@ -201,150 +141,14 @@ namespace Elite.Buttons
                 idx += macro.Length - 1;
                 macro = macro.Substring(1, macro.Length - 2);
 
-                HandleMacroUp(macro);
+                CommandTools.HandleMacroUp(macro);
             }
         }
 
-        private void HandleMacro(string macro)
-        {
-            var keyStrokes = CommandTools.ExtractKeyStrokes(macro);
-
-            // Actually initiate the keystrokes
-            if (keyStrokes.Count > 0)
-            {
-                var iis = new InputSimulator();
-                var keyCode = keyStrokes.Last();
-                keyStrokes.Remove(keyCode);
-
-                if (keyStrokes.Count > 0)
-                {
-                    //iis.Keyboard.ModifiedKeyStroke(keyStrokes.Select(ks => ks).ToArray(), keyCode);
-
-                    iis.Keyboard.DelayedModifiedKeyStroke(keyStrokes.Select(ks => ks), keyCode, 40);
-
-                }
-                else // Single Keycode
-                {
-                    //iis.Keyboard.KeyPress(keyCode);
-
-                    iis.Keyboard.DelayedKeyPress(keyCode, 40);
-                }
-            }
-        }
-
-        private void HandleMacroDown(string macro)
-        {
-            var keyStrokes = CommandTools.ExtractKeyStrokes(macro);
-
-            // Actually initiate the keystrokes
-            if (keyStrokes.Count > 0)
-            {
-                var iis = new InputSimulator();
-                var keyCode = keyStrokes.Last();
-                keyStrokes.Remove(keyCode);
-
-                if (keyStrokes.Count > 0)
-                {
-                    iis.Keyboard.DelayedModifiedKeyStrokeDown(keyStrokes.Select(ks => ks), keyCode, 40);
-
-                }
-                else // Single Keycode
-                {
-                    iis.Keyboard.DelayedKeyPressDown(keyCode, 40);
-                }
-            }
-        }
-
-
-        private void HandleMacroUp(string macro)
-        {
-            var keyStrokes = CommandTools.ExtractKeyStrokes(macro);
-
-            // Actually initiate the keystrokes
-            if (keyStrokes.Count > 0)
-            {
-                var iis = new InputSimulator();
-                var keyCode = keyStrokes.Last();
-                keyStrokes.Remove(keyCode);
-
-                if (keyStrokes.Count > 0)
-                {
-                    iis.Keyboard.DelayedModifiedKeyStrokeUp(keyStrokes.Select(ks => ks), keyCode, 40);
-
-                }
-                else // Single Keycode
-                {
-                    iis.Keyboard.DelayedKeyPressUp(keyCode, 40);
-                }
-            }
-        }
-
-        private string BuildInputText(StandardBindingInfo keyInfo)
-        {
-            var inputText = "";
-
-            if (keyInfo.Primary.Device == "Keyboard")
-            {
-                inputText =
-                    "{" + keyInfo.Primary.Key.Replace("Key_", "DIK") + "}";
-                foreach (var m in keyInfo.Primary.Modifier)
-                {
-                    if (m.Device == "Keyboard")
-                    {
-                        inputText =
-                            "{" + m.Key.Replace("Key_", "DIK") +
-                            "}" + inputText;
-                    }
-                }
-
-            }
-            else if (keyInfo.Secondary.Device == "Keyboard")
-            {
-                inputText =
-                    "{" + keyInfo.Secondary.Key.Replace("Key_", "DIK") + "}";
-                foreach (var m in keyInfo.Secondary.Modifier)
-                {
-                    if (m.Device == "Keyboard")
-                    {
-                        inputText =
-                            "{" + m.Key.Replace("Key_", "DIK") +
-                            "}" + inputText;
-                    }
-                }
-            }
-
-            if (!string.IsNullOrEmpty(inputText))
-            {
-                inputText = inputText.Replace("_", "")
-
-                    .Replace("Subtract", "MINUS") //DIKNumpadSubtract   -> DikNumpadMinus
-                    .Replace("Add", "PLUS") //DIKNumpadAdd        -> DikNumpadPlus
-                    .Replace("Divide", "SLASH") //DIKNumpadDivide     -> DikNumpadSlash
-                    .Replace("Decimal", "PERIOD") //DIKNumpadDecimal    -> DikNumpadPeriod
-                    .Replace("Multiply", "STAR") //DIKNumpadMultiply   -> DikNumpadStar
-                    .Replace("DIKEnter", "DIKRETURN")  // don't affect DIKNumpadEnter
-                    .Replace("Backspace", "BACK")
-                    .Replace("UpArrow", "UP")
-                    .Replace("DownArrow", "DOWN")
-                    .Replace("LeftArrow", "LEFT")
-                    .Replace("RightArrow", "RIGHT")
-                    .Replace("LeftAlt", "LMENU")
-                    .Replace("RightAlt", "RMENU")
-                    .Replace("RightControl", "RCONTROL")
-                    .Replace("LeftControl", "LCONTROL")
-                    .Replace("RightShift", "RSHIFT")
-                    .Replace("LeftShift", "LSHIFT");
-
-                //Logger.Instance.LogMessage(TracingLevel.DEBUG, $"{inputText}");
-
-            }
-
-            return inputText;
-        }
 
         protected void SendKeypress(StandardBindingInfo keyInfo, int repeatCount = 1)
         {
-            var inputText = BuildInputText(keyInfo);
+            var inputText = CommandTools.BuildInputText(keyInfo);
 
             if (!string.IsNullOrEmpty(inputText))
             {
@@ -368,7 +172,7 @@ namespace Elite.Buttons
 
         protected void SendKeypressDown(StandardBindingInfo keyInfo)
         {
-            var inputText = BuildInputText(keyInfo);
+            var inputText = CommandTools.BuildInputText(keyInfo);
 
             if (!string.IsNullOrEmpty(inputText))
             {
@@ -379,7 +183,7 @@ namespace Elite.Buttons
 
         protected void SendKeypressUp(StandardBindingInfo keyInfo)
         {
-            var inputText = BuildInputText(keyInfo);
+            var inputText = CommandTools.BuildInputText(keyInfo);
 
             if (!string.IsNullOrEmpty(inputText))
             {

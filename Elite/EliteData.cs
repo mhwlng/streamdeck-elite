@@ -88,7 +88,8 @@ namespace Elite
             public bool OnFootSocialSpace { get; set; }
             public bool OnFootExterior { get; set; }
             public bool BreathableAtmosphere { get; set; }
-
+            public bool TelepresenceMulticrew { get; set; }
+            public bool PhysicalMulticrew { get; set; }
         }
 
         public static Status StatusData = new Status();
@@ -178,6 +179,9 @@ namespace Elite
             StatusData.OnFootSocialSpace = (evt.Flags2 & MoreStatusFlags.OnFootSocialSpace) != 0;
             StatusData.OnFootExterior = (evt.Flags2 & MoreStatusFlags.OnFootExterior) != 0;
             StatusData.BreathableAtmosphere = (evt.Flags2 & MoreStatusFlags.BreathableAtmosphere) != 0;
+
+            StatusData.TelepresenceMulticrew = (evt.Flags2 & MoreStatusFlags.TelepresenceMulticrew) != 0;
+            StatusData.PhysicalMulticrew = (evt.Flags2 & MoreStatusFlags.PhysicalMulticrew) != 0;
         }
 
 

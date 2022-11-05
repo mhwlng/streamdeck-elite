@@ -98,6 +98,20 @@ namespace Elite
                 {
                     return path + controlSchemePath64;
                 }
+
+                controlSchemePath64 = @"Elite Dangerous\Products\elite-dangerous-odyssey-64\ControlSchemes\";
+
+                if (Directory.Exists(path + controlSchemePath64))
+                {
+                    return path + controlSchemePath64;
+                }
+
+                controlSchemePath64 = @"Elite Dangerous\Products\FORC-FDEV-DO-38-IN-40\ControlSchemes\";
+
+                if (Directory.Exists(path + controlSchemePath64))
+                {
+                    return path + controlSchemePath64;
+                }
             }
 
             return null;

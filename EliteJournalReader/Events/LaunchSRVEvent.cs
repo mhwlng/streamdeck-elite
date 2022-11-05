@@ -9,7 +9,7 @@ namespace EliteJournalReader.Events
 {
     //When written: deploying the SRV from a ship onto planet surface
     //Parameters:
-    //�	Loadout
+    //Loadout
     public class LaunchSRVEvent : JournalEvent<LaunchSRVEvent.LaunchSRVEventArgs>
     {
         public LaunchSRVEvent() : base("LaunchSRV") { }
@@ -18,6 +18,7 @@ namespace EliteJournalReader.Events
         {
             public string Loadout { get; set; }
             public long ID { get; set; }
+            public string SRVType { get; set; }
         }
     }
 }

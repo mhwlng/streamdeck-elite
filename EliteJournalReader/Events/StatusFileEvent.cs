@@ -160,7 +160,9 @@ namespace EliteJournalReader.Events
         OnFootInHangar  = 0x00002000,
         OnFootSocialSpace  = 0x00004000,
         OnFootExterior  = 0x00008000,
-        BreathableAtmosphere = 0x00010001
+        BreathableAtmosphere = 0x00010001,
+        TelepresenceMulticrew = 0x00020000,
+        PhysicalMulticrew = 0x00040000
     }
 
     public enum StatusGuiFocus
