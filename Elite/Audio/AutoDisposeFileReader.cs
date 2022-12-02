@@ -7,14 +7,14 @@ using NAudio.Wave;
 
 namespace Elite
 {
-    class AutoDisposeFileReader : ISampleProvider
+    public class AutoDisposeFileReader : ISampleProvider
     {
-        private readonly AudioFileReader reader;
+        private readonly ISampleProvider reader;
         private bool isDisposed;
-        public AutoDisposeFileReader(AudioFileReader reader)
+        public AutoDisposeFileReader(ISampleProvider reader)
         {
             this.reader = reader;
-            this.WaveFormat = reader.WaveFormat;
+            WaveFormat = reader.WaveFormat;
         }
 
         public int Read(float[] buffer, int offset, int count)
@@ -24,12 +24,15 @@ namespace Elite
             int read = reader.Read(buffer, offset, count);
             if (read == 0)
             {
-                reader.Dispose();
+                if (reader is IDisposable d)
+                {
+                    d.Dispose();
+                }
                 isDisposed = true;
             }
             return read;
         }
 
-        public WaveFormat WaveFormat { get; private set; }
+        public WaveFormat WaveFormat { get; }
     }
 }

@@ -13,6 +13,10 @@ namespace Elite
         private readonly IWavePlayer outputDevice;
         private readonly MixingSampleProvider mixer;
 
+        private static  AudioPlaybackEngine _instance = null;
+
+        public static AudioPlaybackEngine Instance => _instance ?? (_instance = new AudioPlaybackEngine(44100, 2));
+
         public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 2)
         {
             outputDevice = new WaveOutEvent();
@@ -56,6 +60,5 @@ namespace Elite
             outputDevice.Dispose();
         }
 
-        public static readonly AudioPlaybackEngine Instance = new AudioPlaybackEngine(44100, 2);
-    }
+     }
 }
