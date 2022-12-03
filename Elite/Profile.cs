@@ -16,24 +16,37 @@ namespace Elite
             Main,
 
             GalaxyMap,
+            InvGalaxyMap,
             SystemMap,
+            InvSystemMap,
             Orrery,
+            InvOrrery,
             FSSMode,
+            InvFSSMode,
             SAAMode,
+            InvSAAMode,
 
             InFighter,
+            InvInFighter,
             SrvTurret,
+            InvSrvTurret,
             InSRV,
+            InvInSRV,
 
             OnFoot,
+            InvOnFoot,
 
             AnalysisMode,
+            InvAnalysisMode,
             CargoScoop,
-            Hardpoints
+            InvCargoScoop,
+            Hardpoints,
+            InvHardpoints
         }
 
         public class ProfileData
         {
+            public List<ProfileType> ProfileTypes { get; set; }
             public string Name { get; set; }
             public bool ReadOnly { get; set; }
             public StreamDeckDeviceType DeviceType { get; set; }
@@ -45,53 +58,151 @@ namespace Elite
             public List<ProfileData> Profiles { get; set; } = new List<ProfileData>();
         }
 
-        private static ProfileType? GetProfileType(string name)
+        private static List<ProfileType> GetProfileTypes(string name)
         {
+            var profiles = new List<ProfileType>();
+
             name = name.ToLower();
 
-            if (name.Contains("galaxymap")) return ProfileType.GalaxyMap;
-            if (name.Contains("systemmap")) return ProfileType.SystemMap;
-            if (name.Contains("orrery")) return ProfileType.Orrery;
-            if (name.Contains("fssmode")) return ProfileType.FSSMode;
-            if (name.Contains("saamode")) return ProfileType.SAAMode;
+            if (name.Contains("main"))
+            {
+                profiles.Add(ProfileType.Main);
+                return profiles;
+            }
 
-            if (name.Contains("infighter")) return ProfileType.InFighter;
-            if (name.Contains("srvturret")) return ProfileType.SrvTurret;
-            if (name.Contains("insrv")) return ProfileType.InSRV;
+            if (name.Contains("invgalaxymap"))
+            {
+                profiles.Add( ProfileType.InvGalaxyMap);
+            }
+            else if (name.Contains("galaxymap"))
+            {
+                profiles.Add(ProfileType.GalaxyMap);
+            }
 
-            if (name.Contains("onfoot")) return ProfileType.OnFoot;
+            if (name.Contains("invsystemmap"))
+            {
+                profiles.Add(ProfileType.InvSystemMap);
+            }
+            else if (name.Contains("systemmap"))
+            {
+                profiles.Add(ProfileType.SystemMap);
+            }
 
-            if (name.Contains("analysismode")) return ProfileType.AnalysisMode;
-            if (name.Contains("cargoscoop")) return ProfileType.CargoScoop;
-            if (name.Contains("hardpoints")) return ProfileType.Hardpoints;
+            if (name.Contains("invorrery"))
+            {
+                profiles.Add(ProfileType.InvOrrery);
+            }
+            else if (name.Contains("orrery"))
+            {
+                profiles.Add(ProfileType.Orrery);
+            }
 
-            if (name.Contains("main")) return ProfileType.Main;
+            if (name.Contains("invfssmode"))
+            {
+                profiles.Add(ProfileType.InvFSSMode);
+            }
+            else if (name.Contains("fssmode"))
+            {
+                profiles.Add(ProfileType.FSSMode);
+            }
 
-            return null;
+            if (name.Contains("invsaamode"))
+            {
+                profiles.Add(ProfileType.InvSAAMode);
+            }
+            else if (name.Contains("saamode"))
+            {
+                profiles.Add(ProfileType.SAAMode);
+            }
+
+            if (name.Contains("invinfighter"))
+            {
+                profiles.Add(ProfileType.InvInFighter);
+            }
+            else if (name.Contains("infighter"))
+            {
+                profiles.Add(ProfileType.InFighter);
+            }
+
+            if (name.Contains("invsrvturret"))
+            {
+                profiles.Add(ProfileType.InvSrvTurret);
+            }
+            else if (name.Contains("srvturret"))
+            {
+                profiles.Add(ProfileType.SrvTurret);
+            }
+
+            if (name.Contains("invinsrv"))
+            {
+                profiles.Add(ProfileType.InvInSRV);
+            }
+            else if (name.Contains("insrv"))
+            {
+                profiles.Add(ProfileType.InSRV);
+            }
+
+            if (name.Contains("invonfoot"))
+            {
+                profiles.Add(ProfileType.InvOnFoot);
+            }
+            else if (name.Contains("onfoot"))
+            {
+                profiles.Add(ProfileType.OnFoot);
+            }
+
+            if (name.Contains("invanalysismode"))
+            {
+                profiles.Add(ProfileType.InvAnalysisMode);
+            }
+            else if (name.Contains("analysismode"))
+            {
+                profiles.Add(ProfileType.AnalysisMode);
+            }
+
+            if (name.Contains("invcargoscoop"))
+            {
+                profiles.Add(ProfileType.InvCargoScoop);
+            }
+            else if (name.Contains("cargoscoop"))
+            {
+                profiles.Add(ProfileType.CargoScoop);
+            }
+
+            if (name.Contains("invhardpoints"))
+            {
+                profiles.Add(ProfileType.InvHardpoints);
+            }
+            else if (name.Contains("hardpoints"))
+            {
+                profiles.Add(ProfileType.Hardpoints);
+            }
+
+            return profiles;
         }
 
-        public static Dictionary <StreamDeckDeviceType, Dictionary<ProfileType, ProfileData>> Profiles = new Dictionary<StreamDeckDeviceType, Dictionary<ProfileType, ProfileData>>();
+        public static Dictionary <StreamDeckDeviceType, List<ProfileData>> Profiles = new Dictionary<StreamDeckDeviceType, List<ProfileData>>();
 
         private static void FindProfiles(StreamDeckDeviceType streamDeckDeviceType, ManifestData manifest)
         {
-            var profileDictionary = new Dictionary<ProfileType, ProfileData>();
+            var profileList = new List<ProfileData>();
 
             foreach (var profile in manifest.Profiles.Where(x => x.DeviceType == streamDeckDeviceType))
             {
-                var profileType = GetProfileType(profile.Name);
+                profile.ProfileTypes = GetProfileTypes(profile.Name);
 
-                if (profileType != null)
+                if (profile.ProfileTypes.Any())
                 {
-                    profileDictionary.Add((ProfileType)profileType, profile);
+                    profileList.Add(profile);
 
                     Logger.Instance.LogMessage(TracingLevel.INFO,
                         "Profile Found : " + profile.Name + " for " + profile.DeviceType);
                 }
             }
 
-            if (profileDictionary.Count > 1)
+            if (profileList.Any())
             {
-                Profiles.Add(streamDeckDeviceType, profileDictionary);
+                Profiles.Add(streamDeckDeviceType, profileList);
             }
         }
 

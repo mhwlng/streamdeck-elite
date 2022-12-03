@@ -37,42 +37,89 @@ namespace Elite.Buttons
                 case Profile.ProfileType.GalaxyMap:
                     state = EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap;
                     break;
+                case Profile.ProfileType.InvGalaxyMap:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.GalaxyMap;
+                    break;
                 case Profile.ProfileType.SystemMap:
                     state = EliteData.StatusData.GuiFocus == StatusGuiFocus.SystemMap;
+                    break;
+                case Profile.ProfileType.InvSystemMap:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.SystemMap;
                     break;
                 case Profile.ProfileType.Orrery:
                     state = EliteData.StatusData.GuiFocus == StatusGuiFocus.Orrery;
                     break;
+                case Profile.ProfileType.InvOrrery:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.Orrery;
+                    break;
                 case Profile.ProfileType.FSSMode:
                     state = EliteData.StatusData.GuiFocus == StatusGuiFocus.FSSMode;
+                    break;
+                case Profile.ProfileType.InvFSSMode:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.FSSMode;
                     break;
                 case Profile.ProfileType.SAAMode:
                     state = EliteData.StatusData.GuiFocus == StatusGuiFocus.SAAMode;
                     break;
+                case Profile.ProfileType.InvSAAMode:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.SAAMode;
+                    break;
                 case Profile.ProfileType.InFighter:
                     state = EliteData.StatusData.InFighter;
+                    break;
+                case Profile.ProfileType.InvInFighter:
+                    state = !EliteData.StatusData.InFighter;
                     break;
                 case Profile.ProfileType.SrvTurret:
                     state = EliteData.StatusData.SrvTurret;
                     break;
+                case Profile.ProfileType.InvSrvTurret:
+                    state = !EliteData.StatusData.SrvTurret;
+                    break;
                 case Profile.ProfileType.InSRV:
                     state = EliteData.StatusData.InSRV;
+                    break;
+                case Profile.ProfileType.InvInSRV:
+                    state = !EliteData.StatusData.InSRV;
                     break;
                 case Profile.ProfileType.OnFoot:
                     state = EliteData.StatusData.OnFoot;
                     break;
+                case Profile.ProfileType.InvOnFoot:
+                    state = !EliteData.StatusData.OnFoot;
+                    break;
                 case Profile.ProfileType.AnalysisMode:
                     state = EliteData.StatusData.HudInAnalysisMode;
+                    break;
+                case Profile.ProfileType.InvAnalysisMode:
+                    state = !EliteData.StatusData.HudInAnalysisMode;
                     break;
                 case Profile.ProfileType.CargoScoop:
                     state = EliteData.StatusData.CargoScoopDeployed;
                     break;
+                case Profile.ProfileType.InvCargoScoop:
+                    state = !EliteData.StatusData.CargoScoopDeployed;
+                    break;
                 case Profile.ProfileType.Hardpoints:
                     state = EliteData.StatusData.HardpointsDeployed;
+                    break;
+                case Profile.ProfileType.InvHardpoints:
+                    state = !EliteData.StatusData.HardpointsDeployed;
                     break;
             }
 
             return state;
+        }
+
+        private bool CheckProfileStates(List<Profile.ProfileType> profileTypes)
+        {
+            foreach (var profileType in profileTypes)
+            {
+                var state = CheckProfileState(profileType);
+                if (!state) return false;
+            }
+
+            return true;
 
         }
 
@@ -148,21 +195,21 @@ namespace Elite.Buttons
             */
 
             foreach (var profile in profiles)
-            { 
-                var state = CheckProfileState(profile.Key);
+            {
+                var key = string.Join(",", profile.ProfileTypes.Select(x => x.ToString()).ToArray());
+
+                var state = CheckProfileStates(profile.ProfileTypes);
 
                 if (state)
                 {
-                    if (_lastStatus[deviceInfo.Id] != profile.Key.ToString())
+                    if (_lastStatus[deviceInfo.Id] != key)
                     {
-                        var p = profiles[profile.Key];
-
                         Logger.Instance.LogMessage(TracingLevel.DEBUG,
-                            "switch profile " + profile.Key + " to " + p.Name + " for " + p.DeviceType);
+                            "switch profile " + key + " to " + profile.Name + " for " + profile.DeviceType);
 
-                        Connection.SwitchProfileAsync(p.Name);
+                        Connection.SwitchProfileAsync(profile.Name);
 
-                        _lastStatus[deviceInfo.Id] = profile.Key.ToString();
+                        _lastStatus[deviceInfo.Id] = key;
                     }
 
                     return;
@@ -171,10 +218,14 @@ namespace Elite.Buttons
             
             if  (_lastStatus[deviceInfo.Id] != Profile.ProfileType.Main.ToString())
             {
-                var p = profiles[Profile.ProfileType.Main];
+                var p = profiles.FirstOrDefault(x => x.ProfileTypes.Contains(Profile.ProfileType.Main));
 
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, "switch profile " + Profile.ProfileType.Main + " to " + p.Name + " for " + p.DeviceType);
-                Connection.SwitchProfileAsync(p.Name);
+                if (p != null)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.DEBUG,
+                        "switch profile " + Profile.ProfileType.Main + " to " + p.Name + " for " + p.DeviceType);
+                    Connection.SwitchProfileAsync(p.Name);
+                }
 
                 _lastStatus[deviceInfo.Id] = Profile.ProfileType.Main.ToString();
             }
@@ -182,7 +233,6 @@ namespace Elite.Buttons
         }
 
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
-
 
         private async void SendInput(string inputText)
         {
