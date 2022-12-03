@@ -145,6 +145,9 @@ namespace Elite
         public ValueInfo CqcMuteButtonMode { get;  set; }
         public StandardBindingInfo UseShieldCell { get;  set; }
         public StandardBindingInfo FireChaffLauncher { get;  set; }
+
+        public StandardBindingInfo TriggerFieldNeutraliser { get; set; }
+
         public ValueInfo EnableMenuGroups { get;  set; }
         public StandardBindingInfo NightVisionToggle { get; set; }
         public StandardBindingInfo UIFocus { get;  set; }
@@ -214,6 +217,7 @@ namespace Elite
         public StandardBindingInfo ExplorationSAAExitThirdPerson { get; set; }
         public StandardBindingInfo ExplorationSAANextGenus { get; set; }
         public StandardBindingInfo ExplorationSAAPreviousGenus { get; set; }
+        public StandardBindingInfo ExplorationSAAShowHelp { get; set; }
         public StandardBindingInfo ExplorationFSSShowHelp { get; set; }
         public StandardBindingInfo ExplorationFSSDiscoveryScan { get; set; }
         public StandardBindingInfo ExplorationFSSCameraPitchDecreaseButton { get; set; }

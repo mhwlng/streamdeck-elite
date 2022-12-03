@@ -199,6 +199,9 @@ namespace Elite.Buttons
                 case "ExplorationSAAPreviousGenus":
                     SendKeypressDown(Program.Binding[BindingType.Ship].ExplorationSAAPreviousGenus);
                     break;
+                case "ExplorationSAAShowHelp":
+                    SendKeypressDown(Program.Binding[BindingType.Ship].ExplorationSAAShowHelp);
+                    break;
                 case "ExplorationFSSDiscoveryScan":
                     SendKeypressDown(Program.Binding[BindingType.Ship].ExplorationFSSDiscoveryScan);
                     break;
@@ -336,6 +339,9 @@ namespace Elite.Buttons
                     break;
                 case "UseShieldCell":
                     SendKeypressDown(Program.Binding[BindingType.Ship].UseShieldCell);
+                    break;
+                case "TriggerFieldNeutraliser":
+                    SendKeypressDown(Program.Binding[BindingType.Ship].TriggerFieldNeutraliser);
                     break;
                 case "IncreaseSystemsPower":
                     SendKeypressDown(Program.Binding[BindingType.Ship].IncreaseSystemsPower);
@@ -1240,6 +1246,9 @@ namespace Elite.Buttons
                 case "ExplorationSAAPreviousGenus":
                     SendKeypressUp(Program.Binding[BindingType.Ship].ExplorationSAAPreviousGenus);
                     break;
+                case "ExplorationSAAShowHelp":
+                    SendKeypressUp(Program.Binding[BindingType.Ship].ExplorationSAAShowHelp);
+                    break;
                 case "ExplorationFSSDiscoveryScan":
 					SendKeypressUp(Program.Binding[BindingType.Ship].ExplorationFSSDiscoveryScan);
 					break;
@@ -1378,7 +1387,10 @@ namespace Elite.Buttons
 				case "UseShieldCell":
 					SendKeypressUp(Program.Binding[BindingType.Ship].UseShieldCell);
 					break;
-				case "IncreaseSystemsPower":
+                case "TriggerFieldNeutraliser":
+                    SendKeypressUp(Program.Binding[BindingType.Ship].TriggerFieldNeutraliser);
+                    break;
+                case "IncreaseSystemsPower":
 					SendKeypressUp(Program.Binding[BindingType.Ship].IncreaseSystemsPower);
 					break;
 				case "SelectTarget":
@@ -2285,6 +2297,7 @@ namespace Elite.Buttons
                 <option value="ExplorationSAAExitThirdPerson">Exit DSS</option>
                 <option value="ExplorationSAANextGenus">DSS Next Genus</option>
                 <option value="ExplorationSAAPreviousGenus">DSS Previous Genus</option>
+                <option value="ExplorationSAAShowHelp">DSS Show Help</option>
                 <option value="SAAThirdPersonFovInButton">DSS Field of View In</option>
                 <option value="SAAThirdPersonFovOutButton">DSS Field of View Out</option>
                 <option value="SAAThirdPersonPitchDownButton">Pitch Down (DSS)</option>

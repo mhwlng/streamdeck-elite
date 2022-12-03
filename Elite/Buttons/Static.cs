@@ -251,6 +251,9 @@ namespace Elite.Buttons
                 case "ExplorationSAAPreviousGenus":
                     SendKeypress(Program.Binding[BindingType.Ship].ExplorationSAAPreviousGenus);
                     break;
+                case "ExplorationSAAShowHelp":
+                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationSAAShowHelp);
+                    break;
                 case "ExplorationFSSDiscoveryScan":
                     SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSDiscoveryScan);
                     break;
@@ -385,6 +388,9 @@ namespace Elite.Buttons
                     break;
                 case "UseShieldCell":
                     SendKeypress(Program.Binding[BindingType.Ship].UseShieldCell);
+                    break;
+                case "TriggerFieldNeutraliser":
+                    SendKeypress(Program.Binding[BindingType.Ship].TriggerFieldNeutraliser);
                     break;
                 case "IncreaseSystemsPower":
                     SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower);

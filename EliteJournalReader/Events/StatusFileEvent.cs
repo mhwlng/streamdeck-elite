@@ -162,7 +162,8 @@ namespace EliteJournalReader.Events
         OnFootExterior  = 0x00008000,
         BreathableAtmosphere = 0x00010001,
         TelepresenceMulticrew = 0x00020000,
-        PhysicalMulticrew = 0x00040000
+        PhysicalMulticrew = 0x00040000,
+        Fsdhyperdrivecharging = 0x00080000
     }
 
     public enum StatusGuiFocus

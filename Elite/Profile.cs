@@ -110,6 +110,7 @@ namespace Elite
             FindProfiles(StreamDeckDeviceType.StreamDeckClassic, manifest);
             FindProfiles(StreamDeckDeviceType.StreamDeckMini, manifest);
             FindProfiles(StreamDeckDeviceType.StreamDeckXL, manifest);
+            // !!!!!! add plus !!!!!!
         }
 
     }

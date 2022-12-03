@@ -28,28 +28,52 @@ namespace Elite.Buttons
 
         public override void KeyReleased(KeyPayload payload) { }
 
-        private bool HandleProfile(StreamDeckDeviceInfo deviceInfo, Dictionary<Profile.ProfileType, Profile.ProfileData> profiles, Profile.ProfileType stateType, bool state)
+        private bool CheckProfileState(Profile.ProfileType profileType)
         {
-            if (!profiles.ContainsKey(stateType)) return false;
+            var state = false;
 
-            if (!_lastStatus.ContainsKey(deviceInfo.Id))
+            switch (profileType)
             {
-                _lastStatus.Add(deviceInfo.Id, null);
-            }
-
-            if (state && _lastStatus[deviceInfo.Id] !=  stateType.ToString())
-            {
-                var p = profiles[stateType];
-
-                Logger.Instance.LogMessage(TracingLevel.DEBUG, "switch profile " + stateType + " to " + p.Name + " for " + p.DeviceType);
-
-                Connection.SwitchProfileAsync(p.Name);
-
-                _lastStatus[deviceInfo.Id] = stateType.ToString();
-
+                case Profile.ProfileType.GalaxyMap:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap;
+                    break;
+                case Profile.ProfileType.SystemMap:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.SystemMap;
+                    break;
+                case Profile.ProfileType.Orrery:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.Orrery;
+                    break;
+                case Profile.ProfileType.FSSMode:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.FSSMode;
+                    break;
+                case Profile.ProfileType.SAAMode:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.SAAMode;
+                    break;
+                case Profile.ProfileType.InFighter:
+                    state = EliteData.StatusData.InFighter;
+                    break;
+                case Profile.ProfileType.SrvTurret:
+                    state = EliteData.StatusData.SrvTurret;
+                    break;
+                case Profile.ProfileType.InSRV:
+                    state = EliteData.StatusData.InSRV;
+                    break;
+                case Profile.ProfileType.OnFoot:
+                    state = EliteData.StatusData.OnFoot;
+                    break;
+                case Profile.ProfileType.AnalysisMode:
+                    state = EliteData.StatusData.HudInAnalysisMode;
+                    break;
+                case Profile.ProfileType.CargoScoop:
+                    state = EliteData.StatusData.CargoScoopDeployed;
+                    break;
+                case Profile.ProfileType.Hardpoints:
+                    state = EliteData.StatusData.HardpointsDeployed;
+                    break;
             }
 
             return state;
+
         }
 
         public override void OnTick()
@@ -59,6 +83,11 @@ namespace Elite.Buttons
             if (!Profile.Profiles.ContainsKey(deviceInfo.Type)) return;
 
             var profiles = Profile.Profiles[deviceInfo.Type];
+
+            if (!_lastStatus.ContainsKey(deviceInfo.Id))
+            {
+                _lastStatus.Add(deviceInfo.Id, null);
+            }
 
             /*
             EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel
@@ -73,25 +102,83 @@ namespace Elite.Buttons
             EliteData.StatusData.Landed
             EliteData.StatusData.Supercruise
             EliteData.StatusData.Docked
+
+            EliteData.StatusData.LandingGearDown
+            EliteData.StatusData.ShieldsUp
+            EliteData.StatusData.FlightAssistOff
+
+            EliteData.StatusData.InWing
+            EliteData.StatusData.LightsOn
+            EliteData.StatusData.SilentRunning
+            EliteData.StatusData.ScoopingFuel
+            EliteData.StatusData.SrvHandbrake
+            EliteData.StatusData.SrvUnderShip
+            EliteData.StatusData.SrvDriveAssist
+            EliteData.StatusData.FsdMassLocked
+            EliteData.StatusData.FsdCharging
+            EliteData.StatusData.FsdCooldown
+            EliteData.StatusData.LowFuel
+            EliteData.StatusData.Overheating
+            EliteData.StatusData.HasLatLong
+            EliteData.StatusData.IsInDanger
+            EliteData.StatusData.NightVision
+            EliteData.StatusData.AltitudeFromAverageRadius
+            EliteData.StatusData.FsdJump
+            EliteData.StatusData.SrvHighBeam
+            
+            EliteData.StatusData.InTaxi
+            EliteData.StatusData.InMulticrew
+            EliteData.StatusData.OnFootInStation
+            EliteData.StatusData.OnFootOnPlanet
+            EliteData.StatusData.AimDownSight
+            EliteData.StatusData.LowOxygen
+            EliteData.StatusData.LowHealth
+            EliteData.StatusData.Cold
+            EliteData.StatusData.Hot
+            EliteData.StatusData.VeryCold
+            EliteData.StatusData.VeryHot
+            EliteData.StatusData.GlideMode
+            EliteData.StatusData.OnFootInHangar
+            EliteData.StatusData.OnFootSocialSpace
+            EliteData.StatusData.OnFootExterior
+            EliteData.StatusData.BreathableAtmosphere
+            EliteData.StatusData.TelepresenceMulticrew
+            EliteData.StatusData.PhysicalMulticrew
+            EliteData.StatusData.Fsdhyperdrivecharging
             */
 
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.GalaxyMap, EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.SystemMap, EliteData.StatusData.GuiFocus == StatusGuiFocus.SystemMap)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.Orrery, EliteData.StatusData.GuiFocus == StatusGuiFocus.Orrery)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.FSSMode, EliteData.StatusData.GuiFocus == StatusGuiFocus.FSSMode)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.SAAMode, EliteData.StatusData.GuiFocus == StatusGuiFocus.SAAMode)) return;
+            foreach (var profile in profiles)
+            { 
+                var state = CheckProfileState(profile.Key);
 
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.InFighter, EliteData.StatusData.InFighter)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.SrvTurret, EliteData.StatusData.SrvTurret)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.InSRV, EliteData.StatusData.InSRV)) return;
+                if (state)
+                {
+                    if (_lastStatus[deviceInfo.Id] != profile.Key.ToString())
+                    {
+                        var p = profiles[profile.Key];
 
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.OnFoot, EliteData.StatusData.OnFoot)) return;
+                        Logger.Instance.LogMessage(TracingLevel.DEBUG,
+                            "switch profile " + profile.Key + " to " + p.Name + " for " + p.DeviceType);
 
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.AnalysisMode, EliteData.StatusData.HudInAnalysisMode)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.CargoScoop, EliteData.StatusData.CargoScoopDeployed)) return;
-            if (HandleProfile(deviceInfo, profiles, Profile.ProfileType.Hardpoints, EliteData.StatusData.HardpointsDeployed)) return;
+                        Connection.SwitchProfileAsync(p.Name);
 
-            HandleProfile(deviceInfo, profiles, Profile.ProfileType.Main, true);
+                        _lastStatus[deviceInfo.Id] = profile.Key.ToString();
+                    }
+
+                    return;
+                }
+            }
+            
+            if  (_lastStatus[deviceInfo.Id] != Profile.ProfileType.Main.ToString())
+            {
+                var p = profiles[Profile.ProfileType.Main];
+
+                Logger.Instance.LogMessage(TracingLevel.DEBUG, "switch profile " + Profile.ProfileType.Main + " to " + p.Name + " for " + p.DeviceType);
+                Connection.SwitchProfileAsync(p.Name);
+
+                _lastStatus[deviceInfo.Id] = Profile.ProfileType.Main.ToString();
+            }
+
         }
 
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
