@@ -28,17 +28,36 @@ and only after the stream deck button is released, the 'key up' event is sent to
 The streamdeck 'hotkey' button also has this behaviour.
 For Odyssey, the 'Open Access Panel' button is available here.
 
+The plugin also has a Dial button for use with the 4 dials on the Streamdeck+ model.
+
+There are 5 bindings (They must be keyboard bindings, you can't bind the mouse wheel!) :
+
+- Dial Clockwise
+- Dial Counter-Clockwise
+- Dial Press
+- Touch screen press
+- Touch screen long press
+
+When a dial is rotated, the 'key down' event is sent to the keyboard once. 
+When you let go of the dial for at least 100ms : the 'key up' event is sent to the keyboard. 
+
+When a dial button is pushed, the 'key down' event is sent to the keyboard. 
+When a dial button is released, the 'key up' event is sent to the keyboard. 
+
+When the touch screen is pressed or long-pressed, the behaviour is like the multi-action button :
+The 'key down' event is sent to the keyboard. After a user-definable delay (default = 40 ms) the 'key up' event is sent to the keyboard. 
+
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 
 Choose a button in the streamdeck software (drag and drop), then choose an Elite Dangerous function for that button (that must have a keyboard binding in Elite Dangerous!) and then choose any pictures for that button.
 
 **Example button images, like in above picture, can be found in the source code images directory.**
 
-ONLY add an image to a (repeating) STATIC button in this way, do NOT set this image for any of the other button types :
+ONLY add an image to a (repeating) STATIC and DIAL button in this way, do NOT set this image for any of the other button types :
 
 ![Button Image](https://i.imgur.com/xkgy7uZ.png)
 
-Animated gif files are only supported for the (repeating) STATIC buttons.
+Animated gif files are only supported for the (repeating) STATIC and DIAL buttons. Dial images can be wider.
 
 If .gif images are configured for Power/Limpet/Hyperspace buttons, then no texts or pips are drawn on top of them.
 
