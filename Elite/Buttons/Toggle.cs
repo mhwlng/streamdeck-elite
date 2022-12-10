@@ -38,7 +38,7 @@ namespace Elite.Buttons
     }
 
     [PluginActionId("com.mhwlng.elite")]
-    public class Toggle : EliteBase
+    public class Toggle : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -207,13 +207,13 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
 
             // TODO ???
 
@@ -234,107 +234,107 @@ namespace Elite.Buttons
             {
                 case "FocusCommsPanel":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].FocusCommsPanel_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].FocusCommsPanel_Buggy);
                     else if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Binding[BindingType.OnFoot].FocusCommsPanel_Humanoid);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.OnFoot].FocusCommsPanel_Humanoid);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].FocusCommsPanel);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].FocusCommsPanel);
                     break;
                 case "FocusLeftPanel":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].FocusLeftPanel_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].FocusLeftPanel_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].FocusLeftPanel);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].FocusLeftPanel);
                     break;
                 case "FocusRadarPanel":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].FocusRadarPanel_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].FocusRadarPanel_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].FocusRadarPanel);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].FocusRadarPanel);
                     break;
                 case "FocusRightPanel":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].FocusRightPanel_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].FocusRightPanel_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].FocusRightPanel);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].FocusRightPanel);
                     break;
 
                 case "GalaxyMap":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].GalaxyMapOpen_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].GalaxyMapOpen_Buggy);
                     else
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Binding[BindingType.OnFoot].GalaxyMapOpen_Humanoid);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.OnFoot].GalaxyMapOpen_Humanoid);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].GalaxyMapOpen);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].GalaxyMapOpen);
                     break;
                 case "SystemMap":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].SystemMapOpen_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].SystemMapOpen_Buggy);
                     else
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Binding[BindingType.OnFoot].SystemMapOpen_Humanoid);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.OnFoot].SystemMapOpen_Humanoid);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].SystemMapOpen);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].SystemMapOpen);
                     break;
 
                 case "ToggleCargoScoop":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].ToggleCargoScoop_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].ToggleCargoScoop_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].ToggleCargoScoop);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ToggleCargoScoop);
                     break;
                 case "LandingGearToggle":
-                    SendKeypress(Program.Binding[BindingType.Ship].LandingGearToggle);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].LandingGearToggle);
                     break;
 
                 case "ToggleFlightAssist":
-                    SendKeypress(Program.Binding[BindingType.Ship].ToggleFlightAssist);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ToggleFlightAssist);
                     break;
 
                 case "ShipSpotLightToggle":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].HeadlightsBuggyButton);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].HeadlightsBuggyButton);
                     else
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleFlashlightButton );
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleFlashlightButton );
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].ShipSpotLightToggle);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ShipSpotLightToggle);
                     break;
 
                 case "NightVisionToggle":
                     if (EliteData.StatusData.OnFoot)
-                        SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleNightVisionButton);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.OnFoot].HumanoidToggleNightVisionButton);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].NightVisionToggle);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].NightVisionToggle);
                     break;
 
                 case "PlayerHUDModeToggle":
-                    SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle);
                     break;
 
                 case "DeployHardpointToggle":
-                    SendKeypress(Program.Binding[BindingType.Ship].DeployHardpointToggle);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].DeployHardpointToggle);
                     break;
 
                 case "Supercruise":
-                    SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
                     break;
 
                 case "ToggleButtonUpInput":
-                    SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ToggleButtonUpInput);
                     break;
 
                 case "ToggleBuggyTurretButton":
-                    SendKeypress(Program.Binding[BindingType.Srv].ToggleBuggyTurretButton);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].ToggleBuggyTurretButton);
                     break;
 
                 case "ToggleDriveAssist":
-                    SendKeypress(Program.Binding[BindingType.Srv].ToggleDriveAssist);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].ToggleDriveAssist);
                     break;
 
                 case "AutoBreakBuggyButton":
-                    SendKeypress(Program.Binding[BindingType.Srv].AutoBreakBuggyButton);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].AutoBreakBuggyButton);
                     break;
 
             }

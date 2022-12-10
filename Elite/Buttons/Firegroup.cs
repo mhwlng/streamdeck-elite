@@ -16,7 +16,7 @@ namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.firegroup")]
-    public class FireGroup : EliteBase
+    public class FireGroup : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -162,13 +162,13 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
 
             var isDisabled = (EliteData.StatusData.OnFoot ||
                               EliteData.StatusData.InSRV ||
@@ -199,7 +199,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0; f < -cycle; f++)
                     {
-                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                         Thread.Sleep(70);
                     }
                 }
@@ -207,7 +207,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0; f < cycle; f++)
                     {
-                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                         Thread.Sleep(70);
                     }
                 }

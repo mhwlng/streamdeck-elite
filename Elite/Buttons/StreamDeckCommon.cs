@@ -11,24 +11,16 @@ using EliteJournalReader.Events;
 
 namespace Elite.Buttons
 {
-    public abstract class EliteBase : PluginBase
+    static class StreamDeckCommon
     {
 
         private static Dictionary<string,string> _lastStatus = new Dictionary<string, string>();
 
-        protected bool InputRunning;
-        protected bool ForceStop = false;
-        protected EliteBase(SDConnection connection, InitialPayload payload) : base(connection, payload)
-        {
-        }
-
-        public override void Dispose()
-        {
-        }
-
-        public override void KeyReleased(KeyPayload payload) { }
-
-        private bool CheckProfileState(Profile.ProfileType profileType)
+        public static bool InputRunning;
+        public static bool ForceStop = false;
+        
+        
+        private static bool CheckProfileState(Profile.ProfileType profileType)
         {
             var state = false;
 
@@ -111,7 +103,7 @@ namespace Elite.Buttons
             return state;
         }
 
-        private bool CheckProfileStates(List<Profile.ProfileType> profileTypes)
+        private static bool CheckProfileStates(List<Profile.ProfileType> profileTypes)
         {
             foreach (var profileType in profileTypes)
             {
@@ -123,9 +115,9 @@ namespace Elite.Buttons
 
         }
 
-        public override void OnTick()
+        public static void HandleOnTick(ISDConnection connection)
         {
-            var deviceInfo = Connection.DeviceInfo();
+            var deviceInfo = connection.DeviceInfo();
 
             if (!Profile.Profiles.ContainsKey(deviceInfo.Type)) return;
 
@@ -207,7 +199,7 @@ namespace Elite.Buttons
                         Logger.Instance.LogMessage(TracingLevel.DEBUG,
                             "switch profile " + key + " to " + profile.Name + " for " + profile.DeviceType);
 
-                        Connection.SwitchProfileAsync(profile.Name);
+                        connection.SwitchProfileAsync(profile.Name);
 
                         _lastStatus[deviceInfo.Id] = key;
                     }
@@ -224,7 +216,7 @@ namespace Elite.Buttons
                 {
                     Logger.Instance.LogMessage(TracingLevel.DEBUG,
                         "switch profile " + Profile.ProfileType.Main + " to " + p.Name + " for " + p.DeviceType);
-                    Connection.SwitchProfileAsync(p.Name);
+                    connection.SwitchProfileAsync(p.Name);
                 }
 
                 _lastStatus[deviceInfo.Id] = Profile.ProfileType.Main.ToString();
@@ -232,9 +224,7 @@ namespace Elite.Buttons
 
         }
 
-        public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
-
-        private async void SendInput(string inputText)
+        private static async void SendInput(string inputText)
         {
             InputRunning = true;
             await Task.Run(() =>
@@ -254,7 +244,7 @@ namespace Elite.Buttons
         }
 
 
-        private void SendInputDown(string inputText)
+        private static void SendInputDown(string inputText)
         {
             var text = inputText;
 
@@ -268,7 +258,7 @@ namespace Elite.Buttons
             }
         }
 
-        private void SendInputUp(string inputText)
+        private static void SendInputUp(string inputText)
         {
             var text = inputText;
 
@@ -283,7 +273,7 @@ namespace Elite.Buttons
         }
 
 
-        protected void SendKeypress(StandardBindingInfo keyInfo, int repeatCount = 1)
+        public static void SendKeypress(StandardBindingInfo keyInfo, int repeatCount = 1)
         {
             var inputText = CommandTools.BuildInputText(keyInfo);
 
@@ -307,7 +297,7 @@ namespace Elite.Buttons
 
         }
 
-        protected void SendKeypressDown(StandardBindingInfo keyInfo)
+        public static void SendKeypressDown(StandardBindingInfo keyInfo)
         {
             var inputText = CommandTools.BuildInputText(keyInfo);
 
@@ -318,7 +308,7 @@ namespace Elite.Buttons
         }
 
 
-        protected void SendKeypressUp(StandardBindingInfo keyInfo)
+        public static void SendKeypressUp(StandardBindingInfo keyInfo)
         {
             var inputText = CommandTools.BuildInputText(keyInfo);
 
@@ -328,7 +318,7 @@ namespace Elite.Buttons
             }
         }
 
-        protected static bool CheckForGif(string imageFilename)
+        public static bool CheckForGif(string imageFilename)
         {
             return imageFilename?.ToLower().EndsWith(".gif") == true;
         }

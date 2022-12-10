@@ -15,7 +15,7 @@ namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.power")]
-    public class Power : EliteBase
+    public class Power : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -112,23 +112,23 @@ namespace Elite.Buttons
                 {
                     case "SYS":
                         if (EliteData.StatusData.InSRV)
-                            SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy, repeatCount);
+                            StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy, repeatCount);
                         else
-                            SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower, repeatCount);
+                            StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower, repeatCount);
                         EliteData.StatusData.Pips[0] = 8;
                         break;
                     case "ENG":
                         if (EliteData.StatusData.InSRV)
-                            SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy, repeatCount);
+                            StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy, repeatCount);
                         else
-                            SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower, repeatCount);
+                            StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower, repeatCount);
                         EliteData.StatusData.Pips[1] = 8;
                         break;
                     case "WEP":
                         if (EliteData.StatusData.InSRV)
-                            SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy, repeatCount);
+                            StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy, repeatCount);
                         else
-                            SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower, repeatCount);
+                            StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower, repeatCount);
                         EliteData.StatusData.Pips[2] = 8;
                         break;
                 }
@@ -283,13 +283,13 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
 
             lastPressedTime = DateTime.Now;
 
@@ -297,30 +297,30 @@ namespace Elite.Buttons
             {
                 case "SYS":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].IncreaseSystemsPower_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].IncreaseSystemsPower);
                     AdjustPips(0);
                     break;
                 case "ENG":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].IncreaseEnginesPower_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].IncreaseEnginesPower);
                     AdjustPips(1);
                     break;
                 case "WEP":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].IncreaseWeaponsPower_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].IncreaseWeaponsPower);
                     AdjustPips(2);
                     break;
                 case "RST":
                     if (EliteData.StatusData.InSRV)
-                        SendKeypress(Program.Binding[BindingType.Srv].ResetPowerDistribution_Buggy);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Srv].ResetPowerDistribution_Buggy);
                     else
-                        SendKeypress(Program.Binding[BindingType.Ship].ResetPowerDistribution);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ResetPowerDistribution);
 
                     EliteData.StatusData.Pips[0] = 4;
                     EliteData.StatusData.Pips[1] = 4;
@@ -450,7 +450,7 @@ namespace Elite.Buttons
 
                     _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
 
-                    _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (File.Exists(settings.SecondaryImageFilename))
@@ -459,7 +459,7 @@ namespace Elite.Buttons
 
                     _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
 
-                    _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                    _secondaryImageIsGif = StreamDeckCommon.CheckForGif(settings.SecondaryImageFilename);
                 }
                 else
                 {
@@ -467,7 +467,7 @@ namespace Elite.Buttons
 
                     _secondaryFile = _primaryFile;
 
-                    _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _secondaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (_primaryImage == null)
@@ -476,7 +476,7 @@ namespace Elite.Buttons
 
                     _primaryFile = _secondaryFile;
 
-                    _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.SecondaryImageFilename);
                 }
 
 
@@ -486,7 +486,7 @@ namespace Elite.Buttons
 
                     _tertiaryFile = Tools.FileToBase64(settings.TertiaryImageFilename, true);
 
-                    _tertiaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
+                    _tertiaryImageIsGif = StreamDeckCommon.CheckForGif(settings.TertiaryImageFilename);
                 }
                 else
                 {
@@ -494,7 +494,7 @@ namespace Elite.Buttons
 
                     _tertiaryFile = _primaryFile;
 
-                    _tertiaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _tertiaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
             }
             catch (Exception ex)

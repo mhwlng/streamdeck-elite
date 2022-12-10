@@ -15,7 +15,7 @@ namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.hyperspace")]
-    public class Hyperspace : EliteBase
+    public class Hyperspace : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -254,13 +254,13 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
 
             var isDisabled = (EliteData.StatusData.OnFoot ||
                               EliteData.StatusData.InSRV ||
@@ -289,13 +289,13 @@ namespace Elite.Buttons
                 {
                     case "HYPERSUPERCOMBINATION"
                         : // context dependent, i.e. jump if another system is targeted, supercruise if not.
-                        SendKeypress(Program.Binding[BindingType.Ship].HyperSuperCombination);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].HyperSuperCombination);
                         break;
                     case "SUPERCRUISE": // supercruise even if another system targeted
-                        SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].Supercruise);
                         break;
                     case "HYPERSPACE": // jump
-                        SendKeypress(Program.Binding[BindingType.Ship].Hyperspace);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].Hyperspace);
                         break;
                 }
 
@@ -451,7 +451,7 @@ namespace Elite.Buttons
 
                     _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
 
-                    _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (File.Exists(settings.SecondaryImageFilename))
@@ -460,7 +460,7 @@ namespace Elite.Buttons
 
                     _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
 
-                    _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                    _secondaryImageIsGif = StreamDeckCommon.CheckForGif(settings.SecondaryImageFilename);
                 }
                 else
                 {
@@ -468,7 +468,7 @@ namespace Elite.Buttons
 
                     _secondaryFile = _primaryFile;
 
-                    _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _secondaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (File.Exists(settings.TertiaryImageFilename))
@@ -477,7 +477,7 @@ namespace Elite.Buttons
 
                     _tertiaryFile = Tools.FileToBase64(settings.TertiaryImageFilename, true);
 
-                    _tertiaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
+                    _tertiaryImageIsGif = StreamDeckCommon.CheckForGif(settings.TertiaryImageFilename);
                 }
                 else
                 {
@@ -485,7 +485,7 @@ namespace Elite.Buttons
 
                     _tertiaryFile = _primaryFile;
 
-                    _tertiaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _tertiaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (_primaryImage == null)
@@ -494,7 +494,7 @@ namespace Elite.Buttons
 
                     _primaryFile = _secondaryFile;
 
-                    _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.SecondaryImageFilename);
                 }
 
                 if (_primaryImage == null)
@@ -503,7 +503,7 @@ namespace Elite.Buttons
 
                     _primaryFile = _tertiaryFile;
 
-                    _primaryImageIsGif = CheckForGif(settings.TertiaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.TertiaryImageFilename);
                 }
 
             }

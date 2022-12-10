@@ -42,7 +42,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\com.mhwlng.elite.sdPlugin\</OutputPath>
@@ -54,6 +54,7 @@
 		    *.pdb;
 		    *.xml
 		</AllowedReferenceRelatedFileExtensions>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
@@ -98,8 +99,8 @@
     <Reference Include="streamdeck-client-csharp, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\streamdeck-client-csharp.4.3.0\lib\netstandard2.0\streamdeck-client-csharp.dll</HintPath>
     </Reference>
-    <Reference Include="StreamDeckTools, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StreamDeck-Tools.3.2.0\lib\net472\StreamDeckTools.dll</HintPath>
+    <Reference Include="StreamDeckTools, Version=3.9.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\StreamDeck-Tools.5.9.0-Beta1\lib\netstandard2.0\StreamDeckTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -146,6 +147,10 @@
     <Compile Include="Audio\AutoDisposeFileReader.cs" />
     <Compile Include="Audio\CachedSound.cs" />
     <Compile Include="Audio\CachedSoundSampleProvider.cs" />
+    <Compile Include="Buttons\EliteDialBase.cs" />
+    <Compile Include="Buttons\Dial.cs" />
+    <Compile Include="Buttons\EliteKeys.cs" />
+    <Compile Include="Buttons\StreamDeckCommon.cs" />
     <Compile Include="Buttons\Firegroup.cs" />
     <Compile Include="Buttons\RepeatingStatic.cs" />
     <Compile Include="Buttons\Static.cs" />
@@ -162,7 +167,7 @@
     <Compile Include="SteamPath.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="UserBindings.cs" />
-    <Compile Include="Buttons\EliteBase.cs" />
+    <Compile Include="Buttons\EliteKeypadBase.cs" />
     <Compile Include="Buttons\Toggle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +276,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\Elite\RepeatingStatic.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\Elite\Dial.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\Elite\Static.html">

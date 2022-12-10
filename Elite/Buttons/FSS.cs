@@ -16,7 +16,7 @@ namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.fss")]
-    public class FSS : EliteBase
+    public class FSS : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -122,36 +122,36 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
             
             if (EliteData.StatusData.Supercruise)
             {
                 if (EliteData.StatusData.GuiFocus == StatusGuiFocus.FSSMode)
                 {
-                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSQuit);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSQuit);
 
                     if (!settings.DontSwitchToCombatMode && EliteData.StatusData.HudInAnalysisMode)
                     {
                         Thread.Sleep(300);
 
-                        SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle); // back to combat mode
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle); // back to combat mode
                     }
                 }
                 else
                 {
                     if (!EliteData.StatusData.HudInAnalysisMode)
                     {
-                        SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle); // to analysis mode
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].PlayerHUDModeToggle); // to analysis mode
                         Thread.Sleep(100);
                     }
 
-                    SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSEnter);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].ExplorationFSSEnter);
                 }
 
                 if (_clickSound != null)

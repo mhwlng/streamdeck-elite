@@ -13,7 +13,7 @@ namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.alarm")]
-    public class Alarm : EliteBase
+    public class Alarm : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -127,30 +127,30 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
 
             switch (settings.Function)
             {
                 case "SelectHighestThreat":
-                    SendKeypress(Program.Binding[BindingType.Ship].SelectHighestThreat);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].SelectHighestThreat);
                     EliteData.UnderAttack = false;
                     break;
                 case "DeployChaff":
-                    SendKeypress(Program.Binding[BindingType.Ship].FireChaffLauncher);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].FireChaffLauncher);
                     EliteData.UnderAttack = false;
                     break;
 
                 case "DeployHeatsink":
-                    SendKeypress(Program.Binding[BindingType.Ship].DeployHeatSink);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].DeployHeatSink);
                     break;
                 case "DeployShieldCell":
-                    SendKeypress(Program.Binding[BindingType.Ship].UseShieldCell);
+                    StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].UseShieldCell);
                     break;
             }
 

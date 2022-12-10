@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Elite
 {
-    static class Profile
+    public static class Profile
     {
         public enum ProfileType
         {
@@ -49,7 +49,7 @@ namespace Elite
             public List<ProfileType> ProfileTypes { get; set; }
             public string Name { get; set; }
             public bool ReadOnly { get; set; }
-            public StreamDeckDeviceType DeviceType { get; set; }
+            public DeviceType DeviceType { get; set; }
             public bool DontAutoSwitchWhenInstalled { get; set; }
         }
 
@@ -181,9 +181,9 @@ namespace Elite
             return profiles;
         }
 
-        public static Dictionary <StreamDeckDeviceType, List<ProfileData>> Profiles = new Dictionary<StreamDeckDeviceType, List<ProfileData>>();
+        public static Dictionary <DeviceType, List<ProfileData>> Profiles = new Dictionary<DeviceType, List<ProfileData>>();
 
-        private static void FindProfiles(StreamDeckDeviceType streamDeckDeviceType, ManifestData manifest)
+        private static void FindProfiles(DeviceType streamDeckDeviceType, ManifestData manifest)
         {
             var profileList = new List<ProfileData>();
 
@@ -218,10 +218,11 @@ namespace Elite
 
             if (manifest?.Profiles?.Any() != true) return;
 
-            FindProfiles(StreamDeckDeviceType.StreamDeckClassic, manifest);
-            FindProfiles(StreamDeckDeviceType.StreamDeckMini, manifest);
-            FindProfiles(StreamDeckDeviceType.StreamDeckXL, manifest);
-            // !!!!!! add plus !!!!!!
+            FindProfiles(DeviceType.StreamDeckClassic, manifest);
+            FindProfiles(DeviceType.StreamDeckMini, manifest);
+            FindProfiles(DeviceType.StreamDeckXL, manifest);
+
+            FindProfiles(DeviceType.StreamDeckPlus, manifest);
         }
 
     }

@@ -16,7 +16,7 @@ namespace Elite.Buttons
 {
 
     [PluginActionId("com.mhwlng.elite.limpet")]
-    public class Limpet : EliteBase
+    public class Limpet : EliteKeypadBase
     {
         protected class PluginSettings
         {
@@ -197,13 +197,13 @@ namespace Elite.Buttons
 
         public override void KeyPressed(KeyPayload payload)
         {
-            if (InputRunning || Program.Binding == null)
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
             {
-                ForceStop = true;
+                StreamDeckCommon.ForceStop = true;
                 return;
             }
 
-            ForceStop = false;
+            StreamDeckCommon.ForceStop = false;
 
             var isDisabled = (EliteData.StatusData.OnFoot ||
                               EliteData.StatusData.InSRV ||
@@ -236,7 +236,7 @@ namespace Elite.Buttons
                 {
                     for (var f = 0; f < -cycle; f++)
                     {
-                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                         Thread.Sleep(70);
                     }
                 }
@@ -244,14 +244,14 @@ namespace Elite.Buttons
                 {
                     for (var f = 0 ; f < cycle; f++)
                     {
-                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                         Thread.Sleep(70);
                     }
                 }
 
                 Thread.Sleep(100);
 
-                SendKeypress(settings.Fire == "PRIMARY"
+                StreamDeckCommon.SendKeypress(settings.Fire == "PRIMARY"
                     ? Program.Binding[BindingType.Ship].PrimaryFire
                     : Program.Binding[BindingType.Ship].SecondaryFire);
 
@@ -262,7 +262,7 @@ namespace Elite.Buttons
                     for (var f = 0; f < -cycle; f++)
                     {
                         Thread.Sleep(70);
-                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupNext);
                     }
 
                 }
@@ -271,7 +271,7 @@ namespace Elite.Buttons
                     for (var f = 0; f < cycle; f++)
                     {
                         Thread.Sleep(70);
-                        SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
+                        StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].CycleFireGroupPrevious);
                     }
                 }
 
@@ -414,7 +414,7 @@ namespace Elite.Buttons
 
                     _primaryFile = Tools.FileToBase64(settings.PrimaryImageFilename, true);
 
-                    _primaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (File.Exists(settings.SecondaryImageFilename))
@@ -423,7 +423,7 @@ namespace Elite.Buttons
 
                     _secondaryFile = Tools.FileToBase64(settings.SecondaryImageFilename, true);
 
-                    _secondaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                    _secondaryImageIsGif = StreamDeckCommon.CheckForGif(settings.SecondaryImageFilename);
                 }
                 else
                 {
@@ -431,7 +431,7 @@ namespace Elite.Buttons
 
                     _secondaryFile = _primaryFile;
 
-                    _secondaryImageIsGif = CheckForGif(settings.PrimaryImageFilename);
+                    _secondaryImageIsGif = StreamDeckCommon.CheckForGif(settings.PrimaryImageFilename);
                 }
 
                 if (_primaryImage == null)
@@ -440,7 +440,7 @@ namespace Elite.Buttons
 
                     _primaryFile = _secondaryFile;
 
-                    _primaryImageIsGif = CheckForGif(settings.SecondaryImageFilename);
+                    _primaryImageIsGif = StreamDeckCommon.CheckForGif(settings.SecondaryImageFilename);
                 }
             }
             catch (Exception ex)
