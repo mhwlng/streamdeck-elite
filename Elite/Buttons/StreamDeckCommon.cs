@@ -98,6 +98,197 @@ namespace Elite.Buttons
                 case Profile.ProfileType.InvHardpoints:
                     state = !EliteData.StatusData.HardpointsDeployed;
                     break;
+
+                case Profile.ProfileType.BeingInterdicted:
+                    state = EliteData.StatusData.BeingInterdicted;
+                    break;
+                case Profile.ProfileType.InvBeingInterdicted:
+                    state = !EliteData.StatusData.BeingInterdicted;
+                    break;
+                case Profile.ProfileType.InMainShip:
+                    state = EliteData.StatusData.InMainShip;
+                    break;
+                case Profile.ProfileType.InvInMainShip:
+                    state = !EliteData.StatusData.InMainShip;
+                    break;
+
+                case Profile.ProfileType.Landed:
+                    state = EliteData.StatusData.Landed;
+                    break;
+                case Profile.ProfileType.InvLanded:
+                    state = !EliteData.StatusData.Landed;
+                    break;
+                case Profile.ProfileType.Supercruise:
+                    state = EliteData.StatusData.Supercruise;
+                    break;
+                case Profile.ProfileType.InvSupercruise:
+                    state = !EliteData.StatusData.Supercruise;
+                    break;
+
+                case Profile.ProfileType.Docked:
+                    state = EliteData.StatusData.Docked;
+                    break;
+                case Profile.ProfileType.InvDocked:
+                    state = !EliteData.StatusData.Docked;
+                    break;
+
+                case Profile.ProfileType.LandingGearDown:
+                    state = EliteData.StatusData.LandingGearDown;
+                    break;
+                case Profile.ProfileType.InvLandingGearDown:
+                    state = !EliteData.StatusData.LandingGearDown;
+                    break;
+                case Profile.ProfileType.ShieldsUp:
+                    state = EliteData.StatusData.ShieldsUp;
+                    break;
+                case Profile.ProfileType.InvShieldsUp:
+                    state = !EliteData.StatusData.ShieldsUp;
+                    break;
+                case Profile.ProfileType.FlightAssistOff:
+                    state = EliteData.StatusData.FlightAssistOff;
+                    break;
+                case Profile.ProfileType.InvFlightAssistOff:
+                    state = !EliteData.StatusData.FlightAssistOff;
+                    break;
+
+                case Profile.ProfileType.InvInWing:
+                    state = !EliteData.StatusData.InWing;
+                    break;
+                case Profile.ProfileType.InWing:
+                    state = EliteData.StatusData.InWing;
+                    break;
+                case Profile.ProfileType.InvLightsOn:
+                    state = !EliteData.StatusData.LightsOn;
+                    break;
+                case Profile.ProfileType.LightsOn:
+                    state = EliteData.StatusData.LightsOn;
+                    break;
+                case Profile.ProfileType.InvSilentRunning:
+                    state = !EliteData.StatusData.SilentRunning;
+                    break;
+                case Profile.ProfileType.SilentRunning:
+                    state = EliteData.StatusData.SilentRunning;
+                    break;
+                case Profile.ProfileType.InvScoopingFuel:
+                    state = !EliteData.StatusData.ScoopingFuel;
+                    break;
+                case Profile.ProfileType.ScoopingFuel:
+                    state = EliteData.StatusData.ScoopingFuel;
+                    break;
+                case Profile.ProfileType.InvSrvHandbrake:
+                    state = !EliteData.StatusData.SrvHandbrake;
+                    break;
+                case Profile.ProfileType.SrvHandbrake:
+                    state = EliteData.StatusData.SrvHandbrake;
+                    break;
+                case Profile.ProfileType.InvSrvUnderShip:
+                    state = !EliteData.StatusData.SrvUnderShip;
+                    break;
+                case Profile.ProfileType.SrvUnderShip:
+                    state = EliteData.StatusData.SrvUnderShip;
+                    break;
+                case Profile.ProfileType.InvSrvDriveAssist:
+                    state = !EliteData.StatusData.SrvDriveAssist;
+                    break;
+                case Profile.ProfileType.SrvDriveAssist:
+                    state = EliteData.StatusData.SrvDriveAssist;
+                    break;
+                case Profile.ProfileType.InvFsdMassLocked:
+                    state = !EliteData.StatusData.FsdMassLocked;
+                    break;
+                case Profile.ProfileType.FsdMassLocked:
+                    state = EliteData.StatusData.FsdMassLocked;
+                    break;
+                case Profile.ProfileType.InvFsdCharging:
+                    state = !EliteData.StatusData.FsdCharging;
+                    break;
+                case Profile.ProfileType.FsdCharging:
+                    state = EliteData.StatusData.FsdCharging;
+                    break;
+                case Profile.ProfileType.InvFsdCooldown:
+                    state = !EliteData.StatusData.FsdCooldown;
+                    break;
+                case Profile.ProfileType.FsdCooldown:
+                    state = EliteData.StatusData.FsdCooldown;
+                    break;
+                case Profile.ProfileType.InvLowFuel:
+                    state = !EliteData.StatusData.LowFuel;
+                    break;
+                case Profile.ProfileType.LowFuel:
+                    state = EliteData.StatusData.LowFuel;
+                    break;
+                case Profile.ProfileType.InvOverheating:
+                    state = !EliteData.StatusData.Overheating;
+                    break;
+                case Profile.ProfileType.Overheating:
+                    state = EliteData.StatusData.Overheating;
+                    break;
+                case Profile.ProfileType.InvHasLatLong:
+                    state = !EliteData.StatusData.HasLatLong;
+                    break;
+                case Profile.ProfileType.HasLatLong:
+                    state = EliteData.StatusData.HasLatLong;
+                    break;
+                case Profile.ProfileType.InvIsInDanger:
+                    state = !EliteData.StatusData.IsInDanger;
+                    break;
+                case Profile.ProfileType.IsInDanger:
+                    state = EliteData.StatusData.IsInDanger;
+                    break;
+                case Profile.ProfileType.InvNightVision:
+                    state = !EliteData.StatusData.NightVision;
+                    break;
+                case Profile.ProfileType.NightVision:
+                    state = EliteData.StatusData.NightVision;
+                    break;
+                case Profile.ProfileType.InvFsdJump:
+                    state = !EliteData.StatusData.FsdJump;
+                    break;
+                case Profile.ProfileType.FsdJump:
+                    state = EliteData.StatusData.FsdJump;
+                    break;
+                case Profile.ProfileType.InvSrvHighBeam:
+                    state = !EliteData.StatusData.SrvHighBeam;
+                    break;
+                case Profile.ProfileType.SrvHighBeam:
+                    state = EliteData.StatusData.SrvHighBeam;
+                    break;
+                case Profile.ProfileType.InvInTaxi:
+                    state = !EliteData.StatusData.InTaxi;
+                    break;
+                case Profile.ProfileType.InTaxi:
+                    state = EliteData.StatusData.InTaxi;
+                    break;
+                case Profile.ProfileType.InvInMulticrew:
+                    state = !EliteData.StatusData.InMulticrew;
+                    break;
+                case Profile.ProfileType.InMulticrew:
+                    state = EliteData.StatusData.InMulticrew;
+                    break;
+                case Profile.ProfileType.InvGlideMode:
+                    state = !EliteData.StatusData.GlideMode;
+                    break;
+                case Profile.ProfileType.GlideMode:
+                    state = EliteData.StatusData.GlideMode;
+                    break;
+                case Profile.ProfileType.InvTelepresenceMulticrew:
+                    state = !EliteData.StatusData.TelepresenceMulticrew;
+                    break;
+                case Profile.ProfileType.TelepresenceMulticrew:
+                    state = EliteData.StatusData.TelepresenceMulticrew;
+                    break;
+                case Profile.ProfileType.InvPhysicalMulticrew:
+                    state = !EliteData.StatusData.PhysicalMulticrew;
+                    break;
+                case Profile.ProfileType.PhysicalMulticrew:
+                    state = EliteData.StatusData.PhysicalMulticrew;
+                    break;
+                case Profile.ProfileType.InvFsdhyperdrivecharging:
+                    state = !EliteData.StatusData.Fsdhyperdrivecharging;
+                    break;
+                case Profile.ProfileType.Fsdhyperdrivecharging:
+                    state = EliteData.StatusData.Fsdhyperdrivecharging;
+                    break;
             }
 
             return state;
