@@ -46,6 +46,8 @@ When a dial button is released, the 'key up' event is sent to the keyboard.
 
 When the touch screen is pressed or long-pressed, the behaviour is like the static button.
 
+The plugin also has a Firegroup Dial button for use with the 4 dials on the Streamdeck+ model.
+
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 
 Choose a button in the streamdeck software (drag and drop), then choose an Elite Dangerous function for that button (that must have a keyboard binding in Elite Dangerous!) and then choose any pictures for that button.
