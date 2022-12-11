@@ -16,49 +16,11 @@
     <div class="sdpi-wrapper">
 
         <div class="sdpi-item" id="select_single">
-            <div class="sdpi-item-label">Dial CW</div>
-            <select class="sdpi-item-value select sdProperty" id="functioncw" oninput="setSettings()">
-
-                <optgroup label="Galaxy map">
-                    <option value="CamTranslateForward">GalMap Forward</option>
-                    <option value="CamTranslateBackward">GalMap Backward</option>
-                    <option value="CamTranslateLeft">GalMap Left</option>
-                    <option value="CamTranslateRight">GalMap Right</option>
-                </optgroup>
-                <optgroup label="Misc">                   
-                    <option value="RadarDecreaseRange">Dec Sensor Range</option>
-                    <option value="RadarIncreaseRange">Inc Sensor Range</option>
-                </optgroup>
-
-            </select>
-        </div>
-
-        <div class="sdpi-item" id="select_single">
-            <div class="sdpi-item-label">Dial CCW</div>
-            <select class="sdpi-item-value select sdProperty" id="functionccw" oninput="setSettings()">
-
-                <optgroup label="Galaxy map">
-                    <option value="CamTranslateForward">GalMap Forward</option>
-                    <option value="CamTranslateBackward">GalMap Backward</option>
-                    <option value="CamTranslateLeft">GalMap Left</option>
-                    <option value="CamTranslateRight">GalMap Right</option>
-                </optgroup>
-                <optgroup label="Misc">
-                    <option value="RadarDecreaseRange">Dec Sensor Range</option>
-                    <option value="RadarIncreaseRange">Inc Sensor Range</option>
-                </optgroup>
-
-            </select>
-        </div>
-
-        <div class="sdpi-item" id="select_single">
             <div class="sdpi-item-label">Dial Press</div>
             <select class="sdpi-item-value select sdProperty" id="functionpress" oninput="setSettings()">
 
                 <optgroup label="Combat">
                     <option value="ChargeECM">ECM</option>
-                    <option value="CycleFireGroupNext">Next Fire Group</option>
-                    <option value="CycleFireGroupPrevious">Prev Fire Group</option>
                     <option value="CycleNextHostileTarget">Next Hostile</option>
                     <option value="CyclePreviousHostileTarget">Prev Hostile</option>
                     <option value="CycleNextSubsystem">Next Subsystem</option>
@@ -134,49 +96,6 @@
                     <option value="Supercruise">Supercruise</option>
                     <option value="Hyperspace">Hyperspace Jump</option>
                 </optgroup>
-                <optgroup label="On Foot">
-                    <option value="HumanoidPrimaryInteractButton">Primary Interact</option>
-                    <option value="HumanoidSecondaryInteractButton">Secondary Interact</option>
-                    <option value="HumanoidSelectPrimaryWeaponButton">Select Primary Weapon</option>
-                    <option value="HumanoidSelectSecondaryWeaponButton">Select Secondary Weapon</option>
-                    <option value="HumanoidHideWeaponButton">Holster Weapon</option>
-                    <option value="HumanoidSwitchWeapon">Switch Weapon</option>
-                    <option value="HumanoidSelectUtilityWeaponButton">Select Tool</option>
-                    <option value="HumanoidSelectNextWeaponButton">Next Weapon</option>
-                    <option value="HumanoidSelectPreviousWeaponButton">Previous Weapon</option>
-                    <option value="HumanoidReloadButton">Reload</option>
-                    <option value="HumanoidSelectNextGrenadeTypeButton">Next Grenade Type</option>
-                    <option value="HumanoidSelectPreviousGrenadeTypeButton">Previous Grenade Type</option>
-                    <option value="HumanoidThrowGrenadeButton">Throw Grenade</option>
-                    <option value="HumanoidMeleeButton">Melee</option>
-                    <option value="HumanoidSwitchToRechargeTool">Energy Link</option>
-                    <option value="HumanoidSwitchToCompAnalyser">Profile Analyser</option>
-                    <option value="HumanoidToggleToolModeButton">Tool Mode</option>
-                    <option value="HumanoidToggleNightVisionButton">Night Vision</option>
-                    <option value="HumanoidSwitchToSuitTool">Suit Specific Tool</option>
-                    <option value="HumanoidToggleFlashlightButton">Flashlight</option>
-                    <option value="GalaxyMapOpen_Humanoid">Galaxy Map</option>
-                    <option value="SystemMapOpen_Humanoid">System Map</option>
-                    <option value="FocusCommsPanel_Humanoid">Comms Panel</option>
-                    <option value="QuickCommsPanel_Humanoid">Quick Comms</option>
-                    <option value="HumanoidConflictContextualUIButton">Conflict Zone Battle Stats</option>
-                    <option value="HumanoidToggleShieldsButton">Shields</option>
-                    <option value="HumanoidToggleMissionHelpPanelButton">Help</option>
-                    <option value="HumanoidClearAuthorityLevel">Clear Stolen Profile</option>
-                    <option value="HumanoidHealthPack">Use Medkit</option>
-                    <option value="HumanoidBattery">Use Energy Cells</option>
-                    <option value="HumanoidSelectFragGrenade">Select Frag Grenade</option>
-                    <option value="HumanoidSelectEMPGrenade">Select EMP Grenade</option>
-                    <option value="HumanoidSelectShieldGrenade">Select Shield Grenade</option>
-                    <option value="HumanoidEmoteSlot1">Point</option>
-                    <option value="HumanoidEmoteSlot2">Wave</option>
-                    <option value="HumanoidEmoteSlot3">Agree</option>
-                    <option value="HumanoidEmoteSlot4">Disagree</option>
-                    <option value="HumanoidEmoteSlot5">Go</option>
-                    <option value="HumanoidEmoteSlot6">Stop</option>
-                    <option value="HumanoidEmoteSlot7">Applaud</option>
-                    <option value="HumanoidEmoteSlot8">Salute</option>
-                </optgroup>
                 <optgroup label="Toggles">
                     <option value="PlayerHUDModeToggle">HUD Mode</option>
                     <option value="ToggleCargoScoop">Cargo Scoop</option>
@@ -188,16 +107,7 @@
                     <option value="ToggleButtonUpInput">Silent Running</option>
 
                 </optgroup>
-                <optgroup label="Fire Groups">
-                    <option value="FireGroup-A">Fire Group A</option>
-                    <option value="FireGroup-B">Fire Group B</option>
-                    <option value="FireGroup-C">Fire Group C</option>
-                    <option value="FireGroup-D">Fire Group D</option>
-                    <option value="FireGroup-E">Fire Group E</option>
-                    <option value="FireGroup-F">Fire Group F</option>
-                    <option value="FireGroup-G">Fire Group G</option>
-                    <option value="FireGroup-H">Fire Group H</option>
-                </optgroup>
+ 
             </select>
         </div>
 
@@ -206,8 +116,6 @@
             <select class="sdpi-item-value select sdProperty" id="functiontouchpress" oninput="setSettings()">
                 <optgroup label="Combat">
                     <option value="ChargeECM">ECM</option>
-                    <option value="CycleFireGroupNext">Next Fire Group</option>
-                    <option value="CycleFireGroupPrevious">Prev Fire Group</option>
                     <option value="CycleNextHostileTarget">Next Hostile</option>
                     <option value="CyclePreviousHostileTarget">Prev Hostile</option>
                     <option value="CycleNextSubsystem">Next Subsystem</option>
@@ -283,49 +191,6 @@
                     <option value="Supercruise">Supercruise</option>
                     <option value="Hyperspace">Hyperspace Jump</option>
                 </optgroup>
-                <optgroup label="On Foot">
-                    <option value="HumanoidPrimaryInteractButton">Primary Interact</option>
-                    <option value="HumanoidSecondaryInteractButton">Secondary Interact</option>
-                    <option value="HumanoidSelectPrimaryWeaponButton">Select Primary Weapon</option>
-                    <option value="HumanoidSelectSecondaryWeaponButton">Select Secondary Weapon</option>
-                    <option value="HumanoidHideWeaponButton">Holster Weapon</option>
-                    <option value="HumanoidSwitchWeapon">Switch Weapon</option>
-                    <option value="HumanoidSelectUtilityWeaponButton">Select Tool</option>
-                    <option value="HumanoidSelectNextWeaponButton">Next Weapon</option>
-                    <option value="HumanoidSelectPreviousWeaponButton">Previous Weapon</option>
-                    <option value="HumanoidReloadButton">Reload</option>
-                    <option value="HumanoidSelectNextGrenadeTypeButton">Next Grenade Type</option>
-                    <option value="HumanoidSelectPreviousGrenadeTypeButton">Previous Grenade Type</option>
-                    <option value="HumanoidThrowGrenadeButton">Throw Grenade</option>
-                    <option value="HumanoidMeleeButton">Melee</option>
-                    <option value="HumanoidSwitchToRechargeTool">Energy Link</option>
-                    <option value="HumanoidSwitchToCompAnalyser">Profile Analyser</option>
-                    <option value="HumanoidToggleToolModeButton">Tool Mode</option>
-                    <option value="HumanoidToggleNightVisionButton">Night Vision</option>
-                    <option value="HumanoidSwitchToSuitTool">Suit Specific Tool</option>
-                    <option value="HumanoidToggleFlashlightButton">Flashlight</option>
-                    <option value="GalaxyMapOpen_Humanoid">Galaxy Map</option>
-                    <option value="SystemMapOpen_Humanoid">System Map</option>
-                    <option value="FocusCommsPanel_Humanoid">Comms Panel</option>
-                    <option value="QuickCommsPanel_Humanoid">Quick Comms</option>
-                    <option value="HumanoidConflictContextualUIButton">Conflict Zone Battle Stats</option>
-                    <option value="HumanoidToggleShieldsButton">Shields</option>
-                    <option value="HumanoidToggleMissionHelpPanelButton">Help</option>
-                    <option value="HumanoidClearAuthorityLevel">Clear Stolen Profile</option>
-                    <option value="HumanoidHealthPack">Use Medkit</option>
-                    <option value="HumanoidBattery">Use Energy Cells</option>
-                    <option value="HumanoidSelectFragGrenade">Select Frag Grenade</option>
-                    <option value="HumanoidSelectEMPGrenade">Select EMP Grenade</option>
-                    <option value="HumanoidSelectShieldGrenade">Select Shield Grenade</option>
-                    <option value="HumanoidEmoteSlot1">Point</option>
-                    <option value="HumanoidEmoteSlot2">Wave</option>
-                    <option value="HumanoidEmoteSlot3">Agree</option>
-                    <option value="HumanoidEmoteSlot4">Disagree</option>
-                    <option value="HumanoidEmoteSlot5">Go</option>
-                    <option value="HumanoidEmoteSlot6">Stop</option>
-                    <option value="HumanoidEmoteSlot7">Applaud</option>
-                    <option value="HumanoidEmoteSlot8">Salute</option>
-                </optgroup>
                 <optgroup label="Toggles">
                     <option value="PlayerHUDModeToggle">HUD Mode</option>
                     <option value="ToggleCargoScoop">Cargo Scoop</option>
@@ -337,16 +202,7 @@
                     <option value="ToggleButtonUpInput">Silent Running</option>
 
                 </optgroup>
-                <optgroup label="Fire Groups">
-                    <option value="FireGroup-A">Fire Group A</option>
-                    <option value="FireGroup-B">Fire Group B</option>
-                    <option value="FireGroup-C">Fire Group C</option>
-                    <option value="FireGroup-D">Fire Group D</option>
-                    <option value="FireGroup-E">Fire Group E</option>
-                    <option value="FireGroup-F">Fire Group F</option>
-                    <option value="FireGroup-G">Fire Group G</option>
-                    <option value="FireGroup-H">Fire Group H</option>
-                </optgroup>
+   
 
             </select>
         </div>
@@ -356,8 +212,6 @@
             <select class="sdpi-item-value select sdProperty" id="functiontouchlongpress" oninput="setSettings()">
                 <optgroup label="Combat">
                     <option value="ChargeECM">ECM</option>
-                    <option value="CycleFireGroupNext">Next Fire Group</option>
-                    <option value="CycleFireGroupPrevious">Prev Fire Group</option>
                     <option value="CycleNextHostileTarget">Next Hostile</option>
                     <option value="CyclePreviousHostileTarget">Prev Hostile</option>
                     <option value="CycleNextSubsystem">Next Subsystem</option>
@@ -433,49 +287,6 @@
                     <option value="Supercruise">Supercruise</option>
                     <option value="Hyperspace">Hyperspace Jump</option>
                 </optgroup>
-                <optgroup label="On Foot">
-                    <option value="HumanoidPrimaryInteractButton">Primary Interact</option>
-                    <option value="HumanoidSecondaryInteractButton">Secondary Interact</option>
-                    <option value="HumanoidSelectPrimaryWeaponButton">Select Primary Weapon</option>
-                    <option value="HumanoidSelectSecondaryWeaponButton">Select Secondary Weapon</option>
-                    <option value="HumanoidHideWeaponButton">Holster Weapon</option>
-                    <option value="HumanoidSwitchWeapon">Switch Weapon</option>
-                    <option value="HumanoidSelectUtilityWeaponButton">Select Tool</option>
-                    <option value="HumanoidSelectNextWeaponButton">Next Weapon</option>
-                    <option value="HumanoidSelectPreviousWeaponButton">Previous Weapon</option>
-                    <option value="HumanoidReloadButton">Reload</option>
-                    <option value="HumanoidSelectNextGrenadeTypeButton">Next Grenade Type</option>
-                    <option value="HumanoidSelectPreviousGrenadeTypeButton">Previous Grenade Type</option>
-                    <option value="HumanoidThrowGrenadeButton">Throw Grenade</option>
-                    <option value="HumanoidMeleeButton">Melee</option>
-                    <option value="HumanoidSwitchToRechargeTool">Energy Link</option>
-                    <option value="HumanoidSwitchToCompAnalyser">Profile Analyser</option>
-                    <option value="HumanoidToggleToolModeButton">Tool Mode</option>
-                    <option value="HumanoidToggleNightVisionButton">Night Vision</option>
-                    <option value="HumanoidSwitchToSuitTool">Suit Specific Tool</option>
-                    <option value="HumanoidToggleFlashlightButton">Flashlight</option>
-                    <option value="GalaxyMapOpen_Humanoid">Galaxy Map</option>
-                    <option value="SystemMapOpen_Humanoid">System Map</option>
-                    <option value="FocusCommsPanel_Humanoid">Comms Panel</option>
-                    <option value="QuickCommsPanel_Humanoid">Quick Comms</option>
-                    <option value="HumanoidConflictContextualUIButton">Conflict Zone Battle Stats</option>
-                    <option value="HumanoidToggleShieldsButton">Shields</option>
-                    <option value="HumanoidToggleMissionHelpPanelButton">Help</option>
-                    <option value="HumanoidClearAuthorityLevel">Clear Stolen Profile</option>
-                    <option value="HumanoidHealthPack">Use Medkit</option>
-                    <option value="HumanoidBattery">Use Energy Cells</option>
-                    <option value="HumanoidSelectFragGrenade">Select Frag Grenade</option>
-                    <option value="HumanoidSelectEMPGrenade">Select EMP Grenade</option>
-                    <option value="HumanoidSelectShieldGrenade">Select Shield Grenade</option>
-                    <option value="HumanoidEmoteSlot1">Point</option>
-                    <option value="HumanoidEmoteSlot2">Wave</option>
-                    <option value="HumanoidEmoteSlot3">Agree</option>
-                    <option value="HumanoidEmoteSlot4">Disagree</option>
-                    <option value="HumanoidEmoteSlot5">Go</option>
-                    <option value="HumanoidEmoteSlot6">Stop</option>
-                    <option value="HumanoidEmoteSlot7">Applaud</option>
-                    <option value="HumanoidEmoteSlot8">Salute</option>
-                </optgroup>
                 <optgroup label="Toggles">
                     <option value="PlayerHUDModeToggle">HUD Mode</option>
                     <option value="ToggleCargoScoop">Cargo Scoop</option>
@@ -487,16 +298,7 @@
                     <option value="ToggleButtonUpInput">Silent Running</option>
 
                 </optgroup>
-                <optgroup label="Fire Groups">
-                    <option value="FireGroup-A">Fire Group A</option>
-                    <option value="FireGroup-B">Fire Group B</option>
-                    <option value="FireGroup-C">Fire Group C</option>
-                    <option value="FireGroup-D">Fire Group D</option>
-                    <option value="FireGroup-E">Fire Group E</option>
-                    <option value="FireGroup-F">Fire Group F</option>
-                    <option value="FireGroup-G">Fire Group G</option>
-                    <option value="FireGroup-H">Fire Group H</option>
-                </optgroup>
+  
 
             </select>
         </div>

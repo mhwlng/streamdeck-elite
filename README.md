@@ -44,8 +44,7 @@ When you let go of the dial for at least 100ms : the 'key up' event is sent to t
 When a dial button is pushed, the 'key down' event is sent to the keyboard. 
 When a dial button is released, the 'key up' event is sent to the keyboard. 
 
-When the touch screen is pressed or long-pressed, the behaviour is like the multi-action button :
-The 'key down' event is sent to the keyboard. After a user-definable delay (default = 40 ms) the 'key up' event is sent to the keyboard. 
+When the touch screen is pressed or long-pressed, the behaviour is like the static button.
 
 After you install the plugin in the streamdeck software, then there will be several new button types in the streamdeck software.
 

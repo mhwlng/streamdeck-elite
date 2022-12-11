@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,8 +16,8 @@ using Newtonsoft.Json.Linq;
 namespace Elite.Buttons
 {
 
-    [PluginActionId("com.mhwlng.elite.dial")]
-    public class Dial : EliteDialBase
+    [PluginActionId("com.mhwlng.elite.firegroupdial")]
+    public class FireGroupDial : EliteDialBase
     {
         protected class PluginSettings
         {
@@ -24,8 +25,6 @@ namespace Elite.Buttons
             {
                 var instance = new PluginSettings
                 {
-                    FunctionCw = string.Empty,
-                    FunctionCcw = string.Empty,
                     FunctionPress = string.Empty,
                     FunctionTouchLongPress = string.Empty,
                     FunctionTouchPress = string.Empty
@@ -34,12 +33,7 @@ namespace Elite.Buttons
                 return instance;
             }
 
-            [JsonProperty(PropertyName = "functioncw")]
-            public string FunctionCw { get; set; }
-
-            [JsonProperty(PropertyName = "functionccw")]
-            public string FunctionCcw { get; set; }
-
+  
             [JsonProperty(PropertyName = "functionpress")]
             public string FunctionPress { get; set; }
 
@@ -53,20 +47,15 @@ namespace Elite.Buttons
 
 
         PluginSettings settings;
-
-        private bool ccwIsDown;
-        private bool cwIsDown;
-
+   
         private int ccwPending;
         private int cwPending;
-
-        private DateTime? lastDialTime = null;
-
-        private Thread dialWatcherThread = null;
-        private CancellationTokenSource cancellationTokenSource;
+      
+        //private Thread dialWatcherThread = null;
+        //private CancellationTokenSource cancellationTokenSource;
 
 
-        public Dial(SDConnection connection, InitialPayload payload) : base(connection, payload)
+        public FireGroupDial(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
             if (payload.Settings == null || payload.Settings.Count == 0)
             {
@@ -83,7 +72,7 @@ namespace Elite.Buttons
                 settings = payload.Settings.ToObject<PluginSettings>();
                 HandleFileNames();
             }
-
+            /*
             cancellationTokenSource = new CancellationTokenSource();
 
             dialWatcherThread = new Thread(state =>
@@ -124,22 +113,25 @@ namespace Elite.Buttons
                 Name = "Dial Watcher",
                 IsBackground = true
             };
-            dialWatcherThread.Start();
+            dialWatcherThread.Start();*/
         }
 
         public override void Dispose()
         {
-            if (cancellationTokenSource != null)
+           /*
+             if (cancellationTokenSource != null)
+            
                 cancellationTokenSource.Cancel();
 
             if (dialWatcherThread != null)
-                dialWatcherThread.Join();
+                dialWatcherThread.Join();*/
 
             base.Dispose();
 
             //Logger.Instance.LogMessage(TracingLevel.DEBUG, "Destructor called #1");
 
         }
+
         public override void TouchPress(TouchpadPressPayload payload)
         {
             if (StreamDeckCommon.InputRunning || Program.Binding == null)
@@ -188,29 +180,10 @@ namespace Elite.Buttons
             }
         }
 
-        private void ReleaseCw()
-        {
-            if (cwIsDown)
-            {
-                EliteKeys.SendKeypressUp(settings.FunctionCw);
+     
 
-                Thread.Sleep(100);
-                cwIsDown = false;
-                cwPending = 0;
-            }
-        }
 
-        private void ReleaseCcw()
-        {
-            if (ccwIsDown)
-            {
-                EliteKeys.SendKeypressUp(settings.FunctionCcw);
 
-                Thread.Sleep(100);
-                ccwIsDown = false;
-                ccwPending = 0;
-            }
-        }
         public override void DialRotate(DialRotatePayload payload)
         {
 
@@ -222,36 +195,46 @@ namespace Elite.Buttons
 
             StreamDeckCommon.ForceStop = false;
 
-            lastDialTime = DateTime.Now;
-
             if (payload.Ticks > 0)
             {
-                ReleaseCcw();
-
                 //Logger.Instance.LogMessage(TracingLevel.INFO, $"DialRotate CW: {payload.Ticks}");
 
-                if (!cwIsDown)
-                {
-                    EliteKeys.SendKeypressDown(settings.FunctionCw);
+                cwPending += payload.Ticks;
 
-                    cwIsDown = true;
-                    cwPending += payload.Ticks;
+                for (var ticks = 0; ticks < cwPending; ticks++)
+                {
+                    EliteKeys.SendKeypress("CycleFireGroupNext");
+
                 }
+
+                cwPending = 0;
             }
+
             else if (payload.Ticks < 0)
             {
-                ReleaseCw();
-
+ 
                 //Logger.Instance.LogMessage(TracingLevel.INFO, $"DialRotate CCW: {payload.Ticks}");
 
-                if (!ccwIsDown)
+                ccwPending += -payload.Ticks;
+                
+                for (var ticks = 0; ticks < ccwPending; ticks++)
                 {
-                    EliteKeys.SendKeypressDown(settings.FunctionCcw);
-
-                    ccwIsDown = true;
-                    ccwPending += -payload.Ticks;
+                    EliteKeys.SendKeypress("CycleFireGroupPrevious");
                 }
+
+                ccwPending = 0;
             }
+
+        
+        }
+
+
+        public override async void OnTick()
+        {
+            base.OnTick();
+            
+            await Connection.SetFeedbackAsync("value", "FG : " + Convert.ToChar(65+EliteData.StatusData.Firegroup));
+           
         }
 
         public override void ReceivedSettings(ReceivedSettingsPayload payload)
@@ -265,7 +248,6 @@ namespace Elite.Buttons
 
         private void HandleFileNames()
         {
-
             Connection.SetSettingsAsync(JObject.FromObject(settings)).Wait();
 		}
 

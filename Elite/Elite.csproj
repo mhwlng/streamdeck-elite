@@ -147,6 +147,7 @@
     <Compile Include="Audio\AutoDisposeFileReader.cs" />
     <Compile Include="Audio\CachedSound.cs" />
     <Compile Include="Audio\CachedSoundSampleProvider.cs" />
+    <Compile Include="Buttons\FireGroupDial.cs" />
     <Compile Include="Buttons\EliteDialBase.cs" />
     <Compile Include="Buttons\Dial.cs" />
     <Compile Include="Buttons\EliteKeys.cs" />
@@ -270,6 +271,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\elg_calendar_inv.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\Elite\FireGroupDial.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\Elite\FireGroup.html">

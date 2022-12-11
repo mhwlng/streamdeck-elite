@@ -148,6 +148,25 @@
       "Tooltip": "Elite Dangerous Dial Button",
       "UUID": "com.mhwlng.elite.dial",
       "PropertyInspectorPath": "PropertyInspector/Elite/Dial.html"
+    },
+    {
+      "Icon": "Images/pluginIcon",
+      "Name": "FireGroup Dial",
+      "Controllers": [ "Encoder" ],
+      "States": [
+        {
+          "Image": "Images/pluginIcon"
+        }
+      ],
+      "Encoder": {
+        "Icon": "Images/pluginIcon",
+        "layout": "$A1"
+
+      },
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous FireGroup Dial",
+      "UUID": "com.mhwlng.elite.firegroupdial",
+      "PropertyInspectorPath": "PropertyInspector/Elite/FireGroupDial.html"
     }
   ],
   "Author": "mhwlng",
@@ -155,7 +174,7 @@
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
   "URL": "https://github.com/mhwlng/streamdeck-elite",
-  "Version": "2.4.8",
+  "Version": "2.4.9",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",
