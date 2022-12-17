@@ -232,7 +232,7 @@ namespace Elite
             return null;
         }
         
-        public static void HandleKeyBinding(BindingType bindingType, string  bindingsPath, string bindsName)
+        public static bool HandleKeyBinding(BindingType bindingType, string  bindingsPath, string bindsName)
         {
             Logger.Instance.LogMessage(TracingLevel.INFO, "handle key binding " + bindsName);
 
@@ -349,7 +349,11 @@ namespace Elite
             else
             {
                 Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
+
+                return false;
             }
+
+            return true;
         }
 
 
@@ -415,7 +419,13 @@ namespace Elite
                 HandleKeyBinding(BindingType.General, bindingsPath, bindsNames[0]);
                 HandleKeyBinding(BindingType.Ship, bindingsPath, bindsNames[1]);
                 HandleKeyBinding(BindingType.Srv, bindingsPath, bindsNames[2]);
-                HandleKeyBinding(BindingType.OnFoot, bindingsPath, bindsNames[3]);
+                var found = HandleKeyBinding(BindingType.OnFoot, bindingsPath, bindsNames[3]);
+
+                if (!found)
+                {
+                    Logger.Instance.LogMessage(TracingLevel.INFO, "not found, retry on foot binding with key binding " + bindsNames[2]);
+                    HandleKeyBinding(BindingType.OnFoot, bindingsPath, bindsNames[2]);
+                }
             }
             else // horizon
             {
