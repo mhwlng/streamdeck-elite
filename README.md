@@ -216,6 +216,10 @@ MAKE SURE that you save any images, profiles etc. that you put in these director
 And put them back after the installation.
 The plugin installer doesn't come with button images.
 
+Also, the plugin directory can be completely deleted by right-clicking on any button and selecting uninstall (make a backup copy first) :
+
+![Button Image](https://i.imgur.com/Ky2cH8R.png)
+
 The button configurations are not stored in the plugin directory.
 
 After uninstalling and re-installing the plugin, all the button definition should still be there.
@@ -223,7 +227,6 @@ After uninstalling and re-installing the plugin, all the button definition shoul
 The com.mhwlng.elite.sdPlugin directory contains a pluginlog.log file, which may be useful for troubleshooting.
 
 Best is to create a separate directory for the images, so that they are not deleted when uninstalling/reinstalling the plugin.
-
 
 Also see companion application for Logitech Flight Instrument Panel and VR :
 
