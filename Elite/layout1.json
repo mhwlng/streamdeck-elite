@@ -1,0 +1,25 @@
+{
+  "id": "com.mhwlng.elite.layout1.layout",
+  "items": [
+    {
+      "key": "title",
+      "type": "text",
+      "rect": [ 0, 10, 200, 24 ],
+      "font": {
+        "size": 16,
+        "weight": 600
+      },
+      "alignment": "center"
+    },
+    {
+      "key": "value",
+      "type": "text",
+      "rect": [ 0, 40, 200, 48 ],
+      "font": {
+        "size": 24,
+        "weight": 600
+      },
+      "alignment": "center"
+    }
+  ]
+}

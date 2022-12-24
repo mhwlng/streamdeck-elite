@@ -58,7 +58,7 @@ ONLY add an image to a (repeating) STATIC and DIAL button in this way, do NOT se
 
 ![Button Image](https://i.imgur.com/xkgy7uZ.png)
 
-Animated gif files are only supported for the (repeating) STATIC and DIAL buttons. Dial images can be wider.
+Animated gif files are only supported for the (repeating) STATIC and DIAL buttons. Dial images are 200x50
 
 If .gif images are configured for Power/Limpet/Hyperspace buttons, then no texts or pips are drawn on top of them.
 

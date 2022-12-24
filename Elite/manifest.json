@@ -144,6 +144,10 @@
           "Image": "Images/pluginIcon"
         }
       ],
+      "Encoder": {
+        "Icon": "Images/pluginDialIcon",
+        "layout": "./layout2.json"
+      },
       "SupportedInMultiActions": false,
       "Tooltip": "Elite Dangerous Dial Button",
       "UUID": "com.mhwlng.elite.dial",
@@ -159,9 +163,8 @@
         }
       ],
       "Encoder": {
-        "Icon": "Images/pluginIcon",
-        "layout": "$A1"
-
+        "Icon": "Images/pluginDialIcon",
+        "layout": "./layout1.json"
       },
       "SupportedInMultiActions": false,
       "Tooltip": "Elite Dangerous FireGroup Dial",
@@ -174,7 +177,7 @@
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
   "URL": "https://github.com/mhwlng/streamdeck-elite",
-  "Version": "2.5.1",
+  "Version": "2.5.2",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",

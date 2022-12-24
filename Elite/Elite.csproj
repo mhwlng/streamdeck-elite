@@ -99,8 +99,8 @@
     <Reference Include="streamdeck-client-csharp, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\streamdeck-client-csharp.4.3.0\lib\netstandard2.0\streamdeck-client-csharp.dll</HintPath>
     </Reference>
-    <Reference Include="StreamDeckTools, Version=3.9.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\StreamDeck-Tools.5.9.0-Beta1\lib\netstandard2.0\StreamDeckTools.dll</HintPath>
+    <Reference Include="StreamDeckTools, Version=5.9.10.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\StreamDeck-Tools.5.9.1-Beta1\lib\netstandard2.0\StreamDeckTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -176,6 +176,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Images\button.psd" />
+    <None Include="layout2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="layout1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -229,6 +235,9 @@
     <Content Include="Images\lights on.png" />
     <Content Include="Images\night vision off.png" />
     <Content Include="Images\night vision on.png" />
+    <Content Include="Images\pluginDialIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\pluginIcon%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
