@@ -8,18 +8,21 @@ using WindowsInput;
 using WindowsInput.Native;
 using BarRaider.SdTools;
 using EliteJournalReader.Events;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace Elite.Buttons
 {
     static class StreamDeckCommon
     {
+        private static Dictionary<string, string> _lastStatus = new Dictionary<string, string>();
 
-        private static Dictionary<string,string> _lastStatus = new Dictionary<string, string>();
+        private static object myLock = new object();
 
         public static bool InputRunning;
         public static bool ForceStop = false;
-        
-        
+
+
         private static bool CheckProfileState(Profile.ProfileType profileType)
         {
             var state = false;
@@ -308,112 +311,182 @@ namespace Elite.Buttons
 
         public static void HandleOnTick(ISDConnection connection)
         {
-            var deviceInfo = connection.DeviceInfo();
-
-            if (!Profile.Profiles.ContainsKey(deviceInfo.Type)) return;
-
-            var profiles = Profile.Profiles[deviceInfo.Type];
-
-            if (!_lastStatus.ContainsKey(deviceInfo.Id))
+            lock (myLock)
             {
-                _lastStatus.Add(deviceInfo.Id, null);
-            }
+                var deviceInfo = connection.DeviceInfo();
 
-            /*
-            EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel
-            EliteData.StatusData.GuiFocus == StatusGuiFocus.ExternalPanel
-            EliteData.StatusData.GuiFocus == StatusGuiFocus.CommsPanel
-            EliteData.StatusData.GuiFocus == StatusGuiFocus.RolePanel
-            EliteData.StatusData.GuiFocus == StatusGuiFocus.StationServices
-            EliteData.StatusData.GuiFocus == StatusGuiFocus.Codex
-            
-            EliteData.StatusData.BeingInterdicted
-            EliteData.StatusData.InMainShip
-            EliteData.StatusData.Landed
-            EliteData.StatusData.Supercruise
-            EliteData.StatusData.Docked
+                /*
+    
+    [Id: 49C5DB3C77BEDDEB4EE9DA88ED76CF59 Type: StreamDeckXL Size: Rows: 4 Columns: 8]
+    [Id: 8F9F54D3085E17917873D7BA481EA6B7 Type: StreamDeckPlus Size: Rows: 2 Columns: 4]
+    [Id: 8403C4817A9F3533236625316AE80F1A Type: StreamDeckClassic Size: Rows: 3 Columns: 5] RIGHT SIDE
+    [Id: A2F05B845C24AD67556305C9EE9CA0DC Type: StreamDeckClassic Size: Rows: 3 Columns: 5] LEFT SIDE
+    
+    
+    49C5DB3C77BEDDEB4EE9DA88ED76CF59  deviceInfo.Id,  connection.DeviceId*/
 
-            EliteData.StatusData.LandingGearDown
-            EliteData.StatusData.ShieldsUp
-            EliteData.StatusData.FlightAssistOff
+                if (!Profile.Profiles.ContainsKey(deviceInfo.Type)) return;
 
-            EliteData.StatusData.InWing
-            EliteData.StatusData.LightsOn
-            EliteData.StatusData.SilentRunning
-            EliteData.StatusData.ScoopingFuel
-            EliteData.StatusData.SrvHandbrake
-            EliteData.StatusData.SrvUnderShip
-            EliteData.StatusData.SrvDriveAssist
-            EliteData.StatusData.FsdMassLocked
-            EliteData.StatusData.FsdCharging
-            EliteData.StatusData.FsdCooldown
-            EliteData.StatusData.LowFuel
-            EliteData.StatusData.Overheating
-            EliteData.StatusData.HasLatLong
-            EliteData.StatusData.IsInDanger
-            EliteData.StatusData.NightVision
-            EliteData.StatusData.AltitudeFromAverageRadius
-            EliteData.StatusData.FsdJump
-            EliteData.StatusData.SrvHighBeam
-            
-            EliteData.StatusData.InTaxi
-            EliteData.StatusData.InMulticrew
-            EliteData.StatusData.OnFootInStation
-            EliteData.StatusData.OnFootOnPlanet
-            EliteData.StatusData.AimDownSight
-            EliteData.StatusData.LowOxygen
-            EliteData.StatusData.LowHealth
-            EliteData.StatusData.Cold
-            EliteData.StatusData.Hot
-            EliteData.StatusData.VeryCold
-            EliteData.StatusData.VeryHot
-            EliteData.StatusData.GlideMode
-            EliteData.StatusData.OnFootInHangar
-            EliteData.StatusData.OnFootSocialSpace
-            EliteData.StatusData.OnFootExterior
-            EliteData.StatusData.BreathableAtmosphere
-            EliteData.StatusData.TelepresenceMulticrew
-            EliteData.StatusData.PhysicalMulticrew
-            EliteData.StatusData.Fsdhyperdrivecharging
-            */
+                var profiles = Profile.Profiles[deviceInfo.Type];
 
-            foreach (var profile in profiles)
-            {
-                var key = string.Join(",", profile.ProfileTypes.Select(x => x.ToString()).ToArray());
-
-                var state = CheckProfileStates(profile.ProfileTypes);
-
-                if (state)
+                if (!_lastStatus.ContainsKey(deviceInfo.Id))
                 {
-                    if (_lastStatus[deviceInfo.Id] != key)
+                    _lastStatus.Add(deviceInfo.Id, null);
+                }
+
+                /*
+                EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel
+                EliteData.StatusData.GuiFocus == StatusGuiFocus.ExternalPanel
+                EliteData.StatusData.GuiFocus == StatusGuiFocus.CommsPanel
+                EliteData.StatusData.GuiFocus == StatusGuiFocus.RolePanel
+                EliteData.StatusData.GuiFocus == StatusGuiFocus.StationServices
+                EliteData.StatusData.GuiFocus == StatusGuiFocus.Codex
+                
+                EliteData.StatusData.BeingInterdicted
+                EliteData.StatusData.InMainShip
+                EliteData.StatusData.Landed
+                EliteData.StatusData.Supercruise
+                EliteData.StatusData.Docked
+    
+                EliteData.StatusData.LandingGearDown
+                EliteData.StatusData.ShieldsUp
+                EliteData.StatusData.FlightAssistOff
+    
+                EliteData.StatusData.InWing
+                EliteData.StatusData.LightsOn
+                EliteData.StatusData.SilentRunning
+                EliteData.StatusData.ScoopingFuel
+                EliteData.StatusData.SrvHandbrake
+                EliteData.StatusData.SrvUnderShip
+                EliteData.StatusData.SrvDriveAssist
+                EliteData.StatusData.FsdMassLocked
+                EliteData.StatusData.FsdCharging
+                EliteData.StatusData.FsdCooldown
+                EliteData.StatusData.LowFuel
+                EliteData.StatusData.Overheating
+                EliteData.StatusData.HasLatLong
+                EliteData.StatusData.IsInDanger
+                EliteData.StatusData.NightVision
+                EliteData.StatusData.AltitudeFromAverageRadius
+                EliteData.StatusData.FsdJump
+                EliteData.StatusData.SrvHighBeam
+                
+                EliteData.StatusData.InTaxi
+                EliteData.StatusData.InMulticrew
+                EliteData.StatusData.OnFootInStation
+                EliteData.StatusData.OnFootOnPlanet
+                EliteData.StatusData.AimDownSight
+                EliteData.StatusData.LowOxygen
+                EliteData.StatusData.LowHealth
+                EliteData.StatusData.Cold
+                EliteData.StatusData.Hot
+                EliteData.StatusData.VeryCold
+                EliteData.StatusData.VeryHot
+                EliteData.StatusData.GlideMode
+                EliteData.StatusData.OnFootInHangar
+                EliteData.StatusData.OnFootSocialSpace
+                EliteData.StatusData.OnFootExterior
+                EliteData.StatusData.BreathableAtmosphere
+                EliteData.StatusData.TelepresenceMulticrew
+                EliteData.StatusData.PhysicalMulticrew
+                EliteData.StatusData.Fsdhyperdrivecharging
+                */
+
+                foreach (var profile in profiles)
+                {
+
+                    var limitId = "";
+
+                    var idFound = false;
+
+                    var profileNameArray = profile.Name.Split(' ').Select(x => x.ToUpper().Trim())
+                        .Where(x => x.Length == 6)
+                        .ToList();
+                    foreach (var namePart in profileNameArray)
                     {
-                        Logger.Instance.LogMessage(TracingLevel.DEBUG,
-                            "switch profile " + key + " to " + profile.Name + " for " + profile.DeviceType);
+                        if (long.TryParse(namePart, NumberStyles.HexNumber,
+                                System.Globalization.CultureInfo.InvariantCulture, out var temp))
+                        {
+                            idFound = true;
 
-                        connection.SwitchProfileAsync(profile.Name);
-
-                        _lastStatus[deviceInfo.Id] = key;
+                            if (deviceInfo.Id.Contains(namePart))
+                            {
+                                 limitId = deviceInfo.Id;
+                            }
+                        }
                     }
 
-                    return;
-                }
-            }
-            
-            if  (_lastStatus[deviceInfo.Id] != Profile.ProfileType.Main.ToString())
-            {
-                var p = profiles.FirstOrDefault(x => x.ProfileTypes.Contains(Profile.ProfileType.Main));
+                    if (!idFound || !string.IsNullOrEmpty(limitId))
+                    {
+                        var state = CheckProfileStates(profile.ProfileTypes);
 
-                if (p != null)
+                        if (state)
+                        {
+                            var key = string.Join(",", profile.ProfileTypes.Select(x => x.ToString()).ToArray());
+
+                            if (_lastStatus[deviceInfo.Id] != key)
+                            {
+                                 Logger.Instance.LogMessage(TracingLevel.DEBUG,
+                                    "switch profile " + key + " to " +
+                                    profile.Name +
+                                    " for " + profile.DeviceType + " " + deviceInfo.Id);
+
+                                _lastStatus[deviceInfo.Id] = key;
+
+                                connection.SwitchProfileAsync(profile.Name);
+                            }
+
+                            return;
+                        }
+                    }
+                }
+
+                var mainProfiles = profiles.Where(x => x.ProfileTypes.Contains(Profile.ProfileType.Main)).ToList();
+
+                foreach (var p in mainProfiles)
                 {
-                    Logger.Instance.LogMessage(TracingLevel.DEBUG,
-                        "switch profile " + Profile.ProfileType.Main + " to " + p.Name + " for " + p.DeviceType);
-                    connection.SwitchProfileAsync(p.Name);
+                    var limitId = "";
+
+                    var idFound = false;
+
+                    var profileNameArray = p.Name.Split(' ').Select(x => x.ToUpper().Trim())
+                        .Where(x => x.Length == 6).ToList();
+                    foreach (var namePart in profileNameArray)
+                    {
+                        if (long.TryParse(namePart, NumberStyles.HexNumber,
+                                System.Globalization.CultureInfo.InvariantCulture, out var temp))
+                        {
+                            idFound = true;
+
+                            if (deviceInfo.Id.Contains(namePart))
+                            {
+                                limitId = deviceInfo.Id;
+                            }
+                        }
+                    }
+
+                    if (!idFound || !string.IsNullOrEmpty(limitId))
+                    {
+                        if (_lastStatus[deviceInfo.Id] != Profile.ProfileType.Main.ToString())
+                        {
+                            Logger.Instance.LogMessage(TracingLevel.DEBUG,
+                                "switch profile " + Profile.ProfileType.Main +
+                                " to " +
+                                p.Name + " for " +
+                                p.DeviceType + " " + deviceInfo.Id);
+
+                            _lastStatus[deviceInfo.Id] = Profile.ProfileType.Main.ToString();
+
+                            connection.SwitchProfileAsync(p.Name);
+
+                            break;
+
+                        }
+                    }
                 }
-
-                _lastStatus[deviceInfo.Id] = Profile.ProfileType.Main.ToString();
             }
-
         }
+
 
         private static async void SendInput(string inputText)
         {
