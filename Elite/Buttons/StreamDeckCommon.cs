@@ -10,6 +10,8 @@ using BarRaider.SdTools;
 using EliteJournalReader.Events;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
+using NLog.Fluent;
+using System.Diagnostics;
 
 namespace Elite.Buttons
 {
@@ -332,6 +334,18 @@ namespace Elite.Buttons
                 if (!_lastStatus.ContainsKey(deviceInfo.Id))
                 {
                     _lastStatus.Add(deviceInfo.Id, null);
+                }
+
+                try
+                {
+                   var bProcess = Process.GetProcessesByName("EliteDangerous64").FirstOrDefault();
+
+                    if (bProcess == null) return;
+    
+                }
+                catch (Exception ex)
+                {
+                    // do nothing
                 }
 
                 /*

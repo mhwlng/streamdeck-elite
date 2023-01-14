@@ -134,7 +134,7 @@ namespace Elite
 
             name = name.ToLower();
 
-            if (name.Contains("main"))
+            if (name.Contains("main") && !name.Contains("inmainship"))
             {
                 profiles.Add(ProfileType.Main);
                 return profiles;
