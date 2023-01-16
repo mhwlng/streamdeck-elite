@@ -228,7 +228,7 @@ namespace Elite.Buttons
 
 
 
-            if (!isDisabled && EliteData.LimpetCount > 0 && !string.IsNullOrEmpty(settings.Firegroup) && !string.IsNullOrEmpty(settings.Fire))
+            if (!isDisabled &&  !string.IsNullOrEmpty(settings.Firegroup) && !string.IsNullOrEmpty(settings.Fire))
             {
                 var cycle = Convert.ToInt32(settings.Firegroup) - EliteData.StatusData.Firegroup;
 
