@@ -343,7 +343,7 @@ namespace Elite.Buttons
                     if (bProcess == null) return;
     
                 }
-                catch (Exception ex)
+                catch // (Exception ex)
                 {
                     // do nothing
                 }

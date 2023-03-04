@@ -94,13 +94,13 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.5.1.1\lib\net46\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.5.1.2\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="streamdeck-client-csharp, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\streamdeck-client-csharp.4.3.0\lib\netstandard2.0\streamdeck-client-csharp.dll</HintPath>
     </Reference>
-    <Reference Include="StreamDeckTools, Version=5.9.10.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\StreamDeck-Tools.5.9.1-Beta1\lib\netstandard2.0\StreamDeckTools.dll</HintPath>
+    <Reference Include="StreamDeckTools, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StreamDeck-Tools.6.0.0\lib\netstandard2.0\StreamDeckTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
