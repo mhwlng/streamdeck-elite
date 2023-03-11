@@ -92,9 +92,9 @@ namespace Elite.Buttons
                               EliteData.StatusData.Docked ||
                               EliteData.StatusData.Landed ||
                               EliteData.StatusData.LandingGearDown ||
-                              EliteData.StatusData.Supercruise ||
                               EliteData.StatusData.FsdJump //||
 
+                              //EliteData.StatusData.Supercruise ||
                               //EliteData.StatusData.CargoScoopDeployed ||
                               //EliteData.StatusData.SilentRunning ||
                               //EliteData.StatusData.ScoopingFuel ||
@@ -104,7 +104,7 @@ namespace Elite.Buttons
                               //EliteData.StatusData.FsdMassLocked ||
                               //EliteData.StatusData.FsdCharging ||
                               //EliteData.StatusData.FsdCooldown ||
-                              
+
                               //EliteData.StatusData.HardpointsDeployed
                               );
 
@@ -210,9 +210,9 @@ namespace Elite.Buttons
                               EliteData.StatusData.Docked ||
                               EliteData.StatusData.Landed ||
                               EliteData.StatusData.LandingGearDown ||
-                              EliteData.StatusData.Supercruise ||
                               EliteData.StatusData.FsdJump //||
 
+                    //EliteData.StatusData.Supercruise ||
                     //EliteData.StatusData.CargoScoopDeployed ||
                     //EliteData.StatusData.SilentRunning ||
                     //EliteData.StatusData.ScoopingFuel ||

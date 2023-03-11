@@ -106,7 +106,7 @@ namespace Elite.Buttons
 
             if (timeDiff.TotalMilliseconds > 500)
             {
-                var repeatCount = 3;
+                var repeatCount = 4;
 
                 switch (settings.Function)
                 {
