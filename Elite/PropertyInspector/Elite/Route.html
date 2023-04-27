@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>Mhwlng's Elite</title>
+    <link rel="stylesheet" href="../sdpi.css">
+    <link rel="stylesheet" href="../jquery.highlight-within-textarea.css">
+    <script src="../sdtools.common.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../jquery.highlight-within-textarea.js"></script>
+</head>
+<body>
+    <div class="sdpi-wrapper">
+
+        <div type="group" class="sdpi-item" id="engagedgroup">
+            <div class="sdpi-item-label">Enabled</div>
+            <div class="sdpi-item-group" id="engagedgroup_items">
+
+                <div class="sdpi-item" id="dvPrimaryImage">
+                    <div class="sdpi-item-label" onclick="clearFileName('primaryImage');">Image</div>
+                    <div class="sdpi-item-group file" id="filepickergroup1">
+                        <input class="sdpi-item-value sdProperty sdFile" type="file" id="primaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                        <label class="sdpi-file-info " for="primaryImage" id="primaryImageFilename">No file...</label>
+                        <label class="sdpi-file-label" for="primaryImage">Choose file...</label>
+                    </div>
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvPrimaryColor">
+                    <div class="sdpi-item-label">Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="primaryColor" oninput="setSettings()">
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div type="group" class="sdpi-item" id="disabledgroup">
+            <div class="sdpi-item-label">Disabled</div>
+            <div class="sdpi-item-group" id="disabledgroup_items">
+
+                <div class="sdpi-item" id="dvTertiaryImage">
+                    <div class="sdpi-item-label" onclick="clearFileName('tertiaryImage');">Image</div>
+                    <div class="sdpi-item-group file" id="filepickergroup3">
+                        <input class="sdpi-item-value sdProperty sdFile" type="file" id="tertiaryImage" accept=".jpg, .jpeg, .png, .ico, .gif, .bmp, .tiff" oninput="setSettings()">
+                        <label class="sdpi-file-info " for="tertiaryImage" id="tertiaryImageFilename">No file...</label>
+                        <label class="sdpi-file-label" for="tertiaryImage">Choose file...</label>
+                    </div>
+                </div>
+
+                <div type="color" class="sdpi-item" id="dvTertiaryColor">
+                    <div class="sdpi-item-label">Color</div>
+                    <input class="sdpi-item-value sdProperty" type="color" id="tertiaryColor" oninput="setSettings()">
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="sdpi-item" id="dvClickSound">
+            <div class="sdpi-item-label" onclick="clearFileName('clickSound');">Sound</div>
+            <div class="sdpi-item-group file" id="filepickergroup4">
+                <input class="sdpi-item-value sdProperty sdFile" type="file" id="clickSound" accept=".wav" oninput="setSettings()">
+                <label class="sdpi-file-info " for="clickSound" id="clickSoundFilename">No file...</label>
+                <label class="sdpi-file-label" for="clickSound">Choose file...</label>
+            </div>
+        </div>
+
+        <div class="sdpi-item" id="dvErrorSound">
+            <div class="sdpi-item-label" onclick="clearFileName('errorSound');">Disabled Sound</div>
+            <div class="sdpi-item-group file" id="filepickergroup5">
+                <input class="sdpi-item-value sdProperty sdFile" type="file" id="errorSound" accept=".wav" oninput="setSettings()">
+                <label class="sdpi-file-info " for="errorSound" id="errorSoundFilename">No file...</label>
+                <label class="sdpi-file-label" for="errorSound">Choose file...</label>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

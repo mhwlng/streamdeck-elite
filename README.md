@@ -60,7 +60,7 @@ ONLY add an image to a (repeating) STATIC and DIAL button in this way, do NOT se
 
 Animated gif files are only supported for the (repeating) STATIC and DIAL buttons. Dial images are 200x50
 
-If .gif images are configured for Power/Limpet/Hyperspace buttons, then no texts or pips are drawn on top of them.
+If .gif images are configured for Power/Limpet/Hyperspace/Route buttons, then no texts or pips are drawn on top of them.
 
 **You can clear the image/sound path, by clicking on the label in front of the file picker edit box.**
 
@@ -125,6 +125,7 @@ The supported FSD related buttons are:
 - Toggle FSD, also shows Remaining Jumps In Route
 - Supercruise
 - Hyperspace Jump, also shows Remaining Jumps In Route
+- Route, also shows Remaining Jumps In Route
 
 The FSD buttons have 3 images:
 - engaged  : supercruise/hyperspace is active
@@ -142,6 +143,17 @@ The FSS button has 3 images:
 - disabled : not in supercruise mode (note that throttle position can't be detected)
 
 A normal and disabled sound can be played when pressing the FSS button.
+
+The Route button has 2 images:
+- enabled  : Remaining Jumps In Route > 0
+- disabled : Remaining Jumps In Route = 0
+
+When the route button is pressed, the 'Next Jump Destination' binding is executed. ('TargetNextRouteSystem' Binding)
+
+Text colors can be configured separately for each button state. 
+If color #ff00ff is chosen, then the text will always be hidden.
+
+A normal and disabled sound can be played when pressing the Route button.
 
 The limpet controller button works with any type of limpet controller.
 

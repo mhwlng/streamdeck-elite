@@ -47,6 +47,21 @@
     },
     {
       "Icon": "Images/icon",
+      "Name": "Route Button",
+      "States": [
+        {
+          "Image": "Images/Default",
+          "TitleAlignment": "bottom",
+          "FontSize": "8"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Elite Dangerous Route Button",
+      "UUID": "com.mhwlng.elite.route",
+      "PropertyInspectorPath": "PropertyInspector/Elite/Route.html"
+    },
+    {
+      "Icon": "Images/icon",
       "Name": "Limpet Button",
       "States": [
         {
@@ -177,7 +192,7 @@
   "Name": "Elite Dangerous",
   "Icon": "Images/pluginIcon",
   "URL": "https://github.com/mhwlng/streamdeck-elite",
-  "Version": "2.5.7",
+  "Version": "2.5.8",
   "CodePath": "com.mhwlng.elite",
   "Category": "Elite Dangerous",
   "CategoryIcon": "Images/categoryIcon",
@@ -189,7 +204,7 @@
   ],
   "SDKVersion": 2,
   "Software": {
-    "MinimumVersion": "6.0"
+    "MinimumVersion": "6.1"
   },
   "Profiles": [
 

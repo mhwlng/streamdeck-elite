@@ -159,7 +159,20 @@ namespace Elite.Buttons
             }
         }
 
-        public override void DialPress(DialPressPayload payload)
+        public override void DialDown(DialPayload payload)
+        {
+            if (StreamDeckCommon.InputRunning || Program.Binding == null)
+            {
+                StreamDeckCommon.ForceStop = true;
+                return;
+            }
+
+            StreamDeckCommon.ForceStop = false;
+
+            EliteKeys.SendKeypressDown(settings.FunctionPress);
+        }
+
+        public override void DialUp(DialPayload payload)
         {
 
             if (StreamDeckCommon.InputRunning || Program.Binding == null)
@@ -170,19 +183,8 @@ namespace Elite.Buttons
 
             StreamDeckCommon.ForceStop = false;
 
-            if (payload.IsDialPressed)
-            {
-                EliteKeys.SendKeypressDown(settings.FunctionPress);
-            }
-            else
-            {
-                EliteKeys.SendKeypressUp(settings.FunctionPress);
-            }
+            EliteKeys.SendKeypressUp(settings.FunctionPress);
         }
-
-     
-
-
 
         public override void DialRotate(DialRotatePayload payload)
         {
