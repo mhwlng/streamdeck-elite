@@ -176,7 +176,7 @@ namespace Elite
                 profiles.Add(ProfileType.CommsPanel);
             }
 
-            if (name.Contains("rolepanel"))
+            if (name.Contains("invrolepanel"))
             {
                 profiles.Add(ProfileType.InvRolePanel);
             }

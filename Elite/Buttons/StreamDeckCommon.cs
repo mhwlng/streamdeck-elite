@@ -373,10 +373,6 @@ namespace Elite.Buttons
                 }
 
                 /*
-                EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel
-                EliteData.StatusData.GuiFocus == StatusGuiFocus.ExternalPanel
-                EliteData.StatusData.GuiFocus == StatusGuiFocus.CommsPanel
-                EliteData.StatusData.GuiFocus == StatusGuiFocus.RolePanel
                 EliteData.StatusData.GuiFocus == StatusGuiFocus.StationServices
                 EliteData.StatusData.GuiFocus == StatusGuiFocus.Codex
                 
