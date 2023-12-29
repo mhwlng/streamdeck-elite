@@ -31,6 +31,30 @@ namespace Elite.Buttons
 
             switch (profileType)
             {
+                case Profile.ProfileType.InternalPanel:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.InternalPanel;
+                    break;
+                case Profile.ProfileType.InvInternalPanel:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.InternalPanel;
+                    break;
+                case Profile.ProfileType.ExternalPanel:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.ExternalPanel;
+                    break;
+                case Profile.ProfileType.InvExternalPanel:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.ExternalPanel;
+                    break;
+                case Profile.ProfileType.CommsPanel:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.CommsPanel;
+                    break;
+                case Profile.ProfileType.InvCommsPanel:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.CommsPanel;
+                    break;
+                case Profile.ProfileType.RolePanel:
+                    state = EliteData.StatusData.GuiFocus == StatusGuiFocus.RolePanel;
+                    break;
+                case Profile.ProfileType.InvRolePanel:
+                    state = EliteData.StatusData.GuiFocus != StatusGuiFocus.RolePanel;
+                    break;
                 case Profile.ProfileType.GalaxyMap:
                     state = EliteData.StatusData.GuiFocus == StatusGuiFocus.GalaxyMap;
                     break;

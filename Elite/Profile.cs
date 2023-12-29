@@ -15,6 +15,15 @@ namespace Elite
         {
             Main,
 
+            InternalPanel,
+            InvInternalPanel,
+            ExternalPanel,
+            InvExternalPanel,
+            CommsPanel,
+            InvCommsPanel,
+            RolePanel,
+            InvRolePanel,
+
             GalaxyMap,
             InvGalaxyMap,
             SystemMap,
@@ -138,6 +147,42 @@ namespace Elite
             {
                 profiles.Add(ProfileType.Main);
                 return profiles;
+            }
+
+            if (name.Contains("invinternalpanel"))
+            {
+                profiles.Add(ProfileType.InvInternalPanel);
+            }
+            else if (name.Contains("internalpanel"))
+            {
+                profiles.Add(ProfileType.InternalPanel);
+            }
+
+            if (name.Contains("invexternalpanel"))
+            {
+                profiles.Add(ProfileType.InvExternalPanel);
+            }
+            else if (name.Contains("externalpanel"))
+            {
+                profiles.Add(ProfileType.ExternalPanel);
+            }
+
+            if (name.Contains("invcommspanel"))
+            {
+                profiles.Add(ProfileType.InvCommsPanel);
+            }
+            else if (name.Contains("commspanel"))
+            {
+                profiles.Add(ProfileType.CommsPanel);
+            }
+
+            if (name.Contains("rolepanel"))
+            {
+                profiles.Add(ProfileType.InvRolePanel);
+            }
+            else if (name.Contains("rolepanel"))
+            {
+                profiles.Add(ProfileType.RolePanel);
             }
 
             if (name.Contains("invgalaxymap"))
