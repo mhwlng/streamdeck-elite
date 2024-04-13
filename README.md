@@ -196,7 +196,7 @@ If nothing happens, when pressing streamdeck buttons:
 
 You may see errors like this in the plugin log file :
 
-`file not found C:\Users\xxx\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\Custom.4.0.binds`
+`file not found C:\Users\xxx\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings\Custom.4.1.binds`
 
 In that case, the plugin has no access to the bindings directory. 
 
