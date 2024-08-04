@@ -83,7 +83,10 @@ namespace Elite.Buttons
             var textBrush = _primaryBrush;
             var textHtmlColor = settings.PrimaryColor;
 
-            var isDisabled = EliteData.RemainingJumpsInRoute == 0;
+            var remainingJumpsInRoute = EliteData.RouteList?.Count ?? 0;
+
+
+            var isDisabled = remainingJumpsInRoute == 0;
 
             if (isDisabled)
             {
@@ -97,7 +100,7 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                if (!bitmapImageIsGif && EliteData.StarSystem != EliteData.FsdTargetName && EliteData.RemainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
+                if (!bitmapImageIsGif && /*EliteData.StarSystem != EliteData.FsdTargetName &&*/ remainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
                 {
                     try
                     {
@@ -115,19 +118,19 @@ namespace Elite.Buttons
                                     var testFont = new Font(drawFont.Name, adjustedSize, drawFont.Style);
 
                                     var adjustedSizeNew =
-                                        graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(),
+                                        graphics.MeasureString(remainingJumpsInRoute.ToString(),
                                             testFont);
 
                                     if (fontContainerHeight >= adjustedSizeNew.Height)
                                     {
                                         var stringSize =
-                                            graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(),
+                                            graphics.MeasureString(remainingJumpsInRoute.ToString(),
                                                 testFont);
 
                                         var x = (width - stringSize.Width) / 2.0;
                                         var y = 28.0 * (width / 256.0);
 
-                                        graphics.DrawString(EliteData.RemainingJumpsInRoute.ToString(), testFont,
+                                        graphics.DrawString(remainingJumpsInRoute.ToString(), testFont,
                                             textBrush, (float) x, (float) y);
 
                                         testFont.Dispose();
@@ -188,9 +191,10 @@ namespace Elite.Buttons
 
             StreamDeckCommon.ForceStop = false;
 
-            var isDisabled = EliteData.RemainingJumpsInRoute == 0;
-
-
+            var remainingJumpsInRoute = EliteData.RouteList?.Count ?? 0;
+            
+            var isDisabled = remainingJumpsInRoute == 0;
+            
             if (!isDisabled)
             {
                  StreamDeckCommon.SendKeypress(Program.Binding[BindingType.Ship].TargetNextRouteSystem);

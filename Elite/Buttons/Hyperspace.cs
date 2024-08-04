@@ -171,7 +171,9 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && EliteData.StarSystem != EliteData.FsdTargetName && EliteData.RemainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
+                var remainingJumpsInRoute = EliteData.RouteList?.Count ?? 0;
+
+                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && /*EliteData.StarSystem != EliteData.FsdTargetName &&*/ remainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
                 {
                     try
                     {
@@ -189,19 +191,19 @@ namespace Elite.Buttons
                                     var testFont = new Font(drawFont.Name, adjustedSize, drawFont.Style);
 
                                     var adjustedSizeNew =
-                                        graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(),
+                                        graphics.MeasureString(remainingJumpsInRoute.ToString(),
                                             testFont);
 
                                     if (fontContainerHeight >= adjustedSizeNew.Height)
                                     {
                                         var stringSize =
-                                            graphics.MeasureString(EliteData.RemainingJumpsInRoute.ToString(),
+                                            graphics.MeasureString(remainingJumpsInRoute.ToString(),
                                                 testFont);
 
                                         var x = (width - stringSize.Width) / 2.0;
                                         var y = 28.0 * (width / 256.0);
 
-                                        graphics.DrawString(EliteData.RemainingJumpsInRoute.ToString(), testFont,
+                                        graphics.DrawString(remainingJumpsInRoute.ToString(), testFont,
                                             textBrush, (float) x, (float) y);
 
                                         testFont.Dispose();

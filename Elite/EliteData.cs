@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EliteJournalReader;
 using EliteJournalReader.Events;
@@ -11,10 +12,14 @@ namespace Elite
 
         public static bool UnderAttack = false;
         public static DateTime LastUnderAttackEvent = DateTime.Now;
-        public static string FsdTargetName { get; set; }
-        public static int RemainingJumpsInRoute { get; set; }
-        public static string StarClass { get; set; }
+        //public static string FsdTargetName { get; set; }
+        //public static int RemainingJumpsInRoute { get; set; }
+        //public static string StarClass { get; set; }
         public static string StarSystem { get; set; }
+
+        public static List<RouteItem> RouteList = new List<RouteItem>();
+
+
         public static int LimpetCount { get; set; } 
 
         public class Status
@@ -94,6 +99,26 @@ namespace Elite
         }
 
         public static Status StatusData = new Status();
+
+        public static void HandleNavRouteEvents(object sender, NavRouteEvent.NavRouteEventArgs info)
+        {
+            if (info?.Route == null || info.Route.Length < 2)
+            {
+                RouteList = new List<RouteItem>();
+            }
+            else
+            {
+                RouteList = info.Route.Select(
+                    x => new RouteItem
+                    {
+                        StarClass = x.StarClass,
+                        StarPos = x.StarPos,
+                        StarSystem = x.StarSystem,
+                        SystemAddress = x.SystemAddress,
+                    }).Skip(1).ToList();
+
+            }
+        }
 
         public static void HandleCargoEvents(object sender, CargoEvent.CargoEventArgs evt)
         {
@@ -251,13 +276,13 @@ namespace Elite
 
                 case "FSDTarget":
                     //When written: when selecting a star system to jump to
-                    var fsdTargetInfo = (FSDTargetEvent.FSDTargetEventArgs)e;
+                    //var fsdTargetInfo = (FSDTargetEvent.FSDTargetEventArgs)e;
 
-                    EliteData.FsdTargetName = fsdTargetInfo.Name;
+                    //EliteData.FsdTargetName = fsdTargetInfo.Name;
 
-                    EliteData.RemainingJumpsInRoute = fsdTargetInfo.RemainingJumpsInRoute;
+                    //EliteData.RemainingJumpsInRoute = fsdTargetInfo.RemainingJumpsInRoute;
 
-                    EliteData.StarClass = fsdTargetInfo.StarClass;
+                    //EliteData.StarClass = fsdTargetInfo.StarClass;
 
                     break;
 
@@ -276,7 +301,7 @@ namespace Elite
 
                 case "Cargo":
 
-                    var cargoInfo = (CargoEvent.CargoEventArgs)e;
+                    //var cargoInfo = (CargoEvent.CargoEventArgs)e;
                     /*
                     if (cargoInfo.Vessel == "Ship")
                     {
@@ -296,9 +321,15 @@ namespace Elite
 
                 case "Died":
 
-                    var diedInfo = (DiedEvent.DiedEventArgs)e;
+                    //var diedInfo = (DiedEvent.DiedEventArgs)e;
 
                     EliteData.LimpetCount = 0;
+
+                    break;
+
+                case "NavRouteClear":
+
+                    EliteData.RouteList = new List<RouteItem>();
 
                     break;
 

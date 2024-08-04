@@ -87,6 +87,7 @@ namespace Elite
         public static KeyBindingWatcher KeyBindingWatcherStartPreset;
         public static StatusWatcher StatusWatcher;
         public static CargoWatcher CargoWatcher;
+        public static NavRouteWatcher NavRouteWatcher;
         public static JournalWatcher JournalWatcher;
 
         public static Dictionary<BindingType, UserBindings> Binding = new Dictionary<BindingType, UserBindings>();
@@ -505,6 +506,11 @@ namespace Elite
 
                 CargoWatcher.StartWatching();
 
+                NavRouteWatcher = new NavRouteWatcher(journalPath);
+
+                NavRouteWatcher.NavRouteUpdated += EliteData.HandleNavRouteEvents;
+
+                NavRouteWatcher.StartWatching();
             }
             catch (Exception ex)
             {
