@@ -12,9 +12,9 @@ namespace Elite
 
         public static bool UnderAttack = false;
         public static DateTime LastUnderAttackEvent = DateTime.Now;
-        //public static string FsdTargetName { get; set; }
-        //public static int RemainingJumpsInRoute { get; set; }
-        //public static string StarClass { get; set; }
+        public static string FsdTargetName { get; set; }
+        public static int RemainingJumpsInRoute { get; set; }
+        public static string StarClass { get; set; }
         public static string StarSystem { get; set; }
 
         public static List<RouteItem> RouteList = new List<RouteItem>();
@@ -276,13 +276,13 @@ namespace Elite
 
                 case "FSDTarget":
                     //When written: when selecting a star system to jump to
-                    //var fsdTargetInfo = (FSDTargetEvent.FSDTargetEventArgs)e;
+                    var fsdTargetInfo = (FSDTargetEvent.FSDTargetEventArgs)e;
 
-                    //EliteData.FsdTargetName = fsdTargetInfo.Name;
+                    EliteData.FsdTargetName = fsdTargetInfo.Name;
 
-                    //EliteData.RemainingJumpsInRoute = fsdTargetInfo.RemainingJumpsInRoute;
+                    EliteData.RemainingJumpsInRoute = fsdTargetInfo.RemainingJumpsInRoute;
 
-                    //EliteData.StarClass = fsdTargetInfo.StarClass;
+                    EliteData.StarClass = fsdTargetInfo.StarClass;
 
                     break;
 
@@ -330,6 +330,7 @@ namespace Elite
                 case "NavRouteClear":
 
                     EliteData.RouteList = new List<RouteItem>();
+                    EliteData.RemainingJumpsInRoute = 0;
 
                     break;
 

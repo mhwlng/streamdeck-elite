@@ -171,9 +171,9 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                var remainingJumpsInRoute = EliteData.RouteList?.Count ?? 0;
+                var remainingJumpsInRoute = /*EliteData.RouteList?.Count ?? 0;*/ EliteData.RemainingJumpsInRoute;
 
-                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && /*EliteData.StarSystem != EliteData.FsdTargetName &&*/ remainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
+                if (!bitmapImageIsGif && settings.Function != "SUPERCRUISE" && EliteData.StarSystem != EliteData.FsdTargetName && remainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
                 {
                     try
                     {

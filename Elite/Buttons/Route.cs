@@ -83,7 +83,7 @@ namespace Elite.Buttons
             var textBrush = _primaryBrush;
             var textHtmlColor = settings.PrimaryColor;
 
-            var remainingJumpsInRoute = EliteData.RouteList?.Count ?? 0;
+            var remainingJumpsInRoute = /*EliteData.RouteList?.Count ?? 0*/ EliteData.RemainingJumpsInRoute;
 
 
             var isDisabled = remainingJumpsInRoute == 0;
@@ -100,7 +100,7 @@ namespace Elite.Buttons
 
             if (_primaryImage != null)
             {
-                if (!bitmapImageIsGif && /*EliteData.StarSystem != EliteData.FsdTargetName &&*/ remainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
+                if (!bitmapImageIsGif && EliteData.StarSystem != EliteData.FsdTargetName && remainingJumpsInRoute > 0  && textHtmlColor != "#ff00ff")
                 {
                     try
                     {
@@ -191,7 +191,7 @@ namespace Elite.Buttons
 
             StreamDeckCommon.ForceStop = false;
 
-            var remainingJumpsInRoute = EliteData.RouteList?.Count ?? 0;
+            var remainingJumpsInRoute = /*EliteData.RouteList?.Count ?? 0*/ EliteData.RemainingJumpsInRoute;
             
             var isDisabled = remainingJumpsInRoute == 0;
             
