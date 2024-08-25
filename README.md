@@ -189,8 +189,10 @@ So, when there is only a binding to a joystick / controller / mouse for a functi
 
 If you change the key bindings in Elite Dangerous, then you don't have to restart the streamdeck software. The plugin key bindings are updated automatically.
 
-**When using Odyssey, the on-foot binding must be 'custom'. (this will happen automatically once you make at least one on-foot keyboard binding)
+**All bindings must be 'custom'. (this will happen automatically once you make at least one on-foot keyboard binding)
 If you see a default binding name, then the plugin won't work correctly.**
+
+![Binding Image](https://i.imgur.com/CpM7HTZ.png)
 
 If nothing happens, when pressing streamdeck buttons:
 
