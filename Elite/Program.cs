@@ -245,29 +245,36 @@ namespace Elite
             }
 
 
-            var fileName = Path.Combine(bindingsPath, bindsName + ".4.1.binds");
+            var fileName = Path.Combine(bindingsPath, bindsName + ".4.2.binds");
 
             if (!File.Exists(fileName))
             {
                 Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
 
-                fileName = fileName.Replace(".4.1.binds", ".4.0.binds");
+                fileName = fileName.Replace(".4.2.binds", ".4.1.binds");
 
                 if (!File.Exists(fileName))
                 {
-                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file also not found " + fileName);
+                    Logger.Instance.LogMessage(TracingLevel.ERROR, "file not found " + fileName);
 
-                    fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
+                    fileName = fileName.Replace(".4.1.binds", ".4.0.binds");
 
                     if (!File.Exists(fileName))
                     {
                         Logger.Instance.LogMessage(TracingLevel.ERROR, "file also not found " + fileName);
 
-                        fileName = fileName.Replace(".3.0.binds", ".binds");
+                        fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
 
                         if (!File.Exists(fileName))
                         {
                             Logger.Instance.LogMessage(TracingLevel.ERROR, "file also not found " + fileName);
+
+                            fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                            if (!File.Exists(fileName))
+                            {
+                                Logger.Instance.LogMessage(TracingLevel.ERROR, "file also not found " + fileName);
+                            }
                         }
                     }
                 }
@@ -280,29 +287,36 @@ namespace Elite
 
                 if (!string.IsNullOrEmpty(bindingsPath))
                 {
-                    fileName = Path.Combine(bindingsPath, bindsName + ".4.1.binds");
+                    fileName = Path.Combine(bindingsPath, bindsName + ".4.2.binds");
 
                     if (!File.Exists(fileName))
                     {
                         Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
 
-                        fileName = fileName.Replace(".4.1.binds", ".4.0.binds");
+                        fileName = fileName.Replace(".4.2.binds", ".4.1.binds");
 
                         if (!File.Exists(fileName))
                         {
-                            Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file also not found " + fileName);
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file not found " + fileName);
 
-                            fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
+                            fileName = fileName.Replace(".4.1.binds", ".4.0.binds");
 
                             if (!File.Exists(fileName))
                             {
                                 Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file also not found " + fileName);
 
-                                fileName = fileName.Replace(".3.0.binds", ".binds");
+                                fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
 
                                 if (!File.Exists(fileName))
                                 {
                                     Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file also not found " + fileName);
+
+                                    fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                                    if (!File.Exists(fileName))
+                                    {
+                                        Logger.Instance.LogMessage(TracingLevel.ERROR, "steam file also not found " + fileName);
+                                    }
                                 }
                             }
                         }
@@ -317,29 +331,36 @@ namespace Elite
 
                 if (!string.IsNullOrEmpty(bindingsPath))
                 {
-                    fileName = Path.Combine(bindingsPath, bindsName + ".4.1.binds");
+                    fileName = Path.Combine(bindingsPath, bindsName + ".4.2.binds");
 
                     if (!File.Exists(fileName))
                     {
                         Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
 
-                        fileName = fileName.Replace(".4.1.binds", ".4.0.binds");
+                        fileName = fileName.Replace(".4.2.binds", ".4.1.binds");
 
                         if (!File.Exists(fileName))
                         {
-                            Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file also not found " + fileName);
+                            Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
 
-                            fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
+                            fileName = fileName.Replace(".4.1.binds", ".4.0.binds");
 
                             if (!File.Exists(fileName))
                             {
                                 Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file also not found " + fileName);
 
-                                fileName = fileName.Replace(".3.0.binds", ".binds");
+                                fileName = fileName.Replace(".4.0.binds", ".3.0.binds");
 
                                 if (!File.Exists(fileName))
                                 {
-                                    Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
+                                    Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file also not found " + fileName);
+
+                                    fileName = fileName.Replace(".3.0.binds", ".binds");
+
+                                    if (!File.Exists(fileName))
+                                    {
+                                        Logger.Instance.LogMessage(TracingLevel.ERROR, "epic file not found " + fileName);
+                                    }
                                 }
                             }
                         }
